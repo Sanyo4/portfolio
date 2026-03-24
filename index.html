@@ -3,508 +3,1142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanay's Portfolio</title>
+    <title>Sanay Shah — Product Builder & Founder</title>
+    <meta name="description" content="Sanay Shah builds AI-powered products end-to-end. Sole founder of Beau and Gonzo. Product builder, system designer, and strategic thinker.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Instrument Serif"', 'Georgia', 'serif'],
+                        body: ['"DM Sans"', 'system-ui', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        bg: { DEFAULT: '#F7F9F4', alt: '#EDF2E8' },
+                        accent: { DEFAULT: '#2A9D8F', light: '#7AC0B4' },
+                        mint: '#90FCCF',
+                        sage: '#D1E8D1',
+                        forest: { DEFAULT: '#1A2E1A', muted: '#5A7A5A' },
+                    }
+                }
+            }
+        }
+    </script>
     <style>
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'JetBrains Mono', monospace;
-            background-color: #f0fff0;
-            color: #1e293b;
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background-color: #F7F9F4;
+            color: #1A2E1A;
+            overflow-x: hidden;
         }
-        .section-title {
-            border-bottom: 2px solid #D1E8D1;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
+
+        /* --- Dot grid background --- */
+        .dot-grid {
+            background-image: radial-gradient(circle, #D1E8D1 1px, transparent 1px);
+            background-size: 24px 24px;
         }
-        .card, .polaroid {
-            background-color: #7AC0B4;
+
+        /* --- Scroll animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* --- Glass nav --- */
+        .glass-nav {
+            background: rgba(247, 249, 244, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid #D1E8D1;
+        }
+        .glass-nav.scrolled {
+            box-shadow: 0 1px 24px rgba(42, 157, 143, 0.08);
+        }
+
+        /* --- Section divider --- */
+        .section-line {
+            width: 48px;
+            height: 2px;
+            background: #2A9D8F;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* --- Product cards --- */
+        .product-card {
+            background: #FFFFFF;
             border: 1px solid #D1E8D1;
-            border-radius: 0.5rem;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
-        .card:hover, .polaroid:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+        .product-card:hover {
+            box-shadow: 0 16px 48px rgba(42, 157, 143, 0.1);
+            transform: translateY(-2px);
         }
-        .tag {
-            background-color: #90FCCF;
-            color: #1e293b;
-            font-size: 0.75rem;
-            font-weight: 500;
+
+        /* --- Accordion --- */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .timeline::before {
-            content: '';
+        .accordion-content.open {
+            max-height: 2000px;
+        }
+        .accordion-toggle svg {
+            transition: transform 0.3s ease;
+        }
+        .accordion-toggle.open svg {
+            transform: rotate(180deg);
+        }
+
+        /* --- Timeline --- */
+        .timeline-line {
             position: absolute;
+            left: 7px;
             top: 0;
-            left: 1.25rem;
-            height: 100%;
+            bottom: 0;
             width: 2px;
-            background-color: #B8E5B8;
-            transform: translateX(-50%);
+            background: linear-gradient(to bottom, #2A9D8F, #D1E8D1);
         }
-        .timeline-item {
-            position: relative;
-            padding-left: 3rem;
-            margin-bottom: 2rem;
-        }
-        .timeline-dot {
+        .timeline-dot-new {
             position: absolute;
-            left: 1.25rem;
-            top: 0.25rem;
-            height: 1rem;
-            width: 1rem;
-            background-color: #F0FFF0;
-            border: 2px solid #7AC0B4;
-            border-radius: 9999px;
-            transform: translateX(-50%);
+            left: 0;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            background: #F7F9F4;
+            border: 2.5px solid #2A9D8F;
+            border-radius: 50%;
+            z-index: 1;
         }
-        .polaroid {
-            padding: 1rem;
+        .timeline-entry {
+            padding-left: 36px;
+            position: relative;
             cursor: pointer;
         }
-        .polaroid img, .card img {
+
+        /* --- Experience card --- */
+        .exp-card {
+            background: #FFFFFF;
+            border: 1px solid #D1E8D1;
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+        }
+        .exp-card:hover {
+            box-shadow: 0 8px 24px rgba(42, 157, 143, 0.08);
+            transform: translateY(-2px);
+            border-color: #7AC0B4;
+        }
+
+        /* --- Hackathon cards --- */
+        .hack-card {
+            background: #FFFFFF;
+            border: 1px solid #D1E8D1;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .hack-card:hover {
+            box-shadow: 0 8px 24px rgba(42, 157, 143, 0.08);
+            transform: translateY(-2px);
+        }
+        .hack-card img {
             width: 100%;
-            aspect-ratio: 4 / 3;
-            object-fit: contain;
-            background-color: #7AC0B4;
-            border-radius: 0.5rem;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
         }
-        .polaroid .card-title {
-            font-weight: bold;
-            margin-top: 0.5rem;
+        .hack-featured {
+            border: 2px solid #2A9D8F;
         }
-        a {
-            color: #7AC0B4;
+
+        /* --- Tag pill --- */
+        .tag-pill {
+            display: inline-block;
+            background: #90FCCF;
+            color: #1A2E1A;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            white-space: nowrap;
         }
-        header a, footer a {
-            color: inherit;
+
+        /* --- Skill category --- */
+        .skill-group-tag {
+            display: inline-block;
+            background: #FFFFFF;
+            color: #5A7A5A;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #D1E8D1;
+            transition: border-color 0.2s ease, color 0.2s ease;
         }
+        .skill-group-tag:hover {
+            border-color: #7AC0B4;
+            color: #2A9D8F;
+        }
+
+        /* --- Link pill --- */
+        .link-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            border: 1px solid #D1E8D1;
+            color: #1A2E1A;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            min-height: 44px;
+        }
+        .link-pill:hover {
+            border-color: #2A9D8F;
+            background: #2A9D8F;
+            color: #FFFFFF;
+        }
+
+        /* --- Modal --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(26, 46, 26, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 50;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-box {
+            background: #FFFFFF;
+            border-radius: 16px;
+            max-width: 640px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+        @media (max-width: 767px) {
+            .modal-box {
+                max-width: 100%;
+                max-height: 100vh;
+                height: 100%;
+                border-radius: 0;
+                padding: 1.5rem;
+                padding-top: 3.5rem;
+            }
+        }
+
+        /* --- Mobile menu --- */
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(247, 249, 244, 0.97);
+            backdrop-filter: blur(20px);
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .mobile-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-overlay a {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            color: #1A2E1A;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .mobile-overlay a:hover {
+            color: #2A9D8F;
+        }
+
+        /* --- Education card --- */
+        .edu-card {
+            background: #FFFFFF;
+            border: 1px solid #D1E8D1;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        /* --- Hero photo --- */
+        .hero-photo {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            border: 3px solid #2A9D8F;
+            object-fit: cover;
+        }
+
+        /* --- Stat block --- */
+        .stat-block {
+            text-align: center;
+            padding: 1rem;
+        }
+        .stat-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            color: #2A9D8F;
+            line-height: 1;
+        }
+        .stat-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: #5A7A5A;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+
+        /* --- Fluid headings --- */
+        h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+        h2.section-heading { font-size: clamp(1.75rem, 4vw, 3rem); }
+
+        /* --- Footer --- */
+        footer a {
+            color: #5A7A5A;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        footer a:hover { color: #2A9D8F; }
     </style>
 </head>
 <body class="antialiased">
 
-    <header class="bg-[#7AC0B4] shadow-sm sticky top-0 z-10">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div>
-                <h1 class="text-2xl font-bold text-slate-800">Sanay Shah</h1>
-                <p class="text-slate-500">Innovator | Project Manager | Ideator</p>
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="main-nav" class="glass-nav fixed top-0 left-0 right-0 z-30 transition-shadow duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+            <a href="#" class="font-display text-xl text-forest no-underline">Sanay Shah</a>
+            <div class="hidden md:flex items-center gap-6">
+                <a href="#products" class="text-forest-muted hover:text-accent text-sm font-medium transition-colors no-underline">Products</a>
+                <a href="#experience" class="text-forest-muted hover:text-accent text-sm font-medium transition-colors no-underline">Experience</a>
+                <a href="#hackathons" class="text-forest-muted hover:text-accent text-sm font-medium transition-colors no-underline">Hackathons</a>
+                <a href="#education" class="text-forest-muted hover:text-accent text-sm font-medium transition-colors no-underline">Education</a>
+                <a href="#connect" class="text-forest-muted hover:text-accent text-sm font-medium transition-colors no-underline">Connect</a>
             </div>
-            <nav class="hidden md:flex items-center space-x-6">
-                <a href="#experience" class="text-slate-600 hover:text-blue-600 transition">Experience</a>
-                <a href="#hackathons" class="text-slate-600 hover:text-blue-600 transition">Hackathons</a>
-                <a href="#projects" class="text-slate-600 hover:text-blue-600 transition">Projects</a>
-                <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" class="text-slate-600 hover:text-blue-600 transition flex items-center">
-                    <i class="fab fa-linkedin mr-2"></i> LinkedIn
-                </a>
-                <a href="https://www.instagram.com/sanay.photography/" target="_blank" class="text-slate-600 hover:text-blue-600 transition flex items-center">
-                    <i class="fab fa-instagram mr-2"></i> Photography
-                </a>
-            </nav>
-            <button id="mobile-menu-button" class="md:hidden text-slate-600 text-2xl">
+            <button id="menu-btn" class="md:hidden w-11 h-11 flex items-center justify-center text-forest text-xl" aria-label="Open menu">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 border-t border-slate-200">
-            <a href="#experience" class="block py-2 text-slate-600 hover:text-blue-600">Experience</a>
-            <a href="#hackathons" class="block py-2 text-slate-600 hover:text-blue-600">Hackathons</a>
-            <a href="#projects" class="block py-2 text-slate-600 hover:text-blue-600">Projects</a>
-            <a href="https://www.instagram.com/sanyo.Photography" target="_blank" class="block py-2 text-slate-600 hover:text-blue-600">Photography</a>
+    </nav>
+
+    <!-- Mobile overlay menu -->
+    <div id="mobile-menu" class="mobile-overlay">
+        <button id="menu-close" class="absolute top-5 right-6 w-11 h-11 flex items-center justify-center text-2xl text-forest" aria-label="Close menu">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#products" class="mobile-link">Products</a>
+        <a href="#experience" class="mobile-link">Experience</a>
+        <a href="#hackathons" class="mobile-link">Hackathons</a>
+        <a href="#education" class="mobile-link">Education</a>
+        <a href="#skills" class="mobile-link">Skills</a>
+        <a href="#connect" class="mobile-link">Connect</a>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="min-h-[85vh] flex items-center pt-20 pb-12 md:pt-24 md:pb-20">
+        <div class="max-w-6xl mx-auto px-6 w-full">
+            <div class="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16">
+                <!-- Text -->
+                <div class="flex-1 text-center md:text-left">
+                    <p class="font-mono text-xs tracking-widest text-accent uppercase mb-4 reveal">Product Builder &middot; Sole Founder &middot; System Designer</p>
+                    <h1 class="font-display text-forest leading-[1.05] mb-6 reveal reveal-delay-1">
+                        I build products<br>
+                        <span class="italic text-accent">from concept<br>to users.</span>
+                    </h1>
+                    <p class="text-forest-muted text-lg md:text-xl max-w-xl mx-auto md:mx-0 leading-relaxed mb-8 reveal reveal-delay-2">
+                        Final-year CS student at Cardiff University. I design and ship AI-powered systems end-to-end — from product vision and architecture through to deployment and real users. Currently running two live products.
+                    </p>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-3 reveal reveal-delay-3">
+                        <a href="https://beau.quest" target="_blank" class="link-pill">
+                            <i class="fas fa-heart text-accent text-sm"></i> beau.quest
+                        </a>
+                        <a href="https://gonzo.guide" target="_blank" class="link-pill">
+                            <i class="fas fa-compass text-accent text-sm"></i> gonzo.guide
+                        </a>
+                        <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" class="link-pill">
+                            <i class="fab fa-linkedin text-accent text-sm"></i> LinkedIn
+                        </a>
+                        <a href="mailto:sanays.mail@gmail.com" class="link-pill">
+                            <i class="fas fa-envelope text-accent text-sm"></i> Email
+                        </a>
+                        <a href="https://www.instagram.com/sanay.photography/" target="_blank" class="link-pill">
+                            <i class="fab fa-instagram text-accent text-sm"></i> Photography
+                        </a>
+                    </div>
+                </div>
+                <!-- Photo -->
+                <div class="flex-shrink-0 reveal">
+                    <img src="Pictures/me.jpg" alt="Sanay Shah" class="hero-photo w-48 h-48 md:w-64 md:h-64 shadow-lg">
+                </div>
+            </div>
         </div>
-    </header>
+    </section>
 
-    <main class="container mx-auto px-6 py-12">
-
-        <section id="about" class="mb-16 flex flex-col md:flex-row items-center text-center md:text-left">
-            <img src="Pictures/me.jpg" alt="Sanay Shah" class="w-48 h-48 rounded-full object-cover mb-8 md:mb-0 md:mr-12 flex-shrink-0">
-            <div>
-                <h2 class="text-4xl font-bold text-slate-800 mb-4">Driving Innovation at the Intersection of Technology and Design </h2>
-                <p class="max-w-3xl mx-auto md:mx-0 text-lg text-slate-600">
-                    I am a strategic project manager and builder with a passion for leveraging technology to solve complex problems. From architecting automation blueprints for established firms to developing award-winning applications at competitive hackathons, my experience is rooted in a hands-on approach to innovation and a commitment to delivering impactful solutions.
-                </p>
+    <!-- ===== FEATURED PRODUCTS ===== -->
+    <section id="products" class="py-16 md:py-24 dot-grid">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 reveal">
+                <span class="section-line"></span>
+                <h2 class="section-heading font-display text-forest">What I've Built</h2>
+                <p class="text-forest-muted mt-2 max-w-lg">Live products I've designed, architected, and shipped solo — from first commit to real users.</p>
             </div>
-        </section>
 
-        <section id="experience" class="mb-16">
-            <h2 class="text-3xl font-bold text-slate-800 section-title">Professional & Industry Experience</h2>
-            <div class="relative timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="polaroid max-w-lg">
-                        <img src="Pictures/1. Professional & Industry Experience/Automation Project Manager  Innovi Advisors Ltd/innovi advisors presentation.jpg" alt="Innovi Advisors Presentation">
-                        <p class="card-title">Automation Project Manager</p>
-                        <p class="text-sm text-slate-600">Innovi Advisors Ltd</p>
-                        <p class="text-xs text-slate-500 mt-1">Aug 2025 - Present</p>
+            <!-- GONZO -->
+            <div class="product-card mb-8 reveal">
+                <div class="p-6 md:p-10">
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <h3 class="font-display text-3xl md:text-4xl text-forest">Gonzo</h3>
+                                <a href="https://gonzo.guide" target="_blank" class="tag-pill hover:bg-accent hover:text-white transition-colors">gonzo.guide &rarr;</a>
+                            </div>
+                            <p class="text-accent font-medium text-sm mb-4 font-mono">AI-Powered Travel Recommendation Engine</p>
+                            <p class="text-forest-muted leading-relaxed max-w-2xl">
+                                Finds obscure, authentic places tourists and guidebooks don't know about — delivered via Telegram, Discord, and web. Born at the Cerebral Valley "Zero to Agent" Hackathon (Google DeepMind + Vercel), then redesigned and expanded into a full multi-platform product.
+                            </p>
+                        </div>
+                        <div class="flex gap-4 md:gap-6 flex-shrink-0">
+                            <div class="stat-block">
+                                <div class="stat-number">6</div>
+                                <div class="stat-label">AI Personas</div>
+                            </div>
+                            <div class="stat-block">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">Platforms</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="polaroid max-w-lg">
-                        <img src="Pictures/3. Leadership & Mentorship/Foundational Design Mentor, steamunity/steamunity group with dpm heng.jpeg" alt="STEAMunity Mentorship">
-                        <p class="card-title">Advanced Design Mentor</p>
-                        <p class="text-sm text-slate-600">STEAMunity | Singapore</p>
-                        <p class="text-xs text-slate-500 mt-1">Dec 2024 - Mar 2025</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="polaroid max-w-lg">
-                        <img src="Pictures/1. Professional & Industry Experience/Volunteer Researcher & Contributor  Asia-Pacific Legal Innovation & Technology Association (ALITA)/apac legal tech map.png" alt="ALITA APAC Map">
-                        <p class="card-title">Volunteer Researcher & Contributor</p>
-                        <p class="text-sm text-slate-600">Asia-Pacific Legal Innovation & Technology Association (ALITA)</p>
-                        <p class="text-xs text-slate-500 mt-1">Nov 2024 - Sep 2025</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="polaroid max-w-lg">
-                        <img src="Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk group.jpeg" alt="Treehouse Innovation Team">
-                        <p class="card-title">Builder & Facilitator</p>
-                        <p class="text-sm text-slate-600">Treehouse Innovation</p>
-                        <p class="text-xs text-slate-500 mt-1">May 2024 – Aug 2024</p>
-                    </div>
-                </div>
-                
-                 <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="polaroid max-w-md">
-                        <p class="card-title">Digital Automation Insight</p>
-                        <p class="text-sm text-slate-600">Highfield HR</p>
-                        <p class="text-xs text-slate-500 mt-1">Feb 2024 - Mar 2024</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="polaroid max-w-md">
-                        <p class="card-title">Design Coach Intern</p>
-                        <p class="text-sm text-slate-600">Treehouse Innovation</p>
-                        <p class="text-xs text-slate-500 mt-1">Jun 2023 – Sep 2023</p>
+                    <div class="mt-6 border-t border-sage pt-4">
+                        <button class="accordion-toggle flex items-center gap-2 text-accent font-medium text-sm min-h-[44px]" data-target="gonzo-details">
+                            <span>The thinking behind it</span>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        </button>
+                        <div id="gonzo-details" class="accordion-content">
+                            <div class="grid md:grid-cols-2 gap-6 pt-4">
+                                <div>
+                                    <h4 class="font-semibold text-forest mb-2">Personality-Driven Discovery</h4>
+                                    <p class="text-forest-muted text-sm leading-relaxed">6 AI personas — Local, Plot Twist, Foodie, Hangover, Bougie, Budget — each sees the city through a different lens and surfaces different kinds of places. "Council Mode" pits multiple personas against each other in a multi-round debate to find the perfect spot.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-forest mb-2">Authentically Local</h4>
+                                    <p class="text-forest-muted text-sm leading-relaxed">Every recommendation is verified as real and currently open — no hallucinated places. The system searches in the city's own language to surface what locals actually discuss, and adjusts for weather in real time. Repeated queries force deeper exploration, never recycling the same picks.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="hackathons" class="mb-16">
-            <h2 class="text-3xl font-bold text-slate-800 section-title">Hackathons & Competitions</h2>
-            <div class="grid md:grid-cols-2 gap-8 items-start">
-                <div class="polaroid">
-                    <img src="Pictures/2. Hackathons & Competitions/grand finalist and tooling winner, hack the law llm x law winner, university of cambridge/cambridge hackathon presenting crowd.jpg" alt="Cambridge Hackathon">
-                    <p class="card-title">Grand Finalist & Tooling Category Winner</p>
-                    <p class="text-sm text-slate-600">Hack the Law LLM x Law Hackathon, University of Cambridge</p>
-                </div>
-
-                <div class="polaroid">
-                    <img src="Pictures/2. Hackathons & Competitions/Golden Glasses Award for Most Engaging Presentation, future interaction of smart glasses bootcamp/smart glasses group winning.JPG" alt="Smart Glasses Bootcamp">
-                    <p class="card-title">Golden Glasses Award for Most Engaging Presentation</p>
-                    <p class="text-sm text-slate-600">Future Interaction for Smart Glasses Bootcamp, NUS</p>
-                </div>
-
-                 <div class="polaroid">
-                    <img src="Pictures/2. Hackathons & Competitions/finalist web3 hackthon easy a vchain/easya vchain hackathon UI.jpg" alt="Web3 Hackathon">
-                    <p class="card-title">Finalist</p>
-                    <p class="text-sm text-slate-600">Web3 Hackathon (with EasyA, VeChain, BCG)</p>
-                </div>
-
-                <div class="card rounded-lg p-6">
-                    <h3 class="text-xl font-semibold text-slate-800 mb-3">More Competitions</h3>
-                     <ul class="space-y-4">
-                        <li class="flex items-start">
-                           <span class="text-blue-500 mr-3 mt-1"><i class="fas fa-star fa-xs"></i></span>
-                           <div>
-                                <h4 class="font-semibold">TFW & Amey Consulting Hackathon</h4>
-                                <p class="text-slate-600 text-sm">Contributed as the sole student in a team of industry professionals to develop an MVP for "TFW 2.0".</p>
-                           </div>
-                        </li>
-                         <li class="flex items-start">
-                           <span class="text-blue-500 mr-3 mt-1"><i class="fas fa-trophy fa-xs"></i></span>
-                           <div>
-                                <h4 class="font-semibold">1st Prize Winner, Design Innovation Day</h4>
-                                <p class="text-slate-600 text-sm">Led a team to victory in a one-day design challenge with Mifutures by applying design thinking principles.</p>
-                           </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-        <section id="projects" class="mb-16">
-            <h2 class="text-3xl font-bold text-slate-800 section-title">Academic Projects</h2>
-             <div class="space-y-6">
-                 <div class="card rounded-lg p-6">
-                    <h3 class="text-xl font-semibold text-slate-800">Project Leader, Year 2 Group Project</h3>
-                    <p class="text-sm text-slate-500 mb-3">Cardiff University</p>
-                    <p class="text-slate-600">Led a team in a year-long software development project to gamify internship assessments, achieving a final grade of 80%.</p>
-                 </div>
-                  <div class="card rounded-lg p-6">
-                    <img src="Pictures/4. Academic Projects & Achievements/masters module, innovation by design/masters project.jpg" alt="Masters Project" class="rounded-md mb-4">
-                    <h3 class="text-xl font-semibold text-slate-800">Masters Module: Innovation by Design</h3>
-                    <p class="text-slate-600">Collaborated to conceptualise and develop an innovative product, achieving a final group grade of 70%.</p>
-                 </div>
-             </div>
-        </section>
-
-         <section id="awards">
-            <h2 class="text-3xl font-bold text-slate-800 section-title">Awards & Extracurriculars</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card rounded-lg p-6">
-                    <img src="Pictures/5. Awards & Extracurriculars/rowing national finals/rowing national finals.jpg" alt="Rowing" class="rounded-md mb-4">
-                    <div>
-                        <h3 class="text-xl font-semibold text-slate-800">National B Final Winner</h3>
-                        <p class="text-slate-600">Rowing (U15 Coxswain)</p>
+            <!-- BEAU -->
+            <div class="product-card reveal">
+                <div class="p-6 md:p-10">
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <h3 class="font-display text-3xl md:text-4xl text-forest">Beau</h3>
+                                <a href="https://beau.quest" target="_blank" class="tag-pill hover:bg-accent hover:text-white transition-colors">beau.quest &rarr;</a>
+                            </div>
+                            <p class="text-accent font-medium text-sm mb-4 font-mono">AI-Powered Social Matching Platform</p>
+                            <p class="text-forest-muted leading-relaxed max-w-2xl">
+                                A social matching platform for Gen Z that rejects the swipe model entirely. Instead of bios and selfies, users play through AI-generated social simulations — reacting instinctively to moments that reveal who they really are. The system learns your personality over time and matches you based on genuine behavioural compatibility. Currently in beta with users signing up.
+                            </p>
+                        </div>
+                        <div class="flex gap-4 md:gap-6 flex-shrink-0">
+                            <div class="stat-block">
+                                <div class="stat-number">Beta</div>
+                                <div class="stat-label">Status</div>
+                            </div>
+                            <div class="stat-block">
+                                <div class="stat-number">Solo</div>
+                                <div class="stat-label">Founded</div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                 <div class="card rounded-lg p-6">
-                    <img src="Pictures/5. Awards & Extracurriculars/performer/play performance.jpg" alt="Play Performance" class="rounded-md mb-4">
-                     <div>
-                        <h3 class="text-xl font-semibold text-slate-800">Performer</h3>
-                        <p class="text-slate-600">Performer in school's first student-led play "Another Country"</p>
-                    </div>
-                </div>
-                <div class="card rounded-lg p-6">
-                    <img src="Pictures/5. Awards & Extracurriculars/photography/hut.JPG" alt="hut" class="rounded-md mb-4">
-                    <div>
-                        <h3 class="text-xl font-semibold text-slate-800">Photography</h3>
-                        <p class="text-slate-600">@sanay.photography</p>
+
+                    <!-- Expandable details -->
+                    <div class="mt-6 border-t border-sage pt-4">
+                        <button class="accordion-toggle flex items-center gap-2 text-accent font-medium text-sm min-h-[44px]" data-target="beau-details">
+                            <span>The thinking behind it</span>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        </button>
+                        <div id="beau-details" class="accordion-content">
+                            <div class="grid md:grid-cols-2 gap-6 pt-4">
+                                <div>
+                                    <h4 class="font-semibold text-forest mb-2">"Show Don't Tell"</h4>
+                                    <p class="text-forest-muted text-sm leading-relaxed">People reveal who they really are through instinctive reactions to social moments, not through self-reported bios. The core interaction — the "Dojo" — is an AI simulation designed around this insight. Abstract psychological dimensions are embedded in naturalistic scenarios; users never see the underlying model.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-forest mb-2">Identity That Evolves</h4>
+                                    <p class="text-forest-muted text-sm leading-relaxed">Your identity isn't a static profile — it's a living model that evolves with every interaction. Traits, values, interests, and vices exist on weighted spectra that decay over time, so the system always reflects who you are now, not who you were months ago.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-forest mb-2">Psychology-Backed Matching</h4>
+                                    <p class="text-forest-muted text-sm leading-relaxed">Matching goes beyond surface-level interests. A multi-stage algorithm weighs shared values and complementary personality traits using research-backed heuristics — including attachment theory — to find people who are genuinely compatible, not just similar.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-forest mb-2">Engagement by Design</h4>
+                                    <p class="text-forest-muted text-sm leading-relaxed">Profiles unlock progressively based on conversation quality ("Fog of War"), turning discovery into a game. A credit economy ties real AI costs to user-facing energy, creating a natural usage cadence. Friendship matching groups people by social chemistry, not just pairwise compatibility.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="connect" class="text-center mt-16">
-            <h2 class="text-3xl font-bold text-slate-800 section-title">Let's Connect!</h2>
-            <div class="flex justify-center space-x-4 mt-8">
-                <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" class="bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition">
-                    LinkedIn
+    <!-- ===== EXPERIENCE ===== -->
+    <section id="experience" class="py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 reveal">
+                <span class="section-line"></span>
+                <h2 class="section-heading font-display text-forest">Experience</h2>
+            </div>
+
+            <div class="relative">
+                <div class="timeline-line"></div>
+
+                <!-- Automation PM -->
+                <div class="timeline-entry mb-8 reveal" data-modal="innovi">
+                    <div class="timeline-dot-new"></div>
+                    <div class="exp-card">
+                        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                            <img src="Pictures/1. Professional & Industry Experience/Automation Project Manager  Innovi Advisors Ltd/innovi advisors presentation.jpg" alt="Innovi Advisors" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy">
+                            <div>
+                                <p class="font-mono text-xs text-accent mb-1">Aug 2025 — Present</p>
+                                <h3 class="font-semibold text-forest text-lg">Automation Project Manager</h3>
+                                <p class="text-forest-muted text-sm">Innovi Advisors &middot; London</p>
+                                <p class="text-forest-muted text-sm mt-2 leading-relaxed">Spearheaded the "Innovi Automation Initiative" — discovery to blueprint to partner approval. Currently building a conversational AI phone assistant.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AISCU -->
+                <div class="timeline-entry mb-8 reveal" data-modal="aiscu">
+                    <div class="timeline-dot-new"></div>
+                    <div class="exp-card">
+                        <div>
+                            <p class="font-mono text-xs text-accent mb-1">2025 — Present</p>
+                            <h3 class="font-semibold text-forest text-lg">Head of Events & Outreach</h3>
+                            <p class="text-forest-muted text-sm">AI Safety Cardiff University (AISCU)</p>
+                            <p class="text-forest-muted text-sm mt-2 leading-relaxed">Leading events programming and outreach for Cardiff's AI safety community. Bridging production AI building experience with governance and safety discourse.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEAMunity -->
+                <div class="timeline-entry mb-8 reveal" data-modal="steam">
+                    <div class="timeline-dot-new"></div>
+                    <div class="exp-card">
+                        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                            <img src="Pictures/3. Leadership & Mentorship/Foundational Design Mentor, steamunity/steamunity group with dpm heng.jpeg" alt="STEAMunity" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy">
+                            <div>
+                                <p class="font-mono text-xs text-accent mb-1">Dec 2024 — Mar 2025</p>
+                                <h3 class="font-semibold text-forest text-lg">Advanced Design Mentor</h3>
+                                <p class="text-forest-muted text-sm">STEAMunity &middot; Singapore</p>
+                                <p class="text-forest-muted text-sm mt-2 leading-relaxed">Mentored 6 students (age 14-20) in design thinking. Team won 1st place Best Prototype and presented to Deputy PM Heng Swee Keat.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ALITA -->
+                <div class="timeline-entry mb-8 reveal" data-modal="alita">
+                    <div class="timeline-dot-new"></div>
+                    <div class="exp-card">
+                        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                            <img src="Pictures/1. Professional & Industry Experience/Volunteer Researcher & Contributor  Asia-Pacific Legal Innovation & Technology Association (ALITA)/apac legal tech map.png" alt="ALITA" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy">
+                            <div>
+                                <p class="font-mono text-xs text-accent mb-1">Nov 2024 — Sep 2025</p>
+                                <h3 class="font-semibold text-forest text-lg">Volunteer Researcher</h3>
+                                <p class="text-forest-muted text-sm">ALITA &middot; Remote</p>
+                                <p class="text-forest-muted text-sm mt-2 leading-relaxed">Researched legaltech taxonomies for ALITA's APAC Ecosystem Map. Contributed to the SOLIA Report 2025. On-site support at Singapore and London events.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Treehouse Builder -->
+                <div class="timeline-entry mb-8 reveal" data-modal="treehouse-builder">
+                    <div class="timeline-dot-new"></div>
+                    <div class="exp-card">
+                        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+                            <img src="Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk group.jpeg" alt="Treehouse Innovation" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy">
+                            <div>
+                                <p class="font-mono text-xs text-accent mb-1">May 2024 — Aug 2024</p>
+                                <h3 class="font-semibold text-forest text-lg">Builder & Facilitator</h3>
+                                <p class="text-forest-muted text-sm">Treehouse Innovation &middot; London/Cardiff</p>
+                                <p class="text-forest-muted text-sm mt-2 leading-relaxed">Project managed a booth with DLA Piper at LegalTechTalk (2,500+ attendees). Built a GenAI app on Cloud Run. Co-authored published report.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Highfield HR -->
+                <div class="timeline-entry mb-8 reveal" data-modal="highfield">
+                    <div class="timeline-dot-new"></div>
+                    <div class="exp-card">
+                        <div>
+                            <p class="font-mono text-xs text-accent mb-1">Feb 2024 — Mar 2024</p>
+                            <h3 class="font-semibold text-forest text-lg">Digital Automation Insight</h3>
+                            <p class="text-forest-muted text-sm">Highfield HR &middot; Bridgend</p>
+                            <p class="text-forest-muted text-sm mt-2 leading-relaxed">Used design thinking to prototype an MVP for employee contract generation. Built and shipped a full-stack WebApp.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Treehouse Intern -->
+                <div class="timeline-entry reveal" data-modal="treehouse-intern">
+                    <div class="timeline-dot-new"></div>
+                    <div class="exp-card">
+                        <div>
+                            <p class="font-mono text-xs text-accent mb-1">Jun 2023 — Sep 2023</p>
+                            <h3 class="font-semibold text-forest text-lg">Design Coach Intern</h3>
+                            <p class="text-forest-muted text-sm">Treehouse Innovation &middot; London</p>
+                            <p class="text-forest-muted text-sm mt-2 leading-relaxed">Designed exercises for 200+ attendee corporate events. Built a prototype app integrating OpenAI API for a Risk & Compliance session.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HACKATHONS ===== -->
+    <section id="hackathons" class="py-16 md:py-24 bg-bg-alt">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 reveal">
+                <span class="section-line"></span>
+                <h2 class="section-heading font-display text-forest">Hackathons & Competitions</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Cambridge — Featured -->
+                <div class="hack-card hack-featured reveal" data-modal="cambridge">
+                    <img src="Pictures/2. Hackathons & Competitions/grand finalist and tooling winner, hack the law llm x law winner, university of cambridge/cambridge hackathon presenting crowd.jpg" alt="Cambridge Hackathon" loading="lazy">
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-trophy text-accent text-sm"></i>
+                            <span class="font-mono text-xs text-accent uppercase tracking-wide">Grand Finalist & Winner</span>
+                        </div>
+                        <h3 class="font-semibold text-forest text-lg">Hack the Law — LLM x Law</h3>
+                        <p class="text-forest-muted text-sm">University of Cambridge &middot; Tooling (Groq) Category Winner</p>
+                        <p class="text-forest-muted text-sm mt-2">Built a platform that structures financial regulations into a searchable interface, highlighting key entities and activities. Team "Just 3" with RegGenome API + Groq.</p>
+                    </div>
+                </div>
+
+                <!-- Smart Glasses -->
+                <div class="hack-card reveal" data-modal="glasses">
+                    <img src="Pictures/2. Hackathons & Competitions/Golden Glasses Award for Most Engaging Presentation, future interaction of smart glasses bootcamp/smart glasses group winning.JPG" alt="Smart Glasses Bootcamp" loading="lazy">
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-award text-accent text-sm"></i>
+                            <span class="font-mono text-xs text-accent uppercase tracking-wide">Golden Glasses Award</span>
+                        </div>
+                        <h3 class="font-semibold text-forest text-lg">Smart Glasses Bootcamp</h3>
+                        <p class="text-forest-muted text-sm">NUS Smart Systems Institute &middot; Most Engaging Presentation</p>
+                        <p class="text-forest-muted text-sm mt-2">Built "Waddles" — an XREAL smart glasses app that alerts travellers to dangers in unfamiliar environments. 6-day bootcamp with Unity, C#, Gemini API.</p>
+                    </div>
+                </div>
+
+                <!-- Cerebral Valley -->
+                <div class="hack-card reveal">
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-bolt text-accent text-sm"></i>
+                            <span class="font-mono text-xs text-accent uppercase tracking-wide">Hackathon</span>
+                        </div>
+                        <h3 class="font-semibold text-forest text-lg">Cerebral Valley "Zero to Agent"</h3>
+                        <p class="text-forest-muted text-sm">Google DeepMind + Vercel</p>
+                        <p class="text-forest-muted text-sm mt-2">Built the initial version of Gonzo — an AI travel engine with multi-persona debate and Google Maps grounding. Expanded post-hackathon into a full product.</p>
+                    </div>
+                </div>
+
+                <!-- Web3 -->
+                <div class="hack-card reveal" data-modal="web3">
+                    <img src="Pictures/2. Hackathons & Competitions/finalist web3 hackthon easy a vchain/easya vchain hackathon UI.jpg" alt="Web3 Hackathon" loading="lazy">
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-medal text-accent text-sm"></i>
+                            <span class="font-mono text-xs text-accent uppercase tracking-wide">Finalist</span>
+                        </div>
+                        <h3 class="font-semibold text-forest text-lg">Web3 Hackathon</h3>
+                        <p class="text-forest-muted text-sm">EasyA, VeChain, BCG &middot; Solo competitor</p>
+                        <p class="text-forest-muted text-sm mt-2">Competed solo and reached the finals. Recognised for highly efficient prompt engineering.</p>
+                    </div>
+                </div>
+
+                <!-- MiFutures -->
+                <div class="hack-card reveal">
+                    <img src="Pictures/2. Hackathons & Competitions/1st prize winner design innovation day mifutures/mifutures postick notes.jpg" alt="MiFutures Design Innovation" loading="lazy">
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-trophy text-accent text-sm"></i>
+                            <span class="font-mono text-xs text-accent uppercase tracking-wide">1st Prize</span>
+                        </div>
+                        <h3 class="font-semibold text-forest text-lg">Design Innovation Day</h3>
+                        <p class="text-forest-muted text-sm">MiFutures (Fintech Wales)</p>
+                    </div>
+                </div>
+
+                <!-- TFW -->
+                <div class="hack-card reveal">
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="fas fa-users text-accent text-sm"></i>
+                            <span class="font-mono text-xs text-accent uppercase tracking-wide">Consulting Hackathon</span>
+                        </div>
+                        <h3 class="font-semibold text-forest text-lg">TFW & Amey</h3>
+                        <p class="text-forest-muted text-sm">Sole student among industry professionals. Developed MVP for "TFW 2.0".</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EDUCATION ===== -->
+    <section id="education" class="py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 reveal">
+                <span class="section-line"></span>
+                <h2 class="section-heading font-display text-forest">Education</h2>
+            </div>
+
+            <div class="space-y-6">
+                <div class="edu-card reveal">
+                    <div class="flex flex-col md:flex-row md:items-start gap-4">
+                        <div class="flex-1">
+                            <p class="font-mono text-xs text-accent mb-1">2022 — 2026</p>
+                            <h3 class="font-semibold text-forest text-lg">Cardiff University</h3>
+                            <p class="text-forest-muted text-sm">BSc Computer Science with a Year of Study Abroad</p>
+                            <p class="text-forest-muted text-sm mt-2">Project leader for Year 2 group project — gamified internship assessments, achieved 80%.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edu-card reveal">
+                    <div class="flex flex-col md:flex-row md:items-start gap-4">
+                        <div class="flex-1">
+                            <p class="font-mono text-xs text-accent mb-1">Sep 2024 — May 2025</p>
+                            <h3 class="font-semibold text-forest text-lg">Singapore University of Technology and Design</h3>
+                            <p class="text-forest-muted text-sm">Exchange — Information Systems Technology and Design</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="tag-pill">Innovation by Design</span>
+                                <span class="tag-pill">AI Applications by Design</span>
+                                <span class="tag-pill">AI by Design</span>
+                                <span class="tag-pill">History of Surveillance</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edu-card reveal">
+                    <div class="flex flex-col md:flex-row md:items-start gap-4">
+                        <img src="Pictures/4. Academic Projects & Achievements/masters module, innovation by design/masters project.jpg" alt="Innovation by Design" class="w-full md:w-48 h-32 object-cover rounded-lg flex-shrink-0" loading="lazy">
+                        <div class="flex-1">
+                            <p class="font-mono text-xs text-accent mb-1">2020 — 2022</p>
+                            <h3 class="font-semibold text-forest text-lg">Whitgift School</h3>
+                            <p class="text-forest-muted text-sm">A-Levels: Maths, Physics, Computer Science</p>
+                            <p class="text-forest-muted text-sm mt-2">EPQ: "Should we be concerned about the possible misuse of personal data when online?"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" class="py-16 md:py-24 bg-bg-alt">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 reveal">
+                <span class="section-line"></span>
+                <h2 class="section-heading font-display text-forest">Skills</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
+                <div>
+                    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-3">Languages</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-group-tag">Python</span>
+                        <span class="skill-group-tag">TypeScript</span>
+                        <span class="skill-group-tag">JavaScript</span>
+                        <span class="skill-group-tag">C#</span>
+                        <span class="skill-group-tag">SQL</span>
+                        <span class="skill-group-tag">Cypher</span>
+                        <span class="skill-group-tag">HTML/CSS</span>
+                    </div>
+                </div>
+                <div>
+                    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-3">AI / ML</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-group-tag">LangChain</span>
+                        <span class="skill-group-tag">LangGraph</span>
+                        <span class="skill-group-tag">Vercel AI SDK</span>
+                        <span class="skill-group-tag">OpenAI API</span>
+                        <span class="skill-group-tag">Gemini</span>
+                        <span class="skill-group-tag">Groq</span>
+                        <span class="skill-group-tag">Prompt Engineering</span>
+                        <span class="skill-group-tag">Structured Output</span>
+                    </div>
+                </div>
+                <div>
+                    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-3">Backend</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-group-tag">FastAPI</span>
+                        <span class="skill-group-tag">Flask</span>
+                        <span class="skill-group-tag">Next.js</span>
+                        <span class="skill-group-tag">Pydantic</span>
+                        <span class="skill-group-tag">SQLAlchemy</span>
+                    </div>
+                </div>
+                <div>
+                    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-3">Frontend</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-group-tag">React 19</span>
+                        <span class="skill-group-tag">Vite</span>
+                        <span class="skill-group-tag">Tailwind CSS</span>
+                        <span class="skill-group-tag">Framer Motion</span>
+                        <span class="skill-group-tag">D3.js</span>
+                        <span class="skill-group-tag">PWA</span>
+                    </div>
+                </div>
+                <div>
+                    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-3">Databases</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-group-tag">PostgreSQL</span>
+                        <span class="skill-group-tag">Supabase</span>
+                        <span class="skill-group-tag">Neo4j</span>
+                        <span class="skill-group-tag">Qdrant</span>
+                        <span class="skill-group-tag">Upstash Redis</span>
+                    </div>
+                </div>
+                <div>
+                    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-3">DevOps & Cloud</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-group-tag">Docker</span>
+                        <span class="skill-group-tag">Railway</span>
+                        <span class="skill-group-tag">Vercel</span>
+                        <span class="skill-group-tag">GCP Cloud Run</span>
+                        <span class="skill-group-tag">Nginx</span>
+                    </div>
+                </div>
+                <div class="sm:col-span-2 lg:col-span-3">
+                    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-3">Methodologies & Soft Skills</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-group-tag">Design Thinking</span>
+                        <span class="skill-group-tag">Agile</span>
+                        <span class="skill-group-tag">Project Management</span>
+                        <span class="skill-group-tag">Consulting</span>
+                        <span class="skill-group-tag">Workshop Facilitation</span>
+                        <span class="skill-group-tag">Stakeholder Management</span>
+                        <span class="skill-group-tag">Mentoring</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AWARDS & EXTRAS ===== -->
+    <section class="py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-12 reveal">
+                <span class="section-line"></span>
+                <h2 class="section-heading font-display text-forest">Beyond the Code</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="edu-card text-center reveal">
+                    <img src="Pictures/5. Awards & Extracurriculars/rowing national finals/rowing national finals.jpg" alt="Rowing" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+                    <h3 class="font-semibold text-forest">National B Final Winner</h3>
+                    <p class="text-forest-muted text-sm">Rowing — U15 Coxswain</p>
+                </div>
+                <div class="edu-card text-center reveal reveal-delay-1">
+                    <img src="Pictures/5. Awards & Extracurriculars/performer/play performance.jpg" alt="Performance" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+                    <h3 class="font-semibold text-forest">Performer</h3>
+                    <p class="text-forest-muted text-sm">School's first student-led play, "Another Country"</p>
+                </div>
+                <div class="edu-card text-center reveal reveal-delay-2">
+                    <img src="Pictures/5. Awards & Extracurriculars/photography/hut.JPG" alt="Photography" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+                    <h3 class="font-semibold text-forest">Photography</h3>
+                    <p class="text-forest-muted text-sm">
+                        <a href="https://www.instagram.com/sanay.photography/" target="_blank" class="text-accent hover:underline">@sanay.photography</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONNECT ===== -->
+    <section id="connect" class="py-16 md:py-24 bg-bg-alt">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="reveal">
+                <h2 class="font-display text-forest" style="font-size: clamp(2rem, 5vw, 3.5rem);">Let's build something.</h2>
+                <p class="text-forest-muted mt-4 text-lg max-w-md mx-auto">I'm always interested in ambitious projects, smart people, and hard problems.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4 mt-10 reveal reveal-delay-1">
+                <a href="mailto:sanays.mail@gmail.com" class="link-pill text-base">
+                    <i class="fas fa-envelope text-accent"></i> sanays.mail@gmail.com
                 </a>
-                <a href="https://www.instagram.com/sanay.photography/" target="_blank" class="bg-pink-600 text-white font-bold py-2 px-4 rounded hover:bg-pink-700 transition">
-                    Photography
+                <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" class="link-pill text-base">
+                    <i class="fab fa-linkedin text-accent"></i> LinkedIn
+                </a>
+                <a href="https://beau.quest" target="_blank" class="link-pill text-base">
+                    <i class="fas fa-heart text-accent"></i> beau.quest
+                </a>
+                <a href="https://gonzo.guide" target="_blank" class="link-pill text-base">
+                    <i class="fas fa-compass text-accent"></i> gonzo.guide
+                </a>
+                <a href="https://www.instagram.com/sanay.photography/" target="_blank" class="link-pill text-base">
+                    <i class="fab fa-instagram text-accent"></i> Photography
                 </a>
             </div>
-            <p class="mt-8 text-lg text-slate-600">sanays.mail@gmail.com</p>
-            <img src="Pictures/lets connect.png" alt="Let's Connect" class="mx-auto mt-8" style="max-width: 75%;">
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer class="bg-D1E8D1 text-slate-800 mt-16">
-        <div class="container mx-auto px-6 py-8 text-center">
-            <p>&copy; 2025 Sanay Shah. All Rights Reserved.</p>
+    <!-- ===== FOOTER ===== -->
+    <footer class="py-8 border-t border-sage">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-forest-muted">
+            <p>&copy; 2025 Sanay Shah</p>
+            <p class="font-mono text-xs">London &middot; Singapore &middot; Cardiff</p>
         </div>
     </footer>
 
-    <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when a link is clicked
-        const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
-        for (let link of mobileMenuLinks) {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Modal logic
-            const projectData = {
-                'Automation Project Manager': {
-                    title: 'Automation Project Manager',
-                    company: 'Innovi Advisors Ltd',
-                    date: 'London, UK (Aug 2025 - Present)',
-                    images: ['Pictures/1. Professional & Industry Experience/Automation Project Manager  Innovi Advisors Ltd/innovi advisors presentation.jpg'],
-                    details: `
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Spearheaded the "Innovi Automation Initiative" by conducting in-depth discovery sessions with firm partners to identify operational pain points and workflow bottlenecks.</li>
-                            <li>Designed and architected a strategic technology blueprint, outlining a phased implementation plan to enhance operational efficiency using the firm's existing tech stack.</li>
-                            <li>Secured partner approval for the strategic blueprint after successfully presenting the feasibility analysis and a clear roadmap for execution.</li>
-                            <li>Currently developing a conversational AI phone assistant to automate receptionist duties as the first practical application of the approved strategy.</li>
-                        </ul>
-                    `
-                },
-                'Volunteer Researcher & Contributor': {
-                    title: 'Volunteer Researcher & Contributor',
-                    company: 'Asia-Pacific Legal Innovation & Technology Association (ALITA)',
-                    date: 'Remote (Nov 2024 - Sep 2025)',
-                    images: ['Pictures/1. Professional & Industry Experience/Volunteer Researcher & Contributor  Asia-Pacific Legal Innovation & Technology Association (ALITA)/apac legal tech map.png'],
-                    details: `
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Conducted comprehensive desktop research on existing Legaltech taxonomies to support the development of ALITA’s APAC Ecosystem Map.</li>
-                            <li>Contributed to the production of the flagship "State of Legal Innovation in Asia-Pacific (SOLIA) Report 2025."</li>
-                            <li>Provided on-site support at key industry events, including the ALITA Singapore: Lawtech Drinks and Theatre and the Asia Pacific European Legal Innovation & Tech Dialogue in London.</li>
-                        </ul>
-                    `
-                },
-                'Builder & Facilitator': {
-                    title: 'Builder & Facilitator',
-                    company: 'Treehouse Innovation',
-                    date: 'London/Cardiff, UK (May 2024 – Aug 2024)',
-                    images: [
-                        'Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk group.jpeg',
-                        'Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk booth.jpg',
-                        'Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk demo.jpg',
-                        'Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk future of legal gallery.jpg',
-                        'Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk future of legal generator.jpg',
-                        'Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk skills and futures.jpg'
-                    ],
-                    details: `
-                        <p class="font-semibold">Project: The Futures Lab @ LegalTechTalk (with DLA Piper)</p>
-                        <ul class="list-disc list-inside space-y-2 mt-2">
-                            <li>Co-project managed an interactive booth for 2,500+ attendees to showcase and gather insights on the future of the legal industry.</li>
-                            <li>Engineered and deployed a full-stack application on Google Cloud Run, featuring generative AI (GPT-4o, DALL-E 3), A/B testing algorithms, and a data analytics pipeline.</li>
-                            <li>Designed the application for both web and spatial computing platforms.</li>
-                            <li><b>Outcome:</b> Successfully gathered data and co-authored the published report, "<a href="https://treehouseinnovation.com/case-studies/the-futures-lab-at-legaltechtalk-2024/" style="text-decoration: underline;">The Futures Lab at LegalTechTalk 2024</a>," to guide strategic conversations in the legal sector.</li>
-                        </ul>
-                    `
-                },
-                'Digital Automation Insight': {
-                    title: 'Digital Automation Insight',
-                    company: 'Highfield HR',
-                    date: 'Bridgend, UK (Feb 2024 - Mar 2024)',
-                    images: [],
-                    details: `
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Utilised Design Thinking methodology to conduct user research and identify pain points in employee contract generation.</li>
-                            <li>Developed an MVP concept for a software solution to automate the creation of employee contracts.</li>
-                            <li>Designed and implemented a full-stack WebApp, delivering a low-cost, scalable solution for the company to offer to its client base.</li>
-                        </ul>
-                    `
-                },
-                'Design Coach Intern': {
-                    title: 'Design Coach Intern',
-                    company: 'Treehouse Innovation',
-                    date: 'London, UK (Jun 2023 – Sep 2023)',
-                    images: [],
-                    details: `
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Designed interactive exercises for a large corporate event for over 200 attendees focused on a manufacturing company's operating model review.</li>
-                            <li>Collaborated with design and client teams to research, design, and co-create engaging games and interactive workshop exercises.</li>
-                            <li>Conducted background and analogous research on cognitive biases to support a project for a major gaming company.</li>
-                            <li>Built a functional prototype app for a Risk & Compliance breakout session using Python and Flask, integrating the OpenAI API to showcase AI capabilities.</li>
-                        </ul>
-                    `
-                },
-                'Grand Finalist & Tooling Category Winner': {
-                    title: 'Grand Finalist & Tooling Category Winner',
-                    company: 'Hack the Law LLM x Law Hackathon, University of Cambridge',
-                    images: ['Pictures/2. Hackathons & Competitions/grand finalist and tooling winner, hack the law llm x law winner, university of cambridge/cambridge hackathon grand finalist.jpg'],
-                    date: '',
-                    details: `
-                        <p><b>Challenge:</b> Addressed the complexity and inefficiency compliance professionals face when navigating dense, unstructured financial regulations.</p>
-                        <p class="mt-2"><b>Solution:</b> Developed a platform that structures regulations into a searchable, intuitive interface, automatically highlighting key entities, activities, and products.</p>
-                        <p class="mt-2"><b>Role & Tech Stack:</b> Collaborated in a team of three, leveraging the RegGenome API for regulatory data and the Groq API for high-speed LLM inference. Our innovative and efficient use of the Groq API secured the win in the Tooling Category.</p>
-                    `
-                },
-                'Golden Glasses Award for Most Engaging Presentation': {
-                    title: 'Golden Glasses Award for Most Engaging Presentation',
-                    company: 'Future Interaction for Smart Glasses Bootcamp, NUS',
-                    images: ["Pictures/2. Hackathons & Competitions/Golden Glasses Award for Most Engaging Presentation, future interaction of smart glasses bootcamp/smart glasses group winning.JPG"],
-                    date: '',
-                    details: `
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Developed "Waddles," an application concept for XREAL smart glasses designed to improve traveller safety by alerting users to potential dangers in unfamiliar environments.</li>
-                            <li>Gained hands-on experience developing for Augmented Reality (AR) over an intensive 6-day bootcamp.</li>
-                            <li><b>Tech Stack:</b> Unity, C#, Gemini API, Python.</li>
-                        </ul>
-                    `
-                },
-                'Finalist': {
-                    title: 'Finalist',
-                    company: 'Web3 Hackathon (with EasyA, VeChain, BCG)',
-                    images: ["Pictures/2. Hackathons & Competitions/finalist web3 hackthon easy a vchain/easya vchain hackathon UI.jpg"],
-                    date: '',
-                    details: `
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Competed as a solo participant in a hackathon focused on Web3 technologies.</li>
-                            <li>Recognised as a finalist for developing solutions that demonstrated highly efficient and effective prompt engineering techniques.</li>
-                        </ul>
-                    `
-                },
-                'Advanced Design Mentor': {
-                    title: 'Advanced Design Mentor',
-                    company: 'STEAMunity',
-                    date: 'Singapore (Dec 2024 - Mar 2025)',
-                    images: ["Pictures/3. Leadership & Mentorship/Foundational Design Mentor, steamunity/steamunity group with dpm heng.jpeg"],
-                    details: `
-                        <ul class="list-disc list-inside space-y-2">
-                            <li>Mentored a team of six students (ages 14-20) in Design Thinking and Innovation methodologies in partnership with Science Centre Singapore.</li>
-                            <li>Project managed the team's collaboration with Metta Café to apply design principles towards fostering task independence for youths with special needs.</li>
-                            <li><b>Key Outcomes:</b>
-                                <ul class="list-disc list-inside ml-4">
-                                    <li>Guided the team to win 1st place for the Best Prototype Award with their IoT chili harvesting system, "BloomBuddy."</li>
-                                    <li>The team earned the prestigious opportunity to present their concept to Singapore's Deputy Prime Minister, Heng Swee Keat. </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    `
-                }
-            };
-
-        const cards = document.querySelectorAll('.card, .polaroid');
-        const modal = document.getElementById('project-modal');
-        const modalContent = document.getElementById('modal-content');
-        const closeModalButton = document.getElementById('close-modal-button');
-
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                const cardTitleElement = card.querySelector('.card-title, h3');
-                if (!cardTitleElement) return;
-
-                const projectName = cardTitleElement.textContent;
-                const data = projectData[projectName];
-
-                if (data) {
-                    let imageHTML = '';
-                    // Use the first image if available
-                    if (data.images && data.images.length > 0) {
-                        imageHTML = `<img src="${data.images[0]}" class="rounded-md w-full mb-4">`;
-                    }
-
-                    modalContent.innerHTML = `
-                        <h2 class="text-3xl font-bold">${data.title}</h2>
-                        <p class="text-lg text-slate-600">${data.company}</p>
-                        <p class="text-sm text-blue-600 mt-1">${data.date}</p>
-                        <div class="mt-4">
-                            ${imageHTML}
-                            ${data.details}
-                        </div>
-                    `;
-                    modal.classList.remove('hidden');
-                }
-            });
-        });
-
-        closeModalButton.addEventListener('click', () => {
-            modal.classList.add('hidden');
-        });
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.add('hidden');
-            }
-        });
-    });
-    </script>
-
-    <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-20 p-4">
-        <div class="bg-[#7AC0B4] rounded-lg p-8 max-w-2xl w-full max-h-full overflow-y-auto">
-            <div class="flex justify-end">
-                <button id="close-modal-button" class="text-2xl">&times;</button>
-            </div>
-            <div id="modal-content" class="mt-4">
-                </div>
-        </div> 
+    <!-- ===== MODAL ===== -->
+    <div id="modal" class="modal-overlay" role="dialog" aria-modal="true">
+        <div class="modal-box">
+            <button id="modal-close" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-forest-muted hover:text-forest text-xl rounded-full hover:bg-bg-alt transition" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modal-body"></div>
+        </div>
     </div>
 
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+    (function() {
+        // --- Scroll reveal ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- Nav scroll shadow ---
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+
+        // --- Mobile menu ---
+        const menuBtn = document.getElementById('menu-btn');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
+        menuClose.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        });
+
+        // --- Accordions ---
+        document.querySelectorAll('.accordion-toggle').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = document.getElementById(btn.dataset.target);
+                const isOpen = target.classList.contains('open');
+                target.classList.toggle('open');
+                btn.classList.toggle('open');
+            });
+        });
+
+        // --- Modal ---
+        const modalData = {
+            innovi: {
+                title: 'Automation Project Manager',
+                sub: 'Innovi Advisors &middot; London',
+                date: 'Aug 2025 — Present',
+                img: 'Pictures/1. Professional & Industry Experience/Automation Project Manager  Innovi Advisors Ltd/innovi advisors presentation.jpg',
+                body: `<ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
+                    <li>Spearheaded the "Innovi Automation Initiative" by conducting in-depth discovery sessions with firm partners (FCCA-qualified accountants) to identify operational pain points and workflow bottlenecks.</li>
+                    <li>Collaborated with the tech team to perform a deep dive into the existing tech stack (FYI Docs & Microsoft Suite) and assess implementation capabilities.</li>
+                    <li>Researched and architected a comprehensive blueprint with a phased approach — from immediate "quick wins" to long-term projects — including feasibility analysis and holistic implementation overview.</li>
+                    <li>Presented findings to partners; the plan was approved and received enthusiastically.</li>
+                    <li>Currently developing a conversational AI phone assistant to automate receptionist duties as the first practical application.</li>
+                </ul>`
+            },
+            aiscu: {
+                title: 'Head of Events & Outreach',
+                sub: 'AI Safety Cardiff University (AISCU)',
+                date: '2025 — Present',
+                body: `<p class="text-forest-muted text-sm leading-relaxed">Leading events programming and outreach strategy for Cardiff University's AI safety community. Bridging technical AI builder experience (Beau, Gonzo) with governance and safety discourse — bringing a practitioner's perspective on production AI systems to safety discussions.</p>`
+            },
+            steam: {
+                title: 'Advanced Design Mentor',
+                sub: 'STEAMunity &middot; Singapore',
+                date: 'Dec 2024 — Mar 2025',
+                img: 'Pictures/3. Leadership & Mentorship/Foundational Design Mentor, steamunity/steamunity group with dpm heng.jpeg',
+                body: `<ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
+                    <li>Mentored a group of 6 students (age 14-20) in design thinking and innovation, in partnership with SUTD & Science Centre Singapore.</li>
+                    <li>Project managed the group's collaboration with Metta Cafe to apply design thinking principles towards fostering task independence for youths with special needs.</li>
+                    <li>Students secured <strong>1st place for Best Prototype Award</strong> with "BloomBuddy" — an IoT system guiding users from planting a chili to harvesting using sensors.</li>
+                    <li>Students earned the opportunity to <strong>present their concept to Deputy Prime Minister Heng Swee Keat</strong>.</li>
+                </ul>`
+            },
+            alita: {
+                title: 'Volunteer Researcher & Contributor',
+                sub: 'Asia-Pacific Legal Innovation & Technology Association (ALITA)',
+                date: 'Nov 2024 — Sep 2025',
+                img: 'Pictures/1. Professional & Industry Experience/Volunteer Researcher & Contributor  Asia-Pacific Legal Innovation & Technology Association (ALITA)/apac legal tech map.png',
+                body: `<ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
+                    <li>Conducted comprehensive desktop research on existing Legaltech taxonomies to support the development of ALITA's APAC Ecosystem Map.</li>
+                    <li>Contributed to the production of the flagship "State of Legal Innovation in Asia-Pacific (SOLIA) Report 2025."</li>
+                    <li>Provided on-site support at key industry events, including the ALITA Singapore: Lawtech Drinks and Theatre and the Asia Pacific European Legal Innovation & Tech Dialogue in London.</li>
+                </ul>`
+            },
+            'treehouse-builder': {
+                title: 'Builder & Facilitator',
+                sub: 'Treehouse Innovation &middot; London/Cardiff',
+                date: 'May 2024 — Aug 2024',
+                img: 'Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk group.jpeg',
+                body: `<p class="font-semibold text-forest text-sm mb-2">Project: The Futures Lab @ LegalTechTalk (with DLA Piper)</p>
+                <ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
+                    <li>Co-project managed an interactive booth for 2,500+ attendees to showcase and gather insights on the future of the legal industry.</li>
+                    <li>Engineered and deployed a full-stack application on Google Cloud Run, featuring generative AI (GPT-4o, DALL-E 3), A/B testing algorithms, and a data analytics pipeline.</li>
+                    <li>Built a GraphRAG solution with React and FastAPI to digitise and productise workshop facilitation cards.</li>
+                    <li>Co-authored published report: <a href="https://treehouseinnovation.com/case-studies/the-futures-lab-at-legaltechtalk-2024/" target="_blank" class="text-accent underline">"The Futures Lab at LegalTechTalk 2024"</a>.</li>
+                </ul>`
+            },
+            highfield: {
+                title: 'Digital Automation Insight',
+                sub: 'Highfield HR &middot; Bridgend',
+                date: 'Feb 2024 — Mar 2024',
+                body: `<ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
+                    <li>Used design thinking methodology to understand pain points and prototyped an MVP for employee contract generation software.</li>
+                    <li>Designed and implemented a WebApp offering a low-cost solution to automating contracts, sellable to their clients.</li>
+                    <li>Upskilled employees to integrate AI into their workflows.</li>
+                </ul>`
+            },
+            'treehouse-intern': {
+                title: 'Design Coach Intern',
+                sub: 'Treehouse Innovation &middot; London',
+                date: 'Jun 2023 — Sep 2023',
+                body: `<ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
+                    <li>Designed interactive exercises for a large corporate event (200+ people) focused on a manufacturing company's operating model review.</li>
+                    <li>Collaborated with design and client teams to research, design, and co-create engaging games and interactive workshop exercises.</li>
+                    <li>Conducted background research on cognitive biases for a major gaming company project.</li>
+                    <li>Built a prototype app for a Risk & Compliance breakout session using Flask, integrating OpenAI's API.</li>
+                </ul>`
+            },
+            cambridge: {
+                title: 'Grand Finalist & Tooling Category Winner',
+                sub: 'Hack the Law — LLM x Law &middot; University of Cambridge',
+                img: 'Pictures/2. Hackathons & Competitions/grand finalist and tooling winner, hack the law llm x law winner, university of cambridge/cambridge hackathon grand finalist.jpg',
+                body: `<p class="text-forest-muted text-sm leading-relaxed"><strong>Problem:</strong> Compliance professionals face dense, unstructured financial regulations, making it difficult to find critical information quickly.</p>
+                <p class="text-forest-muted text-sm leading-relaxed mt-2"><strong>Solution:</strong> Built a platform that structures financial regulations into a searchable, intuitive interface. Automatically highlights key entities, activities, and products.</p>
+                <p class="text-forest-muted text-sm leading-relaxed mt-2"><strong>Team "Just 3"</strong> (with Xavier Doni and Siyuan Sui). RegGenome API + Groq API. Efficient use of Groq secured the Tooling Category win.</p>`
+            },
+            glasses: {
+                title: 'Golden Glasses Award — Most Engaging Presentation',
+                sub: 'Future Interaction for Smart Glasses Bootcamp &middot; NUS',
+                img: 'Pictures/2. Hackathons & Competitions/Golden Glasses Award for Most Engaging Presentation, future interaction of smart glasses bootcamp/smart glasses group winning.JPG',
+                body: `<ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
+                    <li>Built "Waddles" — an app on XREAL smart glasses designed to alert users to potential dangers and risky areas while travelling in unfamiliar environments.</li>
+                    <li>Intensive 6-day bootcamp with hands-on AR development.</li>
+                    <li>Tech stack: Unity, C#, TOM, Gemini API, Python.</li>
+                    <li>Team: Wen Ting Chua, Sanay Shah, Jie Han Lim.</li>
+                </ul>`
+            },
+            web3: {
+                title: 'Finalist — Web3 Hackathon',
+                sub: 'EasyA, VeChain, BCG',
+                img: 'Pictures/2. Hackathons & Competitions/finalist web3 hackthon easy a vchain/easya vchain hackathon UI.jpg',
+                body: `<ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
+                    <li>Competed as a solo participant in a hackathon focused on Web3 technologies.</li>
+                    <li>Recognised as a finalist for developing solutions that demonstrated highly efficient and effective prompt engineering techniques.</li>
+                </ul>`
+            }
+        };
+
+        const modal = document.getElementById('modal');
+        const modalBody = document.getElementById('modal-body');
+        const modalClose = document.getElementById('modal-close');
+
+        function openModal(key) {
+            const d = modalData[key];
+            if (!d) return;
+            let html = '';
+            if (d.img) html += `<img src="${d.img}" class="w-full rounded-lg mb-5 object-cover max-h-64" loading="lazy">`;
+            html += `<h2 class="font-display text-2xl text-forest">${d.title}</h2>`;
+            html += `<p class="text-forest-muted text-sm mt-1">${d.sub}</p>`;
+            if (d.date) html += `<p class="font-mono text-xs text-accent mt-1">${d.date}</p>`;
+            html += `<div class="mt-4">${d.body}</div>`;
+            modalBody.innerHTML = html;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Attach click handlers to timeline entries and hack cards
+        document.querySelectorAll('[data-modal]').forEach(el => {
+            el.style.cursor = 'pointer';
+            el.addEventListener('click', () => openModal(el.dataset.modal));
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    })();
+    </script>
 </body>
 </html>
-
