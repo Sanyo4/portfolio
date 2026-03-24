@@ -90,11 +90,14 @@
             border: 1px solid #D1E8D1;
             border-radius: 16px;
             overflow: hidden;
+            will-change: transform;
+            contain: layout style;
+            transform: translateZ(0);
             transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
         .product-card:hover {
             box-shadow: 0 16px 48px rgba(42, 157, 143, 0.1);
-            transform: translateY(-2px);
+            transform: translateY(-2px) translateZ(0);
         }
 
         /* --- Accordion --- */
@@ -145,11 +148,14 @@
             border: 1px solid #D1E8D1;
             border-radius: 12px;
             padding: 1.25rem;
+            will-change: transform;
+            contain: layout style;
+            transform: translateZ(0);
             transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
         }
         .exp-card:hover {
             box-shadow: 0 8px 24px rgba(42, 157, 143, 0.08);
-            transform: translateY(-2px);
+            transform: translateY(-2px) translateZ(0);
             border-color: #7AC0B4;
         }
 
@@ -159,11 +165,14 @@
             border: 1px solid #D1E8D1;
             border-radius: 12px;
             overflow: hidden;
+            will-change: transform;
+            contain: layout style;
+            transform: translateZ(0);
             transition: box-shadow 0.2s ease, transform 0.2s ease;
         }
         .hack-card:hover {
             box-shadow: 0 8px 24px rgba(42, 157, 143, 0.08);
-            transform: translateY(-2px);
+            transform: translateY(-2px) translateZ(0);
         }
         .hack-card img {
             width: 100%;
@@ -298,6 +307,13 @@
             border: 1px solid #D1E8D1;
             border-radius: 12px;
             padding: 1.5rem;
+            contain: layout style;
+        }
+
+        /* --- GPU-promote all images inside cards --- */
+        .exp-card img, .hack-card img, .edu-card img {
+            transform: translateZ(0);
+            will-change: auto;
         }
 
         /* --- Hero photo --- */
@@ -581,7 +597,7 @@
                     <div class="timeline-dot-new"></div>
                     <div class="exp-card">
                         <div class="flex flex-col sm:flex-row sm:items-start gap-4">
-                            <img src="Pictures/1. Professional & Industry Experience/Automation Project Manager  Innovi Advisors Ltd/innovi advisors presentation.jpg" alt="Innovi Advisors" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy">
+                            <img src="Pictures/1. Professional & Industry Experience/Automation Project Manager  Innovi Advisors Ltd/innovi advisors presentation.jpg" alt="Innovi Advisors" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy" decoding="async">
                             <div>
                                 <p class="font-mono text-xs text-accent mb-1">Aug 2025 — Present</p>
                                 <h3 class="font-semibold text-forest text-lg">Automation Project Manager</h3>
@@ -610,7 +626,7 @@
                     <div class="timeline-dot-new"></div>
                     <div class="exp-card">
                         <div class="flex flex-col sm:flex-row sm:items-start gap-4">
-                            <img src="Pictures/3. Leadership & Mentorship/Foundational Design Mentor, steamunity/steamunity group with dpm heng.jpeg" alt="STEAMunity" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy">
+                            <img src="Pictures/3. Leadership & Mentorship/Foundational Design Mentor, steamunity/steamunity group with dpm heng.jpeg" alt="STEAMunity" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy" decoding="async">
                             <div>
                                 <p class="font-mono text-xs text-accent mb-1">Dec 2024 — Mar 2025</p>
                                 <h3 class="font-semibold text-forest text-lg">Advanced Design Mentor</h3>
@@ -626,7 +642,7 @@
                     <div class="timeline-dot-new"></div>
                     <div class="exp-card">
                         <div class="flex flex-col sm:flex-row sm:items-start gap-4">
-                            <img src="Pictures/1. Professional & Industry Experience/Volunteer Researcher & Contributor  Asia-Pacific Legal Innovation & Technology Association (ALITA)/apac legal tech map.png" alt="ALITA" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy">
+                            <img src="Pictures/1. Professional & Industry Experience/Volunteer Researcher & Contributor  Asia-Pacific Legal Innovation & Technology Association (ALITA)/apac legal tech map.png" alt="ALITA" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy" decoding="async">
                             <div>
                                 <p class="font-mono text-xs text-accent mb-1">Nov 2024 — Sep 2025</p>
                                 <h3 class="font-semibold text-forest text-lg">Volunteer Researcher</h3>
@@ -642,7 +658,7 @@
                     <div class="timeline-dot-new"></div>
                     <div class="exp-card">
                         <div class="flex flex-col sm:flex-row sm:items-start gap-4">
-                            <img src="Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk group.jpeg" alt="Treehouse Innovation" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy">
+                            <img src="Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk group.jpeg" alt="Treehouse Innovation" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy" decoding="async">
                             <div>
                                 <p class="font-mono text-xs text-accent mb-1">May 2024 — Aug 2024</p>
                                 <h3 class="font-semibold text-forest text-lg">Builder & Facilitator</h3>
@@ -693,7 +709,7 @@
             <div class="grid md:grid-cols-2 gap-6">
                 <!-- Cambridge — Featured -->
                 <div class="hack-card hack-featured reveal" data-modal="cambridge">
-                    <img src="Pictures/2. Hackathons & Competitions/grand finalist and tooling winner, hack the law llm x law winner, university of cambridge/cambridge hackathon presenting crowd.jpg" alt="Cambridge Hackathon" loading="lazy">
+                    <img src="Pictures/2. Hackathons & Competitions/grand finalist and tooling winner, hack the law llm x law winner, university of cambridge/cambridge hackathon presenting crowd.jpg" alt="Cambridge Hackathon" loading="lazy" decoding="async">
                     <div class="p-5">
                         <div class="flex items-center gap-2 mb-2">
                             <i class="fas fa-trophy text-accent text-sm"></i>
@@ -707,7 +723,7 @@
 
                 <!-- Smart Glasses -->
                 <div class="hack-card reveal" data-modal="glasses">
-                    <img src="Pictures/2. Hackathons & Competitions/Golden Glasses Award for Most Engaging Presentation, future interaction of smart glasses bootcamp/smart glasses group winning.JPG" alt="Smart Glasses Bootcamp" loading="lazy">
+                    <img src="Pictures/2. Hackathons & Competitions/Golden Glasses Award for Most Engaging Presentation, future interaction of smart glasses bootcamp/smart glasses group winning.JPG" alt="Smart Glasses Bootcamp" loading="lazy" decoding="async">
                     <div class="p-5">
                         <div class="flex items-center gap-2 mb-2">
                             <i class="fas fa-award text-accent text-sm"></i>
@@ -734,7 +750,7 @@
 
                 <!-- Web3 -->
                 <div class="hack-card reveal" data-modal="web3">
-                    <img src="Pictures/2. Hackathons & Competitions/finalist web3 hackthon easy a vchain/easya vchain hackathon UI.jpg" alt="Web3 Hackathon" loading="lazy">
+                    <img src="Pictures/2. Hackathons & Competitions/finalist web3 hackthon easy a vchain/easya vchain hackathon UI.jpg" alt="Web3 Hackathon" loading="lazy" decoding="async">
                     <div class="p-5">
                         <div class="flex items-center gap-2 mb-2">
                             <i class="fas fa-medal text-accent text-sm"></i>
@@ -748,7 +764,7 @@
 
                 <!-- MiFutures -->
                 <div class="hack-card reveal">
-                    <img src="Pictures/2. Hackathons & Competitions/1st prize winner design innovation day mifutures/mifutures postick notes.jpg" alt="MiFutures Design Innovation" loading="lazy">
+                    <img src="Pictures/2. Hackathons & Competitions/1st prize winner design innovation day mifutures/mifutures postick notes.jpg" alt="MiFutures Design Innovation" loading="lazy" decoding="async">
                     <div class="p-5">
                         <div class="flex items-center gap-2 mb-2">
                             <i class="fas fa-trophy text-accent text-sm"></i>
@@ -796,7 +812,7 @@
 
                 <div class="edu-card reveal">
                     <div class="flex flex-col md:flex-row md:items-start gap-4">
-                        <img src="Pictures/4. Academic Projects & Achievements/masters module, innovation by design/masters project.jpg" alt="Innovation by Design exhibition" class="w-full md:w-48 h-32 object-cover rounded-lg flex-shrink-0" loading="lazy">
+                        <img src="Pictures/4. Academic Projects & Achievements/masters module, innovation by design/masters project.jpg" alt="Innovation by Design exhibition" class="w-full md:w-48 h-32 object-cover rounded-lg flex-shrink-0" loading="lazy" decoding="async">
                         <div class="flex-1">
                             <p class="font-mono text-xs text-accent mb-1">Sep 2024 — May 2025</p>
                             <h3 class="font-semibold text-forest text-lg">Singapore University of Technology and Design</h3>
@@ -933,17 +949,17 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div class="edu-card text-center reveal">
-                    <img src="Pictures/5. Awards & Extracurriculars/rowing national finals/rowing national finals.jpg" alt="Rowing" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+                    <img src="Pictures/5. Awards & Extracurriculars/rowing national finals/rowing national finals.jpg" alt="Rowing" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy" decoding="async">
                     <h3 class="font-semibold text-forest">National B Final Winner</h3>
                     <p class="text-forest-muted text-sm">Rowing — U15 Coxswain</p>
                 </div>
                 <div class="edu-card text-center reveal reveal-delay-1">
-                    <img src="Pictures/5. Awards & Extracurriculars/performer/play performance.jpg" alt="Performance" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+                    <img src="Pictures/5. Awards & Extracurriculars/performer/play performance.jpg" alt="Performance" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy" decoding="async">
                     <h3 class="font-semibold text-forest">Performer</h3>
                     <p class="text-forest-muted text-sm">School's first student-led play, "Another Country"</p>
                 </div>
                 <div class="edu-card text-center reveal reveal-delay-2">
-                    <img src="Pictures/5. Awards & Extracurriculars/photography/hut.JPG" alt="Photography" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+                    <img src="Pictures/5. Awards & Extracurriculars/photography/hut.JPG" alt="Photography" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy" decoding="async">
                     <h3 class="font-semibold text-forest">Photography</h3>
                     <p class="text-forest-muted text-sm">
                         <a href="https://www.instagram.com/sanay.photography/" target="_blank" class="text-accent hover:underline">@sanay.photography</a>
@@ -1164,7 +1180,7 @@
             const d = modalData[key];
             if (!d) return;
             let html = '';
-            if (d.img) html += `<img src="${d.img}" class="w-full rounded-lg mb-5 object-cover max-h-64" loading="lazy">`;
+            if (d.img) html += `<img src="${d.img}" class="w-full rounded-lg mb-5 object-cover max-h-64" loading="lazy" decoding="async">`;
             html += `<h2 class="font-display text-2xl text-forest">${d.title}</h2>`;
             html += `<p class="text-forest-muted text-sm mt-1">${d.sub}</p>`;
             if (d.date) html += `<p class="font-mono text-xs text-accent mt-1">${d.date}</p>`;
