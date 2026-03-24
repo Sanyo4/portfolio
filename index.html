@@ -327,6 +327,45 @@
             margin-top: 0.25rem;
         }
 
+        /* --- Skill accordion bars --- */
+        .skill-bar {
+            background: #FFFFFF;
+            border: 1px solid #D1E8D1;
+            border-bottom: none;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .skill-bar:first-child { border-radius: 12px 12px 0 0; }
+        .skill-bar:last-child { border-bottom: 1px solid #D1E8D1; border-radius: 0 0 12px 12px; }
+        .skill-bar:only-child { border-radius: 12px; border-bottom: 1px solid #D1E8D1; }
+        .skill-bar.active { border-color: #7AC0B4; }
+        .skill-bar.active + .skill-bar { border-top-color: #7AC0B4; }
+        .skill-bar-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            min-height: 48px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.15s;
+        }
+        .skill-bar-header:hover { background: #F7F9F4; }
+        .skill-bar-header > span:first-child { flex-shrink: 0; min-width: 90px; }
+        .skill-bar-header > span:nth-child(2) { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .skill-chevron { flex-shrink: 0; transition: transform 0.3s ease; color: #5A7A5A; }
+        .skill-bar.active .skill-chevron { transform: rotate(180deg); color: #2A9D8F; }
+        .skill-bar-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 0 1.25rem;
+        }
+        .skill-bar.active .skill-bar-content { max-height: 200px; }
+
         /* --- Fluid headings --- */
         h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
         h2.section-heading { font-size: clamp(1.75rem, 4vw, 3rem); }
@@ -757,10 +796,12 @@
 
                 <div class="edu-card reveal">
                     <div class="flex flex-col md:flex-row md:items-start gap-4">
+                        <img src="Pictures/4. Academic Projects & Achievements/masters module, innovation by design/masters project.jpg" alt="Innovation by Design exhibition" class="w-full md:w-48 h-32 object-cover rounded-lg flex-shrink-0" loading="lazy">
                         <div class="flex-1">
                             <p class="font-mono text-xs text-accent mb-1">Sep 2024 — May 2025</p>
                             <h3 class="font-semibold text-forest text-lg">Singapore University of Technology and Design</h3>
                             <p class="text-forest-muted text-sm">Exchange — Information Systems Technology and Design</p>
+                            <p class="text-forest-muted text-sm mt-2">Completed masters-level module "Innovation by Design" — group achieved 70% in final exhibition.</p>
                             <div class="flex flex-wrap gap-2 mt-3">
                                 <span class="tag-pill">Innovation by Design</span>
                                 <span class="tag-pill">AI Applications by Design</span>
@@ -773,7 +814,6 @@
 
                 <div class="edu-card reveal">
                     <div class="flex flex-col md:flex-row md:items-start gap-4">
-                        <img src="Pictures/4. Academic Projects & Achievements/masters module, innovation by design/masters project.jpg" alt="Innovation by Design" class="w-full md:w-48 h-32 object-cover rounded-lg flex-shrink-0" loading="lazy">
                         <div class="flex-1">
                             <p class="font-mono text-xs text-accent mb-1">2020 — 2022</p>
                             <h3 class="font-semibold text-forest text-lg">Whitgift School</h3>
@@ -788,89 +828,95 @@
 
     <!-- ===== SKILLS ===== -->
     <section id="skills" class="py-16 md:py-24 bg-bg-alt">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-12 reveal">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-8 reveal">
                 <span class="section-line"></span>
                 <h2 class="section-heading font-display text-forest">Skills</h2>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
-                <div>
-                    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-3">Languages</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-group-tag">Python</span>
-                        <span class="skill-group-tag">TypeScript</span>
-                        <span class="skill-group-tag">JavaScript</span>
-                        <span class="skill-group-tag">C#</span>
-                        <span class="skill-group-tag">SQL</span>
-                        <span class="skill-group-tag">Cypher</span>
-                        <span class="skill-group-tag">HTML/CSS</span>
+            <div class="reveal" id="skill-accordion">
+                <div class="skill-bar" data-skill-target="sk-lang">
+                    <button class="skill-bar-header">
+                        <span class="font-mono text-xs text-accent uppercase tracking-widest">Languages</span>
+                        <span class="text-forest-muted text-sm">Python, TypeScript, JavaScript, C#, SQL, Cypher</span>
+                        <svg class="skill-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </button>
+                    <div class="skill-bar-content" id="sk-lang">
+                        <div class="flex flex-wrap gap-2 py-3 px-1">
+                            <span class="skill-group-tag">Python</span><span class="skill-group-tag">TypeScript</span><span class="skill-group-tag">JavaScript</span><span class="skill-group-tag">C#</span><span class="skill-group-tag">SQL</span><span class="skill-group-tag">Cypher</span><span class="skill-group-tag">HTML/CSS</span>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-3">AI / ML</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-group-tag">LangChain</span>
-                        <span class="skill-group-tag">LangGraph</span>
-                        <span class="skill-group-tag">Vercel AI SDK</span>
-                        <span class="skill-group-tag">OpenAI API</span>
-                        <span class="skill-group-tag">Gemini</span>
-                        <span class="skill-group-tag">Groq</span>
-                        <span class="skill-group-tag">Prompt Engineering</span>
-                        <span class="skill-group-tag">Structured Output</span>
+                <div class="skill-bar" data-skill-target="sk-ai">
+                    <button class="skill-bar-header">
+                        <span class="font-mono text-xs text-accent uppercase tracking-widest">AI / ML</span>
+                        <span class="text-forest-muted text-sm">LangChain, Vercel AI SDK, OpenAI, Gemini, Groq</span>
+                        <svg class="skill-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </button>
+                    <div class="skill-bar-content" id="sk-ai">
+                        <div class="flex flex-wrap gap-2 py-3 px-1">
+                            <span class="skill-group-tag">LangChain</span><span class="skill-group-tag">LangGraph</span><span class="skill-group-tag">Vercel AI SDK</span><span class="skill-group-tag">OpenAI API</span><span class="skill-group-tag">Gemini</span><span class="skill-group-tag">Groq</span><span class="skill-group-tag">Prompt Engineering</span><span class="skill-group-tag">Structured Output</span>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-3">Backend</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-group-tag">FastAPI</span>
-                        <span class="skill-group-tag">Flask</span>
-                        <span class="skill-group-tag">Next.js</span>
-                        <span class="skill-group-tag">Pydantic</span>
-                        <span class="skill-group-tag">SQLAlchemy</span>
+                <div class="skill-bar" data-skill-target="sk-back">
+                    <button class="skill-bar-header">
+                        <span class="font-mono text-xs text-accent uppercase tracking-widest">Backend</span>
+                        <span class="text-forest-muted text-sm">FastAPI, Flask, Next.js, Pydantic</span>
+                        <svg class="skill-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </button>
+                    <div class="skill-bar-content" id="sk-back">
+                        <div class="flex flex-wrap gap-2 py-3 px-1">
+                            <span class="skill-group-tag">FastAPI</span><span class="skill-group-tag">Flask</span><span class="skill-group-tag">Next.js</span><span class="skill-group-tag">Pydantic</span><span class="skill-group-tag">SQLAlchemy</span>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-3">Frontend</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-group-tag">React 19</span>
-                        <span class="skill-group-tag">Vite</span>
-                        <span class="skill-group-tag">Tailwind CSS</span>
-                        <span class="skill-group-tag">Framer Motion</span>
-                        <span class="skill-group-tag">D3.js</span>
-                        <span class="skill-group-tag">PWA</span>
+                <div class="skill-bar" data-skill-target="sk-front">
+                    <button class="skill-bar-header">
+                        <span class="font-mono text-xs text-accent uppercase tracking-widest">Frontend</span>
+                        <span class="text-forest-muted text-sm">React 19, Tailwind CSS, Framer Motion, D3.js</span>
+                        <svg class="skill-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </button>
+                    <div class="skill-bar-content" id="sk-front">
+                        <div class="flex flex-wrap gap-2 py-3 px-1">
+                            <span class="skill-group-tag">React 19</span><span class="skill-group-tag">Vite</span><span class="skill-group-tag">Tailwind CSS</span><span class="skill-group-tag">Framer Motion</span><span class="skill-group-tag">D3.js</span><span class="skill-group-tag">PWA</span>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-3">Databases</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-group-tag">PostgreSQL</span>
-                        <span class="skill-group-tag">Supabase</span>
-                        <span class="skill-group-tag">Neo4j</span>
-                        <span class="skill-group-tag">Qdrant</span>
-                        <span class="skill-group-tag">Upstash Redis</span>
+                <div class="skill-bar" data-skill-target="sk-db">
+                    <button class="skill-bar-header">
+                        <span class="font-mono text-xs text-accent uppercase tracking-widest">Databases</span>
+                        <span class="text-forest-muted text-sm">PostgreSQL, Neo4j, Qdrant, Supabase, Redis</span>
+                        <svg class="skill-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </button>
+                    <div class="skill-bar-content" id="sk-db">
+                        <div class="flex flex-wrap gap-2 py-3 px-1">
+                            <span class="skill-group-tag">PostgreSQL</span><span class="skill-group-tag">Supabase</span><span class="skill-group-tag">Neo4j</span><span class="skill-group-tag">Qdrant</span><span class="skill-group-tag">Upstash Redis</span>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-3">DevOps & Cloud</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-group-tag">Docker</span>
-                        <span class="skill-group-tag">Railway</span>
-                        <span class="skill-group-tag">Vercel</span>
-                        <span class="skill-group-tag">GCP Cloud Run</span>
-                        <span class="skill-group-tag">Nginx</span>
+                <div class="skill-bar" data-skill-target="sk-devops">
+                    <button class="skill-bar-header">
+                        <span class="font-mono text-xs text-accent uppercase tracking-widest">DevOps & Cloud</span>
+                        <span class="text-forest-muted text-sm">Docker, Railway, Vercel, GCP Cloud Run</span>
+                        <svg class="skill-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </button>
+                    <div class="skill-bar-content" id="sk-devops">
+                        <div class="flex flex-wrap gap-2 py-3 px-1">
+                            <span class="skill-group-tag">Docker</span><span class="skill-group-tag">Railway</span><span class="skill-group-tag">Vercel</span><span class="skill-group-tag">GCP Cloud Run</span><span class="skill-group-tag">Nginx</span>
+                        </div>
                     </div>
                 </div>
-                <div class="sm:col-span-2 lg:col-span-3">
-                    <p class="font-mono text-xs text-accent uppercase tracking-widest mb-3">Methodologies & Soft Skills</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-group-tag">Design Thinking</span>
-                        <span class="skill-group-tag">Agile</span>
-                        <span class="skill-group-tag">Project Management</span>
-                        <span class="skill-group-tag">Consulting</span>
-                        <span class="skill-group-tag">Workshop Facilitation</span>
-                        <span class="skill-group-tag">Stakeholder Management</span>
-                        <span class="skill-group-tag">Mentoring</span>
+                <div class="skill-bar" data-skill-target="sk-method">
+                    <button class="skill-bar-header">
+                        <span class="font-mono text-xs text-accent uppercase tracking-widest">Methodologies</span>
+                        <span class="text-forest-muted text-sm">Design Thinking, Agile, PM, Consulting</span>
+                        <svg class="skill-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </button>
+                    <div class="skill-bar-content" id="sk-method">
+                        <div class="flex flex-wrap gap-2 py-3 px-1">
+                            <span class="skill-group-tag">Design Thinking</span><span class="skill-group-tag">Agile</span><span class="skill-group-tag">Project Management</span><span class="skill-group-tag">Consulting</span><span class="skill-group-tag">Workshop Facilitation</span><span class="skill-group-tag">Stakeholder Management</span><span class="skill-group-tag">Mentoring</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -984,13 +1030,21 @@
             link.addEventListener('click', () => mobileMenu.classList.remove('active'));
         });
 
-        // --- Accordions ---
+        // --- Accordions (products) ---
         document.querySelectorAll('.accordion-toggle').forEach(btn => {
             btn.addEventListener('click', () => {
                 const target = document.getElementById(btn.dataset.target);
-                const isOpen = target.classList.contains('open');
                 target.classList.toggle('open');
                 btn.classList.toggle('open');
+            });
+        });
+
+        // --- Skill accordion (exclusive — max 1 open) ---
+        document.querySelectorAll('.skill-bar').forEach(bar => {
+            bar.querySelector('.skill-bar-header').addEventListener('click', () => {
+                const wasActive = bar.classList.contains('active');
+                document.querySelectorAll('.skill-bar.active').forEach(b => b.classList.remove('active'));
+                if (!wasActive) bar.classList.add('active');
             });
         });
 
