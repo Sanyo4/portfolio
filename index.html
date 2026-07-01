@@ -1,1214 +1,1050 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanay Shah — Product Builder & Founder</title>
-    <meta name="description" content="Sanay Shah builds AI-powered products end-to-end. Sole founder of Beau and Gonzo. Product builder, system designer, and strategic thinker.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        display: ['"Instrument Serif"', 'Georgia', 'serif'],
-                        body: ['"DM Sans"', 'system-ui', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'monospace'],
-                    },
-                    colors: {
-                        bg: { DEFAULT: '#F7F9F4', alt: '#EDF2E8' },
-                        accent: { DEFAULT: '#2A9D8F', light: '#7AC0B4' },
-                        mint: '#90FCCF',
-                        sage: '#D1E8D1',
-                        forest: { DEFAULT: '#1A2E1A', muted: '#5A7A5A' },
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        *, *::before, *::after { box-sizing: border-box; }
+  <script>document.documentElement.classList.add('js');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanay Shah: Product Builder and Founder</title>
+  <meta name="description" content="Sanay Shah builds AI-powered products end-to-end. Automation Project Manager at Innovi Advisors. Sole founder of Beau and Gonzo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Source+Sans+3:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --ground: #ECEAE3;
+      --ground-2: #E2E0D7;
+      --ink: #2A2723;
+      --ink-soft: #5A564E;
+      --accent: #5A6B4F;
 
-        html { scroll-behavior: smooth; }
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --serif: "Newsreader", Georgia, serif;
+      --sans: "Source Sans 3", system-ui, sans-serif;
 
-        body {
-            font-family: 'DM Sans', system-ui, sans-serif;
-            background-color: #F7F9F4;
-            color: #1A2E1A;
-            overflow-x: hidden;
-        }
+      --panel-tint: 60;
+      --panel-blur: 14px;
+      --hero-focus: 38%;
+      --scroll: 0;
+      --pan: 1;
+      --mist-base: 0.22;
+      --mist-range: 0.72;
+    }
 
-        /* --- Dot grid background --- */
-        .dot-grid {
-            background-image: radial-gradient(circle, #D1E8D1 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* --- Scroll animations --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(32px);
-            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
+    html {
+      background: var(--ground);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+    }
 
-        /* --- Glass nav --- */
-        .glass-nav {
-            background: rgba(247, 249, 244, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid #D1E8D1;
-        }
-        .glass-nav.scrolled {
-            box-shadow: 0 1px 24px rgba(42, 157, 143, 0.08);
-        }
+    body {
+      background: transparent;
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-        /* --- Section divider --- */
-        .section-line {
-            width: 48px;
-            height: 2px;
-            background: #2A9D8F;
-            display: block;
-            margin-bottom: 1rem;
-        }
+    img { max-width: 100%; display: block; }
 
-        /* --- Product cards --- */
-        .product-card {
-            background: #FFFFFF;
-            border: 1px solid #D1E8D1;
-            border-radius: 16px;
-            overflow: hidden;
-            will-change: transform;
-            contain: layout style;
-            transform: translateZ(0);
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-        }
-        .product-card:hover {
-            box-shadow: 0 16px 48px rgba(42, 157, 143, 0.1);
-            transform: translateY(-2px) translateZ(0);
-        }
+    /* ---------- continuous backdrop ---------- */
+    .stage { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
 
-        /* --- Accordion --- */
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .accordion-content.open {
-            max-height: 2000px;
-        }
-        .accordion-toggle svg {
-            transition: transform 0.3s ease;
-        }
-        .accordion-toggle.open svg {
-            transform: rotate(180deg);
-        }
+    .stage__img {
+      position: absolute;
+      top: -3%; left: -3%;
+      width: 106%; height: 106%;
+      object-fit: cover;
+      object-position: 50% var(--hero-focus);
+      transform: translate3d(calc(var(--scroll) * var(--pan) * -5%), 0, 0) scale(calc(1 + var(--scroll) * var(--pan) * 0.08));
+      transition: transform 0.25s linear;
+      will-change: transform;
+    }
 
-        /* --- Timeline --- */
-        .timeline-line {
-            position: absolute;
-            left: 7px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #2A9D8F, #D1E8D1);
-        }
-        .timeline-dot-new {
-            position: absolute;
-            left: 0;
-            top: 6px;
-            width: 16px;
-            height: 16px;
-            background: #F7F9F4;
-            border: 2.5px solid #2A9D8F;
-            border-radius: 50%;
-            z-index: 1;
-        }
-        .timeline-entry {
-            padding-left: 36px;
-            position: relative;
-            cursor: pointer;
-        }
+    .stage__veil {
+      position: absolute; inset: 0;
+      background: var(--ground);
+      opacity: calc(var(--mist-base) + var(--scroll) * var(--mist-range));
+      transition: opacity 0.25s linear;
+    }
 
-        /* --- Experience card --- */
-        .exp-card {
-            background: #FFFFFF;
-            border: 1px solid #D1E8D1;
-            border-radius: 12px;
-            padding: 1.25rem;
-            will-change: transform;
-            contain: layout style;
-            transform: translateZ(0);
-            transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-        }
-        .exp-card:hover {
-            box-shadow: 0 8px 24px rgba(42, 157, 143, 0.08);
-            transform: translateY(-2px) translateZ(0);
-            border-color: #7AC0B4;
-        }
+    .stage__grain {
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+      opacity: 0.05;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
 
-        /* --- Hackathon cards --- */
-        .hack-card {
-            background: #FFFFFF;
-            border: 1px solid #D1E8D1;
-            border-radius: 12px;
-            overflow: hidden;
-            will-change: transform;
-            contain: layout style;
-            transform: translateZ(0);
-            transition: box-shadow 0.2s ease, transform 0.2s ease;
-        }
-        .hack-card:hover {
-            box-shadow: 0 8px 24px rgba(42, 157, 143, 0.08);
-            transform: translateY(-2px) translateZ(0);
-        }
-        .hack-card img {
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            object-fit: cover;
-        }
-        .hack-featured {
-            border: 2px solid #2A9D8F;
-        }
+    /* ---------- shared frosted panel ---------- */
+    .panel {
+      border-radius: 4px;
+      background: color-mix(in srgb, var(--ground) calc(var(--panel-tint) * 1%), transparent);
+      -webkit-backdrop-filter: blur(var(--panel-blur)) saturate(118%);
+      backdrop-filter: blur(var(--panel-blur)) saturate(118%);
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent);
+    }
 
-        /* --- Tag pill --- */
-        .tag-pill {
-            display: inline-block;
-            background: #90FCCF;
-            color: #1A2E1A;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            font-weight: 500;
-            padding: 0.2rem 0.6rem;
-            border-radius: 9999px;
-            white-space: nowrap;
-        }
+    /* ---------- shared type ---------- */
+    .label {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
 
-        /* --- Skill category --- */
-        .skill-group-tag {
-            display: inline-block;
-            background: #FFFFFF;
-            color: #5A7A5A;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: 8px;
-            border: 1px solid #D1E8D1;
-            transition: border-color 0.2s ease, color 0.2s ease;
-        }
-        .skill-group-tag:hover {
-            border-color: #7AC0B4;
-            color: #2A9D8F;
-        }
+    .h-sec {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.7rem, 3vw, 2.7rem);
+      line-height: 1.16;
+      letter-spacing: -0.012em;
+      color: var(--ink);
+      text-wrap: balance;
+    }
 
-        /* --- Link pill --- */
-        .link-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            border: 1px solid #D1E8D1;
-            color: #1A2E1A;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            min-height: 44px;
-        }
-        .link-pill:hover {
-            border-color: #2A9D8F;
-            background: #2A9D8F;
-            color: #FFFFFF;
-        }
+    .lead {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+      line-height: 1.4;
+      color: var(--ink);
+      text-wrap: pretty;
+    }
 
-        /* --- Modal --- */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(26, 46, 26, 0.5);
-            backdrop-filter: blur(4px);
-            z-index: 50;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-        .modal-overlay.active {
-            display: flex;
-        }
-        .modal-box {
-            background: #FFFFFF;
-            border-radius: 16px;
-            max-width: 640px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 2rem;
-            position: relative;
-        }
-        @media (max-width: 767px) {
-            .modal-box {
-                max-width: 100%;
-                max-height: 100vh;
-                height: 100%;
-                border-radius: 0;
-                padding: 1.5rem;
-                padding-top: 3.5rem;
-            }
-        }
+    .bodytext { font-size: clamp(1rem, 1.1vw, 1.08rem); line-height: 1.62; color: var(--ink-soft); text-wrap: pretty; }
+    .bodytext-sm { font-size: 0.94rem; line-height: 1.6; color: var(--ink-soft); }
 
-        /* --- Mobile menu --- */
-        .mobile-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(247, 249, 244, 0.97);
-            backdrop-filter: blur(20px);
-            z-index: 40;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        .mobile-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .mobile-overlay a {
-            font-family: 'Instrument Serif', serif;
-            font-size: 2rem;
-            color: #1A2E1A;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .mobile-overlay a:hover {
-            color: #2A9D8F;
-        }
+    .wrap { width: min(70rem, 100%); margin: 0 auto; padding-inline: clamp(1.5rem, 5vw, 4.5rem); }
 
-        /* --- Education card --- */
-        .edu-card {
-            background: #FFFFFF;
-            border: 1px solid #D1E8D1;
-            border-radius: 12px;
-            padding: 1.5rem;
-            contain: layout style;
-        }
+    .section { position: relative; padding-block: clamp(3.5rem, 9vh, 7rem); }
 
-        /* --- GPU-promote all images inside cards --- */
-        .exp-card img, .hack-card img, .edu-card img {
-            transform: translateZ(0);
-            will-change: auto;
-        }
+    .col2 {
+      display: grid;
+      grid-template-columns: minmax(13rem, 17rem) 1fr;
+      gap: clamp(2rem, 4vw, 4.5rem);
+      align-items: start;
+    }
 
-        /* --- Hero photo --- */
-        .hero-photo {
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            border: 3px solid #2A9D8F;
-            object-fit: cover;
-        }
+    .col2__body { min-width: 0; }
+    .col2__head {
+      position: sticky; top: clamp(5.5rem, 10vh, 7rem);
+      padding: clamp(1.3rem, 2vw, 1.7rem) clamp(1.4rem, 2.2vw, 1.8rem);
+    }
+    .col2__head .h-sec { margin-top: 0.8rem; }
+    .col2__head .lead { margin-top: 1.1rem; max-width: 26ch; font-size: clamp(1.05rem, 1.4vw, 1.22rem); }
 
-        /* --- Stat block --- */
-        .stat-block {
-            text-align: center;
-            padding: 1rem;
-        }
-        .stat-number {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            color: #2A9D8F;
-            line-height: 1;
-        }
-        .stat-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            color: #5A7A5A;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: 0.25rem;
-        }
+    .head-bubble {
+      display: inline-block;
+      max-width: 34rem;
+      padding: clamp(1.3rem, 2vw, 1.7rem) clamp(1.4rem, 2.2vw, 1.8rem);
+    }
 
-        /* --- Skill accordion bars --- */
-        .skill-bar {
-            background: #FFFFFF;
-            border: 1px solid #D1E8D1;
-            border-bottom: none;
-            overflow: hidden;
-            transition: border-color 0.2s;
-        }
-        .skill-bar:first-child { border-radius: 12px 12px 0 0; }
-        .skill-bar:last-child { border-bottom: 1px solid #D1E8D1; border-radius: 0 0 12px 12px; }
-        .skill-bar:only-child { border-radius: 12px; border-bottom: 1px solid #D1E8D1; }
-        .skill-bar.active { border-color: #7AC0B4; }
-        .skill-bar.active + .skill-bar { border-top-color: #7AC0B4; }
-        .skill-bar-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            width: 100%;
-            padding: 0.875rem 1.25rem;
-            min-height: 48px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            text-align: left;
-            transition: background 0.15s;
-        }
-        .skill-bar-header:hover { background: #F7F9F4; }
-        .skill-bar-header > span:first-child { flex-shrink: 0; min-width: 90px; }
-        .skill-bar-header > span:nth-child(2) { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .skill-chevron { flex-shrink: 0; transition: transform 0.3s ease; color: #5A7A5A; }
-        .skill-bar.active .skill-chevron { transform: rotate(180deg); color: #2A9D8F; }
-        .skill-bar-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            padding: 0 1.25rem;
-        }
-        .skill-bar.active .skill-bar-content { max-height: 200px; }
+    /* ---------- links ---------- */
+    .link {
+      display: inline-flex; align-items: center; gap: 0.55em; flex-shrink: 0;
+      font-family: var(--mono); font-size: 0.9rem; letter-spacing: 0.02em;
+      color: var(--ink); text-decoration: none; padding-bottom: 0.3em;
+      border-bottom: 1px solid color-mix(in srgb, var(--ink) 32%, transparent);
+      transition: border-color 0.4s ease, gap 0.4s ease;
+    }
+    .link .arrow { color: var(--accent); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1); }
+    .link:hover { border-color: var(--accent); gap: 0.85em; }
+    .link:hover .arrow { transform: translateX(3px); }
 
-        /* --- Fluid headings --- */
-        h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
-        h2.section-heading { font-size: clamp(1.75rem, 4vw, 3rem); }
+    .chip {
+      display: inline-flex; align-items: center; gap: 0.5em;
+      font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.02em;
+      color: var(--ink); text-decoration: none;
+      padding: 0.55rem 1rem; border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
+      transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+    }
+    .chip:hover { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
 
-        /* --- Footer --- */
-        footer a {
-            color: #5A7A5A;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        footer a:hover { color: #2A9D8F; }
-    </style>
+    .tag {
+      display: inline-block;
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.03em;
+      color: var(--ink-soft);
+      padding: 0.3rem 0.65rem; border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+      white-space: nowrap;
+    }
+
+    .status-pill {
+      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent);
+      padding: 0.3rem 0.7rem; border-radius: 999px;
+      border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+      white-space: nowrap;
+    }
+
+    /* ---------- nav ---------- */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+      border-bottom: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+    }
+    .nav__inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem clamp(1.5rem, 5vw, 4.5rem);
+    }
+    .wordmark { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 1.2rem; color: var(--ink); text-decoration: none; }
+    .nav__links { display: flex; align-items: center; gap: clamp(1.2rem, 2vw, 2rem); }
+    .nav__link {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink-soft); text-decoration: none; transition: color 0.25s ease;
+    }
+    .nav__link:hover { color: var(--accent); }
+    .nav__toggle {
+      display: none; width: 40px; height: 40px; align-items: center; justify-content: center;
+      background: none; border: none; cursor: pointer; color: var(--ink);
+    }
+    .nav__toggle span { display: block; width: 20px; height: 1px; background: var(--ink); position: relative; }
+    .nav__toggle span::before, .nav__toggle span::after {
+      content: ''; position: absolute; left: 0; width: 20px; height: 1px; background: var(--ink); transition: transform 0.25s ease;
+    }
+    .nav__toggle span::before { top: -6px; }
+    .nav__toggle span::after { top: 6px; }
+
+    .mobile-nav {
+      position: fixed; inset: 0; z-index: 39;
+      background: color-mix(in srgb, var(--ground) 96%, transparent);
+      backdrop-filter: blur(20px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.6rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .mobile-nav.active { opacity: 1; pointer-events: auto; }
+    .mobile-nav a { font-family: var(--serif); font-size: 1.9rem; color: var(--ink); text-decoration: none; }
+    .mobile-nav a:hover { color: var(--accent); }
+
+    /* ---------- hero ---------- */
+    .hero { position: relative; min-height: 100svh; display: flex; align-items: center; padding-top: 5rem; }
+    .hero__panel { padding: clamp(1.75rem, 3.4vw, 2.75rem) clamp(1.75rem, 3.4vw, 2.9rem); width: min(38rem, 100%); }
+    .hero__byline { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.4rem; }
+    .hero__avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent); }
+    .hero__byline-text { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.04em; color: var(--ink-soft); }
+    .hero__byline-text b { color: var(--ink); font-weight: 500; }
+
+    .hero__headline {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(1.9rem, 4vw, 3.1rem);
+      line-height: 1.14; letter-spacing: -0.01em; color: var(--ink);
+      text-wrap: balance;
+    }
+    .hero__headline i { font-style: italic; color: var(--accent); }
+
+    .hero__lead { margin-top: 1.2rem; font-size: clamp(1rem, 1.2vw, 1.12rem); line-height: 1.6; color: var(--ink-soft); max-width: 44ch; }
+
+    .hero__row {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: clamp(1.4rem, 2.4vw, 1.9rem);
+      padding-top: clamp(1.2rem, 2vw, 1.5rem);
+      border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+    }
+
+    /* ---------- reveal ---------- */
+    .js .reveal {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 1s cubic-bezier(0.22,1,0.36,1), transform 1s cubic-bezier(0.22,1,0.36,1);
+      transition-delay: var(--d, 0s);
+    }
+    .js .hero.is-in .reveal, .js .section.is-in .reveal { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .js .reveal { transition: none; opacity: 1; transform: none; }
+      .stage__img { transform: none !important; }
+    }
+
+    /* ---------- products ---------- */
+    .product-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: clamp(1rem, 1.6vw, 1.4rem); }
+    .product { padding: clamp(1.5rem, 2.6vw, 2.2rem); min-width: 0; }
+    .product__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .product__title { font-family: var(--serif); font-size: clamp(1.5rem, 2.2vw, 1.9rem); color: var(--ink); }
+    .product__subtitle { font-family: var(--mono); font-size: 0.76rem; color: var(--accent); margin-top: 0.5rem; letter-spacing: 0.02em; }
+    .product__desc { margin-top: 0.9rem; }
+    .product__toggle {
+      display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.3rem;
+      font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft);
+      background: none; border: none; cursor: pointer; padding: 0.4rem 0;
+      border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+      width: 100%; justify-content: space-between;
+    }
+    .product__toggle:hover { color: var(--accent); }
+    .product__toggle svg { transition: transform 0.3s ease; flex-shrink: 0; }
+    .product__toggle.open svg { transform: rotate(180deg); }
+    .product__details { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16,1,0.3,1); }
+    .product__details.open { max-height: 900px; }
+    .product__detail-grid { display: grid; gap: 1.1rem; padding-top: 1.1rem; }
+    .product__detail h4 { font-family: var(--serif); font-weight: 500; font-size: 1.02rem; color: var(--ink); margin-bottom: 0.35rem; }
+
+    /* ---------- experience ---------- */
+    .xp-list { padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1.5rem, 2.6vw, 2.2rem); }
+    .xp-row {
+      display: grid; grid-template-columns: minmax(7rem, 10rem) 1fr; gap: 0.5rem 1.8rem;
+      padding-block: clamp(1.3rem, 2vw, 1.7rem);
+    }
+    .xp-row + .xp-row { border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); }
+    .xp-row[data-modal] { cursor: pointer; }
+    .xp-row__date { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.06em; color: var(--ink-soft); padding-top: 0.2em; }
+    .xp-row__title { font-family: var(--serif); font-size: clamp(1.2rem, 1.6vw, 1.4rem); color: var(--ink); line-height: 1.2; }
+    .xp-row__org { font-family: var(--mono); font-size: 0.76rem; color: var(--ink-soft); margin-top: 0.3rem; }
+    .xp-row__desc { margin-top: 0.6rem; max-width: 58ch; }
+    .xp-row__hint {
+      display: inline-flex; align-items: center; gap: 0.4em; margin-top: 0.7rem;
+      font-family: var(--mono); font-size: 0.72rem; color: var(--accent); opacity: 0; transition: opacity 0.25s ease;
+    }
+    .xp-row[data-modal]:hover .xp-row__hint { opacity: 1; }
+    .xp-row[data-modal]:hover .xp-row__title { color: var(--accent); }
+
+    /* ---------- hackathons ---------- */
+    .hack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 1.6vw, 1.4rem); }
+    .hack { overflow: hidden; }
+    .hack[data-modal] { cursor: pointer; }
+    .hack img { width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+    .hack__body { padding: clamp(1.25rem, 2vw, 1.6rem); }
+    .hack__badge { display: block; margin-bottom: 0.6rem; }
+    .hack__title { font-family: var(--serif); font-size: clamp(1.15rem, 1.6vw, 1.35rem); color: var(--ink); }
+    .hack__org { font-family: var(--mono); font-size: 0.76rem; color: var(--ink-soft); margin-top: 0.35rem; }
+    .hack__desc { margin-top: 0.65rem; }
+
+    /* ---------- education ---------- */
+    .edu-list { padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1.5rem, 2.6vw, 2.2rem); }
+    .edu-row { display: grid; grid-template-columns: minmax(7rem, 10rem) 1fr; gap: 0.5rem 1.8rem; padding-block: clamp(1.3rem, 2vw, 1.7rem); }
+    .edu-row + .edu-row { border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); }
+    .edu-row__date { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.06em; color: var(--ink-soft); padding-top: 0.2em; }
+    .edu-row__title { font-family: var(--serif); font-size: clamp(1.2rem, 1.6vw, 1.4rem); color: var(--ink); }
+    .edu-row__org { font-family: var(--mono); font-size: 0.76rem; color: var(--ink-soft); margin-top: 0.3rem; }
+    .edu-row__desc { margin-top: 0.6rem; max-width: 58ch; }
+    .edu-row__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+
+    /* ---------- skills ---------- */
+    .skill-panel { padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1.5rem, 2.6vw, 2.2rem); }
+    .skill-group + .skill-group { border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); }
+    .skill-group__header {
+      display: flex; align-items: center; gap: 1.2rem; width: 100%;
+      padding: clamp(1.1rem, 1.8vw, 1.4rem) 0;
+      background: none; border: none; cursor: pointer; text-align: left;
+    }
+    .skill-group__label { font-family: var(--serif); font-size: clamp(1.1rem, 1.5vw, 1.28rem); color: var(--ink); flex-shrink: 0; min-width: 12rem; }
+    .skill-group__teaser {
+      font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft);
+      flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      transition: opacity 0.2s ease;
+    }
+    .skill-group.open .skill-group__teaser { opacity: 0; }
+    .skill-group__chevron { flex-shrink: 0; color: var(--ink-soft); transition: transform 0.3s ease, color 0.3s ease; }
+    .skill-group.open .skill-group__chevron { transform: rotate(180deg); color: var(--accent); }
+    .skill-group__content { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1); }
+    .skill-group.open .skill-group__content { max-height: 320px; }
+    .skill-group__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; padding-bottom: clamp(1.1rem, 1.8vw, 1.4rem); }
+
+    /* ---------- awards ---------- */
+    .award-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 1.6vw, 1.4rem); }
+    .award { overflow: hidden; }
+    .award img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+    .award__body { padding: clamp(1rem, 1.6vw, 1.3rem); }
+    .award__title { font-family: var(--serif); font-size: 1.12rem; color: var(--ink); }
+    .award__sub { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-soft); margin-top: 0.3rem; }
+
+    /* ---------- close ---------- */
+    .close { min-height: 60svh; display: flex; flex-direction: column; justify-content: center; }
+    .h-close {
+      font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 4.2vw, 3.4rem);
+      line-height: 1.14; letter-spacing: -0.015em; color: var(--ink); max-width: 18ch; text-wrap: balance;
+    }
+    .close__lead { margin-top: 1rem; max-width: 40ch; }
+    .close__links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: clamp(1.6rem, 2.6vw, 2.2rem); }
+
+    .footer {
+      margin-top: clamp(3.5rem, 8vh, 6rem); padding-top: 1.6rem;
+      border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+      display: flex; flex-wrap: wrap; gap: 0.6rem 2rem; align-items: baseline;
+      font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.06em; color: var(--ink-soft);
+    }
+    .footer__mark { color: var(--ink); font-weight: 500; letter-spacing: 0.02em; font-family: var(--serif); font-style: italic; font-size: 0.95rem; }
+    .footer__spacer { flex: 1; }
+
+    /* ---------- modal ---------- */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 60;
+      background: color-mix(in srgb, var(--ink) 45%, transparent);
+      backdrop-filter: blur(4px);
+      display: none; align-items: center; justify-content: center; padding: 1.2rem;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: color-mix(in srgb, var(--ground) 97%, transparent);
+      border-radius: 6px; max-width: 640px; width: 100%; max-height: 85vh; overflow-y: auto;
+      padding: clamp(1.75rem, 3vw, 2.5rem); position: relative;
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 10%, transparent);
+    }
+    .modal-close {
+      position: absolute; top: 1.1rem; right: 1.1rem; width: 36px; height: 36px;
+      display: flex; align-items: center; justify-content: center;
+      background: none; border: none; cursor: pointer; color: var(--ink-soft);
+      font-family: var(--mono); font-size: 1.1rem;
+    }
+    .modal-close:hover { color: var(--ink); }
+    .modal-body img { width: 100%; border-radius: 4px; margin-bottom: 1.3rem; max-height: 260px; object-fit: cover; }
+    .modal-body h2 { font-family: var(--serif); font-size: clamp(1.4rem, 2.2vw, 1.8rem); color: var(--ink); padding-right: 2rem; }
+    .modal-body .modal-sub { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft); margin-top: 0.5rem; }
+    .modal-body .modal-date { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); margin-top: 0.3rem; }
+    .modal-body ul { margin-top: 1.2rem; padding-left: 1.2rem; }
+    .modal-body ul li { font-size: 0.95rem; line-height: 1.6; color: var(--ink-soft); margin-bottom: 0.7rem; }
+    .modal-body p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-soft); margin-top: 0.8rem; }
+    .modal-body strong, .modal-body b { color: var(--ink); font-weight: 600; }
+    .modal-body h4 { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); margin-top: 1.3rem; margin-bottom: 0.4rem; }
+
+    /* ---------- mobile ---------- */
+    @media (max-width: 860px) {
+      .col2 { grid-template-columns: 1fr; gap: clamp(1.6rem, 4vw, 2.5rem); }
+      .col2__head { position: static; max-width: 38rem; }
+      .nav__links { display: none; }
+      .nav__toggle { display: flex; }
+    }
+
+    @media (max-width: 720px) {
+      .product-grid, .hack-grid { grid-template-columns: 1fr; }
+      .award-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .nav__inner { padding: 1rem 1.4rem; }
+      .hero { padding-top: 4.5rem; }
+      .xp-row, .edu-row { grid-template-columns: 1fr; gap: 0.3rem; }
+      .award-grid { grid-template-columns: 1fr; }
+      .skill-group__header { flex-wrap: wrap; row-gap: 0.3rem; }
+      .skill-group__teaser { white-space: normal; flex-basis: 100%; }
+    }
+  </style>
 </head>
-<body class="antialiased">
 
-    <!-- ===== NAVIGATION ===== -->
-    <nav id="main-nav" class="glass-nav fixed top-0 left-0 right-0 z-30 transition-shadow duration-300">
-        <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-            <a href="#" class="font-display text-xl text-forest no-underline">Sanay Shah</a>
-            <div class="hidden md:flex items-center gap-6">
-                <a href="#products" class="text-forest-muted hover:text-accent text-sm font-medium transition-colors no-underline">Products</a>
-                <a href="#experience" class="text-forest-muted hover:text-accent text-sm font-medium transition-colors no-underline">Experience</a>
-                <a href="#hackathons" class="text-forest-muted hover:text-accent text-sm font-medium transition-colors no-underline">Hackathons</a>
-                <a href="#education" class="text-forest-muted hover:text-accent text-sm font-medium transition-colors no-underline">Education</a>
-                <a href="#connect" class="text-forest-muted hover:text-accent text-sm font-medium transition-colors no-underline">Connect</a>
-            </div>
-            <button id="menu-btn" class="md:hidden w-11 h-11 flex items-center justify-center text-forest text-xl" aria-label="Open menu">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </nav>
+<body>
+  <div class="stage" aria-hidden="true">
+    <img class="stage__img" src="assets/hero.jpg" alt="" />
+    <div class="stage__veil"></div>
+    <div class="stage__grain"></div>
+  </div>
 
-    <!-- Mobile overlay menu -->
-    <div id="mobile-menu" class="mobile-overlay">
-        <button id="menu-close" class="absolute top-5 right-6 w-11 h-11 flex items-center justify-center text-2xl text-forest" aria-label="Close menu">
-            <i class="fas fa-times"></i>
-        </button>
-        <a href="#products" class="mobile-link">Products</a>
-        <a href="#experience" class="mobile-link">Experience</a>
-        <a href="#hackathons" class="mobile-link">Hackathons</a>
-        <a href="#education" class="mobile-link">Education</a>
-        <a href="#skills" class="mobile-link">Skills</a>
-        <a href="#connect" class="mobile-link">Connect</a>
+  <!-- ===== NAV ===== -->
+  <header class="nav panel" id="main-nav">
+    <div class="nav__inner">
+      <a class="wordmark" href="#">Sanay Shah</a>
+      <nav class="nav__links">
+        <a class="nav__link" href="#building">Building</a>
+        <a class="nav__link" href="#experience">Experience</a>
+        <a class="nav__link" href="#hackathons">Hackathons</a>
+        <a class="nav__link" href="#education">Education</a>
+        <a class="nav__link" href="#connect">Connect</a>
+      </nav>
+      <button class="nav__toggle" id="nav-toggle" aria-label="Open menu"><span></span></button>
     </div>
+  </header>
 
-    <!-- ===== HERO ===== -->
-    <section class="min-h-[85vh] flex items-center pt-20 pb-12 md:pt-24 md:pb-20">
-        <div class="max-w-6xl mx-auto px-6 w-full">
-            <div class="flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16">
-                <!-- Text -->
-                <div class="flex-1 text-center md:text-left">
-                    <p class="font-mono text-xs tracking-widest text-accent uppercase mb-4 reveal">Product Builder &middot; Sole Founder &middot; System Designer</p>
-                    <h1 class="font-display text-forest leading-[1.05] mb-6 reveal reveal-delay-1">
-                        I build products<br>
-                        <span class="italic text-accent">from concept<br>to users.</span>
-                    </h1>
-                    <p class="text-forest-muted text-lg md:text-xl max-w-xl mx-auto md:mx-0 leading-relaxed mb-8 reveal reveal-delay-2">
-                        Final-year CS student at Cardiff University. I design and ship AI-powered systems end-to-end — from product vision and architecture through to deployment and real users. Currently running two live products.
-                    </p>
-                    <div class="flex flex-wrap justify-center md:justify-start gap-3 reveal reveal-delay-3">
-                        <a href="https://beau.quest" target="_blank" class="link-pill">
-                            <i class="fas fa-heart text-accent text-sm"></i> beau.quest
-                        </a>
-                        <a href="https://gonzo.guide" target="_blank" class="link-pill">
-                            <i class="fas fa-compass text-accent text-sm"></i> gonzo.guide
-                        </a>
-                        <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" class="link-pill">
-                            <i class="fab fa-linkedin text-accent text-sm"></i> LinkedIn
-                        </a>
-                        <a href="mailto:sanays.mail@gmail.com" class="link-pill">
-                            <i class="fas fa-envelope text-accent text-sm"></i> Email
-                        </a>
-                        <a href="https://www.instagram.com/sanay.photography/" target="_blank" class="link-pill">
-                            <i class="fab fa-instagram text-accent text-sm"></i> Photography
-                        </a>
-                    </div>
-                </div>
-                <!-- Photo -->
-                <div class="flex-shrink-0 reveal">
-                    <img src="Pictures/me.jpg" alt="Sanay Shah" class="hero-photo w-48 h-48 md:w-64 md:h-64 shadow-lg">
-                </div>
-            </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="#building">Building</a>
+    <a href="#experience">Experience</a>
+    <a href="#hackathons">Hackathons</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#connect">Connect</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" data-screen-label="Hero">
+    <div class="wrap">
+      <div class="panel hero__panel reveal" style="--d:0.15s">
+        <div class="hero__byline">
+          <img class="hero__avatar" src="Pictures/me.jpg" alt="Sanay Shah" />
+          <span class="hero__byline-text"><b>Sanay Shah</b> &middot; London</span>
         </div>
-    </section>
-
-    <!-- ===== FEATURED PRODUCTS ===== -->
-    <section id="products" class="py-16 md:py-24 dot-grid">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-12 reveal">
-                <span class="section-line"></span>
-                <h2 class="section-heading font-display text-forest">What I've Built</h2>
-                <p class="text-forest-muted mt-2 max-w-lg">Live products I've designed, architected, and shipped solo — from first commit to real users.</p>
-            </div>
-
-            <!-- GONZO -->
-            <div class="product-card mb-8 reveal">
-                <div class="p-6 md:p-10">
-                    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-3 mb-3">
-                                <h3 class="font-display text-3xl md:text-4xl text-forest">Gonzo</h3>
-                                <a href="https://gonzo.guide" target="_blank" class="tag-pill hover:bg-accent hover:text-white transition-colors">gonzo.guide &rarr;</a>
-                            </div>
-                            <p class="text-accent font-medium text-sm mb-4 font-mono">AI-Powered Travel Recommendation Engine</p>
-                            <p class="text-forest-muted leading-relaxed max-w-2xl">
-                                Finds obscure, authentic places tourists and guidebooks don't know about — delivered via Telegram, Discord, and web. Born at the Cerebral Valley "Zero to Agent" Hackathon (Google DeepMind + Vercel), then redesigned and expanded into a full multi-platform product.
-                            </p>
-                        </div>
-                        <div class="flex gap-4 md:gap-6 flex-shrink-0">
-                            <div class="stat-block">
-                                <div class="stat-number">6</div>
-                                <div class="stat-label">AI Personas</div>
-                            </div>
-                            <div class="stat-block">
-                                <div class="stat-number">3</div>
-                                <div class="stat-label">Platforms</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 border-t border-sage pt-4">
-                        <button class="accordion-toggle flex items-center gap-2 text-accent font-medium text-sm min-h-[44px]" data-target="gonzo-details">
-                            <span>The thinking behind it</span>
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                        </button>
-                        <div id="gonzo-details" class="accordion-content">
-                            <div class="grid md:grid-cols-2 gap-6 pt-4">
-                                <div>
-                                    <h4 class="font-semibold text-forest mb-2">Personality-Driven Discovery</h4>
-                                    <p class="text-forest-muted text-sm leading-relaxed">6 AI personas — Local, Plot Twist, Foodie, Hangover, Bougie, Budget — each sees the city through a different lens and surfaces different kinds of places. "Council Mode" pits multiple personas against each other in a multi-round debate to find the perfect spot.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-forest mb-2">Authentically Local</h4>
-                                    <p class="text-forest-muted text-sm leading-relaxed">Every recommendation is verified as real and currently open — no hallucinated places. The system searches in the city's own language to surface what locals actually discuss, and adjusts for weather in real time. Repeated queries force deeper exploration, never recycling the same picks.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- BEAU -->
-            <div class="product-card reveal">
-                <div class="p-6 md:p-10">
-                    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-3 mb-3">
-                                <h3 class="font-display text-3xl md:text-4xl text-forest">Beau</h3>
-                                <a href="https://beau.quest" target="_blank" class="tag-pill hover:bg-accent hover:text-white transition-colors">beau.quest &rarr;</a>
-                            </div>
-                            <p class="text-accent font-medium text-sm mb-4 font-mono">AI-Powered Social Matching Platform</p>
-                            <p class="text-forest-muted leading-relaxed max-w-2xl">
-                                A social matching platform for Gen Z that rejects the swipe model entirely. Instead of bios and selfies, users play through AI-generated social simulations — reacting instinctively to moments that reveal who they really are. The system learns your personality over time and matches you based on genuine behavioural compatibility. Currently in beta with users signing up.
-                            </p>
-                        </div>
-                        <div class="flex gap-4 md:gap-6 flex-shrink-0">
-                            <div class="stat-block">
-                                <div class="stat-number">Beta</div>
-                                <div class="stat-label">Status</div>
-                            </div>
-                            <div class="stat-block">
-                                <div class="stat-number">Solo</div>
-                                <div class="stat-label">Founded</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Expandable details -->
-                    <div class="mt-6 border-t border-sage pt-4">
-                        <button class="accordion-toggle flex items-center gap-2 text-accent font-medium text-sm min-h-[44px]" data-target="beau-details">
-                            <span>The thinking behind it</span>
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                        </button>
-                        <div id="beau-details" class="accordion-content">
-                            <div class="grid md:grid-cols-2 gap-6 pt-4">
-                                <div>
-                                    <h4 class="font-semibold text-forest mb-2">"Show Don't Tell"</h4>
-                                    <p class="text-forest-muted text-sm leading-relaxed">People reveal who they really are through instinctive reactions to social moments, not through self-reported bios. The core interaction — the "Dojo" — is an AI simulation designed around this insight. Abstract psychological dimensions are embedded in naturalistic scenarios; users never see the underlying model.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-forest mb-2">Identity That Evolves</h4>
-                                    <p class="text-forest-muted text-sm leading-relaxed">Your identity isn't a static profile — it's a living model that evolves with every interaction. Traits, values, interests, and vices exist on weighted spectra that decay over time, so the system always reflects who you are now, not who you were months ago.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-forest mb-2">Psychology-Backed Matching</h4>
-                                    <p class="text-forest-muted text-sm leading-relaxed">Matching goes beyond surface-level interests. A multi-stage algorithm weighs shared values and complementary personality traits using research-backed heuristics — including attachment theory — to find people who are genuinely compatible, not just similar.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-forest mb-2">Engagement by Design</h4>
-                                    <p class="text-forest-muted text-sm leading-relaxed">Profiles unlock progressively based on conversation quality ("Fog of War"), turning discovery into a game. A credit economy ties real AI costs to user-facing energy, creating a natural usage cadence. Friendship matching groups people by social chemistry, not just pairwise compatibility.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <h1 class="hero__headline">I build AI products <i>from concept to production.</i></h1>
+        <p class="hero__lead">Final-year Computer Science student at Cardiff University, graduating July 2026 with predicted First-Class Honours. Right now I'm leading the AI agent rebuild at Innovi Advisors. Beau and Gonzo, my two independent products, are paused for the summer while that stays the priority.</p>
+        <div class="hero__row">
+          <a class="chip" href="https://beau.quest" target="_blank" rel="noopener">beau.quest</a>
+          <a class="chip" href="https://gonzo.guide" target="_blank" rel="noopener">gonzo.guide</a>
+          <a class="chip" href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="chip" href="mailto:sanays.mail@gmail.com">Email</a>
+          <a class="chip" href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener">Photography</a>
         </div>
-    </section>
-
-    <!-- ===== EXPERIENCE ===== -->
-    <section id="experience" class="py-16 md:py-24">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-12 reveal">
-                <span class="section-line"></span>
-                <h2 class="section-heading font-display text-forest">Experience</h2>
-            </div>
-
-            <div class="relative">
-                <div class="timeline-line"></div>
-
-                <!-- Automation PM -->
-                <div class="timeline-entry mb-8 reveal" data-modal="innovi">
-                    <div class="timeline-dot-new"></div>
-                    <div class="exp-card">
-                        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
-                            <img src="Pictures/1. Professional & Industry Experience/Automation Project Manager  Innovi Advisors Ltd/innovi advisors presentation.jpg" alt="Innovi Advisors" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy" decoding="async">
-                            <div>
-                                <p class="font-mono text-xs text-accent mb-1">Aug 2025 — Present</p>
-                                <h3 class="font-semibold text-forest text-lg">Automation Project Manager</h3>
-                                <p class="text-forest-muted text-sm">Innovi Advisors &middot; London</p>
-                                <p class="text-forest-muted text-sm mt-2 leading-relaxed">Spearheaded the "Innovi Automation Initiative" — discovery to blueprint to partner approval. Currently building a conversational AI phone assistant.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AISCU -->
-                <div class="timeline-entry mb-8 reveal" data-modal="aiscu">
-                    <div class="timeline-dot-new"></div>
-                    <div class="exp-card">
-                        <div>
-                            <p class="font-mono text-xs text-accent mb-1">2025 — Present</p>
-                            <h3 class="font-semibold text-forest text-lg">Head of Events & Outreach</h3>
-                            <p class="text-forest-muted text-sm">AI Safety Cardiff University (AISCU)</p>
-                            <p class="text-forest-muted text-sm mt-2 leading-relaxed">Leading events programming and outreach for Cardiff's AI safety community. Bridging production AI building experience with governance and safety discourse.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STEAMunity -->
-                <div class="timeline-entry mb-8 reveal" data-modal="steam">
-                    <div class="timeline-dot-new"></div>
-                    <div class="exp-card">
-                        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
-                            <img src="Pictures/3. Leadership & Mentorship/Foundational Design Mentor, steamunity/steamunity group with dpm heng.jpeg" alt="STEAMunity" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy" decoding="async">
-                            <div>
-                                <p class="font-mono text-xs text-accent mb-1">Dec 2024 — Mar 2025</p>
-                                <h3 class="font-semibold text-forest text-lg">Advanced Design Mentor</h3>
-                                <p class="text-forest-muted text-sm">STEAMunity &middot; Singapore</p>
-                                <p class="text-forest-muted text-sm mt-2 leading-relaxed">Mentored 6 students (age 14-20) in design thinking. Team won 1st place Best Prototype and presented to Deputy PM Heng Swee Keat.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ALITA -->
-                <div class="timeline-entry mb-8 reveal" data-modal="alita">
-                    <div class="timeline-dot-new"></div>
-                    <div class="exp-card">
-                        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
-                            <img src="Pictures/1. Professional & Industry Experience/Volunteer Researcher & Contributor  Asia-Pacific Legal Innovation & Technology Association (ALITA)/apac legal tech map.png" alt="ALITA" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy" decoding="async">
-                            <div>
-                                <p class="font-mono text-xs text-accent mb-1">Nov 2024 — Sep 2025</p>
-                                <h3 class="font-semibold text-forest text-lg">Volunteer Researcher</h3>
-                                <p class="text-forest-muted text-sm">ALITA &middot; Remote</p>
-                                <p class="text-forest-muted text-sm mt-2 leading-relaxed">Researched legaltech taxonomies for ALITA's APAC Ecosystem Map. Contributed to the SOLIA Report 2025. On-site support at Singapore and London events.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Treehouse Builder -->
-                <div class="timeline-entry mb-8 reveal" data-modal="treehouse-builder">
-                    <div class="timeline-dot-new"></div>
-                    <div class="exp-card">
-                        <div class="flex flex-col sm:flex-row sm:items-start gap-4">
-                            <img src="Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk group.jpeg" alt="Treehouse Innovation" class="w-full sm:w-40 h-28 object-cover rounded-lg flex-shrink-0" loading="lazy" decoding="async">
-                            <div>
-                                <p class="font-mono text-xs text-accent mb-1">May 2024 — Aug 2024</p>
-                                <h3 class="font-semibold text-forest text-lg">Builder & Facilitator</h3>
-                                <p class="text-forest-muted text-sm">Treehouse Innovation &middot; London/Cardiff</p>
-                                <p class="text-forest-muted text-sm mt-2 leading-relaxed">Project managed a booth with DLA Piper at LegalTechTalk (2,500+ attendees). Built a GenAI app on Cloud Run. Co-authored published report.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Highfield HR -->
-                <div class="timeline-entry mb-8 reveal" data-modal="highfield">
-                    <div class="timeline-dot-new"></div>
-                    <div class="exp-card">
-                        <div>
-                            <p class="font-mono text-xs text-accent mb-1">Feb 2024 — Mar 2024</p>
-                            <h3 class="font-semibold text-forest text-lg">Digital Automation Insight</h3>
-                            <p class="text-forest-muted text-sm">Highfield HR &middot; Bridgend</p>
-                            <p class="text-forest-muted text-sm mt-2 leading-relaxed">Used design thinking to prototype an MVP for employee contract generation. Built and shipped a full-stack WebApp.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Treehouse Intern -->
-                <div class="timeline-entry reveal" data-modal="treehouse-intern">
-                    <div class="timeline-dot-new"></div>
-                    <div class="exp-card">
-                        <div>
-                            <p class="font-mono text-xs text-accent mb-1">Jun 2023 — Sep 2023</p>
-                            <h3 class="font-semibold text-forest text-lg">Design Coach Intern</h3>
-                            <p class="text-forest-muted text-sm">Treehouse Innovation &middot; London</p>
-                            <p class="text-forest-muted text-sm mt-2 leading-relaxed">Designed exercises for 200+ attendee corporate events. Built a prototype app integrating OpenAI API for a Risk & Compliance session.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== HACKATHONS ===== -->
-    <section id="hackathons" class="py-16 md:py-24 bg-bg-alt">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-12 reveal">
-                <span class="section-line"></span>
-                <h2 class="section-heading font-display text-forest">Hackathons & Competitions</h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Cambridge — Featured -->
-                <div class="hack-card hack-featured reveal" data-modal="cambridge">
-                    <img src="Pictures/2. Hackathons & Competitions/grand finalist and tooling winner, hack the law llm x law winner, university of cambridge/cambridge hackathon presenting crowd.jpg" alt="Cambridge Hackathon" loading="lazy" decoding="async">
-                    <div class="p-5">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fas fa-trophy text-accent text-sm"></i>
-                            <span class="font-mono text-xs text-accent uppercase tracking-wide">Grand Finalist & Winner</span>
-                        </div>
-                        <h3 class="font-semibold text-forest text-lg">Hack the Law — LLM x Law</h3>
-                        <p class="text-forest-muted text-sm">University of Cambridge &middot; Tooling (Groq) Category Winner</p>
-                        <p class="text-forest-muted text-sm mt-2">Built a platform that structures financial regulations into a searchable interface, highlighting key entities and activities. Team "Just 3" with RegGenome API + Groq.</p>
-                    </div>
-                </div>
-
-                <!-- Smart Glasses -->
-                <div class="hack-card reveal" data-modal="glasses">
-                    <img src="Pictures/2. Hackathons & Competitions/Golden Glasses Award for Most Engaging Presentation, future interaction of smart glasses bootcamp/smart glasses group winning.JPG" alt="Smart Glasses Bootcamp" loading="lazy" decoding="async">
-                    <div class="p-5">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fas fa-award text-accent text-sm"></i>
-                            <span class="font-mono text-xs text-accent uppercase tracking-wide">Golden Glasses Award</span>
-                        </div>
-                        <h3 class="font-semibold text-forest text-lg">Smart Glasses Bootcamp</h3>
-                        <p class="text-forest-muted text-sm">NUS Smart Systems Institute &middot; Most Engaging Presentation</p>
-                        <p class="text-forest-muted text-sm mt-2">Built "Waddles" — an XREAL smart glasses app that alerts travellers to dangers in unfamiliar environments. 6-day bootcamp with Unity, C#, Gemini API.</p>
-                    </div>
-                </div>
-
-                <!-- Cerebral Valley -->
-                <div class="hack-card reveal">
-                    <div class="p-5">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fas fa-bolt text-accent text-sm"></i>
-                            <span class="font-mono text-xs text-accent uppercase tracking-wide">Hackathon</span>
-                        </div>
-                        <h3 class="font-semibold text-forest text-lg">Cerebral Valley "Zero to Agent"</h3>
-                        <p class="text-forest-muted text-sm">Google DeepMind + Vercel</p>
-                        <p class="text-forest-muted text-sm mt-2">Built the initial version of Gonzo — an AI travel engine with multi-persona debate and Google Maps grounding. Expanded post-hackathon into a full product.</p>
-                    </div>
-                </div>
-
-                <!-- Web3 -->
-                <div class="hack-card reveal" data-modal="web3">
-                    <img src="Pictures/2. Hackathons & Competitions/finalist web3 hackthon easy a vchain/easya vchain hackathon UI.jpg" alt="Web3 Hackathon" loading="lazy" decoding="async">
-                    <div class="p-5">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fas fa-medal text-accent text-sm"></i>
-                            <span class="font-mono text-xs text-accent uppercase tracking-wide">Finalist</span>
-                        </div>
-                        <h3 class="font-semibold text-forest text-lg">Web3 Hackathon</h3>
-                        <p class="text-forest-muted text-sm">EasyA, VeChain, BCG &middot; Solo competitor</p>
-                        <p class="text-forest-muted text-sm mt-2">Competed solo and reached the finals. Recognised for highly efficient prompt engineering.</p>
-                    </div>
-                </div>
-
-                <!-- MiFutures -->
-                <div class="hack-card reveal">
-                    <img src="Pictures/2. Hackathons & Competitions/1st prize winner design innovation day mifutures/mifutures postick notes.jpg" alt="MiFutures Design Innovation" loading="lazy" decoding="async">
-                    <div class="p-5">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fas fa-trophy text-accent text-sm"></i>
-                            <span class="font-mono text-xs text-accent uppercase tracking-wide">1st Prize</span>
-                        </div>
-                        <h3 class="font-semibold text-forest text-lg">Design Innovation Day</h3>
-                        <p class="text-forest-muted text-sm">MiFutures (Fintech Wales)</p>
-                    </div>
-                </div>
-
-                <!-- TFW -->
-                <div class="hack-card reveal">
-                    <div class="p-5">
-                        <div class="flex items-center gap-2 mb-2">
-                            <i class="fas fa-users text-accent text-sm"></i>
-                            <span class="font-mono text-xs text-accent uppercase tracking-wide">Consulting Hackathon</span>
-                        </div>
-                        <h3 class="font-semibold text-forest text-lg">TFW & Amey</h3>
-                        <p class="text-forest-muted text-sm">Sole student among industry professionals. Developed MVP for "TFW 2.0".</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== EDUCATION ===== -->
-    <section id="education" class="py-16 md:py-24">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-12 reveal">
-                <span class="section-line"></span>
-                <h2 class="section-heading font-display text-forest">Education</h2>
-            </div>
-
-            <div class="space-y-6">
-                <div class="edu-card reveal">
-                    <div class="flex flex-col md:flex-row md:items-start gap-4">
-                        <div class="flex-1">
-                            <p class="font-mono text-xs text-accent mb-1">2022 — 2026</p>
-                            <h3 class="font-semibold text-forest text-lg">Cardiff University</h3>
-                            <p class="text-forest-muted text-sm">BSc Computer Science with a Year of Study Abroad</p>
-                            <p class="text-forest-muted text-sm mt-2">Project leader for Year 2 group project — gamified internship assessments, achieved 80%.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="edu-card reveal">
-                    <div class="flex flex-col md:flex-row md:items-start gap-4">
-                        <img src="Pictures/4. Academic Projects & Achievements/masters module, innovation by design/masters project.jpg" alt="Innovation by Design exhibition" class="w-full md:w-48 h-32 object-cover rounded-lg flex-shrink-0" loading="lazy" decoding="async">
-                        <div class="flex-1">
-                            <p class="font-mono text-xs text-accent mb-1">Sep 2024 — May 2025</p>
-                            <h3 class="font-semibold text-forest text-lg">Singapore University of Technology and Design</h3>
-                            <p class="text-forest-muted text-sm">Exchange — Information Systems Technology and Design</p>
-                            <p class="text-forest-muted text-sm mt-2">Completed masters-level module "Innovation by Design" — group achieved 70% in final exhibition.</p>
-                            <div class="flex flex-wrap gap-2 mt-3">
-                                <span class="tag-pill">Innovation by Design</span>
-                                <span class="tag-pill">AI Applications by Design</span>
-                                <span class="tag-pill">AI by Design</span>
-                                <span class="tag-pill">History of Surveillance</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="edu-card reveal">
-                    <div class="flex flex-col md:flex-row md:items-start gap-4">
-                        <div class="flex-1">
-                            <p class="font-mono text-xs text-accent mb-1">2020 — 2022</p>
-                            <h3 class="font-semibold text-forest text-lg">Whitgift School</h3>
-                            <p class="text-forest-muted text-sm">A-Levels: Maths, Physics, Computer Science</p>
-                            <p class="text-forest-muted text-sm mt-2">EPQ: "Should we be concerned about the possible misuse of personal data when online?"</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SKILLS ===== -->
-    <section id="skills" class="py-16 md:py-24 bg-bg-alt">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="mb-8 reveal">
-                <span class="section-line"></span>
-                <h2 class="section-heading font-display text-forest">Skills</h2>
-            </div>
-
-            <div class="reveal" id="skill-accordion">
-                <div class="skill-bar" data-skill-target="sk-lang">
-                    <button class="skill-bar-header">
-                        <span class="font-mono text-xs text-accent uppercase tracking-widest">Languages</span>
-                        <span class="text-forest-muted text-sm">Python, TypeScript, JavaScript, C#, SQL, Cypher</span>
-                        <svg class="skill-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                    </button>
-                    <div class="skill-bar-content" id="sk-lang">
-                        <div class="flex flex-wrap gap-2 py-3 px-1">
-                            <span class="skill-group-tag">Python</span><span class="skill-group-tag">TypeScript</span><span class="skill-group-tag">JavaScript</span><span class="skill-group-tag">C#</span><span class="skill-group-tag">SQL</span><span class="skill-group-tag">Cypher</span><span class="skill-group-tag">HTML/CSS</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-bar" data-skill-target="sk-ai">
-                    <button class="skill-bar-header">
-                        <span class="font-mono text-xs text-accent uppercase tracking-widest">AI / ML</span>
-                        <span class="text-forest-muted text-sm">LangChain, Vercel AI SDK, OpenAI, Gemini, Groq</span>
-                        <svg class="skill-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                    </button>
-                    <div class="skill-bar-content" id="sk-ai">
-                        <div class="flex flex-wrap gap-2 py-3 px-1">
-                            <span class="skill-group-tag">LangChain</span><span class="skill-group-tag">LangGraph</span><span class="skill-group-tag">Vercel AI SDK</span><span class="skill-group-tag">OpenAI API</span><span class="skill-group-tag">Gemini</span><span class="skill-group-tag">Groq</span><span class="skill-group-tag">Prompt Engineering</span><span class="skill-group-tag">Structured Output</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-bar" data-skill-target="sk-back">
-                    <button class="skill-bar-header">
-                        <span class="font-mono text-xs text-accent uppercase tracking-widest">Backend</span>
-                        <span class="text-forest-muted text-sm">FastAPI, Flask, Next.js, Pydantic</span>
-                        <svg class="skill-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                    </button>
-                    <div class="skill-bar-content" id="sk-back">
-                        <div class="flex flex-wrap gap-2 py-3 px-1">
-                            <span class="skill-group-tag">FastAPI</span><span class="skill-group-tag">Flask</span><span class="skill-group-tag">Next.js</span><span class="skill-group-tag">Pydantic</span><span class="skill-group-tag">SQLAlchemy</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-bar" data-skill-target="sk-front">
-                    <button class="skill-bar-header">
-                        <span class="font-mono text-xs text-accent uppercase tracking-widest">Frontend</span>
-                        <span class="text-forest-muted text-sm">React 19, Tailwind CSS, Framer Motion, D3.js</span>
-                        <svg class="skill-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                    </button>
-                    <div class="skill-bar-content" id="sk-front">
-                        <div class="flex flex-wrap gap-2 py-3 px-1">
-                            <span class="skill-group-tag">React 19</span><span class="skill-group-tag">Vite</span><span class="skill-group-tag">Tailwind CSS</span><span class="skill-group-tag">Framer Motion</span><span class="skill-group-tag">D3.js</span><span class="skill-group-tag">PWA</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-bar" data-skill-target="sk-db">
-                    <button class="skill-bar-header">
-                        <span class="font-mono text-xs text-accent uppercase tracking-widest">Databases</span>
-                        <span class="text-forest-muted text-sm">PostgreSQL, Neo4j, Qdrant, Supabase, Redis</span>
-                        <svg class="skill-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                    </button>
-                    <div class="skill-bar-content" id="sk-db">
-                        <div class="flex flex-wrap gap-2 py-3 px-1">
-                            <span class="skill-group-tag">PostgreSQL</span><span class="skill-group-tag">Supabase</span><span class="skill-group-tag">Neo4j</span><span class="skill-group-tag">Qdrant</span><span class="skill-group-tag">Upstash Redis</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-bar" data-skill-target="sk-devops">
-                    <button class="skill-bar-header">
-                        <span class="font-mono text-xs text-accent uppercase tracking-widest">DevOps & Cloud</span>
-                        <span class="text-forest-muted text-sm">Docker, Railway, Vercel, GCP Cloud Run</span>
-                        <svg class="skill-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                    </button>
-                    <div class="skill-bar-content" id="sk-devops">
-                        <div class="flex flex-wrap gap-2 py-3 px-1">
-                            <span class="skill-group-tag">Docker</span><span class="skill-group-tag">Railway</span><span class="skill-group-tag">Vercel</span><span class="skill-group-tag">GCP Cloud Run</span><span class="skill-group-tag">Nginx</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-bar" data-skill-target="sk-method">
-                    <button class="skill-bar-header">
-                        <span class="font-mono text-xs text-accent uppercase tracking-widest">Methodologies</span>
-                        <span class="text-forest-muted text-sm">Design Thinking, Agile, PM, Consulting</span>
-                        <svg class="skill-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                    </button>
-                    <div class="skill-bar-content" id="sk-method">
-                        <div class="flex flex-wrap gap-2 py-3 px-1">
-                            <span class="skill-group-tag">Design Thinking</span><span class="skill-group-tag">Agile</span><span class="skill-group-tag">Project Management</span><span class="skill-group-tag">Consulting</span><span class="skill-group-tag">Workshop Facilitation</span><span class="skill-group-tag">Stakeholder Management</span><span class="skill-group-tag">Mentoring</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== AWARDS & EXTRAS ===== -->
-    <section class="py-16 md:py-24">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="mb-12 reveal">
-                <span class="section-line"></span>
-                <h2 class="section-heading font-display text-forest">Beyond the Code</h2>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div class="edu-card text-center reveal">
-                    <img src="Pictures/5. Awards & Extracurriculars/rowing national finals/rowing national finals.jpg" alt="Rowing" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy" decoding="async">
-                    <h3 class="font-semibold text-forest">National B Final Winner</h3>
-                    <p class="text-forest-muted text-sm">Rowing — U15 Coxswain</p>
-                </div>
-                <div class="edu-card text-center reveal reveal-delay-1">
-                    <img src="Pictures/5. Awards & Extracurriculars/performer/play performance.jpg" alt="Performance" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy" decoding="async">
-                    <h3 class="font-semibold text-forest">Performer</h3>
-                    <p class="text-forest-muted text-sm">School's first student-led play, "Another Country"</p>
-                </div>
-                <div class="edu-card text-center reveal reveal-delay-2">
-                    <img src="Pictures/5. Awards & Extracurriculars/photography/hut.JPG" alt="Photography" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy" decoding="async">
-                    <h3 class="font-semibold text-forest">Photography</h3>
-                    <p class="text-forest-muted text-sm">
-                        <a href="https://www.instagram.com/sanay.photography/" target="_blank" class="text-accent hover:underline">@sanay.photography</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== CONNECT ===== -->
-    <section id="connect" class="py-16 md:py-24 bg-bg-alt">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <div class="reveal">
-                <h2 class="font-display text-forest" style="font-size: clamp(2rem, 5vw, 3.5rem);">Let's build something.</h2>
-                <p class="text-forest-muted mt-4 text-lg max-w-md mx-auto">I'm always interested in ambitious projects, smart people, and hard problems.</p>
-            </div>
-            <div class="flex flex-wrap justify-center gap-4 mt-10 reveal reveal-delay-1">
-                <a href="mailto:sanays.mail@gmail.com" class="link-pill text-base">
-                    <i class="fas fa-envelope text-accent"></i> sanays.mail@gmail.com
-                </a>
-                <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" class="link-pill text-base">
-                    <i class="fab fa-linkedin text-accent"></i> LinkedIn
-                </a>
-                <a href="https://beau.quest" target="_blank" class="link-pill text-base">
-                    <i class="fas fa-heart text-accent"></i> beau.quest
-                </a>
-                <a href="https://gonzo.guide" target="_blank" class="link-pill text-base">
-                    <i class="fas fa-compass text-accent"></i> gonzo.guide
-                </a>
-                <a href="https://www.instagram.com/sanay.photography/" target="_blank" class="link-pill text-base">
-                    <i class="fab fa-instagram text-accent"></i> Photography
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="py-8 border-t border-sage">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-forest-muted">
-            <p>&copy; 2025 Sanay Shah</p>
-            <p class="font-mono text-xs">London &middot; Singapore &middot; Cardiff</p>
-        </div>
-    </footer>
-
-    <!-- ===== MODAL ===== -->
-    <div id="modal" class="modal-overlay" role="dialog" aria-modal="true">
-        <div class="modal-box">
-            <button id="modal-close" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-forest-muted hover:text-forest text-xl rounded-full hover:bg-bg-alt transition" aria-label="Close">
-                <i class="fas fa-times"></i>
-            </button>
-            <div id="modal-body"></div>
-        </div>
+      </div>
     </div>
+  </section>
 
-    <!-- ===== SCRIPTS ===== -->
-    <script>
-    (function() {
-        // --- Scroll reveal ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  <!-- ===== BUILDING (products) ===== -->
+  <section class="section" id="building" data-screen-label="Building">
+    <div class="wrap col2">
+      <div class="panel col2__head reveal">
+        <p class="label">What I've built</p>
+        <h2 class="h-sec">Two products, designed and shipped solo.</h2>
+        <p class="lead">Concept to production, end to end: the architecture and the product decisions behind each one.</p>
+      </div>
+      <div class="col2__body">
+        <div class="product-grid">
+          <!-- GONZO -->
+          <article class="panel product reveal" style="--d:0.05s">
+            <div class="product__top">
+              <div>
+                <h3 class="product__title">Gonzo</h3>
+                <p class="product__subtitle">AI-powered travel recommendation engine</p>
+              </div>
+              <span class="status-pill">Paused &middot; relaunch summer 2026</span>
+            </div>
+            <p class="bodytext product__desc">Finds obscure, authentic places that tourists and guidebooks don't know about. Delivered via Telegram, Discord, and web. Born at the Cerebral Valley "Zero to Agent" Hackathon (Google DeepMind and Vercel), then redesigned and expanded into a full multi-platform product.</p>
+            <button class="product__toggle" data-target="gonzo-details">
+              <span>The thinking behind it</span>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+            </button>
+            <div id="gonzo-details" class="product__details">
+              <div class="product__detail-grid">
+                <div class="product__detail">
+                  <h4>Six lenses, one debate</h4>
+                  <p class="bodytext-sm">Users pick from 6 AI personas: Local, Plot Twist, Foodie, Hangover, Bougie, Budget. Each one surfaces different places. "Council Mode" pits 2 to 3 personas against each other in a multi-turn debate, and a synthesis call picks the winner.</p>
+                </div>
+                <div class="product__detail">
+                  <h4>Grounded, not hallucinated</h4>
+                  <p class="bodytext-sm">Every recommendation is verified real and open via Google Maps grounding before it's shown. The model searches in each city's own language to surface what locals actually discuss, and adjusts for weather in real time.</p>
+                </div>
+              </div>
+            </div>
+          </article>
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+          <!-- BEAU -->
+          <article class="panel product reveal" style="--d:0.1s">
+            <div class="product__top">
+              <div>
+                <h3 class="product__title">Beau</h3>
+                <p class="product__subtitle">AI-powered social matching platform</p>
+              </div>
+              <span class="status-pill">Shipped to beta</span>
+            </div>
+            <p class="bodytext product__desc">A social matching platform for Gen Z that rejects the swipe model entirely. Users play through AI-generated social simulations, reacting instinctively to moments that reveal who they really are, while a weighted identity graph learns their personality over time. I built it solo through to a working beta, and it taught me two things: how to design and cost a real AI system end to end, and a harder set of questions about what it means for an AI to infer who you are from how you behave.</p>
+            <button class="product__toggle" data-target="beau-details">
+              <span>The thinking behind it</span>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+            </button>
+            <div id="beau-details" class="product__details">
+              <div class="product__detail-grid">
+                <div class="product__detail">
+                  <h4>Show, don't tell</h4>
+                  <p class="bodytext-sm">People reveal who they are through instinctive reactions, not self-reported bios. The "Dojo" simulation embeds abstract psychological dimensions in naturalistic scenarios. Users never see the underlying model.</p>
+                </div>
+                <div class="product__detail">
+                  <h4>Identity as a living graph</h4>
+                  <p class="bodytext-sm">Traits, values, interests, and vices sit on weighted spectra in a Neo4j graph, decaying over a 90-day half-life so the system always reflects who a user is now. Matching runs through a 3-stage funnel that uses attachment-theory heuristics.</p>
+                </div>
+                <div class="product__detail">
+                  <h4>Engagement by design</h4>
+                  <p class="bodytext-sm">Profiles unlock progressively based on conversation quality ("Fog of War"). A credit economy ties real AI costs to user-facing energy, creating a natural usage cadence without runaway spend.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // --- Nav scroll shadow ---
-        const nav = document.getElementById('main-nav');
-        window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 20);
-        }, { passive: true });
+  <!-- ===== EXPERIENCE ===== -->
+  <section class="section" id="experience" data-screen-label="Experience">
+    <div class="wrap col2">
+      <div class="panel col2__head reveal">
+        <p class="label">Experience</p>
+        <h2 class="h-sec">From a regulated firm's AI rebuild to hackathon sprints.</h2>
+      </div>
+      <div class="col2__body">
+        <div class="panel xp-list reveal" style="--d:0.05s">
+          <div class="xp-row" data-modal="innovi">
+            <div class="xp-row__date">Aug 2025–Present</div>
+            <div>
+              <h3 class="xp-row__title">Automation Project Manager</h3>
+              <p class="xp-row__org">Innovi Advisors &middot; London</p>
+              <p class="bodytext-sm xp-row__desc">Sole owner of the "Innovi Automation Initiative": took the firm's AI agent suite from a stalled discovery exercise to a tested multi-agent system spanning two platforms. Consolidated 15 draft agents into 6 production-shaped ones, diagnosed and fixed a live reliability failure at the architecture level, then migrated the entire suite to Claude as 40+ modular Skills.</p>
+              <span class="xp-row__hint">Read more <span aria-hidden="true">&rarr;</span></span>
+            </div>
+          </div>
 
-        // --- Mobile menu ---
-        const menuBtn = document.getElementById('menu-btn');
-        const menuClose = document.getElementById('menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
+          <div class="xp-row">
+            <div class="xp-row__date">2025–Jul 2026</div>
+            <div>
+              <h3 class="xp-row__title">Head of Events &amp; Outreach</h3>
+              <p class="xp-row__org">AI Safety Cardiff University (AISCU)</p>
+              <p class="bodytext-sm xp-row__desc">Led events programming and outreach for Cardiff's AI safety community. Delivered a guest lecture on AI safety fundamentals for the university's "Emerging Technologies" module. Concluded on graduation.</p>
+            </div>
+          </div>
 
-        menuBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
-        menuClose.addEventListener('click', () => mobileMenu.classList.remove('active'));
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => mobileMenu.classList.remove('active'));
+          <div class="xp-row" data-modal="steam">
+            <div class="xp-row__date">Dec 2024–Mar 2025</div>
+            <div>
+              <h3 class="xp-row__title">Advanced Design Mentor</h3>
+              <p class="xp-row__org">STEAMunity &middot; Singapore</p>
+              <p class="bodytext-sm xp-row__desc">Mentored 6 students (age 14–20) in design thinking. Team won 1st place Best Prototype and presented to Singapore's Deputy Prime Minister, Heng Swee Keat.</p>
+              <span class="xp-row__hint">Read more <span aria-hidden="true">&rarr;</span></span>
+            </div>
+          </div>
+
+          <div class="xp-row" data-modal="alita">
+            <div class="xp-row__date">Nov 2024–Sep 2025</div>
+            <div>
+              <h3 class="xp-row__title">Volunteer Researcher</h3>
+              <p class="xp-row__org">ALITA &middot; Remote</p>
+              <p class="bodytext-sm xp-row__desc">Researched legaltech taxonomies for ALITA's APAC Ecosystem Map. Contributed to the SOLIA Report 2025. On-site support at Singapore and London events.</p>
+              <span class="xp-row__hint">Read more <span aria-hidden="true">&rarr;</span></span>
+            </div>
+          </div>
+
+          <div class="xp-row" data-modal="treehouse-builder">
+            <div class="xp-row__date">May 2024–Aug 2024</div>
+            <div>
+              <h3 class="xp-row__title">Builder &amp; Facilitator</h3>
+              <p class="xp-row__org">Treehouse Innovation &middot; London/Cardiff</p>
+              <p class="bodytext-sm xp-row__desc">Project managed a booth with DLA Piper at LegalTechTalk (2,500+ attendees). Built a GenAI app on Cloud Run. Co-authored a published report.</p>
+              <span class="xp-row__hint">Read more <span aria-hidden="true">&rarr;</span></span>
+            </div>
+          </div>
+
+          <div class="xp-row" data-modal="highfield">
+            <div class="xp-row__date">Feb 2024–Mar 2024</div>
+            <div>
+              <h3 class="xp-row__title">Digital Automation Insight</h3>
+              <p class="xp-row__org">Highfield HR &middot; Bridgend</p>
+              <p class="bodytext-sm xp-row__desc">Used design thinking to prototype an MVP for employee contract generation. Built and shipped a full-stack WebApp.</p>
+              <span class="xp-row__hint">Read more <span aria-hidden="true">&rarr;</span></span>
+            </div>
+          </div>
+
+          <div class="xp-row" data-modal="treehouse-intern">
+            <div class="xp-row__date">Jun 2023–Sep 2023</div>
+            <div>
+              <h3 class="xp-row__title">Design Coach Intern</h3>
+              <p class="xp-row__org">Treehouse Innovation &middot; London</p>
+              <p class="bodytext-sm xp-row__desc">Designed exercises for 200+ attendee corporate events. Built a prototype app integrating the OpenAI API for a Risk &amp; Compliance session.</p>
+              <span class="xp-row__hint">Read more <span aria-hidden="true">&rarr;</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HACKATHONS ===== -->
+  <section class="section" id="hackathons" data-screen-label="Hackathons">
+    <div class="wrap col2">
+      <div class="panel col2__head reveal">
+        <p class="label">Hackathons &amp; competitions</p>
+        <h2 class="h-sec">Cambridge, NUS, Web3, and the tournaments in between.</h2>
+      </div>
+      <div class="col2__body">
+        <div class="hack-grid">
+          <article class="panel hack reveal" style="--d:0.05s" data-modal="cambridge">
+            <img src="Pictures/2. Hackathons & Competitions/grand finalist and tooling winner, hack the law llm x law winner, university of cambridge/cambridge hackathon presenting crowd.jpg" alt="Cambridge Hackathon" loading="lazy" decoding="async" />
+            <div class="hack__body">
+              <span class="label hack__badge">Grand Finalist &amp; Tooling Winner</span>
+              <h3 class="hack__title">Hack the Law: LLM x Law</h3>
+              <p class="hack__org">University of Cambridge</p>
+              <p class="bodytext-sm hack__desc">Structured financial regulations into a searchable interface that flags entities and activities automatically. Team "Just 3", built on the RegGenome API and Groq.</p>
+            </div>
+          </article>
+
+          <article class="panel hack reveal" style="--d:0.08s" data-modal="glasses">
+            <img src="Pictures/2. Hackathons & Competitions/Golden Glasses Award for Most Engaging Presentation, future interaction of smart glasses bootcamp/smart glasses group winning.JPG" alt="Smart Glasses Bootcamp" loading="lazy" decoding="async" />
+            <div class="hack__body">
+              <span class="label hack__badge">Golden Glasses Award</span>
+              <h3 class="hack__title">Smart Glasses Bootcamp</h3>
+              <p class="hack__org">NUS Smart Systems Institute</p>
+              <p class="bodytext-sm hack__desc">Built "Waddles", an XREAL smart glasses app that alerts travellers to dangers in unfamiliar environments. Unity, C#, Gemini API.</p>
+            </div>
+          </article>
+
+          <article class="panel hack reveal" style="--d:0.11s">
+            <div class="hack__body">
+              <span class="label hack__badge">Hackathon</span>
+              <h3 class="hack__title">Cerebral Valley "Zero to Agent"</h3>
+              <p class="hack__org">Google DeepMind + Vercel</p>
+              <p class="bodytext-sm hack__desc">Built the initial version of Gonzo, an AI travel engine with multi-persona debate and Google Maps grounding. Expanded it after the hackathon into a full product.</p>
+            </div>
+          </article>
+
+          <article class="panel hack reveal" style="--d:0.14s" data-modal="web3">
+            <img src="Pictures/2. Hackathons & Competitions/finalist web3 hackthon easy a vchain/easya vchain hackathon UI.jpg" alt="Web3 Hackathon" loading="lazy" decoding="async" />
+            <div class="hack__body">
+              <span class="label hack__badge">Finalist</span>
+              <h3 class="hack__title">Web3 Hackathon</h3>
+              <p class="hack__org">EasyA, VeChain, BCG &middot; Solo</p>
+              <p class="bodytext-sm hack__desc">Competed solo and reached the finals. Recognised for highly efficient prompt engineering.</p>
+            </div>
+          </article>
+
+          <article class="panel hack reveal" style="--d:0.05s">
+            <img src="Pictures/2. Hackathons & Competitions/1st prize winner design innovation day mifutures/mifutures postick notes.jpg" alt="MiFutures Design Innovation" loading="lazy" decoding="async" />
+            <div class="hack__body">
+              <span class="label hack__badge">1st Prize</span>
+              <h3 class="hack__title">Design Innovation Day</h3>
+              <p class="hack__org">MiFutures (Fintech Wales)</p>
+            </div>
+          </article>
+
+          <article class="panel hack reveal" style="--d:0.08s">
+            <div class="hack__body">
+              <span class="label hack__badge">Consulting Hackathon</span>
+              <h3 class="hack__title">TFW &amp; Amey</h3>
+              <p class="bodytext-sm hack__desc">Sole student among industry professionals. Developed an MVP for "TFW 2.0".</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION ===== -->
+  <section class="section" id="education" data-screen-label="Education">
+    <div class="wrap col2">
+      <div class="panel col2__head reveal">
+        <p class="label">Education</p>
+        <h2 class="h-sec">Cardiff, with a year in Singapore.</h2>
+      </div>
+      <div class="col2__body">
+        <div class="panel edu-list reveal" style="--d:0.05s">
+          <div class="edu-row">
+            <div class="edu-row__date">2022–2026</div>
+            <div>
+              <h3 class="edu-row__title">Cardiff University</h3>
+              <p class="edu-row__org">BSc Computer Science with a Year of Study Abroad</p>
+              <p class="bodytext-sm edu-row__desc">Graduating July 2026 with predicted First-Class Honours (dissertation: 83%). Project leader for the Year 2 group project, which gamified internship assessments and scored 80%.</p>
+            </div>
+          </div>
+          <div class="edu-row">
+            <div class="edu-row__date">Sep 2024–May 2025</div>
+            <div>
+              <h3 class="edu-row__title">Singapore University of Technology and Design</h3>
+              <p class="edu-row__org">Exchange &middot; Information Systems Technology and Design</p>
+              <p class="bodytext-sm edu-row__desc">Completed the masters-level module "Innovation by Design". The group scored 70% in the final exhibition.</p>
+              <div class="edu-row__tags">
+                <span class="tag">Innovation by Design</span>
+                <span class="tag">AI Applications by Design</span>
+                <span class="tag">AI by Design</span>
+                <span class="tag">History of Surveillance</span>
+              </div>
+            </div>
+          </div>
+          <div class="edu-row">
+            <div class="edu-row__date">2020–2022</div>
+            <div>
+              <h3 class="edu-row__title">Whitgift School</h3>
+              <p class="edu-row__org">A-Levels: Maths, Physics, Computer Science</p>
+              <p class="bodytext-sm edu-row__desc">EPQ: "Should we be concerned about the possible misuse of personal data when online?"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section class="section" id="skills" data-screen-label="Skills">
+    <div class="wrap col2">
+      <div class="panel col2__head reveal">
+        <p class="label">Skills</p>
+        <h2 class="h-sec">System design first, with the guardrails that make it trustworthy.</h2>
+        <p class="lead">Product and architecture decisions come first. The engineering underneath, including the human-in-the-loop safeguards, is there when I need to build it myself.</p>
+      </div>
+      <div class="col2__body">
+        <div class="panel skill-panel reveal" style="--d:0.05s">
+          <div class="skill-group">
+            <button class="skill-group__header">
+              <span class="skill-group__label">System and product design</span>
+              <span class="skill-group__teaser">Design thinking, system architecture, stakeholder management</span>
+              <svg class="skill-group__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+            </button>
+            <div class="skill-group__content">
+              <div class="skill-group__tags">
+                <span class="tag">Design Thinking</span><span class="tag">System Architecture</span><span class="tag">Project Management</span><span class="tag">Stakeholder Management</span><span class="tag">Workshop Facilitation</span><span class="tag">Consulting</span>
+              </div>
+            </div>
+          </div>
+          <div class="skill-group">
+            <button class="skill-group__header">
+              <span class="skill-group__label">AI and agent engineering</span>
+              <span class="skill-group__teaser">Gemini Enterprise, Claude, multi-agent orchestration, knowledge grounding</span>
+              <svg class="skill-group__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+            </button>
+            <div class="skill-group__content">
+              <div class="skill-group__tags">
+                <span class="tag">Gemini Enterprise</span><span class="tag">Claude Projects &amp; Skills</span><span class="tag">MCP</span><span class="tag">Multi-agent Orchestration</span><span class="tag">Knowledge Grounding</span><span class="tag">Human-in-the-loop Design</span><span class="tag">LangChain / LangGraph</span><span class="tag">Prompt Engineering</span><span class="tag">Structured Output</span>
+              </div>
+            </div>
+          </div>
+          <div class="skill-group">
+            <button class="skill-group__header">
+              <span class="skill-group__label">Full-stack build</span>
+              <span class="skill-group__teaser">Python, TypeScript, React, FastAPI, PostgreSQL, Neo4j</span>
+              <svg class="skill-group__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+            </button>
+            <div class="skill-group__content">
+              <div class="skill-group__tags">
+                <span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Neo4j</span><span class="tag">Docker</span><span class="tag">Vercel / Railway / GCP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BEYOND THE CODE ===== -->
+  <section class="section" data-screen-label="Beyond the code">
+    <div class="wrap">
+      <div class="panel head-bubble reveal" style="margin-bottom: clamp(2rem, 4vw, 3rem);">
+        <p class="label">Beyond the code</p>
+        <h2 class="h-sec" style="margin-top: 0.8rem;">A few things that aren't on the CV.</h2>
+      </div>
+      <div class="award-grid reveal" style="--d:0.05s">
+        <article class="panel award">
+          <img src="Pictures/5. Awards & Extracurriculars/rowing national finals/rowing national finals.jpg" alt="Rowing" loading="lazy" decoding="async" />
+          <div class="award__body">
+            <h3 class="award__title">National B Final Winner</h3>
+            <p class="award__sub">Rowing &middot; U15 Coxswain</p>
+          </div>
+        </article>
+        <article class="panel award">
+          <img src="Pictures/5. Awards & Extracurriculars/performer/play performance.jpg" alt="Performance" loading="lazy" decoding="async" />
+          <div class="award__body">
+            <h3 class="award__title">Performer</h3>
+            <p class="award__sub">School's first student-led play, "Another Country"</p>
+          </div>
+        </article>
+        <article class="panel award">
+          <img src="Pictures/5. Awards & Extracurriculars/photography/hut.JPG" alt="Photography" loading="lazy" decoding="async" />
+          <div class="award__body">
+            <h3 class="award__title">Photography</h3>
+            <p class="award__sub"><a href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener" style="color: var(--accent);">@sanay.photography &rarr;</a></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONNECT ===== -->
+  <section class="section close" id="connect" data-screen-label="Connect">
+    <div class="wrap">
+      <p class="label reveal">Get in touch</p>
+      <h2 class="h-close reveal" style="margin-top: 0.8rem;">Let's build something.</h2>
+      <p class="bodytext close__lead reveal" style="--d:0.05s">I'm always up for ambitious projects and hard problems.</p>
+      <div class="close__links reveal" style="--d:0.1s">
+        <a class="chip" href="mailto:sanays.mail@gmail.com">sanays.mail@gmail.com</a>
+        <a class="chip" href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="chip" href="https://beau.quest" target="_blank" rel="noopener">beau.quest</a>
+        <a class="chip" href="https://gonzo.guide" target="_blank" rel="noopener">gonzo.guide</a>
+        <a class="chip" href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener">Photography</a>
+      </div>
+
+      <div class="footer reveal" style="--d:0.15s">
+        <span class="footer__mark">Sanay Shah</span>
+        <span class="footer__spacer"></span>
+        <span>London &middot; Singapore</span>
+        <span>&copy; 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODAL ===== -->
+  <div id="modal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button id="modal-close" class="modal-close" aria-label="Close">&times;</button>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      // page-load reveal for hero + scroll-in reveal for sections
+      var hero = document.querySelector('.hero');
+      function heroIn() { hero.classList.add('is-in'); }
+      if (document.readyState === 'complete') requestAnimationFrame(heroIn);
+      else window.addEventListener('load', function () { requestAnimationFrame(heroIn); });
+      setTimeout(heroIn, 1200);
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
         });
+      }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+      document.querySelectorAll('.section').forEach(function (s) { io.observe(s); });
 
-        // --- Accordions (products) ---
-        document.querySelectorAll('.accordion-toggle').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const target = document.getElementById(btn.dataset.target);
-                target.classList.toggle('open');
-                btn.classList.toggle('open');
-            });
+      // scroll-driven backdrop journey
+      var root = document.documentElement, ticking = false;
+      var MIST_RAMP_PX = 1500;
+      function update() {
+        ticking = false;
+        var p = Math.min(1, Math.max(0, window.scrollY / MIST_RAMP_PX));
+        root.style.setProperty('--scroll', p.toFixed(4));
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      window.addEventListener('resize', update, { passive: true });
+      update();
+
+      // mobile nav
+      var toggle = document.getElementById('nav-toggle');
+      var mobileNav = document.getElementById('mobile-nav');
+      toggle.addEventListener('click', function () { mobileNav.classList.toggle('active'); });
+      mobileNav.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () { mobileNav.classList.remove('active'); });
+      });
+
+      // product accordions
+      document.querySelectorAll('.product__toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var target = document.getElementById(btn.dataset.target);
+          target.classList.toggle('open');
+          btn.classList.toggle('open');
         });
+      });
 
-        // --- Skill accordion (exclusive — max 1 open) ---
-        document.querySelectorAll('.skill-bar').forEach(bar => {
-            bar.querySelector('.skill-bar-header').addEventListener('click', () => {
-                const wasActive = bar.classList.contains('active');
-                document.querySelectorAll('.skill-bar.active').forEach(b => b.classList.remove('active'));
-                if (!wasActive) bar.classList.add('active');
-            });
+      // skill accordion (exclusive, one open at a time)
+      document.querySelectorAll('.skill-group__header').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var group = btn.closest('.skill-group');
+          var wasOpen = group.classList.contains('open');
+          document.querySelectorAll('.skill-group.open').forEach(function (g) { g.classList.remove('open'); });
+          if (!wasOpen) group.classList.add('open');
         });
+      });
 
-        // --- Modal ---
-        const modalData = {
-            innovi: {
-                title: 'Automation Project Manager',
-                sub: 'Innovi Advisors &middot; London',
-                date: 'Aug 2025 — Present',
-                img: 'Pictures/1. Professional & Industry Experience/Automation Project Manager  Innovi Advisors Ltd/innovi advisors presentation.jpg',
-                body: `<ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
-                    <li>Spearheaded the "Innovi Automation Initiative" by conducting in-depth discovery sessions with firm partners (FCCA-qualified accountants) to identify operational pain points and workflow bottlenecks.</li>
-                    <li>Collaborated with the tech team to perform a deep dive into the existing tech stack (FYI Docs & Microsoft Suite) and assess implementation capabilities.</li>
-                    <li>Researched and architected a comprehensive blueprint with a phased approach — from immediate "quick wins" to long-term projects — including feasibility analysis and holistic implementation overview.</li>
-                    <li>Presented findings to partners; the plan was approved and received enthusiastically.</li>
-                    <li>Currently developing a conversational AI phone assistant to automate receptionist duties as the first practical application.</li>
-                </ul>`
-            },
-            aiscu: {
-                title: 'Head of Events & Outreach',
-                sub: 'AI Safety Cardiff University (AISCU)',
-                date: '2025 — Present',
-                body: `<p class="text-forest-muted text-sm leading-relaxed">Leading events programming and outreach strategy for Cardiff University's AI safety community. Bridging technical AI builder experience (Beau, Gonzo) with governance and safety discourse — bringing a practitioner's perspective on production AI systems to safety discussions.</p>`
-            },
-            steam: {
-                title: 'Advanced Design Mentor',
-                sub: 'STEAMunity &middot; Singapore',
-                date: 'Dec 2024 — Mar 2025',
-                img: 'Pictures/3. Leadership & Mentorship/Foundational Design Mentor, steamunity/steamunity group with dpm heng.jpeg',
-                body: `<ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
-                    <li>Mentored a group of 6 students (age 14-20) in design thinking and innovation, in partnership with SUTD & Science Centre Singapore.</li>
-                    <li>Project managed the group's collaboration with Metta Cafe to apply design thinking principles towards fostering task independence for youths with special needs.</li>
-                    <li>Students secured <strong>1st place for Best Prototype Award</strong> with "BloomBuddy" — an IoT system guiding users from planting a chili to harvesting using sensors.</li>
-                    <li>Students earned the opportunity to <strong>present their concept to Deputy Prime Minister Heng Swee Keat</strong>.</li>
-                </ul>`
-            },
-            alita: {
-                title: 'Volunteer Researcher & Contributor',
-                sub: 'Asia-Pacific Legal Innovation & Technology Association (ALITA)',
-                date: 'Nov 2024 — Sep 2025',
-                img: 'Pictures/1. Professional & Industry Experience/Volunteer Researcher & Contributor  Asia-Pacific Legal Innovation & Technology Association (ALITA)/apac legal tech map.png',
-                body: `<ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
-                    <li>Conducted comprehensive desktop research on existing Legaltech taxonomies to support the development of ALITA's APAC Ecosystem Map.</li>
-                    <li>Contributed to the production of the flagship "State of Legal Innovation in Asia-Pacific (SOLIA) Report 2025."</li>
-                    <li>Provided on-site support at key industry events, including the ALITA Singapore: Lawtech Drinks and Theatre and the Asia Pacific European Legal Innovation & Tech Dialogue in London.</li>
-                </ul>`
-            },
-            'treehouse-builder': {
-                title: 'Builder & Facilitator',
-                sub: 'Treehouse Innovation &middot; London/Cardiff',
-                date: 'May 2024 — Aug 2024',
-                img: 'Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk group.jpeg',
-                body: `<p class="font-semibold text-forest text-sm mb-2">Project: The Futures Lab @ LegalTechTalk (with DLA Piper)</p>
-                <ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
-                    <li>Co-project managed an interactive booth for 2,500+ attendees to showcase and gather insights on the future of the legal industry.</li>
-                    <li>Engineered and deployed a full-stack application on Google Cloud Run, featuring generative AI (GPT-4o, DALL-E 3), A/B testing algorithms, and a data analytics pipeline.</li>
-                    <li>Built a GraphRAG solution with React and FastAPI to digitise and productise workshop facilitation cards.</li>
-                    <li>Co-authored published report: <a href="https://treehouseinnovation.com/case-studies/the-futures-lab-at-legaltechtalk-2024/" target="_blank" class="text-accent underline">"The Futures Lab at LegalTechTalk 2024"</a>.</li>
-                </ul>`
-            },
-            highfield: {
-                title: 'Digital Automation Insight',
-                sub: 'Highfield HR &middot; Bridgend',
-                date: 'Feb 2024 — Mar 2024',
-                body: `<ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
-                    <li>Used design thinking methodology to understand pain points and prototyped an MVP for employee contract generation software.</li>
-                    <li>Designed and implemented a WebApp offering a low-cost solution to automating contracts, sellable to their clients.</li>
-                    <li>Upskilled employees to integrate AI into their workflows.</li>
-                </ul>`
-            },
-            'treehouse-intern': {
-                title: 'Design Coach Intern',
-                sub: 'Treehouse Innovation &middot; London',
-                date: 'Jun 2023 — Sep 2023',
-                body: `<ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
-                    <li>Designed interactive exercises for a large corporate event (200+ people) focused on a manufacturing company's operating model review.</li>
-                    <li>Collaborated with design and client teams to research, design, and co-create engaging games and interactive workshop exercises.</li>
-                    <li>Conducted background research on cognitive biases for a major gaming company project.</li>
-                    <li>Built a prototype app for a Risk & Compliance breakout session using Flask, integrating OpenAI's API.</li>
-                </ul>`
-            },
-            cambridge: {
-                title: 'Grand Finalist & Tooling Category Winner',
-                sub: 'Hack the Law — LLM x Law &middot; University of Cambridge',
-                img: 'Pictures/2. Hackathons & Competitions/grand finalist and tooling winner, hack the law llm x law winner, university of cambridge/cambridge hackathon grand finalist.jpg',
-                body: `<p class="text-forest-muted text-sm leading-relaxed"><strong>Problem:</strong> Compliance professionals face dense, unstructured financial regulations, making it difficult to find critical information quickly.</p>
-                <p class="text-forest-muted text-sm leading-relaxed mt-2"><strong>Solution:</strong> Built a platform that structures financial regulations into a searchable, intuitive interface. Automatically highlights key entities, activities, and products.</p>
-                <p class="text-forest-muted text-sm leading-relaxed mt-2"><strong>Team "Just 3"</strong> (with Xavier Doni and Siyuan Sui). RegGenome API + Groq API. Efficient use of Groq secured the Tooling Category win.</p>`
-            },
-            glasses: {
-                title: 'Golden Glasses Award — Most Engaging Presentation',
-                sub: 'Future Interaction for Smart Glasses Bootcamp &middot; NUS',
-                img: 'Pictures/2. Hackathons & Competitions/Golden Glasses Award for Most Engaging Presentation, future interaction of smart glasses bootcamp/smart glasses group winning.JPG',
-                body: `<ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
-                    <li>Built "Waddles" — an app on XREAL smart glasses designed to alert users to potential dangers and risky areas while travelling in unfamiliar environments.</li>
-                    <li>Intensive 6-day bootcamp with hands-on AR development.</li>
-                    <li>Tech stack: Unity, C#, TOM, Gemini API, Python.</li>
-                    <li>Team: Wen Ting Chua, Sanay Shah, Jie Han Lim.</li>
-                </ul>`
-            },
-            web3: {
-                title: 'Finalist — Web3 Hackathon',
-                sub: 'EasyA, VeChain, BCG',
-                img: 'Pictures/2. Hackathons & Competitions/finalist web3 hackthon easy a vchain/easya vchain hackathon UI.jpg',
-                body: `<ul class="list-disc pl-5 space-y-2 text-forest-muted text-sm leading-relaxed">
-                    <li>Competed as a solo participant in a hackathon focused on Web3 technologies.</li>
-                    <li>Recognised as a finalist for developing solutions that demonstrated highly efficient and effective prompt engineering techniques.</li>
-                </ul>`
-            }
-        };
-
-        const modal = document.getElementById('modal');
-        const modalBody = document.getElementById('modal-body');
-        const modalClose = document.getElementById('modal-close');
-
-        function openModal(key) {
-            const d = modalData[key];
-            if (!d) return;
-            let html = '';
-            if (d.img) html += `<img src="${d.img}" class="w-full rounded-lg mb-5 object-cover max-h-64" loading="lazy" decoding="async">`;
-            html += `<h2 class="font-display text-2xl text-forest">${d.title}</h2>`;
-            html += `<p class="text-forest-muted text-sm mt-1">${d.sub}</p>`;
-            if (d.date) html += `<p class="font-mono text-xs text-accent mt-1">${d.date}</p>`;
-            html += `<div class="mt-4">${d.body}</div>`;
-            modalBody.innerHTML = html;
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
+      // ---- modal data ----
+      var modalData = {
+        innovi: {
+          title: 'Automation Project Manager',
+          sub: 'Innovi Advisors &middot; London',
+          date: 'Aug 2025–Present',
+          img: 'Pictures/1. Professional & Industry Experience/Automation Project Manager  Innovi Advisors Ltd/innovi advisors presentation.jpg',
+          body: '<h4>Discovery and strategic approval</h4>' +
+                '<ul><li>Interviewed the firm\'s partners and audited 15 draft AI agents already built in Gemini Enterprise, alongside the existing tech stack (Microsoft 365, FYI Docs, Xero).</li>' +
+                '<li>Diagnosed recurring faults across the drafts: wrong-ecosystem connectors, inconsistent prompt structure, overlapping scope. The underlying intent was clear: single-authoritative-source grounding, mandatory clarifying questions, citation discipline, plain-English output.</li>' +
+                '<li>Presented a phased blueprint to the partners. They approved it, and it became the basis for consolidating 15 draft agents into 6 tested, production-shaped agents.</li></ul>' +
+                '<h4>Architecture and design decisions</h4>' +
+                '<ul><li>Designed a knowledge-store grounding architecture that converts authoritative regulatory sources (HMRC, FRC, ACCA, ICAEW, Companies House, Charity Commission) into curated markdown knowledge bases, so every agent answer is reliably citeable.</li>' +
+                '<li>Found and fixed a reliability failure in production: an overloaded combined agent was hanging under real data load. Root-caused it to turn-size overload, then split it into two purpose-bound agents joined by a shared handover artefact. That fix became a standing design rule: "separate by function, bound each turn."</li>' +
+                '<li>Designed an "octopus" super-agent architecture ("Oracle"): a single router in front of 18+ flattened specialist subagents, so staff no longer need to know which agent to pick.</li>' +
+                '<li>Built human-in-the-loop guardrails throughout: agents draft for staff review and never auto-send or auto-file.</li></ul>' +
+                '<h4>Platform engineering and migration</h4>' +
+                '<ul><li>Built and tested the full suite in Gemini Enterprise\'s no-code Agent Designer, then migrated it entirely to Claude (Projects, Skills, Cowork), rebuilding 18+ subagents as 40+ modular Skills. That unlocked native, reliable file generation that the Gemini platform couldn\'t produce.</li>' +
+                '<li>Integrated a pre-built Xero MCP server for live ledger access into agent workflows, with the equivalent FYI document API integration underway.</li></ul>' +
+                '<h4>Automations delivered</h4>' +
+                '<p>The VAT return auditor runs a tab-by-tab audit of Xero VAT exports against HMRC rules. The accounts-preparation agent runs a three-way reconciliation, from bank to ledger to trial balance, and raises a suspense report for anything unresolved. The client-onboarding agent builds a client\'s KYC and Permanent File through a guided interview, auto-filling from firm records and Companies House. Job-card automation auto-fills job-setup templates from prior-year data. Alfred, an onboarding and support agent that routes staff to the right tool, was the single biggest adoption win in staff testing.</p>'
+        },
+        steam: {
+          title: 'Advanced Design Mentor',
+          sub: 'STEAMunity &middot; Singapore',
+          date: 'Dec 2024–Mar 2025',
+          img: 'Pictures/3. Leadership & Mentorship/Foundational Design Mentor, steamunity/steamunity group with dpm heng.jpeg',
+          body: '<ul><li>Mentored a group of 6 students (age 14-20) in design thinking and innovation, in partnership with SUTD and Science Centre Singapore.</li>' +
+                '<li>Project managed the group\'s collaboration with Metta Cafe, applying design thinking to help build task independence for youths with special needs.</li>' +
+                '<li>Students won 1st place for Best Prototype Award with "BloomBuddy", an IoT system that guides users from planting a chili to harvesting it using sensors.</li>' +
+                '<li>Students earned the opportunity to present their concept to Deputy Prime Minister Heng Swee Keat.</li></ul>'
+        },
+        alita: {
+          title: 'Volunteer Researcher &amp; Contributor',
+          sub: 'Asia-Pacific Legal Innovation &amp; Technology Association (ALITA)',
+          date: 'Nov 2024–Sep 2025',
+          img: 'Pictures/1. Professional & Industry Experience/Volunteer Researcher & Contributor  Asia-Pacific Legal Innovation & Technology Association (ALITA)/apac legal tech map.png',
+          body: '<ul><li>Conducted desktop research on existing legaltech taxonomies to support ALITA\'s APAC Ecosystem Map.</li>' +
+                '<li>Contributed to the production of the flagship "State of Legal Innovation in Asia-Pacific (SOLIA) Report 2025."</li>' +
+                '<li>Provided on-site support at major industry events, including ALITA Singapore: Lawtech Drinks and Theatre, and the Asia Pacific European Legal Innovation and Tech Dialogue in London.</li></ul>'
+        },
+        'treehouse-builder': {
+          title: 'Builder &amp; Facilitator',
+          sub: 'Treehouse Innovation &middot; London/Cardiff',
+          date: 'May 2024–Aug 2024',
+          img: 'Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk group.jpeg',
+          body: '<p>Project: The Futures Lab at LegalTechTalk, with DLA Piper.</p>' +
+                '<ul><li>Co-project managed an interactive booth for 2,500+ attendees, presenting ideas and gathering feedback on the future of the legal industry.</li>' +
+                '<li>Engineered and deployed a full-stack application on Google Cloud Run that combined generative AI (GPT-4o, DALL-E 3) with A/B testing algorithms, then fed the results into a data analytics pipeline.</li>' +
+                '<li>Built a GraphRAG solution with React and FastAPI to digitise and productise workshop facilitation cards.</li>' +
+                '<li>Co-authored published report: <a href="https://treehouseinnovation.com/case-studies/the-futures-lab-at-legaltechtalk-2024/" target="_blank" style="color: var(--accent);">"The Futures Lab at LegalTechTalk 2024"</a>.</li></ul>'
+        },
+        highfield: {
+          title: 'Digital Automation Insight',
+          sub: 'Highfield HR &middot; Bridgend',
+          date: 'Feb 2024–Mar 2024',
+          body: '<ul><li>Used design thinking methodology to understand pain points and prototyped an MVP for employee contract generation software.</li>' +
+                '<li>Designed and implemented a WebApp offering a low-cost solution to automating contracts, sellable to their clients.</li>' +
+                '<li>Upskilled employees to integrate AI into their workflows.</li></ul>'
+        },
+        'treehouse-intern': {
+          title: 'Design Coach Intern',
+          sub: 'Treehouse Innovation &middot; London',
+          date: 'Jun 2023–Sep 2023',
+          body: '<ul><li>Designed interactive exercises for a large corporate event (200+ people) focused on a manufacturing company\'s operating model review.</li>' +
+                '<li>Collaborated with design and client teams to research and design engaging games and interactive workshop exercises.</li>' +
+                '<li>Conducted background research on cognitive biases for a major gaming company project.</li>' +
+                '<li>Built a prototype app for a Risk &amp; Compliance breakout session using Flask, integrating OpenAI\'s API.</li></ul>'
+        },
+        cambridge: {
+          title: 'Grand Finalist &amp; Tooling Category Winner',
+          sub: 'Hack the Law: LLM x Law &middot; University of Cambridge',
+          img: 'Pictures/2. Hackathons & Competitions/grand finalist and tooling winner, hack the law llm x law winner, university of cambridge/cambridge hackathon grand finalist.jpg',
+          body: '<p>Compliance professionals face dense, unstructured financial regulations that are hard to search quickly. We built a platform that structures the regulations into a searchable interface and flags the entities and activities inside them.</p>' +
+                '<p>Team "Just 3" (with Xavier Doni and Siyuan Sui) built it on the RegGenome API and Groq API. The efficient use of Groq won the Tooling Category.</p>'
+        },
+        glasses: {
+          title: 'Golden Glasses Award: Most Engaging Presentation',
+          sub: 'Future Interaction for Smart Glasses Bootcamp &middot; NUS',
+          img: 'Pictures/2. Hackathons & Competitions/Golden Glasses Award for Most Engaging Presentation, future interaction of smart glasses bootcamp/smart glasses group winning.JPG',
+          body: '<ul><li>Built "Waddles", an app on XREAL smart glasses designed to alert users to potential dangers and risky areas while travelling in unfamiliar environments.</li>' +
+                '<li>Intensive 6-day bootcamp with hands-on AR development.</li>' +
+                '<li>Tech stack: Unity, C#, TOM, Gemini API, Python.</li>' +
+                '<li>Team: Wen Ting Chua, Sanay Shah, Jie Han Lim.</li></ul>'
+        },
+        web3: {
+          title: 'Web3 Hackathon Finalist',
+          sub: 'EasyA, VeChain, BCG',
+          img: 'Pictures/2. Hackathons & Competitions/finalist web3 hackthon easy a vchain/easya vchain hackathon UI.jpg',
+          body: '<ul><li>Competed as a solo participant in a hackathon focused on Web3 technologies.</li>' +
+                '<li>Recognised as a finalist for developing solutions that demonstrated highly efficient and effective prompt engineering techniques.</li></ul>'
         }
+      };
 
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+      var modal = document.getElementById('modal');
+      var modalBody = document.getElementById('modal-body');
+      var modalClose = document.getElementById('modal-close');
 
-        // Attach click handlers to timeline entries and hack cards
-        document.querySelectorAll('[data-modal]').forEach(el => {
-            el.style.cursor = 'pointer';
-            el.addEventListener('click', () => openModal(el.dataset.modal));
-        });
+      function openModal(key) {
+        var d = modalData[key];
+        if (!d) return;
+        var html = '';
+        if (d.img) html += '<img src="' + d.img + '" loading="lazy" decoding="async">';
+        html += '<h2>' + d.title + '</h2>';
+        html += '<p class="modal-sub">' + d.sub + '</p>';
+        if (d.date) html += '<p class="modal-date">' + d.date + '</p>';
+        html += d.body;
+        modalBody.innerHTML = html;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
 
-        modalClose.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
+      function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('[data-modal]').forEach(function (el) {
+        el.addEventListener('click', function () { openModal(el.dataset.modal); });
+      });
+
+      modalClose.addEventListener('click', closeModal);
+      modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
     })();
-    </script>
+  </script>
 </body>
+
 </html>
