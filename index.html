@@ -423,6 +423,57 @@
       .skill-group__header { flex-wrap: wrap; row-gap: 0.3rem; }
       .skill-group__teaser { white-space: normal; flex-basis: 100%; }
     }
+
+    /* ---------- 2026-08 additions: dark theme, hero ticker, affordances ---------- */
+    [data-theme="dark"] {
+      --ground: #191713; --ground-2: #211E19;
+      --ink: #E9E5DA; --ink-soft: #A9A294; --accent: #97A886;
+      --panel-tint: 42; --mist-base: 0.55; --mist-range: 0.38;
+      color-scheme: dark;
+    }
+    [data-theme="dark"] .stage__img { filter: brightness(0.5) saturate(0.85); }
+    [data-theme="dark"] .stage__grain { mix-blend-mode: screen; opacity: 0.04; }
+
+    .hero__now {
+      margin-top: 1.1rem; font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft);
+      display: flex; align-items: baseline; gap: 0.6em; flex-wrap: wrap;
+    }
+    .hero__now-label { font-size: 0.68rem; letter-spacing: 0.17em; text-transform: uppercase; color: var(--accent); }
+    .type-caret {
+      display: inline-block; width: 1px; height: 1em; background: var(--accent);
+      margin-left: 2px; transform: translateY(0.15em);
+      animation: caret-blink 1.1s steps(1) infinite;
+    }
+    @keyframes caret-blink { 50% { opacity: 0; } }
+
+    .xp-row[data-modal] .xp-row__hint { opacity: 0.6; }
+    .xp-row[data-modal]:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+    .hack[data-modal] { transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease; }
+    .hack[data-modal]:hover {
+      transform: translateY(-3px);
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent), 0 10px 30px -18px color-mix(in srgb, var(--ink) 45%, transparent);
+    }
+    .hack[data-modal] .hack__body::after {
+      content: "Read the story \2192";
+      display: inline-flex; margin-top: 0.8rem;
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em;
+      color: var(--accent); opacity: 0.6; transition: opacity 0.25s ease;
+    }
+    .hack[data-modal]:hover .hack__body::after { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .type-caret { animation: none; }
+      .hack[data-modal] { transition: none; }
+      .hack[data-modal]:hover { transform: none; }
+    }
+
+    .nav__link.is-active { color: var(--accent); }
+    .theme-toggle {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      background: none; border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
+      border-radius: 999px; padding: 0.35em 0.9em; cursor: pointer; color: var(--ink-soft);
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+    .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
   </style>
 </head>
 
@@ -443,6 +494,7 @@
         <a class="nav__link" href="#hackathons">Hackathons</a>
         <a class="nav__link" href="#education">Education</a>
         <a class="nav__link" href="#connect">Connect</a>
+        <button class="theme-toggle" type="button" aria-pressed="false">Dark</button>
       </nav>
       <button class="nav__toggle" id="nav-toggle" aria-label="Open menu"><span></span></button>
     </div>
@@ -455,6 +507,7 @@
     <a href="#education">Education</a>
     <a href="#skills">Skills</a>
     <a href="#connect">Connect</a>
+    <button class="theme-toggle" type="button" aria-pressed="false">Dark</button>
   </div>
 
   <!-- ===== HERO ===== -->
@@ -466,7 +519,8 @@
           <span class="hero__byline-text"><b>Sanay Shah</b> &middot; London</span>
         </div>
         <h1 class="hero__headline">I build AI products <i>end to end, and think hard about what they should do.</i></h1>
-        <p class="hero__lead">BSc Computer Science from Cardiff University, First-Class Honours, graduated July 2026. I lead the AI programme at Innovi Advisors, where I rebuilt the firm's agent suite into one production system and am now moving it onto a custom harness that enforces the working rules in code. My thesis: teams of AI agents should copy the way good teams already run, with the human in the middle making the judgement calls, and the system moulding to the person who corrects it. I explored the governance side through AI Safety Cardiff University. Beau and Gonzo, my two independent products, are paused while Innovi stays the priority.</p>
+        <p class="hero__lead">First-Class Computer Science from Cardiff, July 2026. For the past year I've run the AI programme at Innovi Advisors: 15 stalled agents became one production system, and it's now becoming the firm's own product on a custom harness. My take on agents is basically that they should run like a good team, with a person holding the judgement calls.</p>
+        <p class="hero__now"><span class="hero__now-label">right now</span><span id="typewriter">building an AI agent team for accountants</span><span class="type-caret" aria-hidden="true"></span></p>
         <div class="hero__row">
           <a class="chip" href="https://beau.quest" target="_blank" rel="noopener">beau.quest</a>
           <a class="chip" href="https://gonzo.guide" target="_blank" rel="noopener">gonzo.guide</a>
@@ -1047,6 +1101,78 @@
       modalClose.addEventListener('click', closeModal);
       modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var stored = null;
+      try { stored = localStorage.getItem("theme"); } catch (e) {}
+      if (stored === "dark") root.setAttribute("data-theme", "dark");
+      function paintButtons() {
+        var dark = root.getAttribute("data-theme") === "dark";
+        document.querySelectorAll(".theme-toggle").forEach(function (b) {
+          b.textContent = dark ? "Light" : "Dark";
+          b.setAttribute("aria-pressed", dark ? "true" : "false");
+        });
+      }
+      document.querySelectorAll(".theme-toggle").forEach(function (b) {
+        b.addEventListener("click", function () {
+          var dark = root.getAttribute("data-theme") === "dark";
+          if (dark) root.removeAttribute("data-theme");
+          else root.setAttribute("data-theme", "dark");
+          try { localStorage.setItem("theme", dark ? "light" : "dark"); } catch (e) {}
+          paintButtons();
+        });
+      });
+      paintButtons();
+
+      var lines = [
+        "building an AI agent team for accountants",
+        "getting a pharmacy group using AI properly",
+        "planning the Gonzo relaunch",
+        "out shooting film somewhere"
+      ];
+      var el = document.getElementById("typewriter");
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (el && !reduced) {
+        var li = 0, ci = lines[0].length, deleting = true, HOLD = 2400;
+        function tick() {
+          var line = lines[li];
+          if (deleting) {
+            ci--;
+            el.textContent = line.slice(0, ci);
+            if (ci === 0) { deleting = false; li = (li + 1) % lines.length; setTimeout(tick, 350); return; }
+            setTimeout(tick, 26);
+          } else {
+            line = lines[li];
+            ci++;
+            el.textContent = line.slice(0, ci);
+            if (ci === line.length) { deleting = true; setTimeout(tick, HOLD); return; }
+            setTimeout(tick, 46);
+          }
+        }
+        setTimeout(tick, HOLD);
+      }
+
+      var links = document.querySelectorAll(".nav__link");
+      var map = {};
+      links.forEach(function (a) {
+        var h = a.getAttribute("href") || "";
+        if (h.indexOf("#") === 0) map[h.slice(1)] = a;
+      });
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          var a = map[e.target.id];
+          if (!a) return;
+          if (e.isIntersecting) {
+            links.forEach(function (x) { x.classList.remove("is-active"); });
+            a.classList.add("is-active");
+          }
+        });
+      }, { rootMargin: "-35% 0px -55% 0px" });
+      document.querySelectorAll("section[id]").forEach(function (s) { spy.observe(s); });
     })();
   </script>
 </body>
