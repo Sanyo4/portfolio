@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sanay Shah: Product Builder and Founder</title>
-  <meta name="description" content="Sanay Shah builds AI agent systems and the governance that makes them worth trusting. Automation Project Manager at Innovi Advisors. Sole founder of Beau and Gonzo." />
+  <meta name="description" content="Sanay Shah builds AI agent systems and the governance that makes them worth trusting. 43 flights in 45 weeks, a Fujifilm, and one day a bar of his own. Automation Project Manager at Innovi Advisors." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -474,6 +474,17 @@
       transition: color 0.25s ease, border-color 0.25s ease;
     }
     .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ---------- lore + fork ---------- */
+    .lore-list { padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1.5rem, 2.6vw, 2.2rem); }
+    .lore-row { display: grid; grid-template-columns: minmax(7rem, 10rem) 1fr; gap: 0.5rem 1.8rem; padding-block: clamp(1.3rem, 2vw, 1.7rem); }
+    .lore-row + .lore-row { border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); }
+    .lore-row__tag { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); padding-top: 0.25em; }
+    .lore-row__title { font-family: var(--serif); font-size: clamp(1.15rem, 1.5vw, 1.3rem); color: var(--ink); line-height: 1.25; }
+    .lore-row .bodytext-sm { margin-top: 0.5rem; max-width: 58ch; }
+    .hero__fork { display: flex; align-items: baseline; gap: 1.6rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .hero__fork-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.17em; text-transform: uppercase; color: var(--ink-soft); }
+    @media (max-width: 700px) { .lore-row { grid-template-columns: 1fr; gap: 0.3rem; } }
   </style>
 </head>
 
@@ -493,6 +504,7 @@
         <a class="nav__link" href="#experience">Experience</a>
         <a class="nav__link" href="#hackathons">Hackathons</a>
         <a class="nav__link" href="#education">Education</a>
+        <a class="nav__link" href="#lore">Lore</a>
         <a class="nav__link" href="#connect">Connect</a>
         <button class="theme-toggle" type="button" aria-pressed="false">Dark</button>
       </nav>
@@ -506,6 +518,7 @@
     <a href="#hackathons">Hackathons</a>
     <a href="#education">Education</a>
     <a href="#skills">Skills</a>
+    <a href="#lore">Lore</a>
     <a href="#connect">Connect</a>
     <button class="theme-toggle" type="button" aria-pressed="false">Dark</button>
   </div>
@@ -519,8 +532,13 @@
           <span class="hero__byline-text"><b>Sanay Shah</b> &middot; London</span>
         </div>
         <h1 class="hero__headline">I build AI products <i>end to end, and think hard about what they should do.</i></h1>
-        <p class="hero__lead">First-Class Computer Science from Cardiff, July 2026. For the past year I've run the AI programme at Innovi Advisors: 15 stalled agents became one production system, and it's now becoming the firm's own product on a custom harness. My take on agents is basically that they should run like a good team, with a person holding the judgement calls.</p>
+        <p class="hero__lead">First-Class Computer Science from Cardiff, July 2026. For the past year I've run the AI programme at Innovi Advisors: 15 stalled agents became one production system, and it's now becoming the firm's own product on a custom harness. My take on agents is basically that they should run like a good team, with a person holding the judgement calls. Off the clock: 43 flights in 45 weeks, a Fujifilm, and one day a bar of my own.</p>
         <p class="hero__now"><span class="hero__now-label">right now</span><span id="typewriter">building an AI agent team for accountants</span><span class="type-caret" aria-hidden="true"></span></p>
+        <div class="hero__fork">
+          <span class="hero__fork-label">pick a route</span>
+          <a class="link" href="#building">the work <span class="arrow">&rarr;</span></a>
+          <a class="link" href="#lore">the lore <span class="arrow">&rarr;</span></a>
+        </div>
         <div class="hero__row">
           <a class="chip" href="https://beau.quest" target="_blank" rel="noopener">beau.quest</a>
           <a class="chip" href="https://gonzo.guide" target="_blank" rel="noopener">gonzo.guide</a>
@@ -620,7 +638,7 @@
             <div>
               <h3 class="xp-row__title">Automation Project Manager</h3>
               <p class="xp-row__org">Innovi Advisors &middot; London</p>
-              <p class="bodytext-sm xp-row__desc">Sole owner of the "Innovi Automation Initiative": took the firm's AI agent suite from a stalled discovery exercise to a tested multi-agent system spanning two platforms. Consolidated 15 draft agents into one production router ("Oracle"), diagnosed and fixed a live reliability failure at the architecture level, and migrated the suite across platforms as 40+ modular skills. Now rebuilding it as the firm's own product on a custom harness built on pi, an open-source agent runtime, with custom MCP servers connecting the firm's systems and the working rules enforced in code.</p>
+              <p class="bodytext-sm xp-row__desc">Sole owner of the "Innovi Automation Initiative": took the firm's AI agent suite from a stalled discovery exercise to a tested multi-agent system spanning two platforms. Consolidated 15 draft agents into one production router ("Oracle"), diagnosed and fixed a live reliability failure at the architecture level, and migrated the suite across platforms as 40+ modular skills. Now rebuilding it as the firm's own product on a custom harness built on pi, an open-source agent runtime, with custom MCP servers connecting the firm's systems and the working rules enforced in code. Neurosymbolic in shape: the models read and judge, and code holds everything that must not drift.</p>
               <span class="xp-row__hint">Read more <span aria-hidden="true">&rarr;</span></span>
             </div>
           </div>
@@ -885,6 +903,63 @@
     </div>
   </section>
 
+  <!-- ===== LORE ===== -->
+  <section class="section" id="lore" data-screen-label="Lore">
+    <div class="wrap col2">
+      <div class="panel col2__head reveal">
+        <p class="label">Lifemaxxing</p>
+        <h2 class="h-sec">The 25th hour.</h2>
+        <p class="lead">Friends joke that I find an extra hour in the day. This is where it goes.</p>
+      </div>
+      <div class="col2__body">
+        <div class="panel lore-list reveal" style="--d:0.05s">
+          <div class="lore-row">
+            <div class="lore-row__tag">43 in 45</div>
+            <div>
+              <h3 class="lore-row__title">The year of the boarding passes</h3>
+              <p class="bodytext-sm">43 flights in 45 weeks, mostly on a student budget and a lounge pass. I plan trips around neighbourhoods, not sights: the scruffy, layered streets behind the station where residents actually eat and drink.</p>
+            </div>
+          </div>
+          <div class="lore-row">
+            <div class="lore-row__tag">The camera</div>
+            <div>
+              <h3 class="lore-row__title">A Fujifilm as the excuse</h3>
+              <p class="bodytext-sm">My favourite way into a city is talking to strangers until one of them shows me around. The camera starts the conversation and keeps the record. Some of it ends up on the photography account below.</p>
+            </div>
+          </div>
+          <div class="lore-row">
+            <div class="lore-row__tag">The detour</div>
+            <div>
+              <h3 class="lore-row__title">Gonzo is autobiographical</h3>
+              <p class="bodytext-sm">The travel engine I built runs on three reference points: Bourdain for food, The Hangover for nightlife, An Idiot Abroad for the weird stuff. That is not branding, it is how I actually travel. Personal best: a detour that ended at a monastery in the Taiwanese highlands, hosted by an eccentric German monk.</p>
+            </div>
+          </div>
+          <div class="lore-row">
+            <div class="lore-row__tag">The bar</div>
+            <div>
+              <h3 class="lore-row__title">A room where the regulars have names</h3>
+              <p class="bodytext-sm">The long-term plan is a bar of my own. It started at a tiny place in Singapore where the staff knew my name within a fortnight, and that feeling is the whole business plan. The route I've picked is the unglamorous one: spirits qualifications first, then shifts. No bar school.</p>
+            </div>
+          </div>
+          <div class="lore-row">
+            <div class="lore-row__tag">The stage</div>
+            <div>
+              <h3 class="lore-row__title">Dress, makeup, full house</h3>
+              <p class="bodytext-sm">I performed in my school's first student-led play, Another Country, on stage in a dress and full makeup. I'll still take any stage going.</p>
+            </div>
+          </div>
+          <div class="lore-row">
+            <div class="lore-row__tag">The point</div>
+            <div>
+              <h3 class="lore-row__title">Same person builds the agents</h3>
+              <p class="bodytext-sm">The work above happens alongside all of this, not instead of it. And as far as I can tell the sidequests are the differentiator: plenty of people have better paper, but the stories are what people remember after the interview.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== CONNECT ===== -->
   <section class="section close" id="connect" data-screen-label="Connect">
     <div class="wrap">
@@ -1132,6 +1207,7 @@
         "building an AI agent team for accountants",
         "getting a pharmacy group using AI properly",
         "planning the Gonzo relaunch",
+        "chasing dad lore in a new city",
         "out shooting film somewhere"
       ];
       var el = document.getElementById("typewriter");
