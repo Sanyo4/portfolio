@@ -1232,7 +1232,7 @@
         "The long-term plan is a bar of my own: the kind of room where the regulars have names. Spirits quals first, then shifts. No bar school.",
         "It clicked at a tiny bar in Singapore where the staff knew my name within a fortnight. That feeling is the whole business plan.",
         "Halloween in Hongdae. Ask me about it.",
-        "There was a road trip in a kei car. Ask me about that too.",
+        "A road trip across the south of Japan in a kei car. Ask me about it.",
         "A private watch event with the Arnault family. Long story.",
         "Coxed a rowing four to winning a national B final.",
         "I built a travel AI on three reference points: Bourdain, The Hangover, An Idiot Abroad. It's basically autobiographical."
@@ -1244,12 +1244,22 @@
       var shuffleBtn = document.getElementById("lore-shuffle");
       if (!fab || !win || !txt) return;
       var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      var last = -1, timer = null;
+      var timer = null, order = [], pos = 0, lastShown = -1;
+      function reshuffle() {
+        order = DROPS.map(function (_, i) { return i; });
+        for (var i = order.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var tmp = order[i]; order[i] = order[j]; order[j] = tmp;
+        }
+        if (order.length > 1 && order[0] === lastShown) {
+          var t = order[0]; order[0] = order[order.length - 1]; order[order.length - 1] = t;
+        }
+        pos = 0;
+      }
       function pick() {
-        var i;
-        do { i = Math.floor(Math.random() * DROPS.length); } while (i === last && DROPS.length > 1);
-        last = i;
-        return DROPS[i];
+        if (pos >= order.length) reshuffle();
+        lastShown = order[pos];
+        return DROPS[order[pos++]];
       }
       function show(text) {
         if (timer) { clearTimeout(timer); timer = null; }
