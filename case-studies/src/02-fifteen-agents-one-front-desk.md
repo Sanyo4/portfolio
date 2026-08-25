@@ -1,0 +1,72 @@
+---
+slug: fifteen-agents-one-front-desk
+kind: Case study
+title: "Fifteen agents, one front desk: a year of building AI for an accountancy firm"
+short_title: Fifteen agents, one front desk
+standfirst: A year building agents for real accountants. Fifteen drafts became six, six became one, a sixteen-minute run became four, and the rules that stuck came out of the incidents.
+date: August 2026
+---
+
+I'm the only AI person at a UK accountancy firm. I work there part time. This is what a year of building agents for real accountants looked like, including the bits that broke.
+
+### Where it started
+
+When I arrived, one of the partners had already built fifteen draft agents on a no-code platform. An HMRC bot. A legal assistant. Two ACCA assistants. Two VAT assistants. A cash flow forecaster. A thing called "muscle" that did a bit of everything. None of the multi-step ones had been published or tested.
+
+The partner's own note on them was "these might be wrong now". That was the most useful brief I got all year. It meant I could treat them as signal for what he'd been reaching for, rather than a spec to preserve.
+
+The faults were easy to list. Several agents referenced Google Drive and Google Sheets in a firm that runs on Microsoft 365. Three of them overlapped. Instruction numbering started at 10 in half of them, a copy-paste artefact. What was harder, and more useful, was finding the intent underneath: answer from one authoritative source, ask clarifying questions before answering, never guess, always cite, and write so a sixteen-year-old could read it.
+
+That last rule turned out to be an accessibility need. The partner and several staff are dyslexic. Plain, short, well-structured text isn't dumbing down for them. It's the difference between reading the output and not.
+
+### Fifteen to six
+
+The first rebuild cut fifteen agents to six, each with a proper job. A regulatory researcher grounded in curated copies of the official sources rather than open web search, because search can't be locked to one domain and every "only use site X" instruction was a suggestion. A VAT auditor. An accounts preparation agent. An analytical review agent. A cash flow forecaster. And a front desk.
+
+The front desk was the surprise. In team testing, staff who hadn't seen the suite didn't know which agent to use or how to prompt it. So one agent's only job was to ask what you needed, pick the right specialist, and write the prompt for you. It was the single biggest adoption win we had, and it cost almost nothing to build.
+
+Two things broke early and both taught me something I still use.
+
+The accounts preparation agent hung under real transaction volume. It was doing categorisation and benchmarking in one turn. Splitting it into two agents by function, joined by a handover file, fixed it. "Separate by function, bound each turn" became a standing rule.
+
+And the platform had no "save draft" action for email, and file upload to SharePoint couldn't take a generated workbook. So the agents draft in chat and the person sends. That started as a workaround. It became a principle, and I'll come back to it.
+
+### Six to one
+
+Six agents still meant staff had to pick. So the next build flattened everything into a single router with seventeen specialist subagents behind it. One conversation. You say what you need, it works out the lane, asks what it needs to ask, and starts. If a request belongs to a lane it has, it never redirects you. It says "that runs here" and begins.
+
+The persona changed too. The six had superhero names, which the partner liked and which made internal testing fun. The router is just the practice's senior accountant, and each subagent is a specialist in its field.
+
+Then we moved platforms, because the new one could write real Excel and Word files from a sandbox that could see the uploads. The copy-paste bottleneck on outputs went away. The seventeen subagents became forty-odd modular skills. The knowledge files became read-only org-wide skills too, because a folder can be edited by anyone and an org-provisioned skill can't.
+
+### The sixteen-minute mystery
+
+The partner's test runs of one workflow took about sixteen minutes. The same run on my account took four.
+
+Two causes. The first: an instruction told the agent to read the payment status of invoices, and the document connector couldn't actually return that. So the model went hunting for it, downloading PDFs, and hit two back-to-back five-minute timeouts. The fix was to stop asking the tool for something it can't do, and to retry a timed-out call once at most, then flag and move on.
+
+The second cause was stranger. The partner's personal system prompt said "Hello, my name is [partner]". With it, the run derailed. Without it, the run finished in five minutes. Personalisation was interfering with routing. New rule: route the work first, personalise after, never the other way round.
+
+A few weeks later the same lesson came back in a different coat. Companies House blocks automated document downloads. The agent had been told to fetch filings, couldn't, and kept trying. Same fix: source from where the tool can reach, and give the human a link for the rest. An instruction the tool can't satisfy isn't ignored. It's a trap the model falls into every time.
+
+### Moving the arithmetic into code
+
+For the first few months the rule was "code touches files only, at the boundaries". The model did all the reading, categorising and summing itself. Then we reversed it for arithmetic.
+
+The reason is simple once you've seen it. A wrong column sum from a model looks identical to a right one. A code calculation is visible and re-runnable. For an accountancy deliverable that's a working paper, not a convenience. So the model reads and judges; code adds up.
+
+### The benchmark
+
+In July we ran the system head-to-head against the firm's best accounts preparation staff on live jobs. It did about 80% of the work in about a quarter of the time, and the figures matched.
+
+The 80% isn't a ceiling we hit. It's one we chose, and it's the most important design decision in the whole build. I've written about why separately (the short version: after twenty correct outputs in a row, review turns into a reflex, and the twenty-first error sails through). Keeping the person doing the part that matters is what keeps the checking honest.
+
+### Governance, then the next build
+
+Once the system was in production we wrote the firm's AI policy set: thirteen documents on ISO/IEC 42001 lines, a risk register with sixteen risks, a statement of applicability. Written to certification depth with no certification body engaged, because the rigour was the point and the audit apparatus wasn't. Three of the risks in the register were incidents we'd actually had: the download failure, the personalisation-breaks-routing bug, and the arithmetic flip.
+
+And then, because the whole thing was markdown skills and standard connectors, we started moving it onto a harness the firm owns. That's the next post.
+
+### What I'd tell someone starting this
+
+Find the intent under the mess before you rebuild anything. Give people one door, not six. Split anything that hangs. Never give a tool an instruction it can't satisfy. Let code do the sums. Cap the automation on purpose. And write the policy after you've had the incidents, so it describes something real.

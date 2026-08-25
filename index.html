@@ -284,6 +284,30 @@
     .product__detail-grid { display: grid; gap: 1.1rem; padding-top: 1.1rem; }
     .product__detail h4 { font-family: var(--serif); font-weight: 500; font-size: 1.02rem; color: var(--ink); margin-bottom: 0.35rem; }
 
+    /* ---------- case studies ---------- */
+    .cs-list { padding: clamp(0.4rem, 1vw, 0.75rem) clamp(1.4rem, 2.6vw, 2.2rem); }
+    .cs-item {
+      display: grid; grid-template-columns: 3.2rem 1fr auto; gap: 0.4rem 1.4rem; align-items: start;
+      padding-block: clamp(1.25rem, 2vw, 1.6rem); color: inherit; text-decoration: none;
+      transition: background 0.25s ease;
+      margin-inline: calc(-1 * clamp(1.4rem, 2.6vw, 2.2rem)); padding-inline: clamp(1.4rem, 2.6vw, 2.2rem);
+    }
+    .cs-item + .cs-item { border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); }
+    .cs-item:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+    .cs-item__num { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; color: var(--ink-soft); padding-top: 0.35em; }
+    .cs-item__kind { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+    .cs-item__title { font-family: var(--serif); font-size: clamp(1.2rem, 1.7vw, 1.45rem); line-height: 1.22; color: var(--ink); margin-top: 0.35rem; transition: color 0.25s ease; text-wrap: balance; }
+    .cs-item:hover .cs-item__title { color: var(--accent); }
+    .cs-item__sf { margin-top: 0.5rem; max-width: 60ch; font-size: 0.94rem; line-height: 1.58; color: var(--ink-soft); }
+    .cs-item__meta { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--ink-soft); margin-top: 0.7rem; }
+    .cs-item__arrow { font-family: var(--mono); color: var(--accent); padding-top: 0.3em; opacity: 0.6; transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease; }
+    .cs-item:hover .cs-item__arrow { transform: translateX(3px); opacity: 1; }
+    .cs-more { display: flex; justify-content: flex-end; margin-top: 1rem; }
+    .product__link { display: inline-flex; align-items: center; gap: 0.4em; margin-top: 1rem; font-family: var(--mono); font-size: 0.78rem; color: var(--accent); text-decoration: none; }
+    .product__link:hover { gap: 0.7em; }
+    .product__link .arrow { transition: transform 0.3s ease; }
+    .product__link:hover .arrow { transform: translateX(3px); }
+
     /* ---------- experience ---------- */
     .xp-list { padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1.5rem, 2.6vw, 2.2rem); }
     .xp-row {
@@ -419,6 +443,9 @@
       .nav__inner { padding: 1rem 1.4rem; }
       .hero { padding-top: 4.5rem; }
       .xp-row, .edu-row { grid-template-columns: 1fr; gap: 0.3rem; }
+      .cs-item { grid-template-columns: 1fr; gap: 0.2rem; }
+      .cs-item__num { padding-top: 0; }
+      .cs-item__arrow { display: none; }
       .award-grid { grid-template-columns: 1fr; }
       .skill-group__header { flex-wrap: wrap; row-gap: 0.3rem; }
       .skill-group__teaser { white-space: normal; flex-basis: 100%; }
@@ -523,6 +550,7 @@
       <a class="wordmark" href="#">Sanay Shah</a>
       <nav class="nav__links">
         <a class="nav__link" href="#building">Building</a>
+        <a class="nav__link" href="#case-studies">Case studies</a>
         <a class="nav__link" href="#experience">Experience</a>
         <a class="nav__link" href="#hackathons">Hackathons</a>
         <a class="nav__link" href="#education">Education</a>
@@ -535,6 +563,7 @@
 
   <div class="mobile-nav" id="mobile-nav">
     <a href="#building">Building</a>
+    <a href="#case-studies">Case studies</a>
     <a href="#experience">Experience</a>
     <a href="#hackathons">Hackathons</a>
     <a href="#education">Education</a>
@@ -555,6 +584,7 @@
         <p class="hero__lead">First-Class Computer Science from Cardiff, July 2026. For the past year I've run the AI programme at Innovi Advisors: 15 stalled agents became one production system, and it's now becoming the firm's own product on a custom harness. My take on agents is basically that they should run like a good team, with a person holding the judgement calls. Off the clock: 43 flights in 45 weeks, a Fujifilm, and one day a bar of my own.</p>
         <p class="hero__now"><span class="hero__now-label">right now</span><span id="typewriter">building an AI agent team for accountants</span><span class="type-caret" aria-hidden="true"></span></p>
         <div class="hero__row">
+          <a class="chip" href="#case-studies">Case studies <span aria-hidden="true">&rarr;</span></a>
           <a class="chip" href="https://beau.quest" target="_blank" rel="noopener">beau.quest</a>
           <a class="chip" href="https://gonzo.guide" target="_blank" rel="noopener">gonzo.guide</a>
           <a class="chip" href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a>
@@ -601,6 +631,7 @@
                 </div>
               </div>
             </div>
+            <a class="product__link" href="case-studies/gonzo.html">Read the case study <span class="arrow" aria-hidden="true">&rarr;</span></a>
           </article>
 
           <!-- BEAU -->
@@ -633,7 +664,99 @@
                 </div>
               </div>
             </div>
+            <a class="product__link" href="case-studies/beau.html">Read the case study <span class="arrow" aria-hidden="true">&rarr;</span></a>
           </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CASE STUDIES ===== -->
+  <section class="section" id="case-studies" data-screen-label="Case studies">
+    <div class="wrap col2">
+      <div class="panel col2__head reveal">
+        <p class="label">Case studies</p>
+        <h2 class="h-sec">Seven pieces on putting AI into real work.</h2>
+        <p class="lead">The evidence behind the one-liners above, and the thinking that runs through all of it.</p>
+        <p class="bodytext-sm" style="margin-top: 1rem; max-width: 30ch;">Start with the essay if you want the philosophy first. The rest are the incidents, decisions and numbers it came from.</p>
+      </div>
+      <div class="col2__body">
+        <div class="panel cs-list reveal" style="--d:0.05s">
+          <!-- case-studies:list -->
+          <a class="cs-item" href="case-studies/why-we-stopped-at-80.html">
+            <span class="cs-item__num">01</span>
+            <span>
+              <span class="cs-item__kind"><span class="label">Essay</span><span class="status-pill">Start here</span></span>
+              <span class="cs-item__title" style="display:block">Why we stopped at 80%</span>
+              <span class="cs-item__sf" style="display:block">The AI did about 80% of the work in about a quarter of the time. Why we chose not to push it to 100, and the handful of things I now believe about putting AI into real work.</span>
+              <span class="cs-item__meta" style="display:block">August 2026 &middot; 6 min read</span>
+            </span>
+            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="cs-item" href="case-studies/fifteen-agents-one-front-desk.html">
+            <span class="cs-item__num">02</span>
+            <span>
+              <span class="cs-item__kind"><span class="label">Case study</span></span>
+              <span class="cs-item__title" style="display:block">Fifteen agents, one front desk: a year of building AI for an accountancy firm</span>
+              <span class="cs-item__sf" style="display:block">A year building agents for real accountants. Fifteen drafts became six, six became one, a sixteen-minute run became four, and the rules that stuck came out of the incidents.</span>
+              <span class="cs-item__meta" style="display:block">August 2026 &middot; 6 min read</span>
+            </span>
+            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="cs-item" href="case-studies/a-practice-team-in-software.html">
+            <span class="cs-item__num">03</span>
+            <span>
+              <span class="cs-item__kind"><span class="label">Working paper</span></span>
+              <span class="cs-item__title" style="display:block">A practice team in software</span>
+              <span class="cs-item__sf" style="display:block">The public cut of a working paper for the firm&#x27;s leadership. A manager model, a worker model and a human partner, with the roles enforced in code rather than requested in a prompt.</span>
+              <span class="cs-item__meta" style="display:block">August 2026 &middot; 5 min read</span>
+            </span>
+            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="cs-item" href="case-studies/the-engine-and-the-car.html">
+            <span class="cs-item__num">04</span>
+            <span>
+              <span class="cs-item__kind"><span class="label">Case study</span></span>
+              <span class="cs-item__title" style="display:block">The engine and the car: why I moved our AI system three times in one summer</span>
+              <span class="cs-item__sf" style="display:block">The same system ran on three different harnesses between June and August. Same skills, same integrations, same rules. Where the value actually sits when the model is a line in a config file.</span>
+              <span class="cs-item__meta" style="display:block">August 2026 &middot; 5 min read</span>
+            </span>
+            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="cs-item" href="case-studies/ten-things-pharmacy-group.html">
+            <span class="cs-item__num">05</span>
+            <span>
+              <span class="cs-item__kind"><span class="label">Case study</span></span>
+              <span class="cs-item__title" style="display:block">Ten things I learned putting AI into a national pharmacy group</span>
+              <span class="cs-item__sf" style="display:block">Three days of discovery that turned into building. Three agents shipped, four didn&#x27;t, most of the time went on access, and governance moved from the back of the proposal to the front.</span>
+              <span class="cs-item__meta" style="display:block">August 2026 &middot; 7 min read</span>
+            </span>
+            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="cs-item" href="case-studies/beau.html">
+            <span class="cs-item__num">06</span>
+            <span>
+              <span class="cs-item__kind"><span class="label">Case study</span></span>
+              <span class="cs-item__title" style="display:block">Beau: I built a matching app that watches how you react, then I turned it off</span>
+              <span class="cs-item__sf" style="display:block">A matching app that shows you a social moment and watches what you do, instead of asking you to describe yourself. Built solo to a working beta in two months, then wound down, and the question it left me with.</span>
+              <span class="cs-item__meta" style="display:block">August 2026 &middot; 4 min read</span>
+            </span>
+            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <a class="cs-item" href="case-studies/gonzo.html">
+            <span class="cs-item__num">07</span>
+            <span>
+              <span class="cs-item__kind"><span class="label">Case study</span></span>
+              <span class="cs-item__title" style="display:block">Gonzo: six personas, one argument, and a phone call to Google Maps</span>
+              <span class="cs-item__sf" style="display:block">A travel engine that searches in the local language, lets six personas argue over the answer, and checks every place against Google Maps before it&#x27;s allowed to recommend it.</span>
+              <span class="cs-item__meta" style="display:block">August 2026 &middot; 3 min read</span>
+            </span>
+            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <!-- /case-studies:list -->
+        </div>
+        <div class="cs-more reveal" style="--d:0.1s">
+          <a class="link" href="case-studies/index.html">Open the case studies as their own page <span class="arrow" aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
     </div>
@@ -1030,7 +1153,9 @@
                 '<li>Built custom MCP servers on the firm\'s own infrastructure: connectors to the practice management and document systems, Microsoft 365, and a deterministic calculation service, so every figure is computed exactly rather than by a language model.</li>' +
                 '<li>First full accounts-preparation job ran end to end on the new build in August 2026: working papers with every figure traced to source, and an adversarial AI review pass before any human review.</li></ul>' +
                 '<h4>Automations delivered</h4>' +
-                '<p>The VAT return auditor runs a tab-by-tab audit of Xero VAT exports against HMRC rules. The accounts-preparation agent runs a three-way reconciliation, from bank to ledger to trial balance, and raises a suspense report for anything unresolved. The client-onboarding agent builds a client\'s KYC and Permanent File through a guided interview, auto-filling from firm records and Companies House. Job-card automation auto-fills job-setup templates from prior-year data. Alfred, an onboarding and support agent that routes staff to the right tool, was the single biggest adoption win in staff testing.</p>'
+                '<p>The VAT return auditor runs a tab-by-tab audit of Xero VAT exports against HMRC rules. The accounts-preparation agent runs a three-way reconciliation, from bank to ledger to trial balance, and raises a suspense report for anything unresolved. The client-onboarding agent builds a client\'s KYC and Permanent File through a guided interview, auto-filling from firm records and Companies House. Job-card automation auto-fills job-setup templates from prior-year data. Alfred, an onboarding and support agent that routes staff to the right tool, was the single biggest adoption win in staff testing.</p>' +
+                '<h4>The long version</h4>' +
+                '<p>Three case studies cover this work in full: <a href="case-studies/fifteen-agents-one-front-desk.html" style="color: var(--accent);">Fifteen agents, one front desk</a>, <a href="case-studies/a-practice-team-in-software.html" style="color: var(--accent);">A practice team in software</a>, and <a href="case-studies/the-engine-and-the-car.html" style="color: var(--accent);">The engine and the car</a>.</p>'
         },
         steam: {
           title: 'Advanced Design Mentor',

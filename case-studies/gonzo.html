@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>document.documentElement.classList.add('js');</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gonzo | Sanay Shah</title>
+  <meta name="description" content="A travel engine that searches in the local language, lets six personas argue over the answer, and checks every place against Google Maps before it&#x27;s allowed to recommend it." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/case-study.css" />
+</head>
+
+<body>
+  <div class="stage" aria-hidden="true">
+    <img class="stage__img" src="../assets/hero.jpg" alt="" />
+    <div class="stage__veil"></div>
+    <div class="stage__grain"></div>
+  </div>
+
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <header class="nav panel" id="main-nav">
+    <div class="nav__inner">
+      <a class="wordmark" href="../index.html">Sanay Shah</a>
+      <nav class="nav__links">
+        <a class="nav__link" href="index.html">Case studies</a>
+        <a class="nav__link nav__link--long" href="../index.html#building">Building</a>
+        <a class="nav__link nav__link--long" href="../index.html#experience">Experience</a>
+        <a class="nav__link" href="../index.html#connect">Connect</a>
+        <button class="theme-toggle" type="button" aria-pressed="false">Dark</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="cs">
+    <article class="panel cs-article reveal">
+      <header class="cs-head">
+        <div class="cs-head__top">
+          <span class="label">Case study &middot; 07 of 07</span>
+          <a class="cs-back" href="index.html">&larr; All case studies</a>
+        </div>
+        <h1 class="cs-title">Gonzo: six personas, one argument, and a phone call to Google Maps</h1>
+        <p class="lead cs-standfirst">A travel engine that searches in the local language, lets six personas argue over the answer, and checks every place against Google Maps before it&#x27;s allowed to recommend it.</p>
+        <div class="cs-meta">
+          <img class="cs-meta__avatar" src="../Pictures/me.jpg" alt="Sanay Shah" />
+          <span><b>Sanay Shah</b></span>
+          <span class="cs-meta__dot">&middot;</span>
+          <span>August 2026</span>
+          <span class="cs-meta__dot">&middot;</span>
+          <span>3 min read</span>
+        </div>
+      </header>
+
+      <div class="cs-body">
+<p>Gonzo started at a hackathon in London in spring, run by Google DeepMind and Vercel, and I kept building it for a couple of months afterwards. It's a travel recommendation engine that finds the places guidebooks don't know about. The app is shelved. The idea underneath it is the one I use most.</p>
+<h2>The problem with "best restaurants in Prague"</h2>
+<p>Every travel recommendation product gives you the same fifteen places, because they all search the same English-language listicles. The stuff worth finding is on a Czech forum, argued over by people who live there, and it's a pub that doesn't have a website.</p>
+<p>Gonzo's first move is to search in the local language. The model works out a city's primary language and searches in that, so the query is "nejlepší hospoda Praha" and not "best pub Prague". You get what locals actually discuss.</p>
+<p>Its second move is a personality. You pick a lens. Local, who wants the place with no sign. Plot Twist, who wants the night to go somewhere odd. Foodie. Hangover, who needs grease and a dark room. Bougie. Budget. Each one sees the same city completely differently and surfaces different places.</p>
+<h2>Council mode</h2>
+<p>The bit I'm proudest of. Pick two or three personas and they argue.</p>
+<p>The cheap way to do this is one model pretending to be three people in one reply, and it's rubbish, because a single model roleplaying an argument always converges on a polite compromise. Gonzo does it properly. Each persona runs its own search in parallel. Then they debate in character across several sequential turns, each seeing what the others argued last round. A final synthesis call picks a winner and says why.</p>
+<p>This is an orchestration pattern dressed up as a game. I wanted to know how multi-agent debate behaves when the agents are actually separate, and the answer is: better, but you pay for it in calls, so you need a reason.</p>
+<h2>Nothing gets recommended unless it exists</h2>
+<p>Language models make up restaurants. Confidently, with an address. So every candidate Gonzo finds goes through a second check against Google Maps: does this place exist, and is it open right now? If it's closed, it's demoted and the search goes again. Nothing reaches the user that hasn't been verified against a live source.</p>
+<p>It also reads the weather. Rain gets you indoor picks. Clear skies get you a rooftop.</p>
+<p>And it burns what it shows you. Only the winning recommendations are saved per persona, city and user. Ask again and it has to go deeper rather than recycling the same picks. Repeated queries get weirder, which is the point.</p>
+<h2>The build</h2>
+<p>A web app plus a Telegram bot plus a Discord bot, all tied to one identity through a magic-link email login. A small, fast model with search grounding to find candidates, Maps grounding to validate, structured parsing between the two. Pricing was a free tier with the Local lens only and a cheap monthly plan for all six personas and council mode.</p>
+<p>The whole pipeline was designed to keep model calls low: one search call, one parse, one Maps check, retry only on failure. Council mode adds the parallel searches and the debate turns, and that's the one feature where the cost was allowed to go up because it was the feature.</p>
+<h2>What carried over</h2>
+<p>Two things went straight into my work building agents for firms.</p>
+<p>The verification layer. "The model says X, now check X against a source that can't hallucinate" is the same shape whether the source is Google Maps or a company's own written policy. Gonzo taught me to build that check in as a stage, not a hope.</p>
+<p>The orchestration discipline. Council mode is a small version of a manager model briefing separate workers and synthesising what comes back. The difference between one model pretending to be a team and an actual team of calls is a lesson I've since had to relearn at a much larger scale, in code, with money on it.</p>
+<h2>Where it is now</h2>
+<p>The app is shelved. I might rebuild it. The persona, though, never stopped. Gonzo lives on as the brain I use to plan my own trips and nights out: a persona brief, a taste profile, a scoring method with three axes, and a growing list of field lessons from places that were and weren't worth it. Any AI I plan travel with loads that first. The product went quiet. The point of it didn't.</p>
+      </div>
+
+      <footer class="cs-foot">
+        <div class="cs-foot__links">
+          <a class="chip" href="https://gonzo.guide" target="_blank" rel="noopener">gonzo.guide <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <p class="cs-disclosure">This piece was written with AI assistance, which I use as a dyslexia adjustment first provided through my Disabled Students&#x27; Allowance. Every fact in it comes from my own maintained record and has been checked by me.</p>
+      </footer>
+    </article>
+
+    <nav class="cs-pager reveal" style="--d:0.1s" aria-label="More case studies">
+      <a class="panel cs-pager__card is-prev" href="beau.html">
+        <span class="label">Previous</span>
+        <span class="cs-pager__title" style="display:block">Beau</span>
+      </a>
+      <span class="panel cs-pager__card is-empty is-next"></span>
+    </nav>
+    <div class="cs-pager__all reveal" style="--d:0.15s">
+      <a class="chip" href="index.html">All seven case studies</a>
+    </div>
+
+    <div class="footer reveal" style="--d:0.2s">
+      <span class="footer__mark">Sanay Shah</span>
+      <a href="mailto:sanays.mail@gmail.com">sanays.mail@gmail.com</a>
+      <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a>
+      <span class="footer__spacer"></span>
+      <span>London &middot; Singapore</span>
+      <span>&copy; 2026</span>
+    </div>
+
+  </main>
+
+  <script src="../assets/case-study.js"></script>
+</body>
+
+</html>
