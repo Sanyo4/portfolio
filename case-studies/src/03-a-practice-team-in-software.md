@@ -4,9 +4,7 @@ kind: Working paper
 title: A practice team in software
 standfirst: The public cut of a working paper for the firm's leadership. A manager model, a worker model and a human partner, with the roles enforced in code rather than requested in a prompt.
 date: August 2026
-intro: The public version of a working paper I wrote for the leadership of the accountancy firm I build for. The long version, with the architecture, lives on GitHub.
-link_label: The full paper on GitHub
-link_url: https://github.com/Sanyo4/vedas-pi
+intro: The public version of a working paper I wrote for the leadership of the accountancy firm I build for.
 ---
 
 ### The thesis

@@ -49,6 +49,6 @@ The second is the one I think about more. Beau infers psychological traits from 
 
 ### Why I stopped
 
-The beta delivered what it was for. Real users, a working pipeline, the architecture lessons, and the ethics question. The deployment is paused, nothing's deleted, and the code is on GitHub.
+The beta delivered what it was for. Real users, a working pipeline, the architecture lessons, and the ethics question. The deployment is paused and nothing's deleted.
 
 I'd describe it as taken solo through to a working beta. Not a startup, not a failure. A very good two months.
