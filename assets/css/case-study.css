@@ -1,0 +1,60 @@
+/* Case study pages. Tokens and primitives come from main.css. */
+
+.cs-page { background: var(--bg); }
+.cs-nav { transform: none; }
+.cs-nav__links { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2rem); margin-left: auto; margin-right: clamp(1rem, 3vw, 2.5rem); }
+.cs-nav__link { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nav-ink); opacity: 0.7; min-height: 44px; display: inline-flex; align-items: center; transition: opacity 0.3s; }
+.cs-nav__link:hover, .cs-nav__link.is-active { opacity: 1; color: var(--nav-ink); }
+.cs-nav .nav__theme { margin-left: 0; margin-right: 0; }
+@media (max-width: 720px) {
+  .cs-nav__links { gap: 0.9rem; margin-right: 0.9rem; }
+  .cs-nav__link:not(.is-active):not(:first-child) { display: none; }
+}
+
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 81; background: var(--sage); transform-origin: left; transform: scaleX(0); }
+
+.cs { padding: calc(var(--nav-h) + env(safe-area-inset-top) + clamp(2rem, 8vh, 6rem)) var(--gutter) clamp(3rem, 8vh, 6rem); max-width: 48rem; margin: 0 auto; }
+.cs-head { display: grid; gap: 1.4rem; margin-bottom: clamp(2rem, 5vh, 3.5rem); }
+.cs-head__top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.cs-back { color: var(--ink-3); min-height: 44px; display: inline-flex; align-items: center; transition: color 0.3s; }
+.cs-back:hover { color: var(--sage); }
+.cs-title { font-family: var(--serif); font-weight: 300; font-size: clamp(2.2rem, 1.4rem + 3.8vw, 4.6rem); line-height: 1.02; letter-spacing: -0.02em; text-wrap: balance; }
+.cs-standfirst { font-family: var(--serif); font-weight: 300; font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.7rem); line-height: 1.3; color: var(--ink-2); text-wrap: pretty; }
+.cs-meta { display: flex; align-items: center; gap: 0.7rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+.cs-meta__avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line-2); }
+.cs-intro { font-style: italic; color: var(--ink-2); padding: 1rem 1.2rem; border-left: 1px solid var(--sage); margin-bottom: 2rem; font-size: 1.02rem; line-height: 1.55; }
+
+.cs-body { font-size: clamp(1.08rem, 1rem + 0.35vw, 1.22rem); line-height: 1.62; }
+.cs-body > * + * { margin-top: 1.25em; }
+.cs-body p { text-wrap: pretty; }
+.cs-body p:first-of-type::first-letter { font-family: var(--serif); font-size: 3.2em; line-height: 0.8; float: left; padding: 0.12em 0.12em 0 0; color: var(--sage); }
+.cs-body h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.6rem, 1.25rem + 1.4vw, 2.4rem); line-height: 1.1; letter-spacing: -0.01em; margin-top: 2.2em; display: grid; grid-template-columns: auto 1fr; gap: 0.9rem; align-items: baseline; text-wrap: balance; }
+.cs-h2__n { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em; color: var(--sage); }
+.cs-body a { color: var(--ink); border-bottom: 1px solid var(--line-2); transition: border-color 0.3s, color 0.3s; }
+.cs-body a:hover { color: var(--sage); border-color: var(--sage); }
+.cs-body strong { font-weight: 500; color: var(--ink); }
+.cs-body em { font-style: italic; }
+
+.cs-foot { margin-top: 3rem; padding-top: 1.6rem; border-top: 1px solid var(--line); display: grid; gap: 1.4rem; justify-items: start; }
+.cs-foot__link { text-decoration: none; }
+.cs-disclosure { font-size: 0.86rem; line-height: 1.55; color: var(--ink-3); max-width: 60ch; }
+
+.cs-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 3rem; }
+.cs-pager__card { display: grid; gap: 0.6rem; align-content: start; padding: 1.2rem 1.3rem; border: 1px solid var(--line); min-height: 7rem; transition: border-color 0.3s, background 0.3s; }
+.cs-pager__card.is-next { text-align: right; justify-items: end; }
+.cs-pager__card.is-empty { border-style: dashed; opacity: 0.4; }
+.cs-pager__card:not(.is-empty):hover { border-color: var(--sage); background: rgba(var(--sage-rgb), 0.06); color: var(--ink); }
+.cs-pager__title { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; line-height: 1.15; }
+.cs-pager__all { margin-top: 1.5rem; }
+@media (max-width: 560px) { .cs-pager { grid-template-columns: 1fr; } .cs-pager__card.is-next { text-align: left; justify-items: start; } }
+
+.cs-foot-bar a:hover { color: var(--sage); }
+
+/* hub */
+.hub { padding: calc(var(--nav-h) + env(safe-area-inset-top) + clamp(2rem, 8vh, 6rem)) var(--gutter) clamp(3rem, 8vh, 6rem); max-width: 72rem; margin: 0 auto; }
+.hub__head { display: grid; gap: 1.2rem; max-width: 46rem; margin-bottom: clamp(2.5rem, 7vh, 5rem); }
+.hub__title { font-family: var(--serif); font-weight: 300; font-size: clamp(2.3rem, 1.4rem + 4vw, 5rem); line-height: 1.02; letter-spacing: -0.02em; text-wrap: balance; }
+.hub__title em { font-style: italic; color: var(--sage); }
+.hub__lead { font-family: var(--serif); font-weight: 300; font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.7rem); line-height: 1.3; color: var(--ink-2); }
+.hub__body { color: var(--ink-2); max-width: 58ch; }
+.hub__list { margin: 0; }

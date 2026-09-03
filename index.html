@@ -1,1437 +1,664 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="no-js">
 <head>
-  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.classList.replace('no-js','js');</script>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sanay Shah: Product Builder and Founder</title>
-  <meta name="description" content="Sanay Shah builds AI agent systems and the governance that makes them worth trusting. 43 flights in 45 weeks, a Fujifilm, and one day a bar of his own. Automation Project Manager at Innovi Advisors." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Sanay Shah</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230d1110%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%239db08c%27/%3E%3C/svg%3E" />
+  <meta name="description" content="Sanay Shah builds AI products end to end, and thinks hard about what they should do. London, open to APAC." />
+  <meta name="theme-color" content="#0d1110" />
+  <meta name="color-scheme" content="dark light" />
+  <script>try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Source+Sans+3:wght@400;500;600&display=swap"
-    rel="stylesheet" />
-  <style>
-    :root {
-      --ground: #ECEAE3;
-      --ground-2: #E2E0D7;
-      --ink: #2A2723;
-      --ink-soft: #5A564E;
-      --accent: #5A6B4F;
-
-      --mono: "IBM Plex Mono", ui-monospace, monospace;
-      --serif: "Newsreader", Georgia, serif;
-      --sans: "Source Sans 3", system-ui, sans-serif;
-
-      --panel-tint: 60;
-      --panel-blur: 14px;
-      --hero-focus: 38%;
-      --scroll: 0;
-      --pan: 1;
-      --mist-base: 0.22;
-      --mist-range: 0.72;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html {
-      background: var(--ground);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: transparent;
-      color: var(--ink);
-      font-family: var(--sans);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    img { max-width: 100%; display: block; }
-
-    /* ---------- continuous backdrop ---------- */
-    .stage { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
-
-    .stage__img {
-      position: absolute;
-      top: -3%; left: -3%;
-      width: 106%; height: 106%;
-      object-fit: cover;
-      object-position: 50% var(--hero-focus);
-      transform: translate3d(calc(var(--scroll) * var(--pan) * -5%), 0, 0) scale(calc(1 + var(--scroll) * var(--pan) * 0.08));
-      transition: transform 0.25s linear;
-      will-change: transform;
-    }
-
-    .stage__veil {
-      position: absolute; inset: 0;
-      background: var(--ground);
-      opacity: calc(var(--mist-base) + var(--scroll) * var(--mist-range));
-      transition: opacity 0.25s linear;
-    }
-
-    .stage__grain {
-      position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
-      opacity: 0.05;
-      mix-blend-mode: multiply;
-      pointer-events: none;
-    }
-
-    /* ---------- shared frosted panel ---------- */
-    .panel {
-      border-radius: 4px;
-      background: color-mix(in srgb, var(--ground) calc(var(--panel-tint) * 1%), transparent);
-      -webkit-backdrop-filter: blur(var(--panel-blur)) saturate(118%);
-      backdrop-filter: blur(var(--panel-blur)) saturate(118%);
-      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent);
-    }
-
-    /* ---------- shared type ---------- */
-    .label {
-      font-family: var(--mono);
-      font-weight: 500;
-      font-size: 0.72rem;
-      letter-spacing: 0.17em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-    }
-
-    .h-sec {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: clamp(1.7rem, 3vw, 2.7rem);
-      line-height: 1.16;
-      letter-spacing: -0.012em;
-      color: var(--ink);
-      text-wrap: balance;
-    }
-
-    .lead {
-      font-family: var(--serif);
-      font-weight: 300;
-      font-size: clamp(1.15rem, 1.8vw, 1.5rem);
-      line-height: 1.4;
-      color: var(--ink);
-      text-wrap: pretty;
-    }
-
-    .bodytext { font-size: clamp(1rem, 1.1vw, 1.08rem); line-height: 1.62; color: var(--ink-soft); text-wrap: pretty; }
-    .bodytext-sm { font-size: 0.94rem; line-height: 1.6; color: var(--ink-soft); }
-
-    .wrap { width: min(70rem, 100%); margin: 0 auto; padding-inline: clamp(1.5rem, 5vw, 4.5rem); }
-
-    .section { position: relative; padding-block: clamp(3.5rem, 9vh, 7rem); }
-
-    .col2 {
-      display: grid;
-      grid-template-columns: minmax(13rem, 17rem) 1fr;
-      gap: clamp(2rem, 4vw, 4.5rem);
-      align-items: start;
-    }
-
-    .col2__body { min-width: 0; }
-    .col2__head {
-      position: sticky; top: clamp(5.5rem, 10vh, 7rem);
-      padding: clamp(1.3rem, 2vw, 1.7rem) clamp(1.4rem, 2.2vw, 1.8rem);
-    }
-    .col2__head .h-sec { margin-top: 0.8rem; }
-    .col2__head .lead { margin-top: 1.1rem; max-width: 26ch; font-size: clamp(1.05rem, 1.4vw, 1.22rem); }
-
-    .head-bubble {
-      display: inline-block;
-      max-width: 34rem;
-      padding: clamp(1.3rem, 2vw, 1.7rem) clamp(1.4rem, 2.2vw, 1.8rem);
-    }
-
-    /* ---------- links ---------- */
-    .link {
-      display: inline-flex; align-items: center; gap: 0.55em; flex-shrink: 0;
-      font-family: var(--mono); font-size: 0.9rem; letter-spacing: 0.02em;
-      color: var(--ink); text-decoration: none; padding-bottom: 0.3em;
-      border-bottom: 1px solid color-mix(in srgb, var(--ink) 32%, transparent);
-      transition: border-color 0.4s ease, gap 0.4s ease;
-    }
-    .link .arrow { color: var(--accent); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1); }
-    .link:hover { border-color: var(--accent); gap: 0.85em; }
-    .link:hover .arrow { transform: translateX(3px); }
-
-    .chip {
-      display: inline-flex; align-items: center; gap: 0.5em;
-      font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.02em;
-      color: var(--ink); text-decoration: none;
-      padding: 0.55rem 1rem; border-radius: 999px;
-      border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
-      transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
-    }
-    .chip:hover { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); }
-
-    .tag {
-      display: inline-block;
-      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.03em;
-      color: var(--ink-soft);
-      padding: 0.3rem 0.65rem; border-radius: 999px;
-      border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
-      white-space: nowrap;
-    }
-
-    .status-pill {
-      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent);
-      padding: 0.3rem 0.7rem; border-radius: 999px;
-      border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
-      white-space: nowrap;
-    }
-
-    /* ---------- nav ---------- */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 40;
-      border-bottom: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
-    }
-    .nav__inner {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.1rem clamp(1.5rem, 5vw, 4.5rem);
-    }
-    .wordmark { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 1.2rem; color: var(--ink); text-decoration: none; }
-    .nav__links { display: flex; align-items: center; gap: clamp(1.2rem, 2vw, 2rem); }
-    .nav__link {
-      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--ink-soft); text-decoration: none; transition: color 0.25s ease;
-    }
-    .nav__link:hover { color: var(--accent); }
-    .nav__toggle {
-      display: none; width: 40px; height: 40px; align-items: center; justify-content: center;
-      background: none; border: none; cursor: pointer; color: var(--ink);
-    }
-    .nav__toggle span { display: block; width: 20px; height: 1px; background: var(--ink); position: relative; }
-    .nav__toggle span::before, .nav__toggle span::after {
-      content: ''; position: absolute; left: 0; width: 20px; height: 1px; background: var(--ink); transition: transform 0.25s ease;
-    }
-    .nav__toggle span::before { top: -6px; }
-    .nav__toggle span::after { top: 6px; }
-
-    .mobile-nav {
-      position: fixed; inset: 0; z-index: 39;
-      background: color-mix(in srgb, var(--ground) 96%, transparent);
-      backdrop-filter: blur(20px);
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.6rem;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-    }
-    .mobile-nav.active { opacity: 1; pointer-events: auto; }
-    .mobile-nav a { font-family: var(--serif); font-size: 1.9rem; color: var(--ink); text-decoration: none; }
-    .mobile-nav a:hover { color: var(--accent); }
-
-    /* ---------- hero ---------- */
-    .hero { position: relative; min-height: 100svh; display: flex; align-items: center; padding-top: 5rem; }
-    .hero__panel { padding: clamp(1.75rem, 3.4vw, 2.75rem) clamp(1.75rem, 3.4vw, 2.9rem); width: min(38rem, 100%); }
-    .hero__byline { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.4rem; }
-    .hero__avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent); }
-    .hero__byline-text { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.04em; color: var(--ink-soft); }
-    .hero__byline-text b { color: var(--ink); font-weight: 500; }
-
-    .hero__headline {
-      font-family: var(--serif); font-weight: 400;
-      font-size: clamp(1.9rem, 4vw, 3.1rem);
-      line-height: 1.14; letter-spacing: -0.01em; color: var(--ink);
-      text-wrap: balance;
-    }
-    .hero__headline i { font-style: italic; color: var(--accent); }
-
-    .hero__lead { margin-top: 1.2rem; font-size: clamp(1rem, 1.2vw, 1.12rem); line-height: 1.6; color: var(--ink-soft); max-width: 44ch; }
-
-    .hero__row {
-      display: flex; flex-wrap: wrap; gap: 0.6rem;
-      margin-top: clamp(1.4rem, 2.4vw, 1.9rem);
-      padding-top: clamp(1.2rem, 2vw, 1.5rem);
-      border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-    }
-
-    /* ---------- reveal ---------- */
-    .js .reveal {
-      opacity: 0; transform: translateY(16px);
-      transition: opacity 1s cubic-bezier(0.22,1,0.36,1), transform 1s cubic-bezier(0.22,1,0.36,1);
-      transition-delay: var(--d, 0s);
-    }
-    .js .hero.is-in .reveal, .js .section.is-in .reveal { opacity: 1; transform: none; }
-
-    @media (prefers-reduced-motion: reduce) {
-      .js .reveal { transition: none; opacity: 1; transform: none; }
-      .stage__img { transform: none !important; }
-    }
-
-    /* ---------- products ---------- */
-    .product-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: clamp(1rem, 1.6vw, 1.4rem); }
-    .product { padding: clamp(1.5rem, 2.6vw, 2.2rem); min-width: 0; }
-    .product__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-    .product__title { font-family: var(--serif); font-size: clamp(1.5rem, 2.2vw, 1.9rem); color: var(--ink); }
-    .product__subtitle { font-family: var(--mono); font-size: 0.76rem; color: var(--accent); margin-top: 0.5rem; letter-spacing: 0.02em; }
-    .product__desc { margin-top: 0.9rem; }
-    .product__toggle {
-      display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.3rem;
-      font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft);
-      background: none; border: none; cursor: pointer; padding: 0.4rem 0;
-      border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-      width: 100%; justify-content: space-between;
-    }
-    .product__toggle:hover { color: var(--accent); }
-    .product__toggle svg { transition: transform 0.3s ease; flex-shrink: 0; }
-    .product__toggle.open svg { transform: rotate(180deg); }
-    .product__details { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.16,1,0.3,1); }
-    .product__details.open { max-height: 900px; }
-    .product__detail-grid { display: grid; gap: 1.1rem; padding-top: 1.1rem; }
-    .product__detail h4 { font-family: var(--serif); font-weight: 500; font-size: 1.02rem; color: var(--ink); margin-bottom: 0.35rem; }
-
-    /* ---------- case studies ---------- */
-    .cs-list { padding: clamp(0.4rem, 1vw, 0.75rem) clamp(1.4rem, 2.6vw, 2.2rem); }
-    .cs-item {
-      display: grid; grid-template-columns: 3.2rem 1fr auto; gap: 0.4rem 1.4rem; align-items: start;
-      padding-block: clamp(1.25rem, 2vw, 1.6rem); color: inherit; text-decoration: none;
-      transition: background 0.25s ease;
-      margin-inline: calc(-1 * clamp(1.4rem, 2.6vw, 2.2rem)); padding-inline: clamp(1.4rem, 2.6vw, 2.2rem);
-    }
-    .cs-item + .cs-item { border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); }
-    .cs-item:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
-    .cs-item__num { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; color: var(--ink-soft); padding-top: 0.35em; }
-    .cs-item__kind { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
-    .cs-item__title { font-family: var(--serif); font-size: clamp(1.2rem, 1.7vw, 1.45rem); line-height: 1.22; color: var(--ink); margin-top: 0.35rem; transition: color 0.25s ease; text-wrap: balance; }
-    .cs-item:hover .cs-item__title { color: var(--accent); }
-    .cs-item__sf { margin-top: 0.5rem; max-width: 60ch; font-size: 0.94rem; line-height: 1.58; color: var(--ink-soft); }
-    .cs-item__meta { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--ink-soft); margin-top: 0.7rem; }
-    .cs-item__arrow { font-family: var(--mono); color: var(--accent); padding-top: 0.3em; opacity: 0.6; transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.25s ease; }
-    .cs-item:hover .cs-item__arrow { transform: translateX(3px); opacity: 1; }
-    .cs-more { display: flex; justify-content: flex-end; margin-top: 1rem; }
-    .product__link { display: inline-flex; align-items: center; gap: 0.4em; margin-top: 1rem; font-family: var(--mono); font-size: 0.78rem; color: var(--accent); text-decoration: none; }
-    .product__link:hover { gap: 0.7em; }
-    .product__link .arrow { transition: transform 0.3s ease; }
-    .product__link:hover .arrow { transform: translateX(3px); }
-
-    /* ---------- experience ---------- */
-    .xp-list { padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1.5rem, 2.6vw, 2.2rem); }
-    .xp-row {
-      display: grid; grid-template-columns: minmax(7rem, 10rem) 1fr; gap: 0.5rem 1.8rem;
-      padding-block: clamp(1.3rem, 2vw, 1.7rem);
-    }
-    .xp-row + .xp-row { border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); }
-    .xp-row[data-modal] { cursor: pointer; }
-    .xp-row__date { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.06em; color: var(--ink-soft); padding-top: 0.2em; }
-    .xp-row__title { font-family: var(--serif); font-size: clamp(1.2rem, 1.6vw, 1.4rem); color: var(--ink); line-height: 1.2; }
-    .xp-row__org { font-family: var(--mono); font-size: 0.76rem; color: var(--ink-soft); margin-top: 0.3rem; }
-    .xp-row__desc { margin-top: 0.6rem; max-width: 58ch; }
-    .xp-row__hint {
-      display: inline-flex; align-items: center; gap: 0.4em; margin-top: 0.7rem;
-      font-family: var(--mono); font-size: 0.72rem; color: var(--accent); opacity: 0; transition: opacity 0.25s ease;
-    }
-    .xp-row[data-modal]:hover .xp-row__hint { opacity: 1; }
-    .xp-row[data-modal]:hover .xp-row__title { color: var(--accent); }
-
-    /* ---------- hackathons ---------- */
-    .hack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 1.6vw, 1.4rem); }
-    .hack { overflow: hidden; }
-    .hack[data-modal] { cursor: pointer; }
-    .hack img { width: 100%; aspect-ratio: 16/10; object-fit: cover; }
-    .hack__body { padding: clamp(1.25rem, 2vw, 1.6rem); }
-    .hack__badge { display: block; margin-bottom: 0.6rem; }
-    .hack__title { font-family: var(--serif); font-size: clamp(1.15rem, 1.6vw, 1.35rem); color: var(--ink); }
-    .hack__org { font-family: var(--mono); font-size: 0.76rem; color: var(--ink-soft); margin-top: 0.35rem; }
-    .hack__desc { margin-top: 0.65rem; }
-
-    /* ---------- education ---------- */
-    .edu-list { padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1.5rem, 2.6vw, 2.2rem); }
-    .edu-row { display: grid; grid-template-columns: minmax(7rem, 10rem) 1fr; gap: 0.5rem 1.8rem; padding-block: clamp(1.3rem, 2vw, 1.7rem); }
-    .edu-row + .edu-row { border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); }
-    .edu-row__date { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.06em; color: var(--ink-soft); padding-top: 0.2em; }
-    .edu-row__title { font-family: var(--serif); font-size: clamp(1.2rem, 1.6vw, 1.4rem); color: var(--ink); }
-    .edu-row__org { font-family: var(--mono); font-size: 0.76rem; color: var(--ink-soft); margin-top: 0.3rem; }
-    .edu-row__desc { margin-top: 0.6rem; max-width: 58ch; }
-    .edu-row__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
-
-    /* ---------- skills ---------- */
-    .skill-panel { padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1.5rem, 2.6vw, 2.2rem); }
-    .skill-group + .skill-group { border-top: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); }
-    .skill-group__header {
-      display: flex; align-items: center; gap: 1.2rem; width: 100%;
-      padding: clamp(1.1rem, 1.8vw, 1.4rem) 0;
-      background: none; border: none; cursor: pointer; text-align: left;
-    }
-    .skill-group__label { font-family: var(--serif); font-size: clamp(1.1rem, 1.5vw, 1.28rem); color: var(--ink); flex-shrink: 0; min-width: 12rem; }
-    .skill-group__teaser {
-      font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft);
-      flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-      transition: opacity 0.2s ease;
-    }
-    .skill-group.open .skill-group__teaser { opacity: 0; }
-    .skill-group__chevron { flex-shrink: 0; color: var(--ink-soft); transition: transform 0.3s ease, color 0.3s ease; }
-    .skill-group.open .skill-group__chevron { transform: rotate(180deg); color: var(--accent); }
-    .skill-group__content { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1); }
-    .skill-group.open .skill-group__content { max-height: 320px; }
-    .skill-group__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; padding-bottom: clamp(1.1rem, 1.8vw, 1.4rem); }
-
-    /* ---------- awards ---------- */
-    .award-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 1.6vw, 1.4rem); }
-    .award { overflow: hidden; }
-    .award img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
-    .award__body { padding: clamp(1rem, 1.6vw, 1.3rem); }
-    .award__title { font-family: var(--serif); font-size: 1.12rem; color: var(--ink); }
-    .award__sub { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-soft); margin-top: 0.3rem; }
-
-    /* ---------- close ---------- */
-    .close { min-height: 60svh; display: flex; flex-direction: column; justify-content: center; }
-    .h-close {
-      font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 4.2vw, 3.4rem);
-      line-height: 1.14; letter-spacing: -0.015em; color: var(--ink); max-width: 18ch; text-wrap: balance;
-    }
-    .close__lead { margin-top: 1rem; max-width: 40ch; }
-    .close__links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: clamp(1.6rem, 2.6vw, 2.2rem); }
-
-    .footer {
-      margin-top: clamp(3.5rem, 8vh, 6rem); padding-top: 1.6rem;
-      border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-      display: flex; flex-wrap: wrap; gap: 0.6rem 2rem; align-items: baseline;
-      font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.06em; color: var(--ink-soft);
-    }
-    .footer__mark { color: var(--ink); font-weight: 500; letter-spacing: 0.02em; font-family: var(--serif); font-style: italic; font-size: 0.95rem; }
-    .footer__spacer { flex: 1; }
-
-    /* ---------- modal ---------- */
-    .modal-overlay {
-      position: fixed; inset: 0; z-index: 60;
-      background: color-mix(in srgb, var(--ink) 45%, transparent);
-      backdrop-filter: blur(4px);
-      display: none; align-items: center; justify-content: center; padding: 1.2rem;
-    }
-    .modal-overlay.active { display: flex; }
-    .modal-box {
-      background: color-mix(in srgb, var(--ground) 97%, transparent);
-      border-radius: 6px; max-width: 640px; width: 100%; max-height: 85vh; overflow-y: auto;
-      padding: clamp(1.75rem, 3vw, 2.5rem); position: relative;
-      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 10%, transparent);
-    }
-    .modal-close {
-      position: absolute; top: 1.1rem; right: 1.1rem; width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      background: none; border: none; cursor: pointer; color: var(--ink-soft);
-      font-family: var(--mono); font-size: 1.1rem;
-    }
-    .modal-close:hover { color: var(--ink); }
-    .modal-body img { width: 100%; border-radius: 4px; margin-bottom: 1.3rem; max-height: 260px; object-fit: cover; }
-    .modal-body h2 { font-family: var(--serif); font-size: clamp(1.4rem, 2.2vw, 1.8rem); color: var(--ink); padding-right: 2rem; }
-    .modal-body .modal-sub { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-soft); margin-top: 0.5rem; }
-    .modal-body .modal-date { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); margin-top: 0.3rem; }
-    .modal-body ul { margin-top: 1.2rem; padding-left: 1.2rem; }
-    .modal-body ul li { font-size: 0.95rem; line-height: 1.6; color: var(--ink-soft); margin-bottom: 0.7rem; }
-    .modal-body p { font-size: 0.95rem; line-height: 1.6; color: var(--ink-soft); margin-top: 0.8rem; }
-    .modal-body strong, .modal-body b { color: var(--ink); font-weight: 600; }
-    .modal-body h4 { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); margin-top: 1.3rem; margin-bottom: 0.4rem; }
-
-    /* ---------- mobile ---------- */
-    @media (max-width: 860px) {
-      .col2 { grid-template-columns: 1fr; gap: clamp(1.6rem, 4vw, 2.5rem); }
-      .col2__head { position: static; max-width: 38rem; }
-      .nav__links { display: none; }
-      .nav__toggle { display: flex; }
-    }
-
-    @media (max-width: 720px) {
-      .product-grid, .hack-grid { grid-template-columns: 1fr; }
-      .award-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 600px) {
-      .nav__inner { padding: 1rem 1.4rem; }
-      .hero { padding-top: 4.5rem; }
-      .xp-row, .edu-row { grid-template-columns: 1fr; gap: 0.3rem; }
-      .cs-item { grid-template-columns: 1fr; gap: 0.2rem; }
-      .cs-item__num { padding-top: 0; }
-      .cs-item__arrow { display: none; }
-      .award-grid { grid-template-columns: 1fr; }
-      .skill-group__header { flex-wrap: wrap; row-gap: 0.3rem; }
-      .skill-group__teaser { white-space: normal; flex-basis: 100%; }
-    }
-
-    /* ---------- 2026-08 additions: dark theme, hero ticker, affordances ---------- */
-    [data-theme="dark"] {
-      --ground: #191713; --ground-2: #211E19;
-      --ink: #E9E5DA; --ink-soft: #A9A294; --accent: #97A886;
-      --panel-tint: 42; --mist-base: 0.55; --mist-range: 0.38;
-      color-scheme: dark;
-    }
-    [data-theme="dark"] .stage__img { filter: brightness(0.5) saturate(0.85); }
-    [data-theme="dark"] .stage__grain { mix-blend-mode: screen; opacity: 0.04; }
-
-    .hero__now {
-      margin-top: 1.1rem; font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft);
-      display: flex; align-items: baseline; gap: 0.6em; flex-wrap: wrap;
-    }
-    .hero__now-label { font-size: 0.68rem; letter-spacing: 0.17em; text-transform: uppercase; color: var(--accent); }
-    /* every phrase sits in the same grid cell, so the line is always as tall as the longest one */
-    .hero__now-slot { display: grid; flex: 1 1 auto; min-width: 0; }
-    .hero__now-slot > * { grid-area: 1 / 1; }
-    .hero__now-ghost { visibility: hidden; pointer-events: none; padding-right: 3px; }
-    .type-caret {
-      display: inline-block; width: 1px; height: 1em; background: var(--accent);
-      margin-left: 2px; transform: translateY(0.15em);
-      animation: caret-blink 1.1s steps(1) infinite;
-    }
-    @keyframes caret-blink { 50% { opacity: 0; } }
-
-    .xp-row[data-modal] .xp-row__hint { opacity: 0.6; }
-    .xp-row[data-modal]:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
-    .hack[data-modal] { transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s ease; }
-    .hack[data-modal]:hover {
-      transform: translateY(-3px);
-      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent), 0 10px 30px -18px color-mix(in srgb, var(--ink) 45%, transparent);
-    }
-    .hack[data-modal] .hack__body::after {
-      content: "Read the story \2192";
-      display: inline-flex; margin-top: 0.8rem;
-      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em;
-      color: var(--accent); opacity: 0.6; transition: opacity 0.25s ease;
-    }
-    .hack[data-modal]:hover .hack__body::after { opacity: 1; }
-    @media (prefers-reduced-motion: reduce) {
-      .type-caret { animation: none; }
-      .hack[data-modal] { transition: none; }
-      .hack[data-modal]:hover { transform: none; }
-    }
-
-    .nav__link.is-active { color: var(--accent); }
-    .theme-toggle {
-      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
-      background: none; border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
-      border-radius: 999px; padding: 0.35em 0.9em; cursor: pointer; color: var(--ink-soft);
-      transition: color 0.25s ease, border-color 0.25s ease;
-    }
-    .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
-
-    /* ---------- the 25th hour: floating lore window ---------- */
-    .lore-fab {
-      position: fixed; right: 1.2rem; bottom: 1.2rem; z-index: 45;
-      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--ink); background: color-mix(in srgb, var(--ground) 82%, transparent);
-      -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-      border: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
-      border-radius: 999px; padding: 0.55em 1.1em; cursor: pointer;
-      transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
-    }
-    .lore-fab:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
-    .lore-window {
-      position: fixed; right: 1.2rem; bottom: 4.4rem; z-index: 45;
-      width: min(23rem, calc(100vw - 2.4rem));
-      padding: 1.3rem 1.4rem 1.2rem;
-      display: none;
-    }
-    .lore-window.open { display: block; }
-    .lore-window__head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
-    .lore-window__title { font-family: var(--serif); font-size: 1.25rem; color: var(--ink); }
-    .lore-window__close { background: none; border: none; cursor: pointer; color: var(--ink-soft); font-size: 1.05rem; line-height: 1; padding: 0.2rem; }
-    .lore-window__close:hover { color: var(--accent); }
-    .lore-window__sub { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-top: 0.25rem; }
-    .lore-window__drop { margin-top: 0.9rem; min-height: 5em; font-size: 0.95rem; line-height: 1.6; color: var(--ink); }
-    .lore-window__drop .type-caret { margin-left: 3px; }
-    .lore-shuffle {
-      margin-top: 0.9rem; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
-      background: none; border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent); border-radius: 999px;
-      padding: 0.4em 1em; cursor: pointer; color: var(--ink-soft);
-      transition: color 0.25s ease, border-color 0.25s ease;
-    }
-    .lore-shuffle:hover { color: var(--accent); border-color: var(--accent); }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300&text=%E4%BA%8C%E5%8D%81%E4%BA%94%E6%99%82%E9%96%93%E7%9B%AE%E6%9D%B1%E4%BA%AC%E6%98%9F%E3%83%AB%E3%83%BC%E3%83%88&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <script type="importmap">
+    {"imports": {"three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
+  <script type="module" src="assets/js/terrain.js"></script>
+  <script src="assets/js/main.js" defer></script>
 </head>
-
 <body>
-  <div class="stage" aria-hidden="true">
-    <img class="stage__img" src="assets/hero.jpg" alt="" />
-    <div class="stage__veil"></div>
-    <div class="stage__grain"></div>
+
+  <!-- loader -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__mark">sanay<i>.</i>space</span>
+      <span class="loader__count" id="loader-count">00</span>
+      <span class="loader__line">loading the 25th hour</span>
+    </div>
   </div>
 
-  <!-- ===== NAV ===== -->
-  <header class="nav panel" id="main-nav">
-    <div class="nav__inner">
-      <a class="wordmark" href="#">Sanay Shah</a>
-      <nav class="nav__links">
-        <a class="nav__link" href="#building">Building</a>
-        <a class="nav__link" href="#case-studies">Case studies</a>
-        <a class="nav__link" href="#experience">Experience</a>
-        <a class="nav__link" href="#hackathons">Hackathons</a>
-        <a class="nav__link" href="#education">Education</a>
-        <a class="nav__link" href="#connect">Connect</a>
-        <button class="theme-toggle" type="button" aria-pressed="false">Dark</button>
-      </nav>
-      <button class="nav__toggle" id="nav-toggle" aria-label="Open menu"><span></span></button>
+  <!-- atmosphere -->
+  <div class="grain" aria-hidden="true"></div>
+  <canvas class="terrain" id="terrain" aria-hidden="true"></canvas>
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+
+  <!-- nav -->
+  <header class="nav" id="nav">
+    <a class="nav__mark" href="#top" data-cursor="link">sanay<i>.</i>space</a>
+    <div class="nav__mid">
+      <span class="nav__clock" id="clock" aria-label="Time in London">London 00:00</span>
     </div>
+    <button class="nav__theme" id="theme-btn" type="button" aria-pressed="false" data-cursor="link"><span class="nav__theme-label" data-dark="Light" data-light="Dark"></span><i class="nav__theme-dot"></i></button>
+    <button class="nav__menu" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-cursor="link">
+      <span class="nav__menu-label" data-open="Menu" data-close="Close"></span>
+      <span class="nav__menu-lines"><i></i><i></i></span>
+    </button>
   </header>
 
-  <div class="mobile-nav" id="mobile-nav">
-    <a href="#building">Building</a>
-    <a href="#case-studies">Case studies</a>
-    <a href="#experience">Experience</a>
-    <a href="#hackathons">Hackathons</a>
-    <a href="#education">Education</a>
-    <a href="#skills">Skills</a>
-    <a href="#connect">Connect</a>
-    <button class="theme-toggle" type="button" aria-pressed="false">Dark</button>
-  </div>
+  <nav class="menu" id="menu" aria-hidden="true">
+    <div class="menu__bg"></div>
+    <div class="menu__inner">
+      <ol class="menu__list">
+        <li><a href="#building" data-cursor="link"><span class="menu__num">01</span><span class="menu__word">Building</span></a></li>
+        <li><a href="#case-studies" data-cursor="link"><span class="menu__num">02</span><span class="menu__word">Case studies</span></a></li>
+        <li><a href="#experience" data-cursor="link"><span class="menu__num">03</span><span class="menu__word">Experience</span></a></li>
+        <li><a href="#skills" data-cursor="link"><span class="menu__num">04</span><span class="menu__word">Skills</span></a></li>
+        <li><a href="#off-the-clock" data-cursor="link"><span class="menu__num">05</span><span class="menu__word">Off the clock</span></a></li>
+        <li><a href="#contact" data-cursor="link"><span class="menu__num">06</span><span class="menu__word">Contact</span></a></li>
+      </ol>
+      <div class="menu__foot">
+        <a href="mailto:sanays.mail@gmail.com" data-cursor="link">sanays.mail@gmail.com</a>
+        <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener" data-cursor="link">LinkedIn</a>
+        <a href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener" data-cursor="link">@sanay.photography</a>
+        <a href="case-studies/index.html" data-cursor="link">Case studies</a>
+        <button class="menu__theme" type="button" data-theme-toggle data-cursor="link"><span data-dark="Light mode" data-light="Dark mode"></span></button>
+      </div>
+    </div>
+  </nav>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" data-screen-label="Hero">
-    <div class="wrap">
-      <div class="panel hero__panel reveal" style="--d:0.15s">
-        <div class="hero__byline">
-          <img class="hero__avatar" src="Pictures/me.jpg" alt="Sanay Shah" />
-          <span class="hero__byline-text"><b>Sanay Shah</b> &middot; London</span>
-        </div>
-        <h1 class="hero__headline">I build AI products <i>end to end, and think hard about what they should do.</i></h1>
-        <p class="hero__lead">First-Class Computer Science from Cardiff, July 2026. For the past year I've run the AI programme at Innovi Advisors: 15 stalled agents became one production system, and it's now becoming the firm's own product on a custom harness. My take on agents is basically that they should run like a good team, with a person holding the judgement calls. Off the clock: 43 flights in 45 weeks, a Fujifilm, and one day a bar of my own.</p>
-        <p class="hero__now"><span class="hero__now-label">right now</span><span class="hero__now-slot"><span class="hero__now-live"><span id="typewriter">building an AI agent team for accountants</span><span class="type-caret" aria-hidden="true"></span></span></span></p>
+  <main id="top">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+      <div class="hero__jp" aria-hidden="true"><span>二十五時</span><small>the 25th hour</small></div>
+      <div class="hero__inner">
+        <p class="hero__eyebrow mono reveal-up" style="--d:.1s">
+          <img class="hero__avatar" src="assets/img/me-sm.webp" alt="" width="36" height="36" />
+          Sanay Shah <span class="dot"></span> London <span class="dot"></span> open to APAC
+        </p>
+        <h1 class="hero__title" data-split="words">
+          I build AI products end to end, <em>and think hard about what they should do.</em>
+        </h1>
         <div class="hero__row">
-          <a class="chip" href="#case-studies">Case studies <span aria-hidden="true">&rarr;</span></a>
-          <a class="chip" href="https://beau.quest" target="_blank" rel="noopener">beau.quest</a>
-          <a class="chip" href="https://gonzo.guide" target="_blank" rel="noopener">gonzo.guide</a>
-          <a class="chip" href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="chip" href="mailto:sanays.mail@gmail.com">Email</a>
-          <a class="chip" href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener">Photography</a>
+          <p class="hero__lead reveal-up" style="--d:.9s">
+            First-Class Computer Science from Cardiff, July 2026. For the past year I've run the AI programme at Innovi Advisors: 15 stalled agents became one production system, and it's now becoming the firm's own product on a custom harness.
+          </p>
+          <div class="hero__now reveal-up" style="--d:1.05s">
+            <span class="mono hero__now-label">right now</span>
+            <span class="hero__now-text"><span id="typewriter">building an AI agent team for accountants</span><i class="caret"></i></span>
+            <a class="hero__latest" href="case-studies/ten-things-pharmacy-group.html" data-cursor="link"><span class="mono hero__now-label">latest</span> Ten things I learned putting AI into a national pharmacy group <i>&rarr;</i></a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== BUILDING (products) ===== -->
-  <section class="section" id="building" data-screen-label="Building">
-    <div class="wrap col2">
-      <div class="panel col2__head reveal">
-        <p class="label">What I've built</p>
-        <h2 class="h-sec">Two products, designed and shipped solo.</h2>
-        <p class="lead">Concept to production, end to end: the architecture and the product decisions behind each one.</p>
+      <div class="hero__foot">
+        <a class="hero__scroll mono" href="#manifesto" data-cursor="link"><span>scroll</span><i></i></a>
+        <p class="hero__note mono">The lines behind this text are a live terrain, drawn by a shader. Move to tilt it.</p>
       </div>
-      <div class="col2__body">
-        <div class="product-grid">
-          <!-- GONZO -->
-          <article class="panel product reveal" style="--d:0.05s">
-            <div class="product__top">
-              <div>
-                <h3 class="product__title">Gonzo</h3>
-                <p class="product__subtitle">AI-powered travel recommendation engine</p>
-              </div>
-              <span class="status-pill">Paused &middot; relaunch summer 2026</span>
+    </section>
+
+    <!-- ===== TICKER ===== -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track" id="ticker">
+        <span>AI product builder</span><i></i>
+        <span>43 flights in 45 weeks</span><i></i>
+        <span>First-Class CS, Cardiff</span><i></i>
+        <span>a year in Singapore</span><i></i>
+        <span>a Fujifilm</span><i></i>
+        <span>London to APAC</span><i></i>
+      </div>
+    </div>
+
+    <!-- ===== MANIFESTO ===== -->
+    <section class="manifesto" id="manifesto">
+      <p class="mono label reveal-up">How I think about agents</p>
+      <p class="manifesto__text" data-split="words">
+        The way I've found this works is basically the way a good team already runs. A capable model as the manager, cheaper models doing the legwork, and a person at the top holding the accountability. Reviewing everything at the end doesn't hold up. After twenty correct outputs, review turns into a reflex and the twenty-first error sails through. So the system brings the judgement calls forward as they come up, and remembers the answer.
+      </p>
+      <a class="arrow-link reveal-up" href="case-studies/why-we-stopped-at-80.html" data-cursor="link">Read the essay: why we stopped at 80% <i>&rarr;</i></a>
+    </section>
+
+    <!-- ===== BUILDING ===== -->
+    <section class="building" id="building">
+      <div class="section-head">
+        <p class="mono label reveal-up">01 <span class="dot"></span> Building</p>
+        <h2 class="h2 reveal-up" style="--d:.1s">Three systems, designed and shipped end to end.</h2>
+      </div>
+
+      <div class="rail" id="rail">
+        <div class="rail__track" id="rail-track">
+
+          <article class="card card--wide" data-cursor="drag">
+            <div class="card__media">
+              <img style="--pos: 72% 25%" src="assets/img/innovi.webp" alt="Sanay presenting the automation initiative to the partners at Innovi Advisors" loading="lazy" />
             </div>
-            <p class="bodytext product__desc">Finds obscure, authentic places that tourists and guidebooks don't know about. Delivered via Telegram, Discord, and web. Born at the Cerebral Valley "Zero to Agent" Hackathon (Google DeepMind and Vercel), then redesigned and expanded into a full multi-platform product.</p>
-            <button class="product__toggle" data-target="gonzo-details">
-              <span>The thinking behind it</span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
-            </button>
-            <div id="gonzo-details" class="product__details">
-              <div class="product__detail-grid">
-                <div class="product__detail">
-                  <h4>Six lenses, one debate</h4>
-                  <p class="bodytext-sm">Users pick from 6 AI personas: Local, Plot Twist, Foodie, Hangover, Bougie, Budget. Each one surfaces different places. "Council Mode" pits 2 to 3 personas against each other in a multi-turn debate, and a synthesis call picks the winner.</p>
+            <div class="card__body">
+              <p class="mono card__meta">Oracle, then Vedas <span class="dot"></span> 2025 to now <span class="dot"></span> in production</p>
+              <h3 class="card__title">An AI agent team for an accountancy firm.</h3>
+              <p class="card__text">Fifteen stalled draft agents became one router in front of eighteen specialist lanes. Staff brief it like a junior and it routes itself. Now being rebuilt as the firm's own product on a custom harness, with the working rules enforced in code: the manager model can't do the juniors' legwork, memory saves need the user's word-for-word approval, and anything leaving the system needs human sign-off.</p>
+              <details class="more">
+                <summary data-cursor="link"><span>What it actually does</span><i></i></summary>
+                <div class="more__body">
+                  <p>The VAT return auditor runs a tab-by-tab audit of Xero VAT exports against HMRC rules. The accounts-preparation agent runs a three-way reconciliation, from bank to ledger to trial balance, and raises a suspense report for anything unresolved. The client-onboarding agent builds a client's KYC and permanent file through a guided interview, auto-filling from firm records and Companies House. Job-card automation fills job-setup templates from prior-year data. Alfred, an onboarding and support agent that routes staff to the right tool, was the single biggest adoption win in staff testing.</p>
+                  <h4>Two design rules that came out of incidents</h4>
+                  <p>An overloaded combined agent hung under real data load. Root-caused to turn-size overload, split into two purpose-bound agents joined by a shared handover artefact. The rule that stuck: separate by function, bound each turn. And every agent drafts for staff review; nothing auto-sends or auto-files.</p>
                 </div>
-                <div class="product__detail">
-                  <h4>Grounded, not hallucinated</h4>
-                  <p class="bodytext-sm">Every recommendation is verified real and open via Google Maps grounding before it's shown. The model searches in each city's own language to surface what locals actually discuss, and adjusts for weather in real time.</p>
-                </div>
+              </details>
+              <div class="card__links">
+                <a href="case-studies/fifteen-agents-one-front-desk.html" data-cursor="link">Fifteen agents, one front desk <i>&rarr;</i></a>
+                <a href="case-studies/a-practice-team-in-software.html" data-cursor="link">A practice team in software <i>&rarr;</i></a>
+                <a href="case-studies/the-engine-and-the-car.html" data-cursor="link">The engine and the car <i>&rarr;</i></a>
               </div>
             </div>
-            <a class="product__link" href="case-studies/gonzo.html">Read the case study <span class="arrow" aria-hidden="true">&rarr;</span></a>
           </article>
 
-          <!-- BEAU -->
-          <article class="panel product reveal" style="--d:0.1s">
-            <div class="product__top">
-              <div>
-                <h3 class="product__title">Beau</h3>
-                <p class="product__subtitle">AI-powered social matching platform</p>
-              </div>
-              <span class="status-pill">Shipped to beta</span>
+          <article class="card" data-cursor="drag">
+            <div class="card__media card__media--type">
+              <span class="card__glyph">Beau</span>
+              <span class="mono card__spec">Dojo <span class="dot"></span> identity graph <span class="dot"></span> 90-day half-life</span>
             </div>
-            <p class="bodytext product__desc">A social matching platform for Gen Z that rejects the swipe model entirely. Users play through AI-generated social simulations, reacting instinctively to moments that reveal who they really are, while a weighted identity graph learns their personality over time. I built it solo through to a working beta, and it taught me two things: how to design and cost a real AI system end to end, and a harder set of questions about what it means for an AI to infer who you are from how you behave.</p>
-            <button class="product__toggle" data-target="beau-details">
-              <span>The thinking behind it</span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
-            </button>
-            <div id="beau-details" class="product__details">
-              <div class="product__detail-grid">
-                <div class="product__detail">
+            <div class="card__body">
+              <p class="mono card__meta">beau.quest <span class="dot"></span> Jan to Feb 2026 <span class="dot"></span> shipped to beta</p>
+              <h3 class="card__title">A matching app that watches how you react, instead of asking who you are.</h3>
+              <p class="card__text">Users play through AI-generated social simulations and react instinctively to moments that reveal who they really are, while a weighted identity graph learns their personality over time. Built solo through to a working beta with real users, then wound down once it had taught me what it was for.</p>
+              <details class="more">
+                <summary data-cursor="link"><span>The thinking behind it</span><i></i></summary>
+                <div class="more__body">
                   <h4>Show, don't tell</h4>
-                  <p class="bodytext-sm">People reveal who they are through instinctive reactions, not self-reported bios. The "Dojo" simulation embeds abstract psychological dimensions in naturalistic scenarios. Users never see the underlying model.</p>
-                </div>
-                <div class="product__detail">
+                  <p>People reveal who they are through instinctive reactions, not self-reported bios. The "Dojo" simulation embeds abstract psychological dimensions in naturalistic scenarios. Users never see the underlying model.</p>
                   <h4>Identity as a living graph</h4>
-                  <p class="bodytext-sm">Traits, values, interests, and vices sit on weighted spectra in a Neo4j graph, decaying over a 90-day half-life so the system always reflects who a user is now. Matching runs through a 3-stage funnel that uses attachment-theory heuristics.</p>
-                </div>
-                <div class="product__detail">
+                  <p>Traits, values, interests and vices sit on weighted spectra in a Neo4j graph, decaying over a 90-day half-life so the system always reflects who a user is now. Matching runs through a three-stage funnel that uses attachment-theory heuristics.</p>
                   <h4>Engagement by design</h4>
-                  <p class="bodytext-sm">Profiles unlock progressively based on conversation quality ("Fog of War"). A credit economy ties real AI costs to user-facing energy, creating a natural usage cadence without runaway spend.</p>
+                  <p>Profiles unlock progressively based on conversation quality ("Fog of War"). A credit economy ties real AI costs to user-facing energy, creating a natural usage cadence without runaway spend.</p>
                 </div>
+              </details>
+              <div class="card__links">
+                <a href="case-studies/beau.html" data-cursor="link">Read the case study <i>&rarr;</i></a>
+                <a href="https://beau.quest" target="_blank" rel="noopener" data-cursor="link">beau.quest <i>&nearr;</i></a>
               </div>
             </div>
-            <a class="product__link" href="case-studies/beau.html">Read the case study <span class="arrow" aria-hidden="true">&rarr;</span></a>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CASE STUDIES ===== -->
-  <section class="section" id="case-studies" data-screen-label="Case studies">
-    <div class="wrap col2">
-      <div class="panel col2__head reveal">
-        <p class="label">Case studies</p>
-        <h2 class="h-sec">Seven pieces on putting AI into real work.</h2>
-        <p class="lead">The evidence behind the one-liners above, and the thinking that runs through all of it.</p>
-        <p class="bodytext-sm" style="margin-top: 1rem; max-width: 30ch;">Start with the essay if you want the philosophy first. The rest are the incidents, decisions and numbers it came from.</p>
-      </div>
-      <div class="col2__body">
-        <div class="panel cs-list reveal" style="--d:0.05s">
-          <!-- case-studies:list -->
-          <a class="cs-item" href="case-studies/why-we-stopped-at-80.html">
-            <span class="cs-item__num">01</span>
-            <span>
-              <span class="cs-item__kind"><span class="label">Essay</span><span class="status-pill">Start here</span></span>
-              <span class="cs-item__title" style="display:block">Why we stopped at 80%</span>
-              <span class="cs-item__sf" style="display:block">The AI did about 80% of the work in about a quarter of the time. Why we chose not to push it to 100, and the handful of things I now believe about putting AI into real work.</span>
-              <span class="cs-item__meta" style="display:block">August 2026 &middot; 6 min read</span>
-            </span>
-            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="cs-item" href="case-studies/fifteen-agents-one-front-desk.html">
-            <span class="cs-item__num">02</span>
-            <span>
-              <span class="cs-item__kind"><span class="label">Case study</span></span>
-              <span class="cs-item__title" style="display:block">Fifteen agents, one front desk: a year of building AI for an accountancy firm</span>
-              <span class="cs-item__sf" style="display:block">A year building agents for real accountants. Fifteen drafts became six, six became one, a sixteen-minute run became four, and the rules that stuck came out of the incidents.</span>
-              <span class="cs-item__meta" style="display:block">August 2026 &middot; 6 min read</span>
-            </span>
-            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="cs-item" href="case-studies/a-practice-team-in-software.html">
-            <span class="cs-item__num">03</span>
-            <span>
-              <span class="cs-item__kind"><span class="label">Working paper</span></span>
-              <span class="cs-item__title" style="display:block">A practice team in software</span>
-              <span class="cs-item__sf" style="display:block">The public cut of a working paper for the firm&#x27;s leadership. A manager model, a worker model and a human partner, with the roles enforced in code rather than requested in a prompt.</span>
-              <span class="cs-item__meta" style="display:block">August 2026 &middot; 5 min read</span>
-            </span>
-            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="cs-item" href="case-studies/the-engine-and-the-car.html">
-            <span class="cs-item__num">04</span>
-            <span>
-              <span class="cs-item__kind"><span class="label">Case study</span></span>
-              <span class="cs-item__title" style="display:block">The engine and the car: why I moved our AI system three times in one summer</span>
-              <span class="cs-item__sf" style="display:block">The same system ran on three different harnesses between June and August. Same skills, same integrations, same rules. Where the value actually sits when the model is a line in a config file.</span>
-              <span class="cs-item__meta" style="display:block">August 2026 &middot; 5 min read</span>
-            </span>
-            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="cs-item" href="case-studies/ten-things-pharmacy-group.html">
-            <span class="cs-item__num">05</span>
-            <span>
-              <span class="cs-item__kind"><span class="label">Case study</span></span>
-              <span class="cs-item__title" style="display:block">Ten things I learned putting AI into a national pharmacy group</span>
-              <span class="cs-item__sf" style="display:block">Three days of discovery that turned into building. Three agents shipped, four didn&#x27;t, most of the time went on access, and governance moved from the back of the proposal to the front.</span>
-              <span class="cs-item__meta" style="display:block">August 2026 &middot; 7 min read</span>
-            </span>
-            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="cs-item" href="case-studies/beau.html">
-            <span class="cs-item__num">06</span>
-            <span>
-              <span class="cs-item__kind"><span class="label">Case study</span></span>
-              <span class="cs-item__title" style="display:block">Beau: I built a matching app that watches how you react, then I turned it off</span>
-              <span class="cs-item__sf" style="display:block">A matching app that shows you a social moment and watches what you do, instead of asking you to describe yourself. Built solo to a working beta in two months, then wound down, and the question it left me with.</span>
-              <span class="cs-item__meta" style="display:block">August 2026 &middot; 4 min read</span>
-            </span>
-            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
-          </a>
-          <a class="cs-item" href="case-studies/gonzo.html">
-            <span class="cs-item__num">07</span>
-            <span>
-              <span class="cs-item__kind"><span class="label">Case study</span></span>
-              <span class="cs-item__title" style="display:block">Gonzo: six personas, one argument, and a phone call to Google Maps</span>
-              <span class="cs-item__sf" style="display:block">A travel engine that searches in the local language, lets six personas argue over the answer, and checks every place against Google Maps before it&#x27;s allowed to recommend it.</span>
-              <span class="cs-item__meta" style="display:block">August 2026 &middot; 3 min read</span>
-            </span>
-            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
-          </a>
-          <!-- /case-studies:list -->
-        </div>
-        <div class="cs-more reveal" style="--d:0.1s">
-          <a class="link" href="case-studies/index.html">Open the case studies as their own page <span class="arrow" aria-hidden="true">&rarr;</span></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== EXPERIENCE ===== -->
-  <section class="section" id="experience" data-screen-label="Experience">
-    <div class="wrap col2">
-      <div class="panel col2__head reveal">
-        <p class="label">Experience</p>
-        <h2 class="h-sec">From a regulated firm's AI rebuild to hackathon sprints.</h2>
-      </div>
-      <div class="col2__body">
-        <div class="panel xp-list reveal" style="--d:0.05s">
-          <div class="xp-row" data-modal="innovi">
-            <div class="xp-row__date">Aug 2025–Present</div>
-            <div>
-              <h3 class="xp-row__title">Automation Project Manager</h3>
-              <p class="xp-row__org">Innovi Advisors &middot; London</p>
-              <p class="bodytext-sm xp-row__desc">Sole owner of the "Innovi Automation Initiative": took the firm's AI agent suite from a stalled discovery exercise to a tested multi-agent system spanning two platforms. Consolidated 15 draft agents into one production router ("Oracle"), diagnosed and fixed a live reliability failure at the architecture level, and migrated the suite across platforms as 40+ modular skills. Now rebuilding it as the firm's own product on a custom harness built on pi, an open-source agent runtime, with custom MCP servers connecting the firm's systems and the working rules enforced in code. Neurosymbolic in shape: the models read and judge, and code holds everything that must not drift.</p>
-              <span class="xp-row__hint">Read more <span aria-hidden="true">&rarr;</span></span>
-            </div>
-          </div>
-
-          <div class="xp-row">
-            <div class="xp-row__date">2025–Jul 2026</div>
-            <div>
-              <h3 class="xp-row__title">Head of Events &amp; Outreach</h3>
-              <p class="xp-row__org">AI Safety Cardiff University (AISCU)</p>
-              <p class="bodytext-sm xp-row__desc">Led events programming and outreach for Cardiff's AI safety community. Delivered a guest lecture on AI safety fundamentals for the university's "Emerging Technologies" module. Concluded on graduation.</p>
-            </div>
-          </div>
-
-          <div class="xp-row" data-modal="steam">
-            <div class="xp-row__date">Dec 2024–Mar 2025</div>
-            <div>
-              <h3 class="xp-row__title">Advanced Design Mentor</h3>
-              <p class="xp-row__org">STEAMunity &middot; Singapore</p>
-              <p class="bodytext-sm xp-row__desc">Mentored 6 students (age 14–20) in design thinking. Team won 1st place Best Prototype and presented to Singapore's Deputy Prime Minister, Heng Swee Keat.</p>
-              <span class="xp-row__hint">Read more <span aria-hidden="true">&rarr;</span></span>
-            </div>
-          </div>
-
-          <div class="xp-row" data-modal="alita">
-            <div class="xp-row__date">Nov 2024–Sep 2025</div>
-            <div>
-              <h3 class="xp-row__title">Volunteer Researcher</h3>
-              <p class="xp-row__org">ALITA &middot; Remote</p>
-              <p class="bodytext-sm xp-row__desc">Researched legaltech taxonomies for ALITA's APAC Ecosystem Map. Contributed to the SOLIA Report 2025. On-site support at Singapore and London events.</p>
-              <span class="xp-row__hint">Read more <span aria-hidden="true">&rarr;</span></span>
-            </div>
-          </div>
-
-          <div class="xp-row" data-modal="treehouse-builder">
-            <div class="xp-row__date">May 2024–Aug 2024</div>
-            <div>
-              <h3 class="xp-row__title">Builder &amp; Facilitator</h3>
-              <p class="xp-row__org">Treehouse Innovation &middot; London/Cardiff</p>
-              <p class="bodytext-sm xp-row__desc">Project managed a booth with DLA Piper at LegalTechTalk (2,500+ attendees). Built a GenAI app on Cloud Run. Co-authored a published report.</p>
-              <span class="xp-row__hint">Read more <span aria-hidden="true">&rarr;</span></span>
-            </div>
-          </div>
-
-          <div class="xp-row" data-modal="highfield">
-            <div class="xp-row__date">Feb 2024–Mar 2024</div>
-            <div>
-              <h3 class="xp-row__title">Digital Automation Insight</h3>
-              <p class="xp-row__org">Highfield HR &middot; Bridgend</p>
-              <p class="bodytext-sm xp-row__desc">Used design thinking to prototype an MVP for employee contract generation. Built and shipped a full-stack WebApp.</p>
-              <span class="xp-row__hint">Read more <span aria-hidden="true">&rarr;</span></span>
-            </div>
-          </div>
-
-          <div class="xp-row" data-modal="treehouse-intern">
-            <div class="xp-row__date">Jun 2023–Sep 2023</div>
-            <div>
-              <h3 class="xp-row__title">Design Coach Intern</h3>
-              <p class="xp-row__org">Treehouse Innovation &middot; London</p>
-              <p class="bodytext-sm xp-row__desc">Designed exercises for 200+ attendee corporate events. Built a prototype app integrating the OpenAI API for a Risk &amp; Compliance session.</p>
-              <span class="xp-row__hint">Read more <span aria-hidden="true">&rarr;</span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== HACKATHONS ===== -->
-  <section class="section" id="hackathons" data-screen-label="Hackathons">
-    <div class="wrap col2">
-      <div class="panel col2__head reveal">
-        <p class="label">Hackathons &amp; competitions</p>
-        <h2 class="h-sec">Cambridge, NUS, Web3, and the tournaments in between.</h2>
-      </div>
-      <div class="col2__body">
-        <div class="hack-grid">
-          <article class="panel hack reveal" style="--d:0.05s" data-modal="cambridge">
-            <img src="Pictures/2. Hackathons & Competitions/grand finalist and tooling winner, hack the law llm x law winner, university of cambridge/cambridge hackathon presenting crowd.jpg" alt="Cambridge Hackathon" loading="lazy" decoding="async" />
-            <div class="hack__body">
-              <span class="label hack__badge">Grand Finalist &amp; Tooling Winner</span>
-              <h3 class="hack__title">Hack the Law: LLM x Law</h3>
-              <p class="hack__org">University of Cambridge</p>
-              <p class="bodytext-sm hack__desc">Structured financial regulations into a searchable interface that flags entities and activities automatically. Team "Just 3", built on the RegGenome API and Groq.</p>
-            </div>
           </article>
 
-          <article class="panel hack reveal" style="--d:0.08s" data-modal="glasses">
-            <img src="Pictures/2. Hackathons & Competitions/Golden Glasses Award for Most Engaging Presentation, future interaction of smart glasses bootcamp/smart glasses group winning.JPG" alt="Smart Glasses Bootcamp" loading="lazy" decoding="async" />
-            <div class="hack__body">
-              <span class="label hack__badge">Golden Glasses Award</span>
-              <h3 class="hack__title">Smart Glasses Bootcamp</h3>
-              <p class="hack__org">NUS Smart Systems Institute</p>
-              <p class="bodytext-sm hack__desc">Built "Waddles", an XREAL smart glasses app that alerts travellers to dangers in unfamiliar environments. Unity, C#, Gemini API.</p>
+          <article class="card" data-cursor="drag">
+            <div class="card__media">
+              <img src="assets/img/alley.webp" alt="A narrow lantern-lit bar alley at night" loading="lazy" />
             </div>
-          </article>
-
-          <article class="panel hack reveal" style="--d:0.11s">
-            <div class="hack__body">
-              <span class="label hack__badge">Hackathon</span>
-              <h3 class="hack__title">Cerebral Valley "Zero to Agent"</h3>
-              <p class="hack__org">Google DeepMind + Vercel</p>
-              <p class="bodytext-sm hack__desc">Built the initial version of Gonzo, an AI travel engine with multi-persona debate and Google Maps grounding. Expanded it after the hackathon into a full product.</p>
-            </div>
-          </article>
-
-          <article class="panel hack reveal" style="--d:0.14s" data-modal="web3">
-            <img src="Pictures/2. Hackathons & Competitions/finalist web3 hackthon easy a vchain/easya vchain hackathon UI.jpg" alt="Web3 Hackathon" loading="lazy" decoding="async" />
-            <div class="hack__body">
-              <span class="label hack__badge">Finalist</span>
-              <h3 class="hack__title">Web3 Hackathon</h3>
-              <p class="hack__org">EasyA, VeChain, BCG &middot; Solo</p>
-              <p class="bodytext-sm hack__desc">Competed solo and reached the finals. Recognised for highly efficient prompt engineering.</p>
-            </div>
-          </article>
-
-          <article class="panel hack reveal" style="--d:0.05s">
-            <img src="Pictures/2. Hackathons & Competitions/1st prize winner design innovation day mifutures/mifutures postick notes.jpg" alt="MiFutures Design Innovation" loading="lazy" decoding="async" />
-            <div class="hack__body">
-              <span class="label hack__badge">1st Prize</span>
-              <h3 class="hack__title">Design Innovation Day</h3>
-              <p class="hack__org">MiFutures (Fintech Wales)</p>
-            </div>
-          </article>
-
-          <article class="panel hack reveal" style="--d:0.08s">
-            <div class="hack__body">
-              <span class="label hack__badge">Consulting Hackathon</span>
-              <h3 class="hack__title">TFW &amp; Amey</h3>
-              <p class="bodytext-sm hack__desc">Sole student among industry professionals. Developed an MVP for "TFW 2.0".</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== EDUCATION ===== -->
-  <section class="section" id="education" data-screen-label="Education">
-    <div class="wrap col2">
-      <div class="panel col2__head reveal">
-        <p class="label">Education</p>
-        <h2 class="h-sec">Cardiff, with a year in Singapore.</h2>
-      </div>
-      <div class="col2__body">
-        <div class="panel edu-list reveal" style="--d:0.05s">
-          <div class="edu-row">
-            <div class="edu-row__date">2022–2026</div>
-            <div>
-              <h3 class="edu-row__title">Cardiff University</h3>
-              <p class="edu-row__org">BSc Computer Science with a Year of Study Abroad</p>
-              <p class="bodytext-sm edu-row__desc">Graduating July 2026 with First-Class Honours (dissertation: 83%). Project leader for the Year 2 group project, which gamified internship assessments and scored 80%.</p>
-            </div>
-          </div>
-          <div class="edu-row">
-            <div class="edu-row__date">Sep 2024–May 2025</div>
-            <div>
-              <h3 class="edu-row__title">Singapore University of Technology and Design</h3>
-              <p class="edu-row__org">Exchange &middot; Information Systems Technology and Design</p>
-              <p class="bodytext-sm edu-row__desc">Completed the masters-level module "Innovation by Design". The group scored 70% in the final exhibition.</p>
-              <div class="edu-row__tags">
-                <span class="tag">Innovation by Design</span>
-                <span class="tag">AI Applications by Design</span>
-                <span class="tag">AI by Design</span>
-                <span class="tag">History of Surveillance</span>
+            <div class="card__body">
+              <p class="mono card__meta">gonzo.guide <span class="dot"></span> 2026 <span class="dot"></span> paused, relaunch planned</p>
+              <h3 class="card__title">A travel engine that finds the places guidebooks don't know about.</h3>
+              <p class="card__text">Six personas argue over the answer, the model searches in each city's own language, and every place is checked against Google Maps before it's allowed to be recommended. Born at the Cerebral Valley "Zero to Agent" hackathon with Google DeepMind and Vercel, then expanded across Telegram, Discord and web.</p>
+              <details class="more">
+                <summary data-cursor="link"><span>The thinking behind it</span><i></i></summary>
+                <div class="more__body">
+                  <h4>Six lenses, one debate</h4>
+                  <p>Users pick from six AI personas: Local, Plot Twist, Foodie, Hangover, Bougie, Budget. Each one surfaces different places. "Council Mode" pits two or three personas against each other in a multi-turn debate, and a synthesis call picks the winner.</p>
+                  <h4>Grounded, not hallucinated</h4>
+                  <p>Every recommendation is verified real and open via Google Maps grounding before it's shown. The model searches in each city's own language to surface what locals actually discuss, and adjusts for the weather in real time.</p>
+                </div>
+              </details>
+              <div class="card__links">
+                <a href="case-studies/gonzo.html" data-cursor="link">Read the case study <i>&rarr;</i></a>
+                <a href="https://gonzo.guide" target="_blank" rel="noopener" data-cursor="link">gonzo.guide <i>&nearr;</i></a>
               </div>
             </div>
-          </div>
-          <div class="edu-row">
-            <div class="edu-row__date">2020–2022</div>
-            <div>
-              <h3 class="edu-row__title">Whitgift School</h3>
-              <p class="edu-row__org">A-Levels: Maths, Physics, Computer Science</p>
-              <p class="bodytext-sm edu-row__desc">EPQ: "Should we be concerned about the possible misuse of personal data when online?"</p>
+          </article>
+
+          <div class="rail__end mono" aria-hidden="true"><span>that's the lot</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CASE STUDIES ===== -->
+    <section class="studies" id="case-studies">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="mono label reveal-up">02 <span class="dot"></span> Case studies</p>
+          <h2 class="h2 reveal-up" style="--d:.1s">Seven pieces on putting AI into real work.</h2>
+        </div>
+        <p class="section-head__aside reveal-up" style="--d:.2s">Start with the essay if you want the philosophy first. The rest are the incidents, decisions and numbers it came from.</p>
+      </div>
+
+      <ol class="studies__list">
+        <!-- case-studies:list -->
+        <li class="study reveal-up">
+          <a class="study__link" href="case-studies/why-we-stopped-at-80.html" data-cursor="link">
+            <span class="study__num mono">01</span>
+            <span class="study__main">
+              <span class="mono study__kind">Essay <span class="dot"></span> start here</span>
+              <span class="study__title">Why we stopped at 80%</span>
+              <span class="study__sf">The AI did about 80% of the work in about a quarter of the time. Why we chose not to push it to 100, and the handful of things I now believe about putting AI into real work.</span>
+            </span>
+            <span class="study__time mono">6 min</span>
+          </a>
+        </li>
+        <li class="study reveal-up">
+          <a class="study__link" href="case-studies/fifteen-agents-one-front-desk.html" data-cursor="link">
+            <span class="study__num mono">02</span>
+            <span class="study__main">
+              <span class="mono study__kind">Case study</span>
+              <span class="study__title">Fifteen agents, one front desk: a year of building AI for an accountancy firm</span>
+              <span class="study__sf">A year building agents for real accountants. Fifteen drafts became six, six became one, a sixteen-minute run became four, and the rules that stuck came out of the incidents.</span>
+            </span>
+            <span class="study__time mono">6 min</span>
+          </a>
+        </li>
+        <li class="study reveal-up">
+          <a class="study__link" href="case-studies/a-practice-team-in-software.html" data-cursor="link">
+            <span class="study__num mono">03</span>
+            <span class="study__main">
+              <span class="mono study__kind">Working paper</span>
+              <span class="study__title">A practice team in software</span>
+              <span class="study__sf">The public cut of a working paper for the firm&#x27;s leadership. A manager model, a worker model and a human partner, with the roles enforced in code rather than requested in a prompt.</span>
+            </span>
+            <span class="study__time mono">5 min</span>
+          </a>
+        </li>
+        <li class="study reveal-up">
+          <a class="study__link" href="case-studies/the-engine-and-the-car.html" data-cursor="link">
+            <span class="study__num mono">04</span>
+            <span class="study__main">
+              <span class="mono study__kind">Case study</span>
+              <span class="study__title">The engine and the car: why I moved our AI system three times in one summer</span>
+              <span class="study__sf">The same system ran on three different harnesses between June and August. Same skills, same integrations, same rules. Where the value actually sits when the model is a line in a config file.</span>
+            </span>
+            <span class="study__time mono">5 min</span>
+          </a>
+        </li>
+        <li class="study reveal-up">
+          <a class="study__link" href="case-studies/ten-things-pharmacy-group.html" data-cursor="link">
+            <span class="study__num mono">05</span>
+            <span class="study__main">
+              <span class="mono study__kind">Case study</span>
+              <span class="study__title">Ten things I learned putting AI into a national pharmacy group</span>
+              <span class="study__sf">Three days of discovery that turned into building. Three agents shipped, four didn&#x27;t, most of the time went on access, and governance moved from the back of the proposal to the front.</span>
+            </span>
+            <span class="study__time mono">7 min</span>
+          </a>
+        </li>
+        <li class="study reveal-up">
+          <a class="study__link" href="case-studies/beau.html" data-cursor="link">
+            <span class="study__num mono">06</span>
+            <span class="study__main">
+              <span class="mono study__kind">Case study</span>
+              <span class="study__title">Beau: I built a matching app that watches how you react, then I turned it off</span>
+              <span class="study__sf">A matching app that shows you a social moment and watches what you do, instead of asking you to describe yourself. Built solo to a working beta in two months, then wound down, and the question it left me with.</span>
+            </span>
+            <span class="study__time mono">4 min</span>
+          </a>
+        </li>
+        <li class="study reveal-up">
+          <a class="study__link" href="case-studies/gonzo.html" data-cursor="link">
+            <span class="study__num mono">07</span>
+            <span class="study__main">
+              <span class="mono study__kind">Case study</span>
+              <span class="study__title">Gonzo: six personas, one argument, and a phone call to Google Maps</span>
+              <span class="study__sf">A travel engine that searches in the local language, lets six personas argue over the answer, and checks every place against Google Maps before it&#x27;s allowed to recommend it.</span>
+            </span>
+            <span class="study__time mono">3 min</span>
+          </a>
+        </li>
+        <!-- /case-studies:list -->
+      </ol>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="xp" id="experience">
+      <div class="section-head">
+        <p class="mono label reveal-up">03 <span class="dot"></span> Experience</p>
+        <h2 class="h2 reveal-up" style="--d:.1s">From a regulated firm's AI rebuild to hackathon sprints.</h2>
+      </div>
+
+      <div class="xp__grid">
+        <div class="xp__list">
+          <article class="xp__row reveal-up">
+            <span class="mono xp__date">Aug 2025 <br/>to now</span>
+            <div class="xp__body">
+              <h3 class="xp__title">Automation Project Manager</h3>
+              <p class="mono xp__org">Innovi Advisors <span class="dot"></span> London</p>
+              <p class="xp__text">Sole owner of the firm's AI programme: took the agent suite from a stalled discovery exercise to a tested multi-agent system spanning two platforms, then migrated it across platforms as 40+ modular skills. Now rebuilding it as the firm's own product on a custom harness built on pi, with custom MCP servers connecting the firm's systems and the working rules enforced in code.</p>
+              <details class="more">
+                <summary data-cursor="link"><span>Read the full story</span><i></i></summary>
+                <div class="more__body">
+                  <h4>Discovery and approval</h4>
+                  <ul>
+                    <li>Interviewed the firm's partners and audited 15 draft AI agents already built in Gemini Enterprise, alongside the existing stack (Microsoft 365, FYI Docs, Xero).</li>
+                    <li>Diagnosed the recurring faults: wrong-ecosystem connectors, inconsistent prompt structure, overlapping scope. The intent underneath was clear: single-source grounding, mandatory clarifying questions, citation discipline, plain-English output.</li>
+                    <li>Presented a phased blueprint to the partners. They approved it, and it became the basis for consolidating 15 drafts into six tested, production-shaped agents.</li>
+                  </ul>
+                  <h4>Architecture</h4>
+                  <ul>
+                    <li>Designed a knowledge-store grounding architecture that turns authoritative sources (HMRC, FRC, ACCA, ICAEW, Companies House, Charity Commission) into curated markdown knowledge bases, so every answer is citeable.</li>
+                    <li>Found and fixed a live reliability failure: an overloaded combined agent hanging under real data load. Root-caused to turn-size overload and split into two purpose-bound agents joined by a shared handover artefact. The standing rule since: separate by function, bound each turn.</li>
+                    <li>Designed Oracle, a single router in front of 18+ flattened specialist subagents, so staff no longer need to know which agent to pick.</li>
+                    <li>Human-in-the-loop guardrails throughout: agents draft for staff review and never auto-send or auto-file.</li>
+                  </ul>
+                  <h4>Platforms and migration</h4>
+                  <ul>
+                    <li>Built and tested the suite in Gemini Enterprise's no-code Agent Designer, then migrated it entirely to Claude (Projects, Skills, Cowork), rebuilding 18+ subagents as 40+ modular skills. That unlocked reliable file generation the Gemini platform couldn't produce.</li>
+                    <li>Integrated a pre-built Xero MCP server for live ledger access, with the FYI document API integration underway.</li>
+                  </ul>
+                  <h4>Vedas, the firm's own product (Jul 2026 to now)</h4>
+                  <ul>
+                    <li>Rebuilding the proven system on a custom harness built on pi, an open-source agent runtime, because the commercial platforms could only request the working rules in prompts. Here they're enforced in code: the manager model can't do the juniors' legwork, memory saves need the user's word-for-word approval, and anything leaving the system needs human sign-off.</li>
+                    <li>Built custom MCP servers on the firm's own infrastructure: the practice management and document systems, Microsoft 365, and a deterministic calculation service, so every figure is computed exactly rather than by a language model.</li>
+                    <li>First full accounts-preparation job ran end to end on the new build in August 2026: working papers with every figure traced to source, and an adversarial AI review pass before any human review.</li>
+                  </ul>
+                  <p class="more__links"><a href="case-studies/fifteen-agents-one-front-desk.html">Fifteen agents, one front desk</a> <span class="dot"></span> <a href="case-studies/a-practice-team-in-software.html">A practice team in software</a> <span class="dot"></span> <a href="case-studies/the-engine-and-the-car.html">The engine and the car</a></p>
+                </div>
+              </details>
             </div>
+          </article>
+          <article class="xp__row reveal-up">
+            <span class="mono xp__date">2025 <br/>to Jul 2026</span>
+            <div class="xp__body">
+              <h3 class="xp__title">Head of Events &amp; Outreach</h3>
+              <p class="mono xp__org">AI Safety Cardiff University</p>
+              <p class="xp__text">Led events programming and outreach for Cardiff's AI safety community, ran the Fundamentals Fellowship, and gave a guest lecture on AI safety for the university's "Emerging Technologies" module.</p>
+            </div>
+          </article>
+          <article class="xp__row reveal-up">
+            <span class="mono xp__date">Dec 2024 <br/>to Mar 2025</span>
+            <div class="xp__body">
+              <h3 class="xp__title">Advanced Design Mentor</h3>
+              <p class="mono xp__org">STEAMunity <span class="dot"></span> Singapore</p>
+              <p class="xp__text">Mentored six students, aged 14 to 20, in design thinking. The team won 1st place for Best Prototype and presented to Singapore's Deputy Prime Minister, Heng Swee Keat.</p>
+              <details class="more">
+                <summary data-cursor="link"><span>Read more</span><i></i></summary>
+                <div class="more__body">
+                  <ul>
+                    <li>Mentored six students, aged 14 to 20, in design thinking and innovation, in partnership with SUTD and Science Centre Singapore.</li>
+                    <li>Project managed the group's collaboration with Metta Cafe, applying design thinking to help build task independence for youths with special needs.</li>
+                    <li>The students won 1st place for Best Prototype with "BloomBuddy", an IoT system that guides users from planting a chilli to harvesting it using sensors, and presented it to Deputy Prime Minister Heng Swee Keat.</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </article>
+          <article class="xp__row reveal-up">
+            <span class="mono xp__date">Nov 2024 <br/>to Sep 2025</span>
+            <div class="xp__body">
+              <h3 class="xp__title">Volunteer Researcher</h3>
+              <p class="mono xp__org">ALITA <span class="dot"></span> remote</p>
+              <p class="xp__text">Researched legaltech taxonomies for ALITA's APAC Ecosystem Map and contributed to the SOLIA Report 2025. On-site support at events in Singapore and London.</p>
+              <details class="more">
+                <summary data-cursor="link"><span>Read more</span><i></i></summary>
+                <div class="more__body">
+                  <ul>
+                    <li>Desktop research on existing legaltech taxonomies to support ALITA's APAC Ecosystem Map.</li>
+                    <li>Contributed to the flagship "State of Legal Innovation in Asia-Pacific (SOLIA) Report 2025".</li>
+                    <li>On-site support at ALITA Singapore: Lawtech Drinks and Theatre, and the Asia Pacific European Legal Innovation and Tech Dialogue in London.</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </article>
+          <article class="xp__row reveal-up">
+            <span class="mono xp__date">May 2024 <br/>to Aug 2024</span>
+            <div class="xp__body">
+              <h3 class="xp__title">Builder &amp; Facilitator</h3>
+              <p class="mono xp__org">Treehouse Innovation <span class="dot"></span> London and Cardiff</p>
+              <p class="xp__text">Project managed a booth with DLA Piper at LegalTechTalk for 2,500+ attendees. Built a generative AI app on Cloud Run and co-authored the published report.</p>
+              <details class="more">
+                <summary data-cursor="link"><span>Read more</span><i></i></summary>
+                <div class="more__body">
+                  <p>The Futures Lab at LegalTechTalk, with DLA Piper.</p>
+                  <ul>
+                    <li>Co-project managed an interactive booth for 2,500+ attendees, presenting ideas and gathering feedback on the future of the legal industry.</li>
+                    <li>Engineered and deployed a full-stack application on Google Cloud Run combining generative AI (GPT-4o, DALL-E 3) with A/B testing, feeding the results into an analytics pipeline. Designed for web and spatial computing.</li>
+                    <li>Built a GraphRAG tool with React and FastAPI to digitise and productise the firm's workshop facilitation cards.</li>
+                    <li>Co-authored the published report, <a href="https://treehouseinnovation.com/case-studies/the-futures-lab-at-legaltechtalk-2024/" target="_blank" rel="noopener">The Futures Lab at LegalTechTalk 2024</a>.</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </article>
+          <article class="xp__row reveal-up">
+            <span class="mono xp__date">Feb 2024 <br/>to Mar 2024</span>
+            <div class="xp__body">
+              <h3 class="xp__title">Digital Automation Insight</h3>
+              <p class="mono xp__org">Highfield HR <span class="dot"></span> Bridgend</p>
+              <p class="xp__text">Used design thinking to prototype an MVP for employee contract generation, then built and shipped the full-stack web app.</p>
+              <details class="more">
+                <summary data-cursor="link"><span>Read more</span><i></i></summary>
+                <div class="more__body">
+                  <ul>
+                    <li>Used design thinking to understand the pain points in employee contract generation and prototyped an MVP.</li>
+                    <li>Designed and built a web app offering a low-cost route to automating contracts, sellable to the firm's own clients.</li>
+                    <li>Upskilled employees to fold AI into their workflows.</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </article>
+          <article class="xp__row reveal-up">
+            <span class="mono xp__date">Jun 2023 <br/>to Sep 2023</span>
+            <div class="xp__body">
+              <h3 class="xp__title">Design Coach Intern</h3>
+              <p class="mono xp__org">Treehouse Innovation <span class="dot"></span> London</p>
+              <p class="xp__text">Designed exercises for 200+ attendee corporate events and built a prototype app on the OpenAI API for a Risk &amp; Compliance session.</p>
+              <details class="more">
+                <summary data-cursor="link"><span>Read more</span><i></i></summary>
+                <div class="more__body">
+                  <ul>
+                    <li>Designed interactive exercises for a 200-person corporate event on a manufacturing company's operating model review.</li>
+                    <li>Worked with the design and client teams to research and design games and workshop exercises.</li>
+                    <li>Background research on cognitive biases for a major gaming company project.</li>
+                    <li>Built a prototype app for a Risk &amp; Compliance breakout session in Flask on the OpenAI API.</li>
+                  </ul>
+                </div>
+              </details>
+            </div>
+          </article>
+        </div>
+
+        <aside class="xp__aside">
+          <div class="xp__sticky">
+            <figure class="xp__fig parallax" data-speed="0.12">
+              <img src="assets/img/ltt-booth.webp" alt="The Futures Lab booth at LegalTechTalk" loading="lazy" />
+              <figcaption class="mono">The Futures Lab, LegalTechTalk 2024</figcaption>
+            </figure>
+            <div class="xp__edu">
+              <p class="mono label">Education</p>
+              <p class="xp__edu-row"><b>Cardiff University</b><span>BSc Computer Science with a Year of Study Abroad, 2022 to 2026. First-Class Honours, dissertation 83%. Led the Year 2 group project, which gamified internship assessments and scored 80%.</span></p>
+              <p class="xp__edu-row"><b>SUTD, Singapore</b><span>Exchange year, 2024 to 2025, Information Systems Technology and Design. Innovation by Design (masters module, 70% in the final exhibition), AI Applications by Design, AI by Design, History of Surveillance.</span></p>
+              <p class="xp__edu-row"><b>Whitgift School</b><span>A-levels in Maths, Physics and Computer Science, 2020 to 2022. EPQ: "Should we be concerned about the possible misuse of personal data when online?"</span></p>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="xp__edu xp__edu--mobile reveal-up">
+        <p class="mono label">Education</p>
+        <p class="xp__edu-row"><b>Cardiff University</b><span>BSc Computer Science with a Year of Study Abroad, 2022 to 2026. First-Class Honours, dissertation 83%. Led the Year 2 group project, which gamified internship assessments and scored 80%.</span></p>
+        <p class="xp__edu-row"><b>SUTD, Singapore</b><span>Exchange year, 2024 to 2025, Information Systems Technology and Design. Innovation by Design (masters module, 70% in the final exhibition), AI Applications by Design, AI by Design, History of Surveillance.</span></p>
+        <p class="xp__edu-row"><b>Whitgift School</b><span>A-levels in Maths, Physics and Computer Science, 2020 to 2022. EPQ: "Should we be concerned about the possible misuse of personal data when online?"</span></p>
+      </div>
+    </section>
+
+    <!-- ===== HACKATHONS ===== -->
+    <section class="hacks" id="hackathons">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="mono label reveal-up">03.5 <span class="dot"></span> Hackathons</p>
+          <h2 class="h2 reveal-up" style="--d:.1s">Cambridge, NUS, and the tournaments in between.</h2>
+        </div>
+      </div>
+      <div class="hacks__grid">
+        <figure class="hack hack--tall reveal-up">
+          <div class="hack__img"><img src="assets/img/cambridge-stage.webp" alt="Sanay pitching on stage at Hack the Law in Cambridge" loading="lazy" /></div>
+          <figcaption>
+            <span class="mono hack__badge">Grand finalist and tooling winner</span>
+            <span class="hack__title">Hack the Law, University of Cambridge</span>
+            <span class="hack__text">Compliance professionals face dense, unstructured financial regulations that are hard to search quickly. We built a platform that structures them into a searchable interface and flags the entities and activities inside. Team "Just 3", with Xavier Doni and Siyuan Sui, on the RegGenome API and Groq. The efficient use of Groq won the Tooling Category.</span>
+          </figcaption>
+        </figure>
+        <figure class="hack reveal-up">
+          <div class="hack__img"><img src="assets/img/glasses-stage.webp" alt="Presenting Waddles at the NUS smart glasses bootcamp" loading="lazy" /></div>
+          <figcaption>
+            <span class="mono hack__badge">Golden Glasses award</span>
+            <span class="hack__title">Smart Glasses Bootcamp, NUS</span>
+            <span class="hack__text">"Waddles", an XREAL app that warns travellers about danger in unfamiliar places, built over a six-day AR bootcamp. Unity, C#, TOM, Gemini API, Python. With Wen Ting Chua and Jie Han Lim.</span>
+          </figcaption>
+        </figure>
+        <figure class="hack hack--type reveal-up">
+          <figcaption>
+            <span class="mono hack__badge">Hackathon</span>
+            <span class="hack__title">Cerebral Valley "Zero to Agent"</span>
+            <span class="hack__text">Google DeepMind and Vercel, London. Built the first version of Gonzo in a day, then kept going.</span>
+          </figcaption>
+        </figure>
+        <figure class="hack reveal-up">
+          <div class="hack__img"><img src="assets/img/web3.webp" alt="Sanay at the EasyA and VeChain Web3 hackathon" loading="lazy" /></div>
+          <figcaption>
+            <span class="mono hack__badge">Finalist, solo</span>
+            <span class="hack__title">Web3 Hackathon, EasyA, VeChain, BCG</span>
+            <span class="hack__text">Reached the finals alone, recognised for efficient prompt engineering.</span>
+          </figcaption>
+        </figure>
+        <figure class="hack reveal-up">
+          <div class="hack__img"><img src="assets/img/mifutures.webp" alt="Sticky notes from the Design Innovation Day at MiFutures" loading="lazy" /></div>
+          <figcaption>
+            <span class="mono hack__badge">1st prize</span>
+            <span class="hack__title">Design Innovation Day, MiFutures</span>
+            <span class="hack__text">Led a team to the win in a one-day design challenge hosted by a Welsh fintech: rapid ideation, prototype, pitch.</span>
+          </figcaption>
+        </figure>
+        <figure class="hack hack--type reveal-up">
+          <figcaption>
+            <span class="mono hack__badge">Consulting hackathon</span>
+            <span class="hack__title">TFW &amp; Amey</span>
+            <span class="hack__text">Sole student in a team of industry professionals, building an MVP for "TFW 2.0" with Transport for Wales and Amey.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="skills" id="skills">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="mono label reveal-up">04 <span class="dot"></span> Skills</p>
+          <h2 class="h2 reveal-up" style="--d:.1s">System design first, with the guardrails that make it trustworthy.</h2>
+        </div>
+        <p class="section-head__aside reveal-up" style="--d:.2s">Product and architecture decisions come first. The engineering underneath, including the human-in-the-loop safeguards, is there when I need to build it myself.</p>
+      </div>
+      <div class="skills__grid">
+        <div class="skill reveal-up">
+          <h3 class="skill__title">System and product design</h3>
+          <p class="mono skill__teaser">Design thinking, system architecture, stakeholder management</p>
+          <ul class="chips mono">
+            <li>Design thinking</li><li>System architecture</li><li>Project management</li><li>Stakeholder management</li><li>Workshop facilitation</li><li>Consulting</li>
+          </ul>
+        </div>
+        <div class="skill reveal-up" style="--d:.08s">
+          <h3 class="skill__title">AI and agent engineering</h3>
+          <p class="mono skill__teaser">Gemini Enterprise, Claude, multi-agent orchestration, knowledge grounding</p>
+          <ul class="chips mono">
+            <li>Gemini Enterprise</li><li>Claude Projects and Skills</li><li>MCP</li><li>Multi-agent orchestration</li><li>Knowledge grounding</li><li>Human-in-the-loop design</li><li>LangChain / LangGraph</li><li>Prompt engineering</li><li>Structured output</li>
+          </ul>
+        </div>
+        <div class="skill reveal-up" style="--d:.16s">
+          <h3 class="skill__title">Full-stack build</h3>
+          <p class="mono skill__teaser">Python, TypeScript, React, FastAPI, PostgreSQL, Neo4j</p>
+          <ul class="chips mono">
+            <li>Python</li><li>TypeScript</li><li>React</li><li>FastAPI</li><li>Next.js</li><li>PostgreSQL</li><li>Neo4j</li><li>Docker</li><li>Vercel / Railway / GCP</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OFF THE CLOCK ===== -->
+    <section class="off" id="off-the-clock">
+      <div class="off__video" aria-hidden="true">
+        <video id="ocean" muted loop playsinline preload="none" poster="assets/img/ocean-poster.webp"></video>
+        <div class="off__veil"></div>
+      </div>
+
+      <div class="off__head">
+        <p class="mono label reveal-up">05 <span class="dot"></span> Off the clock</p>
+        <h2 class="off__title" data-split="words">43 flights in 45 weeks, a Fujifilm, and the sidequests in between.</h2>
+      </div>
+
+      <div class="lore reveal-up">
+        <div class="lore__frame">
+          <p class="mono lore__label">the 25th hour <span class="dot"></span> a window into the sidequests</p>
+          <p class="lore__drop" id="lore-drop" aria-live="polite">43 flights in 45 weeks, mostly on a student budget and a lounge pass.</p>
+          <div class="lore__ctrl">
+            <button class="btn" id="lore-shuffle" type="button" data-cursor="link"><span>shuffle</span></button>
+            <span class="mono lore__count" id="lore-count">01 / 10</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ===== SKILLS ===== -->
-  <section class="section" id="skills" data-screen-label="Skills">
-    <div class="wrap col2">
-      <div class="panel col2__head reveal">
-        <p class="label">Skills</p>
-        <h2 class="h-sec">System design first, with the guardrails that make it trustworthy.</h2>
-        <p class="lead">Product and architecture decisions come first. The engineering underneath, including the human-in-the-loop safeguards, is there when I need to build it myself.</p>
-      </div>
-      <div class="col2__body">
-        <div class="panel skill-panel reveal" style="--d:0.05s">
-          <div class="skill-group">
-            <button class="skill-group__header">
-              <span class="skill-group__label">System and product design</span>
-              <span class="skill-group__teaser">Design thinking, system architecture, stakeholder management</span>
-              <svg class="skill-group__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
-            </button>
-            <div class="skill-group__content">
-              <div class="skill-group__tags">
-                <span class="tag">Design Thinking</span><span class="tag">System Architecture</span><span class="tag">Project Management</span><span class="tag">Stakeholder Management</span><span class="tag">Workshop Facilitation</span><span class="tag">Consulting</span>
-              </div>
-            </div>
-          </div>
-          <div class="skill-group">
-            <button class="skill-group__header">
-              <span class="skill-group__label">AI and agent engineering</span>
-              <span class="skill-group__teaser">Gemini Enterprise, Claude, multi-agent orchestration, knowledge grounding</span>
-              <svg class="skill-group__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
-            </button>
-            <div class="skill-group__content">
-              <div class="skill-group__tags">
-                <span class="tag">Gemini Enterprise</span><span class="tag">Claude Projects &amp; Skills</span><span class="tag">MCP</span><span class="tag">Multi-agent Orchestration</span><span class="tag">Knowledge Grounding</span><span class="tag">Human-in-the-loop Design</span><span class="tag">LangChain / LangGraph</span><span class="tag">Prompt Engineering</span><span class="tag">Structured Output</span>
-              </div>
-            </div>
-          </div>
-          <div class="skill-group">
-            <button class="skill-group__header">
-              <span class="skill-group__label">Full-stack build</span>
-              <span class="skill-group__teaser">Python, TypeScript, React, FastAPI, PostgreSQL, Neo4j</span>
-              <svg class="skill-group__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
-            </button>
-            <div class="skill-group__content">
-              <div class="skill-group__tags">
-                <span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Neo4j</span><span class="tag">Docker</span><span class="tag">Vercel / Railway / GCP</span>
-              </div>
-            </div>
-          </div>
+      <div class="off__grid">
+        <figure class="off__photo off__photo--tall reveal-up">
+          <img class="parallax" data-speed="0.08" src="assets/img/tokyo-tower.webp" alt="Tokyo Tower at dusk, shot on film" loading="lazy" />
+          <figcaption class="mono"><span>Frame 01</span><span>Tokyo Tower, dusk</span></figcaption>
+        </figure>
+
+        <div class="off__block reveal-up">
+          <p class="mono label">Photography</p>
+          <p class="off__text">My favourite way into a city is to talk to strangers until one of them shows me around. The Fujifilm starts the conversation, and it rarely comes out of the bag for a landmark.</p>
+          <p class="off__text off__text--sm">Film simulations over Lightroom. Grain left in. The public account is below; the personal one stays private.</p>
+          <a class="arrow-link" href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener" data-cursor="link">@sanay.photography <i>&rarr;</i></a>
+        </div>
+
+        <figure class="off__photo reveal-up">
+          <img class="parallax" data-speed="0.06" src="assets/img/hut.webp" alt="A small shrine in a forest, stone lanterns either side of the steps" loading="lazy" />
+          <figcaption class="mono"><span>Frame 02</span><span>A shrine off the trail</span></figcaption>
+        </figure>
+
+
+        <div class="off__block off__block--shiny reveal-up">
+          <p class="mono label">Shiny hunting</p>
+          <p class="off__text">The other hobby is shiny hunting: hundreds of resets for a Pokemon that comes out a slightly different colour. Gengar is the favourite, which is funny, because the shiny one is famously almost the same purple. Worth it anyway.</p>
+          <p class="mono off__odds">base odds 1 in 4,096 <span class="dot"></span> patience, mostly</p>
+        </div>
+
+        <figure class="off__photo reveal-up">
+          <img class="parallax" data-speed="0.06" src="assets/img/rowing.webp" alt="A rowing four at the national finals" loading="lazy" />
+          <figcaption class="mono"><span>Rowing</span><span>National B final, U15 cox</span></figcaption>
+        </figure>
+
+        <figure class="off__photo reveal-up">
+          <img class="parallax" data-speed="0.06" src="assets/img/play.webp" alt="On stage in Another Country" loading="lazy" />
+          <figcaption class="mono"><span>Stage</span><span>Another Country</span></figcaption>
+        </figure>
+
+        <div class="off__block reveal-up">
+          <p class="mono label">Beyond the code</p>
+          <p class="off__text">Coxed a rowing four to a national B final. Lead performer in the school's first student-led play, "Another Country", after a Lady Macbeth that got me scouted by an acting agency. Neither is on the CV.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== BEYOND THE CODE ===== -->
-  <section class="section" data-screen-label="Beyond the code">
-    <div class="wrap">
-      <div class="panel head-bubble reveal" style="margin-bottom: clamp(2rem, 4vw, 3rem);">
-        <p class="label">Beyond the code</p>
-        <h2 class="h-sec" style="margin-top: 0.8rem;">A few things that aren't on the CV.</h2>
+    <!-- ===== CONTACT ===== -->
+    <section class="contact" id="contact">
+      <p class="mono label reveal-up">06 <span class="dot"></span> Contact</p>
+      <h2 class="contact__title" data-split="words">Let's build something.</h2>
+      <p class="contact__lead reveal-up">I'm always up for ambitious projects and hard problems. Available from November 2026, London or APAC.</p>
+      <a class="contact__mail magnetic reveal-up" href="mailto:sanays.mail@gmail.com" data-cursor="link"><span>sanays.mail@gmail.com</span></a>
+      <div class="contact__links reveal-up">
+        <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener" data-cursor="link">LinkedIn</a>
+        <a href="case-studies/index.html" data-cursor="link">Case studies</a>
+        <a href="https://beau.quest" target="_blank" rel="noopener" data-cursor="link">beau.quest</a>
+        <a href="https://gonzo.guide" target="_blank" rel="noopener" data-cursor="link">gonzo.guide</a>
+        <a href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener" data-cursor="link">Photography</a>
       </div>
-      <div class="award-grid reveal" style="--d:0.05s">
-        <article class="panel award">
-          <img src="Pictures/5. Awards & Extracurriculars/rowing national finals/rowing national finals.jpg" alt="Rowing" loading="lazy" decoding="async" />
-          <div class="award__body">
-            <h3 class="award__title">National B Final Winner</h3>
-            <p class="award__sub">Rowing &middot; U15 Coxswain</p>
-          </div>
-        </article>
-        <article class="panel award">
-          <img src="Pictures/5. Awards & Extracurriculars/performer/play performance.jpg" alt="Performance" loading="lazy" decoding="async" />
-          <div class="award__body">
-            <h3 class="award__title">Performer</h3>
-            <p class="award__sub">School's first student-led play, "Another Country"</p>
-          </div>
-        </article>
-        <article class="panel award">
-          <img src="Pictures/5. Awards & Extracurriculars/photography/hut.JPG" alt="Photography" loading="lazy" decoding="async" />
-          <div class="award__body">
-            <h3 class="award__title">Photography</h3>
-            <p class="award__sub"><a href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener" style="color: var(--accent);">@sanay.photography &rarr;</a></p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== CONNECT ===== -->
-  <section class="section close" id="connect" data-screen-label="Connect">
-    <div class="wrap">
-      <p class="label reveal">Get in touch</p>
-      <h2 class="h-close reveal" style="margin-top: 0.8rem;">Let's build something.</h2>
-      <p class="bodytext close__lead reveal" style="--d:0.05s">I'm always up for ambitious projects and hard problems.</p>
-      <div class="close__links reveal" style="--d:0.1s">
-        <a class="chip" href="mailto:sanays.mail@gmail.com">sanays.mail@gmail.com</a>
-        <a class="chip" href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="chip" href="https://beau.quest" target="_blank" rel="noopener">beau.quest</a>
-        <a class="chip" href="https://gonzo.guide" target="_blank" rel="noopener">gonzo.guide</a>
-        <a class="chip" href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener">Photography</a>
-      </div>
-
-      <div class="footer reveal" style="--d:0.15s">
-        <span class="footer__mark">Sanay Shah</span>
-        <span class="footer__spacer"></span>
-        <span>London &middot; Singapore</span>
-        <span>&copy; 2026</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== MODAL ===== -->
-  <div id="modal" class="modal-overlay" role="dialog" aria-modal="true">
-    <div class="modal-box">
-      <button id="modal-close" class="modal-close" aria-label="Close">&times;</button>
-      <div id="modal-body" class="modal-body"></div>
-    </div>
-  </div>
-
-  <script>
-    (function () {
-      // page-load reveal for hero + scroll-in reveal for sections
-      var hero = document.querySelector('.hero');
-      function heroIn() { hero.classList.add('is-in'); }
-      if (document.readyState === 'complete') requestAnimationFrame(heroIn);
-      else window.addEventListener('load', function () { requestAnimationFrame(heroIn); });
-      setTimeout(heroIn, 1200);
-
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
-        });
-      }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
-      document.querySelectorAll('.section').forEach(function (s) { io.observe(s); });
-
-      // scroll-driven backdrop journey
-      var root = document.documentElement, ticking = false;
-      var MIST_RAMP_PX = 1500;
-      function update() {
-        ticking = false;
-        var p = Math.min(1, Math.max(0, window.scrollY / MIST_RAMP_PX));
-        root.style.setProperty('--scroll', p.toFixed(4));
-      }
-      window.addEventListener('scroll', function () {
-        if (!ticking) { requestAnimationFrame(update); ticking = true; }
-      }, { passive: true });
-      window.addEventListener('resize', update, { passive: true });
-      update();
-
-      // mobile nav
-      var toggle = document.getElementById('nav-toggle');
-      var mobileNav = document.getElementById('mobile-nav');
-      toggle.addEventListener('click', function () { mobileNav.classList.toggle('active'); });
-      mobileNav.querySelectorAll('a').forEach(function (a) {
-        a.addEventListener('click', function () { mobileNav.classList.remove('active'); });
-      });
-
-      // product accordions
-      document.querySelectorAll('.product__toggle').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var target = document.getElementById(btn.dataset.target);
-          target.classList.toggle('open');
-          btn.classList.toggle('open');
-        });
-      });
-
-      // skill accordion (exclusive, one open at a time)
-      document.querySelectorAll('.skill-group__header').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var group = btn.closest('.skill-group');
-          var wasOpen = group.classList.contains('open');
-          document.querySelectorAll('.skill-group.open').forEach(function (g) { g.classList.remove('open'); });
-          if (!wasOpen) group.classList.add('open');
-        });
-      });
-
-      // ---- modal data ----
-      var modalData = {
-        innovi: {
-          title: 'Automation Project Manager',
-          sub: 'Innovi Advisors &middot; London',
-          date: 'Aug 2025–Present',
-          img: 'Pictures/1. Professional & Industry Experience/Automation Project Manager  Innovi Advisors Ltd/innovi advisors presentation.jpg',
-          body: '<h4>Discovery and strategic approval</h4>' +
-                '<ul><li>Interviewed the firm\'s partners and audited 15 draft AI agents already built in Gemini Enterprise, alongside the existing tech stack (Microsoft 365, FYI Docs, Xero).</li>' +
-                '<li>Diagnosed recurring faults across the drafts: wrong-ecosystem connectors, inconsistent prompt structure, overlapping scope. The underlying intent was clear: single-authoritative-source grounding, mandatory clarifying questions, citation discipline, plain-English output.</li>' +
-                '<li>Presented a phased blueprint to the partners. They approved it, and it became the basis for consolidating 15 draft agents into 6 tested, production-shaped agents.</li></ul>' +
-                '<h4>Architecture and design decisions</h4>' +
-                '<ul><li>Designed a knowledge-store grounding architecture that converts authoritative regulatory sources (HMRC, FRC, ACCA, ICAEW, Companies House, Charity Commission) into curated markdown knowledge bases, so every agent answer is reliably citeable.</li>' +
-                '<li>Found and fixed a reliability failure in production: an overloaded combined agent was hanging under real data load. Root-caused it to turn-size overload, then split it into two purpose-bound agents joined by a shared handover artefact. That fix became a standing design rule: "separate by function, bound each turn."</li>' +
-                '<li>Designed an "octopus" super-agent architecture ("Oracle"): a single router in front of 18+ flattened specialist subagents, so staff no longer need to know which agent to pick.</li>' +
-                '<li>Built human-in-the-loop guardrails throughout: agents draft for staff review and never auto-send or auto-file.</li></ul>' +
-                '<h4>Platform engineering and migration</h4>' +
-                '<ul><li>Built and tested the full suite in Gemini Enterprise\'s no-code Agent Designer, then migrated it entirely to Claude (Projects, Skills, Cowork), rebuilding 18+ subagents as 40+ modular Skills. That unlocked native, reliable file generation that the Gemini platform couldn\'t produce.</li>' +
-                '<li>Integrated a pre-built Xero MCP server for live ledger access into agent workflows, with the equivalent FYI document API integration underway.</li></ul>' +
-                '<h4>Vedas: the firm\'s own product (Jul 2026&ndash;present)</h4>' +
-                '<ul><li>Rebuilding the proven system as a product the firm owns: a custom harness built on top of pi, an open-source agent runtime, chosen because the commercial platforms could only request the working rules in prompts. On the custom harness the rules are enforced in code: the manager model cannot do the juniors\' legwork, memory saves need the user\'s word-for-word approval, and anything leaving the system needs human sign-off.</li>' +
-                '<li>Built custom MCP servers on the firm\'s own infrastructure: connectors to the practice management and document systems, Microsoft 365, and a deterministic calculation service, so every figure is computed exactly rather than by a language model.</li>' +
-                '<li>First full accounts-preparation job ran end to end on the new build in August 2026: working papers with every figure traced to source, and an adversarial AI review pass before any human review.</li></ul>' +
-                '<h4>Automations delivered</h4>' +
-                '<p>The VAT return auditor runs a tab-by-tab audit of Xero VAT exports against HMRC rules. The accounts-preparation agent runs a three-way reconciliation, from bank to ledger to trial balance, and raises a suspense report for anything unresolved. The client-onboarding agent builds a client\'s KYC and Permanent File through a guided interview, auto-filling from firm records and Companies House. Job-card automation auto-fills job-setup templates from prior-year data. Alfred, an onboarding and support agent that routes staff to the right tool, was the single biggest adoption win in staff testing.</p>' +
-                '<h4>The long version</h4>' +
-                '<p>Three case studies cover this work in full: <a href="case-studies/fifteen-agents-one-front-desk.html" style="color: var(--accent);">Fifteen agents, one front desk</a>, <a href="case-studies/a-practice-team-in-software.html" style="color: var(--accent);">A practice team in software</a>, and <a href="case-studies/the-engine-and-the-car.html" style="color: var(--accent);">The engine and the car</a>.</p>'
-        },
-        steam: {
-          title: 'Advanced Design Mentor',
-          sub: 'STEAMunity &middot; Singapore',
-          date: 'Dec 2024–Mar 2025',
-          img: 'Pictures/3. Leadership & Mentorship/Foundational Design Mentor, steamunity/steamunity group with dpm heng.jpeg',
-          body: '<ul><li>Mentored a group of 6 students (age 14-20) in design thinking and innovation, in partnership with SUTD and Science Centre Singapore.</li>' +
-                '<li>Project managed the group\'s collaboration with Metta Cafe, applying design thinking to help build task independence for youths with special needs.</li>' +
-                '<li>Students won 1st place for Best Prototype Award with "BloomBuddy", an IoT system that guides users from planting a chili to harvesting it using sensors.</li>' +
-                '<li>Students earned the opportunity to present their concept to Deputy Prime Minister Heng Swee Keat.</li></ul>'
-        },
-        alita: {
-          title: 'Volunteer Researcher &amp; Contributor',
-          sub: 'Asia-Pacific Legal Innovation &amp; Technology Association (ALITA)',
-          date: 'Nov 2024–Sep 2025',
-          img: 'Pictures/1. Professional & Industry Experience/Volunteer Researcher & Contributor  Asia-Pacific Legal Innovation & Technology Association (ALITA)/apac legal tech map.png',
-          body: '<ul><li>Conducted desktop research on existing legaltech taxonomies to support ALITA\'s APAC Ecosystem Map.</li>' +
-                '<li>Contributed to the production of the flagship "State of Legal Innovation in Asia-Pacific (SOLIA) Report 2025."</li>' +
-                '<li>Provided on-site support at major industry events, including ALITA Singapore: Lawtech Drinks and Theatre, and the Asia Pacific European Legal Innovation and Tech Dialogue in London.</li></ul>'
-        },
-        'treehouse-builder': {
-          title: 'Builder &amp; Facilitator',
-          sub: 'Treehouse Innovation &middot; London/Cardiff',
-          date: 'May 2024–Aug 2024',
-          img: 'Pictures/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk group.jpeg',
-          body: '<p>Project: The Futures Lab at LegalTechTalk, with DLA Piper.</p>' +
-                '<ul><li>Co-project managed an interactive booth for 2,500+ attendees, presenting ideas and gathering feedback on the future of the legal industry.</li>' +
-                '<li>Engineered and deployed a full-stack application on Google Cloud Run that combined generative AI (GPT-4o, DALL-E 3) with A/B testing algorithms, then fed the results into a data analytics pipeline.</li>' +
-                '<li>Built a GraphRAG solution with React and FastAPI to digitise and productise workshop facilitation cards.</li>' +
-                '<li>Co-authored published report: <a href="https://treehouseinnovation.com/case-studies/the-futures-lab-at-legaltechtalk-2024/" target="_blank" style="color: var(--accent);">"The Futures Lab at LegalTechTalk 2024"</a>.</li></ul>'
-        },
-        highfield: {
-          title: 'Digital Automation Insight',
-          sub: 'Highfield HR &middot; Bridgend',
-          date: 'Feb 2024–Mar 2024',
-          body: '<ul><li>Used design thinking methodology to understand pain points and prototyped an MVP for employee contract generation software.</li>' +
-                '<li>Designed and implemented a WebApp offering a low-cost solution to automating contracts, sellable to their clients.</li>' +
-                '<li>Upskilled employees to integrate AI into their workflows.</li></ul>'
-        },
-        'treehouse-intern': {
-          title: 'Design Coach Intern',
-          sub: 'Treehouse Innovation &middot; London',
-          date: 'Jun 2023–Sep 2023',
-          body: '<ul><li>Designed interactive exercises for a large corporate event (200+ people) focused on a manufacturing company\'s operating model review.</li>' +
-                '<li>Collaborated with design and client teams to research and design engaging games and interactive workshop exercises.</li>' +
-                '<li>Conducted background research on cognitive biases for a major gaming company project.</li>' +
-                '<li>Built a prototype app for a Risk &amp; Compliance breakout session using Flask, integrating OpenAI\'s API.</li></ul>'
-        },
-        cambridge: {
-          title: 'Grand Finalist &amp; Tooling Category Winner',
-          sub: 'Hack the Law: LLM x Law &middot; University of Cambridge',
-          img: 'Pictures/2. Hackathons & Competitions/grand finalist and tooling winner, hack the law llm x law winner, university of cambridge/cambridge hackathon grand finalist.jpg',
-          body: '<p>Compliance professionals face dense, unstructured financial regulations that are hard to search quickly. We built a platform that structures the regulations into a searchable interface and flags the entities and activities inside them.</p>' +
-                '<p>Team "Just 3" (with Xavier Doni and Siyuan Sui) built it on the RegGenome API and Groq API. The efficient use of Groq won the Tooling Category.</p>'
-        },
-        glasses: {
-          title: 'Golden Glasses Award: Most Engaging Presentation',
-          sub: 'Future Interaction for Smart Glasses Bootcamp &middot; NUS',
-          img: 'Pictures/2. Hackathons & Competitions/Golden Glasses Award for Most Engaging Presentation, future interaction of smart glasses bootcamp/smart glasses group winning.JPG',
-          body: '<ul><li>Built "Waddles", an app on XREAL smart glasses designed to alert users to potential dangers and risky areas while travelling in unfamiliar environments.</li>' +
-                '<li>Intensive 6-day bootcamp with hands-on AR development.</li>' +
-                '<li>Tech stack: Unity, C#, TOM, Gemini API, Python.</li>' +
-                '<li>Team: Wen Ting Chua, Sanay Shah, Jie Han Lim.</li></ul>'
-        },
-        web3: {
-          title: 'Web3 Hackathon Finalist',
-          sub: 'EasyA, VeChain, BCG',
-          img: 'Pictures/2. Hackathons & Competitions/finalist web3 hackthon easy a vchain/easya vchain hackathon UI.jpg',
-          body: '<ul><li>Competed as a solo participant in a hackathon focused on Web3 technologies.</li>' +
-                '<li>Recognised as a finalist for developing solutions that demonstrated highly efficient and effective prompt engineering techniques.</li></ul>'
-        }
-      };
-
-      var modal = document.getElementById('modal');
-      var modalBody = document.getElementById('modal-body');
-      var modalClose = document.getElementById('modal-close');
-
-      function openModal(key) {
-        var d = modalData[key];
-        if (!d) return;
-        var html = '';
-        if (d.img) html += '<img src="' + d.img + '" loading="lazy" decoding="async">';
-        html += '<h2>' + d.title + '</h2>';
-        html += '<p class="modal-sub">' + d.sub + '</p>';
-        if (d.date) html += '<p class="modal-date">' + d.date + '</p>';
-        html += d.body;
-        modalBody.innerHTML = html;
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeModal() {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-
-      document.querySelectorAll('[data-modal]').forEach(function (el) {
-        el.addEventListener('click', function () { openModal(el.dataset.modal); });
-      });
-
-      modalClose.addEventListener('click', closeModal);
-      modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
-    })();
-  </script>
-
-  <button class="lore-fab" id="lore-fab" type="button" aria-expanded="false">the 25th hour</button>
-  <aside class="panel lore-window" id="lore-window" aria-hidden="true">
-    <div class="lore-window__head">
-      <h2 class="lore-window__title">The 25th hour.</h2>
-      <button class="lore-window__close" id="lore-close" type="button" aria-label="Close">&times;</button>
-    </div>
-    <p class="lore-window__sub">lifemaxxing &middot; a window into the sidequests</p>
-    <p class="lore-window__drop"><span id="lore-text"></span><span class="type-caret" aria-hidden="true"></span></p>
-    <button class="lore-shuffle" id="lore-shuffle" type="button">shuffle</button>
-  </aside>
-
-  <script>
-    (function () {
-      var root = document.documentElement;
-      var stored = null;
-      try { stored = localStorage.getItem("theme"); } catch (e) {}
-      if (stored === "dark") root.setAttribute("data-theme", "dark");
-      function paintButtons() {
-        var dark = root.getAttribute("data-theme") === "dark";
-        document.querySelectorAll(".theme-toggle").forEach(function (b) {
-          b.textContent = dark ? "Light" : "Dark";
-          b.setAttribute("aria-pressed", dark ? "true" : "false");
-        });
-      }
-      document.querySelectorAll(".theme-toggle").forEach(function (b) {
-        b.addEventListener("click", function () {
-          var dark = root.getAttribute("data-theme") === "dark";
-          if (dark) root.removeAttribute("data-theme");
-          else root.setAttribute("data-theme", "dark");
-          try { localStorage.setItem("theme", dark ? "light" : "dark"); } catch (e) {}
-          paintButtons();
-        });
-      });
-      paintButtons();
-
-      var lines = [
-        "building an AI agent team for accountants",
-        "helping a pharmacy group use AI properly",
-        "turning a year of building into seven case studies",
-        "planning the Gonzo relaunch",
-        "chasing dad lore in a new city",
-        "out shooting film somewhere"
-      ];
-      var el = document.getElementById("typewriter");
-      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (el && !reduced) {
-        var slot = document.querySelector(".hero__now-slot");
-        if (slot) {
-          lines.forEach(function (line) {
-            var ghost = document.createElement("span");
-            ghost.className = "hero__now-ghost";
-            ghost.setAttribute("aria-hidden", "true");
-            ghost.textContent = line;
-            slot.appendChild(ghost);
-          });
-        }
-        var li = 0, ci = lines[0].length, deleting = true, HOLD = 2400;
-        function tick() {
-          var line = lines[li];
-          if (deleting) {
-            ci--;
-            el.textContent = line.slice(0, ci);
-            if (ci === 0) { deleting = false; li = (li + 1) % lines.length; setTimeout(tick, 350); return; }
-            setTimeout(tick, 26);
-          } else {
-            line = lines[li];
-            ci++;
-            el.textContent = line.slice(0, ci);
-            if (ci === line.length) { deleting = true; setTimeout(tick, HOLD); return; }
-            setTimeout(tick, 46);
-          }
-        }
-        setTimeout(tick, HOLD);
-      }
-
-      var links = document.querySelectorAll(".nav__link");
-      var map = {};
-      links.forEach(function (a) {
-        var h = a.getAttribute("href") || "";
-        if (h.indexOf("#") === 0) map[h.slice(1)] = a;
-      });
-      var spy = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          var a = map[e.target.id];
-          if (!a) return;
-          if (e.isIntersecting) {
-            links.forEach(function (x) { x.classList.remove("is-active"); });
-            a.classList.add("is-active");
-          }
-        });
-      }, { rootMargin: "-35% 0px -55% 0px" });
-      document.querySelectorAll("section[id]").forEach(function (s) { spy.observe(s); });
-    })();
-  </script>
-
-  <script>
-    (function () {
-      var DROPS = [
-        "43 flights in 45 weeks, mostly on a student budget and a lounge pass.",
-        "My favourite way into a city: talk to strangers until one of them shows me around. The Fujifilm starts the conversation.",
-        "A detour once ended at a monastery in the Taiwanese highlands, hosted by an eccentric German monk.",
-        "Boys' school did Macbeth. Someone had to be Lady Macbeth, and it was me: dress, full makeup, full house. An acting agency scouted me off the back of school theatre.",
-        "Performed in the school's first student-led play, Another Country.",
-        "The long-term plan is a bar of my own: the kind of room where the regulars have names. Spirits quals first, then shifts. No bar school.",
-        "It clicked at a tiny bar in Singapore where the staff knew my name within a fortnight. That feeling is the whole business plan.",
-        "Halloween in Hongdae. Ask me about it.",
-        "A road trip across the south of Japan in a kei car. Ask me about it.",
-        "A private watch event with the Arnault family. Long story.",
-        "Coxed a rowing four to winning a national B final.",
-        "I built a travel AI on three reference points: Bourdain, The Hangover, An Idiot Abroad. It's basically autobiographical."
-      ];
-      var fab = document.getElementById("lore-fab");
-      var win = document.getElementById("lore-window");
-      var txt = document.getElementById("lore-text");
-      var closeBtn = document.getElementById("lore-close");
-      var shuffleBtn = document.getElementById("lore-shuffle");
-      if (!fab || !win || !txt) return;
-      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      var timer = null, order = [], pos = 0, lastShown = -1;
-      function reshuffle() {
-        order = DROPS.map(function (_, i) { return i; });
-        for (var i = order.length - 1; i > 0; i--) {
-          var j = Math.floor(Math.random() * (i + 1));
-          var tmp = order[i]; order[i] = order[j]; order[j] = tmp;
-        }
-        if (order.length > 1 && order[0] === lastShown) {
-          var t = order[0]; order[0] = order[order.length - 1]; order[order.length - 1] = t;
-        }
-        pos = 0;
-      }
-      function pick() {
-        if (pos >= order.length) reshuffle();
-        lastShown = order[pos];
-        return DROPS[order[pos++]];
-      }
-      function show(text) {
-        if (timer) { clearTimeout(timer); timer = null; }
-        if (reduced) { txt.textContent = text; return; }
-        var i = 0;
-        txt.textContent = "";
-        function step() {
-          i++;
-          txt.textContent = text.slice(0, i);
-          if (i < text.length) timer = setTimeout(step, 18);
-        }
-        step();
-      }
-      function openWin() {
-        win.classList.add("open");
-        win.setAttribute("aria-hidden", "false");
-        fab.setAttribute("aria-expanded", "true");
-        show(pick());
-      }
-      function closeWin() {
-        win.classList.remove("open");
-        win.setAttribute("aria-hidden", "true");
-        fab.setAttribute("aria-expanded", "false");
-      }
-      fab.addEventListener("click", function () {
-        if (win.classList.contains("open")) closeWin(); else openWin();
-      });
-      closeBtn.addEventListener("click", closeWin);
-      shuffleBtn.addEventListener("click", function () { show(pick()); });
-      document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeWin(); });
-    })();
-  </script>
+    <footer class="foot">
+      <span class="mono">sanay<i>.</i>space</span>
+      <span class="mono">London <span class="dot"></span> <span id="clock-foot">00:00</span></span>
+      <span class="mono">2026</span>
+    </footer>
+  </main>
 </body>
-
 </html>

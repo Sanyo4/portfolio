@@ -1,133 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="no-js">
 <head>
-  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.classList.replace('no-js','js');</script>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Case studies | Sanay Shah</title>
   <meta name="description" content="Seven case studies from Sanay Shah on putting AI into real work: an accountancy firm&#x27;s agent system, a pharmacy group, two products built solo, and the philosophy behind the 80% cap." />
+  <meta name="theme-color" content="#0d1110" />
+  <meta name="color-scheme" content="dark light" />
+  <script>try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}</script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230d1110%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%239db08c%27/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/case-study.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/case-study.css" />
+  <script src="../assets/js/case-study.js" defer></script>
 </head>
-
-<body>
-  <div class="stage" aria-hidden="true">
-    <img class="stage__img" src="../assets/hero.jpg" alt="" />
-    <div class="stage__veil"></div>
-    <div class="stage__grain"></div>
-  </div>
-
-  <header class="nav panel" id="main-nav">
-    <div class="nav__inner">
-      <a class="wordmark" href="../index.html">Sanay Shah</a>
-      <nav class="nav__links">
-        <a class="nav__link is-active" href="index.html">Case studies</a>
-        <a class="nav__link nav__link--long" href="../index.html#building">Building</a>
-        <a class="nav__link nav__link--long" href="../index.html#experience">Experience</a>
-        <a class="nav__link" href="../index.html#connect">Connect</a>
-        <button class="theme-toggle" type="button" aria-pressed="false">Dark</button>
-      </nav>
-    </div>
+<body class="cs-page">
+  <div class="grain" aria-hidden="true"></div>
+  <header class="nav is-in cs-nav" id="nav">
+    <a class="nav__mark" href="../index.html">sanay<i>.</i>space</a>
+    <nav class="cs-nav__links">
+      <a class="cs-nav__link is-active" href="index.html">Case studies</a>
+      <a class="cs-nav__link" href="../index.html#building">Building</a>
+      <a class="cs-nav__link" href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="nav__theme" id="theme-btn" type="button" aria-pressed="false"><span class="nav__theme-label" data-dark="Light" data-light="Dark"></span><i class="nav__theme-dot"></i></button>
   </header>
 
+
   <main class="hub">
-    <div class="wrap">
-      <div class="panel hub__head reveal">
-        <p class="label">Case studies</p>
-        <h1>Seven pieces on putting AI into real work, <i>written from the record.</i></h1>
-        <p class="lead">The evidence behind the one-liners on the front page, and the thinking that runs through all of it.</p>
-        <p class="bodytext">Two firms, two products, one working paper and one essay. Start with the essay if you want the philosophy first. The rest are the incidents, decisions and numbers it came from. Firms are unnamed until they've agreed to be named.</p>
-      </div>
+    <header class="hub__head">
+      <p class="mono label">Case studies</p>
+      <h1 class="hub__title" data-split="words">Seven pieces on putting AI into real work, <em>written from the record.</em></h1>
+      <p class="hub__lead reveal-up" style="--d:.5s">The evidence behind the one-liners on the front page, and the thinking that runs through all of it.</p>
+      <p class="hub__body reveal-up" style="--d:.6s">Two firms, two products, one working paper and one essay. Start with the essay if you want the philosophy first. The rest are the incidents, decisions and numbers it came from. Firms are unnamed until they've agreed to be named.</p>
+    </header>
 
-      <div class="panel cs-list reveal" style="--d:0.08s">
-          <a class="cs-item" href="why-we-stopped-at-80.html">
-            <span class="cs-item__num">01</span>
-            <span>
-              <span class="cs-item__kind"><span class="label">Essay</span><span class="status-pill">Start here</span></span>
-              <span class="cs-item__title" style="display:block">Why we stopped at 80%</span>
-              <span class="cs-item__sf" style="display:block">The AI did about 80% of the work in about a quarter of the time. Why we chose not to push it to 100, and the handful of things I now believe about putting AI into real work.</span>
-              <span class="cs-item__meta" style="display:block">August 2026 &middot; 6 min read</span>
+    <ol class="studies__list hub__list reveal-up" style="--d:.7s">
+        <li class="study ">
+          <a class="study__link" href="why-we-stopped-at-80.html" data-cursor="link">
+            <span class="study__num mono">01</span>
+            <span class="study__main">
+              <span class="mono study__kind">Essay <span class="dot"></span> start here</span>
+              <span class="study__title">Why we stopped at 80%</span>
+              <span class="study__sf">The AI did about 80% of the work in about a quarter of the time. Why we chose not to push it to 100, and the handful of things I now believe about putting AI into real work.</span>
             </span>
-            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
+            <span class="study__time mono">6 min</span>
           </a>
-          <a class="cs-item" href="fifteen-agents-one-front-desk.html">
-            <span class="cs-item__num">02</span>
-            <span>
-              <span class="cs-item__kind"><span class="label">Case study</span></span>
-              <span class="cs-item__title" style="display:block">Fifteen agents, one front desk: a year of building AI for an accountancy firm</span>
-              <span class="cs-item__sf" style="display:block">A year building agents for real accountants. Fifteen drafts became six, six became one, a sixteen-minute run became four, and the rules that stuck came out of the incidents.</span>
-              <span class="cs-item__meta" style="display:block">August 2026 &middot; 6 min read</span>
+        </li>
+        <li class="study ">
+          <a class="study__link" href="fifteen-agents-one-front-desk.html" data-cursor="link">
+            <span class="study__num mono">02</span>
+            <span class="study__main">
+              <span class="mono study__kind">Case study</span>
+              <span class="study__title">Fifteen agents, one front desk: a year of building AI for an accountancy firm</span>
+              <span class="study__sf">A year building agents for real accountants. Fifteen drafts became six, six became one, a sixteen-minute run became four, and the rules that stuck came out of the incidents.</span>
             </span>
-            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
+            <span class="study__time mono">6 min</span>
           </a>
-          <a class="cs-item" href="a-practice-team-in-software.html">
-            <span class="cs-item__num">03</span>
-            <span>
-              <span class="cs-item__kind"><span class="label">Working paper</span></span>
-              <span class="cs-item__title" style="display:block">A practice team in software</span>
-              <span class="cs-item__sf" style="display:block">The public cut of a working paper for the firm&#x27;s leadership. A manager model, a worker model and a human partner, with the roles enforced in code rather than requested in a prompt.</span>
-              <span class="cs-item__meta" style="display:block">August 2026 &middot; 5 min read</span>
+        </li>
+        <li class="study ">
+          <a class="study__link" href="a-practice-team-in-software.html" data-cursor="link">
+            <span class="study__num mono">03</span>
+            <span class="study__main">
+              <span class="mono study__kind">Working paper</span>
+              <span class="study__title">A practice team in software</span>
+              <span class="study__sf">The public cut of a working paper for the firm&#x27;s leadership. A manager model, a worker model and a human partner, with the roles enforced in code rather than requested in a prompt.</span>
             </span>
-            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
+            <span class="study__time mono">5 min</span>
           </a>
-          <a class="cs-item" href="the-engine-and-the-car.html">
-            <span class="cs-item__num">04</span>
-            <span>
-              <span class="cs-item__kind"><span class="label">Case study</span></span>
-              <span class="cs-item__title" style="display:block">The engine and the car: why I moved our AI system three times in one summer</span>
-              <span class="cs-item__sf" style="display:block">The same system ran on three different harnesses between June and August. Same skills, same integrations, same rules. Where the value actually sits when the model is a line in a config file.</span>
-              <span class="cs-item__meta" style="display:block">August 2026 &middot; 5 min read</span>
+        </li>
+        <li class="study ">
+          <a class="study__link" href="the-engine-and-the-car.html" data-cursor="link">
+            <span class="study__num mono">04</span>
+            <span class="study__main">
+              <span class="mono study__kind">Case study</span>
+              <span class="study__title">The engine and the car: why I moved our AI system three times in one summer</span>
+              <span class="study__sf">The same system ran on three different harnesses between June and August. Same skills, same integrations, same rules. Where the value actually sits when the model is a line in a config file.</span>
             </span>
-            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
+            <span class="study__time mono">5 min</span>
           </a>
-          <a class="cs-item" href="ten-things-pharmacy-group.html">
-            <span class="cs-item__num">05</span>
-            <span>
-              <span class="cs-item__kind"><span class="label">Case study</span></span>
-              <span class="cs-item__title" style="display:block">Ten things I learned putting AI into a national pharmacy group</span>
-              <span class="cs-item__sf" style="display:block">Three days of discovery that turned into building. Three agents shipped, four didn&#x27;t, most of the time went on access, and governance moved from the back of the proposal to the front.</span>
-              <span class="cs-item__meta" style="display:block">August 2026 &middot; 7 min read</span>
+        </li>
+        <li class="study ">
+          <a class="study__link" href="ten-things-pharmacy-group.html" data-cursor="link">
+            <span class="study__num mono">05</span>
+            <span class="study__main">
+              <span class="mono study__kind">Case study</span>
+              <span class="study__title">Ten things I learned putting AI into a national pharmacy group</span>
+              <span class="study__sf">Three days of discovery that turned into building. Three agents shipped, four didn&#x27;t, most of the time went on access, and governance moved from the back of the proposal to the front.</span>
             </span>
-            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
+            <span class="study__time mono">7 min</span>
           </a>
-          <a class="cs-item" href="beau.html">
-            <span class="cs-item__num">06</span>
-            <span>
-              <span class="cs-item__kind"><span class="label">Case study</span></span>
-              <span class="cs-item__title" style="display:block">Beau: I built a matching app that watches how you react, then I turned it off</span>
-              <span class="cs-item__sf" style="display:block">A matching app that shows you a social moment and watches what you do, instead of asking you to describe yourself. Built solo to a working beta in two months, then wound down, and the question it left me with.</span>
-              <span class="cs-item__meta" style="display:block">August 2026 &middot; 4 min read</span>
+        </li>
+        <li class="study ">
+          <a class="study__link" href="beau.html" data-cursor="link">
+            <span class="study__num mono">06</span>
+            <span class="study__main">
+              <span class="mono study__kind">Case study</span>
+              <span class="study__title">Beau: I built a matching app that watches how you react, then I turned it off</span>
+              <span class="study__sf">A matching app that shows you a social moment and watches what you do, instead of asking you to describe yourself. Built solo to a working beta in two months, then wound down, and the question it left me with.</span>
             </span>
-            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
+            <span class="study__time mono">4 min</span>
           </a>
-          <a class="cs-item" href="gonzo.html">
-            <span class="cs-item__num">07</span>
-            <span>
-              <span class="cs-item__kind"><span class="label">Case study</span></span>
-              <span class="cs-item__title" style="display:block">Gonzo: six personas, one argument, and a phone call to Google Maps</span>
-              <span class="cs-item__sf" style="display:block">A travel engine that searches in the local language, lets six personas argue over the answer, and checks every place against Google Maps before it&#x27;s allowed to recommend it.</span>
-              <span class="cs-item__meta" style="display:block">August 2026 &middot; 3 min read</span>
+        </li>
+        <li class="study ">
+          <a class="study__link" href="gonzo.html" data-cursor="link">
+            <span class="study__num mono">07</span>
+            <span class="study__main">
+              <span class="mono study__kind">Case study</span>
+              <span class="study__title">Gonzo: six personas, one argument, and a phone call to Google Maps</span>
+              <span class="study__sf">A travel engine that searches in the local language, lets six personas argue over the answer, and checks every place against Google Maps before it&#x27;s allowed to recommend it.</span>
             </span>
-            <span class="cs-item__arrow" aria-hidden="true">&rarr;</span>
+            <span class="study__time mono">3 min</span>
           </a>
-      </div>
-
-    <div class="footer footer--wide reveal" style="--d:0.2s">
-      <span class="footer__mark">Sanay Shah</span>
-      <a href="mailto:sanays.mail@gmail.com">sanays.mail@gmail.com</a>
-      <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a>
-      <span class="footer__spacer"></span>
-      <span>London &middot; Singapore</span>
-      <span>&copy; 2026</span>
-    </div>
-
-    </div>
+        </li>
+    </ol>
   </main>
+    <footer class="foot cs-foot-bar">
+      <span class="mono">sanay<i>.</i>space</span>
+      <span class="mono"><a href="mailto:sanays.mail@gmail.com">sanays.mail@gmail.com</a> <span class="dot"></span> <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a></span>
+      <span class="mono">2026</span>
+    </footer>
 
-  <script src="../assets/case-study.js"></script>
 </body>
-
 </html>

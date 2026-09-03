@@ -1,117 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="no-js">
 <head>
-  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.classList.replace('no-js','js');</script>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Beau | Sanay Shah</title>
   <meta name="description" content="A matching app that shows you a social moment and watches what you do, instead of asking you to describe yourself. Built solo to a working beta in two months, then wound down, and the question it left me with." />
+  <meta name="theme-color" content="#0d1110" />
+  <meta name="color-scheme" content="dark light" />
+  <script>try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}</script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230d1110%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%239db08c%27/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/case-study.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/case-study.css" />
+  <script src="../assets/js/case-study.js" defer></script>
 </head>
-
-<body>
-  <div class="stage" aria-hidden="true">
-    <img class="stage__img" src="../assets/hero.jpg" alt="" />
-    <div class="stage__veil"></div>
-    <div class="stage__grain"></div>
-  </div>
-
-  <div class="progress" id="progress" aria-hidden="true"></div>
-  <header class="nav panel" id="main-nav">
-    <div class="nav__inner">
-      <a class="wordmark" href="../index.html">Sanay Shah</a>
-      <nav class="nav__links">
-        <a class="nav__link" href="index.html">Case studies</a>
-        <a class="nav__link nav__link--long" href="../index.html#building">Building</a>
-        <a class="nav__link nav__link--long" href="../index.html#experience">Experience</a>
-        <a class="nav__link" href="../index.html#connect">Connect</a>
-        <button class="theme-toggle" type="button" aria-pressed="false">Dark</button>
-      </nav>
-    </div>
+<body class="cs-page">
+  <div class="grain" aria-hidden="true"></div>
+  <header class="nav is-in cs-nav" id="nav">
+    <a class="nav__mark" href="../index.html">sanay<i>.</i>space</a>
+    <nav class="cs-nav__links">
+      <a class="cs-nav__link" href="index.html">Case studies</a>
+      <a class="cs-nav__link" href="../index.html#building">Building</a>
+      <a class="cs-nav__link" href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="nav__theme" id="theme-btn" type="button" aria-pressed="false"><span class="nav__theme-label" data-dark="Light" data-light="Dark"></span><i class="nav__theme-dot"></i></button>
   </header>
 
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
   <main class="cs">
-    <article class="panel cs-article reveal">
+    <article class="cs-article">
       <header class="cs-head">
         <div class="cs-head__top">
-          <span class="label">Case study &middot; 06 of 07</span>
-          <a class="cs-back" href="index.html">&larr; All case studies</a>
+          <span class="mono label">Case study <span class="dot"></span> 06 of 07</span>
+          <a class="mono cs-back" href="index.html">&larr; All case studies</a>
         </div>
-        <h1 class="cs-title">Beau: I built a matching app that watches how you react, then I turned it off</h1>
-        <p class="lead cs-standfirst">A matching app that shows you a social moment and watches what you do, instead of asking you to describe yourself. Built solo to a working beta in two months, then wound down, and the question it left me with.</p>
-        <div class="cs-meta">
-          <img class="cs-meta__avatar" src="../Pictures/me.jpg" alt="Sanay Shah" />
-          <span><b>Sanay Shah</b></span>
-          <span class="cs-meta__dot">&middot;</span>
-          <span>August 2026</span>
-          <span class="cs-meta__dot">&middot;</span>
-          <span>4 min read</span>
+        <h1 class="cs-title" data-split="words">Beau: I built a matching app that watches how you react, then I turned it off</h1>
+        <p class="cs-standfirst reveal-up" style="--d:.5s">A matching app that shows you a social moment and watches what you do, instead of asking you to describe yourself. Built solo to a working beta in two months, then wound down, and the question it left me with.</p>
+        <div class="cs-meta reveal-up" style="--d:.6s">
+          <img class="cs-meta__avatar" src="../assets/img/me-sm.webp" alt="Sanay Shah" width="32" height="32" />
+          <span class="mono">Sanay Shah <span class="dot"></span> August 2026 <span class="dot"></span> 4 min read</span>
         </div>
       </header>
 
       <div class="cs-body">
 <p>In January and February this year I built a social matching platform, solo, from concept to a working beta with real users. It's called Beau. It ran for a while, it did what I built it to do, and then I wound it down. This is what it was and what it taught me, including the question it left me with that I still don't have a clean answer to.</p>
-<h2>The idea</h2>
+<h2><span class="cs-h2__n">01</span>The idea</h2>
 <p>Every dating and friendship app asks you to describe yourself. Bios, prompts, a list of interests. People are bad at this, and not because they're lying. They just don't know. Ask someone if they're jealous and they'll say "a bit". Put them in a situation where their partner's ex turns up at the party and watch what they do.</p>
 <p>So Beau doesn't ask. It shows. The core of the app is a thing I called the Dojo: a six-turn interactive scene, generated by a language model, where you're dropped into a social moment and pick what you do. The abstract stuff (jealousy, frugality, attachment style, dozens more) is embedded in the scene by the model, and you never see the dimension being measured. You just react.</p>
 <p>Every choice feeds an identity graph. Not a profile with fields. A graph, with you at the centre connected to interests, traits, values and vices by weighted edges. Weights sit on a spectrum, so "extrovert" at minus 0.7 is an introvert, and they drift as you make more choices, with a ninety-day half-life so the graph is who you are now rather than who you were in January.</p>
 <p>Profiles unlock gradually based on how a chat is going, not up front. And the whole thing runs on an energy economy: five Dojo sessions earn you one match dispatch, which meant the real AI costs mapped onto a natural cadence rather than a subscription nobody used.</p>
-<h2>The build</h2>
+<h2><span class="cs-h2__n">02</span>The build</h2>
 <p>Two months, on my own. Three databases, each doing one job: a relational store for users, chat and payments; a graph database for the identity graph; a vector database for similarity search and for spotting when "Lesserafim" and "Le Sserafim" are the same node. Around twenty backend service modules and fifty API endpoints, deployed as three containers.</p>
 <p>The matching ran as a funnel. A fast vector pre-screen pulls a few hundred candidates. Graph scoring applies the hard filters, then a weighted compatibility score (values weigh most, then vices, then traits, then interests, with a few attachment-theory heuristics on top). Then a thousand random walks through the two people's combined graph, to surface connections neither profile would show, with the hit rate presented to the user as a "fate probability". Overnight, a stable matching algorithm turns all those scores into pairings across the whole pool.</p>
-<h2>The thing I was really testing</h2>
+<h2><span class="cs-h2__n">03</span>The thing I was really testing</h2>
 <p>Beau was also a cost experiment. I wanted to know how far you could push language model spend down without the product getting worse. Some of what worked:</p>
 <p>The six-turn Dojo scene is one model call, not six. All six turns are generated in a single batch with constrained JSON output, so turns two to six are instant and the cost is a sixth of the obvious design.</p>
 <p>Turning a user's choice into graph nodes runs as a cascade. Known nodes skip the model entirely. Novel ones try a vector lookup first. Only the truly unknown trigger a model call.</p>
 <p>Choosing the next scene for a user uses zero model calls. It's pure graph analytics: which dealbreaker values haven't been captured yet, which adjacent interests haven't been explored.</p>
 <p>Every user had their token spend tracked to the cent. I've carried that habit into everything I've built since, including work for real firms, and it's the reason I now treat "how much did that cost" as a design question rather than a finance one.</p>
-<h2>What it taught me</h2>
+<h2><span class="cs-h2__n">04</span>What it taught me</h2>
 <p>Two things, and they've shaped everything since.</p>
 <p>The first is practical. I learned how to design, build and cost a real AI system end to end: which database for which job, where the model call is worth it and where code does it better, what a trust boundary looks like when the model's output goes straight into a live system. Structured output and grounding. Per-user cost tracking. Those were Beau lessons before they were work lessons.</p>
 <p>The second is the one I think about more. Beau infers psychological traits from instinctive reactions rather than from what people say about themselves. That's the whole point, and it's also a live question: how much should a system be allowed to infer about a person from their behaviour, and what should it be allowed to do with that inference? I built the thing, so I don't get to ask that as a bystander. It's the reason a chunk of my interest has moved towards the governance side of AI, and it's a first-hand question rather than a borrowed one.</p>
-<h2>Why I stopped</h2>
+<h2><span class="cs-h2__n">05</span>Why I stopped</h2>
 <p>The beta delivered what it was for. Real users, a working pipeline, the architecture lessons, and the ethics question. The deployment is paused and nothing's deleted.</p>
 <p>I'd describe it as taken solo through to a working beta. Not a startup, not a failure. A very good two months.</p>
       </div>
 
       <footer class="cs-foot">
-        <div class="cs-foot__links">
-          <a class="chip" href="https://beau.quest" target="_blank" rel="noopener">beau.quest <span aria-hidden="true">&rarr;</span></a>
-        </div>
+        <a class="btn cs-foot__link" href="https://beau.quest" target="_blank" rel="noopener"><span>beau.quest &rarr;</span></a>
         <p class="cs-disclosure">This piece was written with AI assistance, which I use as a dyslexia adjustment first provided through my Disabled Students&#x27; Allowance. Every fact in it comes from my own maintained record and has been checked by me.</p>
       </footer>
     </article>
 
-    <nav class="cs-pager reveal" style="--d:0.1s" aria-label="More case studies">
-      <a class="panel cs-pager__card is-prev" href="ten-things-pharmacy-group.html">
-        <span class="label">Previous</span>
-        <span class="cs-pager__title" style="display:block">Ten things I learned in a pharmacy group</span>
+    <nav class="cs-pager" aria-label="More case studies">
+      <a class="cs-pager__card is-prev" href="ten-things-pharmacy-group.html">
+        <span class="mono label">Previous</span>
+        <span class="cs-pager__title">Ten things I learned in a pharmacy group</span>
       </a>
-      <a class="panel cs-pager__card is-next" href="gonzo.html">
-        <span class="label">Next</span>
-        <span class="cs-pager__title" style="display:block">Gonzo</span>
+      <a class="cs-pager__card is-next" href="gonzo.html">
+        <span class="mono label">Next</span>
+        <span class="cs-pager__title">Gonzo</span>
       </a>
     </nav>
-    <div class="cs-pager__all reveal" style="--d:0.15s">
-      <a class="chip" href="index.html">All seven case studies</a>
+    <div class="cs-pager__all">
+      <a class="arrow-link" href="index.html">All seven case studies <i>&rarr;</i></a>
     </div>
-
-    <div class="footer reveal" style="--d:0.2s">
-      <span class="footer__mark">Sanay Shah</span>
-      <a href="mailto:sanays.mail@gmail.com">sanays.mail@gmail.com</a>
-      <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a>
-      <span class="footer__spacer"></span>
-      <span>London &middot; Singapore</span>
-      <span>&copy; 2026</span>
-    </div>
-
   </main>
+    <footer class="foot cs-foot-bar">
+      <span class="mono">sanay<i>.</i>space</span>
+      <span class="mono"><a href="mailto:sanays.mail@gmail.com">sanays.mail@gmail.com</a> <span class="dot"></span> <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a></span>
+      <span class="mono">2026</span>
+    </footer>
 
-  <script src="../assets/case-study.js"></script>
 </body>
-
 </html>

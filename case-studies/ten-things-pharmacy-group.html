@@ -1,55 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="no-js">
 <head>
-  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.classList.replace('no-js','js');</script>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Ten things I learned in a pharmacy group | Sanay Shah</title>
   <meta name="description" content="Three days of discovery that turned into building. Three agents shipped, four didn&#x27;t, most of the time went on access, and governance moved from the back of the proposal to the front." />
+  <meta name="theme-color" content="#0d1110" />
+  <meta name="color-scheme" content="dark light" />
+  <script>try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}</script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230d1110%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%239db08c%27/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/case-study.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/case-study.css" />
+  <script src="../assets/js/case-study.js" defer></script>
 </head>
-
-<body>
-  <div class="stage" aria-hidden="true">
-    <img class="stage__img" src="../assets/hero.jpg" alt="" />
-    <div class="stage__veil"></div>
-    <div class="stage__grain"></div>
-  </div>
-
-  <div class="progress" id="progress" aria-hidden="true"></div>
-  <header class="nav panel" id="main-nav">
-    <div class="nav__inner">
-      <a class="wordmark" href="../index.html">Sanay Shah</a>
-      <nav class="nav__links">
-        <a class="nav__link" href="index.html">Case studies</a>
-        <a class="nav__link nav__link--long" href="../index.html#building">Building</a>
-        <a class="nav__link nav__link--long" href="../index.html#experience">Experience</a>
-        <a class="nav__link" href="../index.html#connect">Connect</a>
-        <button class="theme-toggle" type="button" aria-pressed="false">Dark</button>
-      </nav>
-    </div>
+<body class="cs-page">
+  <div class="grain" aria-hidden="true"></div>
+  <header class="nav is-in cs-nav" id="nav">
+    <a class="nav__mark" href="../index.html">sanay<i>.</i>space</a>
+    <nav class="cs-nav__links">
+      <a class="cs-nav__link" href="index.html">Case studies</a>
+      <a class="cs-nav__link" href="../index.html#building">Building</a>
+      <a class="cs-nav__link" href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="nav__theme" id="theme-btn" type="button" aria-pressed="false"><span class="nav__theme-label" data-dark="Light" data-light="Dark"></span><i class="nav__theme-dot"></i></button>
   </header>
 
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
   <main class="cs">
-    <article class="panel cs-article reveal">
+    <article class="cs-article">
       <header class="cs-head">
         <div class="cs-head__top">
-          <span class="label">Case study &middot; 05 of 07</span>
-          <a class="cs-back" href="index.html">&larr; All case studies</a>
+          <span class="mono label">Case study <span class="dot"></span> 05 of 07</span>
+          <a class="mono cs-back" href="index.html">&larr; All case studies</a>
         </div>
-        <h1 class="cs-title">Ten things I learned putting AI into a national pharmacy group</h1>
-        <p class="lead cs-standfirst">Three days of discovery that turned into building. Three agents shipped, four didn&#x27;t, most of the time went on access, and governance moved from the back of the proposal to the front.</p>
-        <div class="cs-meta">
-          <img class="cs-meta__avatar" src="../Pictures/me.jpg" alt="Sanay Shah" />
-          <span><b>Sanay Shah</b></span>
-          <span class="cs-meta__dot">&middot;</span>
-          <span>August 2026</span>
-          <span class="cs-meta__dot">&middot;</span>
-          <span>7 min read</span>
+        <h1 class="cs-title" data-split="words">Ten things I learned putting AI into a national pharmacy group</h1>
+        <p class="cs-standfirst reveal-up" style="--d:.5s">Three days of discovery that turned into building. Three agents shipped, four didn&#x27;t, most of the time went on access, and governance moved from the back of the proposal to the front.</p>
+        <div class="cs-meta reveal-up" style="--d:.6s">
+          <img class="cs-meta__avatar" src="../assets/img/me-sm.webp" alt="Sanay Shah" width="32" height="32" />
+          <span class="mono">Sanay Shah <span class="dot"></span> August 2026 <span class="dot"></span> 7 min read</span>
         </div>
       </header>
       <p class="cs-intro">Notes from three days inside a UK pharmacy group with a few hundred branches, a support office, an offshore back office, and a Microsoft 365 Copilot licence most staff had only ever used as a chat box. August 2026, delivered through the accountancy firm I work for.</p>
@@ -85,10 +78,10 @@
 <h2>4. Governance is the product, not the caveat</h2>
 <p>An agent register (owner, reviewer, written criteria, data sources). A rule that agents draft and people send. An approved tools register. A one-page standard for how to build an agent. Short red-flag training. Proportionate to the business, built on ISO/IEC 42001 principles.</p>
 <p>I used to present that list as the responsible-adult section at the end of a proposal. Three days here moved it to the front. It isn't the brake. It's what lets Finance get the outputs they asked for, what stops the tools being a black box one person owns, and what makes the role in insight 2 survivable. In a regulated business, the fastest way to kill an AI programme is to auto-send something wrong in month one.</p>
-<h2>What I recommended</h2>
+<h2><span class="cs-h2__n">01</span>What I recommended</h2>
 <p>Microsoft's Copilot suite as the platform, used as a ladder rather than one product. Copilot chat for everyday work, which most staff hadn't started on. The in-Copilot agent builder for small personal agents: all three shipped agents live there, and it's where a team should build its first one. Copilot Studio for the agents that need to be shared, connected or audited, because it adds the connectors, actions, publishing and audit trail the basic builder lacks. Already licensed, data inside the tenancy, their IT can support it. I'd have picked something else for myself. The decision was already made, and my credibility was better spent on scope and oversight.</p>
 <p>Then the governance layer above before any more Finance builds, phase two built the way the three shipped agents were built, and a daily ops role specified with the authority to hold that line.</p>
-<h2>Why this isn't a pharmacy story</h2>
+<h2><span class="cs-h2__n">02</span>Why this isn't a pharmacy story</h2>
 <p>The pattern isn't specific to pharmacy. A licensed AI tool most staff don't use. A senior team that wants proof before investment. An IT function whose approval loop is slower than AI work needs. A disagreement about what "value" means that nobody has said out loud. And a role that carries the accountability without the authority. If you're about to walk into a business with that shape, the ten above are what I'd want to know on day one.</p>
       </div>
 
@@ -97,32 +90,25 @@
       </footer>
     </article>
 
-    <nav class="cs-pager reveal" style="--d:0.1s" aria-label="More case studies">
-      <a class="panel cs-pager__card is-prev" href="the-engine-and-the-car.html">
-        <span class="label">Previous</span>
-        <span class="cs-pager__title" style="display:block">The engine and the car</span>
+    <nav class="cs-pager" aria-label="More case studies">
+      <a class="cs-pager__card is-prev" href="the-engine-and-the-car.html">
+        <span class="mono label">Previous</span>
+        <span class="cs-pager__title">The engine and the car</span>
       </a>
-      <a class="panel cs-pager__card is-next" href="beau.html">
-        <span class="label">Next</span>
-        <span class="cs-pager__title" style="display:block">Beau</span>
+      <a class="cs-pager__card is-next" href="beau.html">
+        <span class="mono label">Next</span>
+        <span class="cs-pager__title">Beau</span>
       </a>
     </nav>
-    <div class="cs-pager__all reveal" style="--d:0.15s">
-      <a class="chip" href="index.html">All seven case studies</a>
+    <div class="cs-pager__all">
+      <a class="arrow-link" href="index.html">All seven case studies <i>&rarr;</i></a>
     </div>
-
-    <div class="footer reveal" style="--d:0.2s">
-      <span class="footer__mark">Sanay Shah</span>
-      <a href="mailto:sanays.mail@gmail.com">sanays.mail@gmail.com</a>
-      <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a>
-      <span class="footer__spacer"></span>
-      <span>London &middot; Singapore</span>
-      <span>&copy; 2026</span>
-    </div>
-
   </main>
+    <footer class="foot cs-foot-bar">
+      <span class="mono">sanay<i>.</i>space</span>
+      <span class="mono"><a href="mailto:sanays.mail@gmail.com">sanays.mail@gmail.com</a> <span class="dot"></span> <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a></span>
+      <span class="mono">2026</span>
+    </footer>
 
-  <script src="../assets/case-study.js"></script>
 </body>
-
 </html>

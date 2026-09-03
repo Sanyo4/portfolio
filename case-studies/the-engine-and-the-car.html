@@ -1,81 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="no-js">
 <head>
-  <script>document.documentElement.classList.add('js');</script>
+  <script>document.documentElement.classList.replace('no-js','js');</script>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>The engine and the car | Sanay Shah</title>
   <meta name="description" content="The same system ran on three different harnesses between June and August. Same skills, same integrations, same rules. Where the value actually sits when the model is a line in a config file." />
+  <meta name="theme-color" content="#0d1110" />
+  <meta name="color-scheme" content="dark light" />
+  <script>try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}</script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230d1110%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%239db08c%27/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/case-study.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <link rel="stylesheet" href="../assets/css/case-study.css" />
+  <script src="../assets/js/case-study.js" defer></script>
 </head>
-
-<body>
-  <div class="stage" aria-hidden="true">
-    <img class="stage__img" src="../assets/hero.jpg" alt="" />
-    <div class="stage__veil"></div>
-    <div class="stage__grain"></div>
-  </div>
-
-  <div class="progress" id="progress" aria-hidden="true"></div>
-  <header class="nav panel" id="main-nav">
-    <div class="nav__inner">
-      <a class="wordmark" href="../index.html">Sanay Shah</a>
-      <nav class="nav__links">
-        <a class="nav__link" href="index.html">Case studies</a>
-        <a class="nav__link nav__link--long" href="../index.html#building">Building</a>
-        <a class="nav__link nav__link--long" href="../index.html#experience">Experience</a>
-        <a class="nav__link" href="../index.html#connect">Connect</a>
-        <button class="theme-toggle" type="button" aria-pressed="false">Dark</button>
-      </nav>
-    </div>
+<body class="cs-page">
+  <div class="grain" aria-hidden="true"></div>
+  <header class="nav is-in cs-nav" id="nav">
+    <a class="nav__mark" href="../index.html">sanay<i>.</i>space</a>
+    <nav class="cs-nav__links">
+      <a class="cs-nav__link" href="index.html">Case studies</a>
+      <a class="cs-nav__link" href="../index.html#building">Building</a>
+      <a class="cs-nav__link" href="../index.html#contact">Contact</a>
+    </nav>
+    <button class="nav__theme" id="theme-btn" type="button" aria-pressed="false"><span class="nav__theme-label" data-dark="Light" data-light="Dark"></span><i class="nav__theme-dot"></i></button>
   </header>
 
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
   <main class="cs">
-    <article class="panel cs-article reveal">
+    <article class="cs-article">
       <header class="cs-head">
         <div class="cs-head__top">
-          <span class="label">Case study &middot; 04 of 07</span>
-          <a class="cs-back" href="index.html">&larr; All case studies</a>
+          <span class="mono label">Case study <span class="dot"></span> 04 of 07</span>
+          <a class="mono cs-back" href="index.html">&larr; All case studies</a>
         </div>
-        <h1 class="cs-title">The engine and the car: why I moved our AI system three times in one summer</h1>
-        <p class="lead cs-standfirst">The same system ran on three different harnesses between June and August. Same skills, same integrations, same rules. Where the value actually sits when the model is a line in a config file.</p>
-        <div class="cs-meta">
-          <img class="cs-meta__avatar" src="../Pictures/me.jpg" alt="Sanay Shah" />
-          <span><b>Sanay Shah</b></span>
-          <span class="cs-meta__dot">&middot;</span>
-          <span>August 2026</span>
-          <span class="cs-meta__dot">&middot;</span>
-          <span>5 min read</span>
+        <h1 class="cs-title" data-split="words">The engine and the car: why I moved our AI system three times in one summer</h1>
+        <p class="cs-standfirst reveal-up" style="--d:.5s">The same system ran on three different harnesses between June and August. Same skills, same integrations, same rules. Where the value actually sits when the model is a line in a config file.</p>
+        <div class="cs-meta reveal-up" style="--d:.6s">
+          <img class="cs-meta__avatar" src="../assets/img/me-sm.webp" alt="Sanay Shah" width="32" height="32" />
+          <span class="mono">Sanay Shah <span class="dot"></span> August 2026 <span class="dot"></span> 5 min read</span>
         </div>
       </header>
 
       <div class="cs-body">
 <p>The system I build for an accountancy firm has run on three different harnesses since June. Same skills, same integrations, same rules. Three engines under the same bonnet. This is why, and what it taught me about where the value in one of these systems actually sits.</p>
-<h2>Engine, car, driver</h2>
+<h2><span class="cs-h2__n">01</span>Engine, car, driver</h2>
 <p>The analogy I use with the partners: the model is the engine. The harness is the car. The harness is everything around the model that turns it into a system you can hand to an accountant: which tools it can reach, how it hands work to subagents, what it remembers, what it forgets, when it stops and asks a person.</p>
 <p>Most of the industry sells you the engine and the car as one thing. You rent a platform, the model is bolted in, and the rules you care about are prompts you write and hope it follows. That's fine to start. It's what we did.</p>
-<h2>Harness one: rented</h2>
+<h2><span class="cs-h2__n">02</span>Harness one: rented</h2>
 <p>The first production build ran on a commercial platform. The router and forty-odd specialist skills were markdown. The integrations were standard connectors. It worked, it was benchmarked against the firm's best staff in July, and it's still in production today.</p>
 <p>Two things bothered me even while it was working. The rules that mattered were requests, not guarantees. "Delegate the mechanical work to the cheap model" held until it didn't, and when it stopped holding, the expensive model was quietly doing extraction at about eleven times the input price. And the per-seat pricing looked subsidised to me, in a way I'd expect to move to usage-based once the market settles. Building the firm's whole method on top of someone else's pricing decision felt like a bet I didn't want to make on their behalf.</p>
 <p>So I'd built the first version to be portable on purpose. Skills as markdown, integrations as MCP servers in their own repo, nothing that only worked on one platform. The bet was that we'd want to move the car later without rebuilding the driver's seat.</p>
-<h2>Harness two: forked</h2>
+<h2><span class="cs-h2__n">03</span>Harness two: forked</h2>
 <p>In late July we collected that bet. Vedas is the same system rebuilt as a product the firm owns: a self-hosted open-source agent engine behind a custom web shell, the skills forked in, the same integrations, deployed in an EU region behind the firm's own sign-in.</p>
 <p>The big change wasn't the model. It was metering. Every model call goes through a self-hosted gateway with per-person keys, spend caps, and two abstract slots, "big" and "small", resolved to whatever model we choose that week. The user picks nothing, ever. The model behind a slot swaps in a config file. A deployment for another firm could set its own usage pricing instead of reselling seats.</p>
 <p>The first end-to-end production job ran on that build in early August. One request, clarifying questions, fifteen documents pulled from the firm's document system, computed figures, a filed deliverable pack, a person answering questions and signing off throughout.</p>
 <p>It also ran into the same wall as harness one, just in a different place. The engine I'd forked could still only ask the model to follow the rules. When a reference was wrong, cheap work silently ran on the expensive model and nothing in any log said so. And the hook I most wanted, evicting a document from the model's working memory once its figures were confirmed, didn't exist.</p>
-<h2>Harness three: owned</h2>
+<h2><span class="cs-h2__n">04</span>Harness three: owned</h2>
 <p>So in August the whole thing moved again, onto a minimal open-source harness where the rules are code the harness runs rather than text the model reads. The manager model doesn't have the tool to open source documents, so delegation is structural. Workers return a fixed contract and their transcripts are thrown away. Model slots are validated loudly at startup. Memory writes need the user to approve the exact wording. And once an extraction table ties out, the raw document leaves the model's context and a stub takes its place, so a year-long job runs as one session.</p>
 <p>That took days rather than weeks, because the skills and the integrations moved unchanged. The first full job on it was a real sole-trader year with a bank tie-out to the penny and a cold review that caught a real figure error before a human saw it. In the same run, the manager and worker slots ran different models from the ones in the setup docs. The swap was configuration.</p>
 <p>Three harnesses. The skills, the methodology and the integrations never changed. That's the point.</p>
-<h2>The engine doesn't need to be the biggest one</h2>
+<h2><span class="cs-h2__n">05</span>The engine doesn't need to be the biggest one</h2>
 <p>Here's the part people don't expect. For the work an accountancy practice actually does, a mid-tier frontier model is plenty. In my experience a Sonnet-class model handles the router, the categorisation and the judgement calls perfectly well. The frontier model isn't the bottleneck. Access, data structure and written criteria are, every time.</p>
 <p>And as far as I can tell, the open-weight models have caught up for this class of work. A 27-billion-parameter model you can run on a single machine now matches the mid-tier rented ones on the jobs I care about. I haven't benchmarked that to a standard I'd publish; it's the working read from running them.</p>
 <p>That changes the economics in two ways. First, cost: if the manager slot can be a mid-tier model and the worker slot can be a small open-weight one, the model spend on a whole job is small enough that the pricing question becomes about the method, not the tokens. Second, where it runs: open-weight models on a carbon-neutral data centre, or inside the firm's own boundary, are a real option for a regulated business that would rather not send client documents to a vendor at all. The harness doesn't care. The slot resolves to whatever's behind it.</p>
-<h2>What this means if you're building one</h2>
+<h2><span class="cs-h2__n">06</span>What this means if you're building one</h2>
 <p>The value in a system like this isn't the model. Everyone rents the same ones, they improve underneath you, and they swap. The value is three things the model can't hold: the enforced working method, the methodology encoded as skills, and the user-approved memory that makes the system theirs. Own those, in a form that survives a harness swap, and the engine becomes a line in a config file.</p>
 <p>Rent the harness to start. It gets you to a benchmark faster than anything else. But build as if you'll leave, because you will, and because the rules that keep a regulated firm safe shouldn't depend on a model agreeing to follow them.</p>
       </div>
@@ -85,32 +78,25 @@
       </footer>
     </article>
 
-    <nav class="cs-pager reveal" style="--d:0.1s" aria-label="More case studies">
-      <a class="panel cs-pager__card is-prev" href="a-practice-team-in-software.html">
-        <span class="label">Previous</span>
-        <span class="cs-pager__title" style="display:block">A practice team in software</span>
+    <nav class="cs-pager" aria-label="More case studies">
+      <a class="cs-pager__card is-prev" href="a-practice-team-in-software.html">
+        <span class="mono label">Previous</span>
+        <span class="cs-pager__title">A practice team in software</span>
       </a>
-      <a class="panel cs-pager__card is-next" href="ten-things-pharmacy-group.html">
-        <span class="label">Next</span>
-        <span class="cs-pager__title" style="display:block">Ten things I learned in a pharmacy group</span>
+      <a class="cs-pager__card is-next" href="ten-things-pharmacy-group.html">
+        <span class="mono label">Next</span>
+        <span class="cs-pager__title">Ten things I learned in a pharmacy group</span>
       </a>
     </nav>
-    <div class="cs-pager__all reveal" style="--d:0.15s">
-      <a class="chip" href="index.html">All seven case studies</a>
+    <div class="cs-pager__all">
+      <a class="arrow-link" href="index.html">All seven case studies <i>&rarr;</i></a>
     </div>
-
-    <div class="footer reveal" style="--d:0.2s">
-      <span class="footer__mark">Sanay Shah</span>
-      <a href="mailto:sanays.mail@gmail.com">sanays.mail@gmail.com</a>
-      <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a>
-      <span class="footer__spacer"></span>
-      <span>London &middot; Singapore</span>
-      <span>&copy; 2026</span>
-    </div>
-
   </main>
+    <footer class="foot cs-foot-bar">
+      <span class="mono">sanay<i>.</i>space</span>
+      <span class="mono"><a href="mailto:sanays.mail@gmail.com">sanays.mail@gmail.com</a> <span class="dot"></span> <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a></span>
+      <span class="mono">2026</span>
+    </footer>
 
-  <script src="../assets/case-study.js"></script>
 </body>
-
 </html>
