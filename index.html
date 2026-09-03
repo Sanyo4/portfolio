@@ -466,6 +466,10 @@
       display: flex; align-items: baseline; gap: 0.6em; flex-wrap: wrap;
     }
     .hero__now-label { font-size: 0.68rem; letter-spacing: 0.17em; text-transform: uppercase; color: var(--accent); }
+    /* every phrase sits in the same grid cell, so the line is always as tall as the longest one */
+    .hero__now-slot { display: grid; flex: 1 1 auto; min-width: 0; }
+    .hero__now-slot > * { grid-area: 1 / 1; }
+    .hero__now-ghost { visibility: hidden; pointer-events: none; padding-right: 3px; }
     .type-caret {
       display: inline-block; width: 1px; height: 1em; background: var(--accent);
       margin-left: 2px; transform: translateY(0.15em);
@@ -582,7 +586,7 @@
         </div>
         <h1 class="hero__headline">I build AI products <i>end to end, and think hard about what they should do.</i></h1>
         <p class="hero__lead">First-Class Computer Science from Cardiff, July 2026. For the past year I've run the AI programme at Innovi Advisors: 15 stalled agents became one production system, and it's now becoming the firm's own product on a custom harness. My take on agents is basically that they should run like a good team, with a person holding the judgement calls. Off the clock: 43 flights in 45 weeks, a Fujifilm, and one day a bar of my own.</p>
-        <p class="hero__now"><span class="hero__now-label">right now</span><span id="typewriter">building an AI agent team for accountants</span><span class="type-caret" aria-hidden="true"></span></p>
+        <p class="hero__now"><span class="hero__now-label">right now</span><span class="hero__now-slot"><span class="hero__now-live"><span id="typewriter">building an AI agent team for accountants</span><span class="type-caret" aria-hidden="true"></span></span></span></p>
         <div class="hero__row">
           <a class="chip" href="#case-studies">Case studies <span aria-hidden="true">&rarr;</span></a>
           <a class="chip" href="https://beau.quest" target="_blank" rel="noopener">beau.quest</a>
@@ -1308,6 +1312,16 @@
       var el = document.getElementById("typewriter");
       var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (el && !reduced) {
+        var slot = document.querySelector(".hero__now-slot");
+        if (slot) {
+          lines.forEach(function (line) {
+            var ghost = document.createElement("span");
+            ghost.className = "hero__now-ghost";
+            ghost.setAttribute("aria-hidden", "true");
+            ghost.textContent = line;
+            slot.appendChild(ghost);
+          });
+        }
         var li = 0, ci = lines[0].length, deleting = true, HOLD = 2400;
         function tick() {
           var line = lines[li];
