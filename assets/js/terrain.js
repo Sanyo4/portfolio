@@ -34,6 +34,7 @@ if (canvas && !reduced) {
     uLine2: { value: new THREE.Color(0xc7cbc6) },
     uPointer: { value: new THREE.Vector2(0, 0) },
     uLift: { value: 0 },
+    uAlpha: { value: 1 },
   };
 
   const vert = /* glsl */`
@@ -102,6 +103,7 @@ if (canvas && !reduced) {
     uniform vec3 uLine;
     uniform vec3 uLine2;
     uniform float uLift;
+    uniform float uAlpha;
     varying float vH;
     varying float vDist;
     varying vec2 vXZ;
@@ -119,7 +121,7 @@ if (canvas && !reduced) {
       float alpha=line*fog*edge;
       vec3 col=mix(uLine,uLine2,major*0.55);
       float glow=smoothstep(1.2,2.6,vH)*0.08*fog*edge;
-      float a=alpha*(0.5+0.5*major)*0.85+glow;
+      float a=(alpha*(0.5+0.5*major)*0.85+glow)*uAlpha;
       if(a<0.004) discard;
       gl_FragColor=vec4(col,a);
     }
@@ -127,8 +129,9 @@ if (canvas && !reduced) {
 
   const applyTheme = () => {
     const light = document.documentElement.getAttribute('data-theme') === 'light';
-    uniforms.uLine.value.set(light ? 0x5c7052 : 0x9db08c);
-    uniforms.uLine2.value.set(light ? 0x3d4a3a : 0xc7cbc6);
+    uniforms.uLine.value.set(light ? 0x8fa283 : 0x9db08c);
+    uniforms.uLine2.value.set(light ? 0x6f8266 : 0xc7cbc6);
+    uniforms.uAlpha.value = light ? 0.5 : 1;
     if (window.__dustMat) window.__dustMat.color.set(light ? 0x5c7052 : 0xc7cbc6);
   };
   window.__terrainTheme = () => applyTheme();
