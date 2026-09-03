@@ -1,14 +1,14 @@
 # sanay.space, night edition
 
-A from-scratch rebuild of the portfolio, meant to replace the old site. Main page plus the seven case studies. Not wired to git or any deploy yet; it lives only in this folder.
+The portfolio site: main page plus the seven case studies. Lives in the `portfolio` repo; a push to `main` updates GitHub Pages and Vercel (sanay.space).
 
 ## Run it
 
 ```bash
-npx serve -l 5174 .
+npx serve -l 5173 .
 ```
 
-Then open http://localhost:5174. To view it on a phone on the same wifi, use the machine's LAN address instead of localhost.
+Then open the port it prints. To view it on a phone on the same wifi, use the machine's LAN address instead of localhost.
 
 ## What is in here
 
@@ -30,9 +30,9 @@ Then open http://localhost:5174. To view it on a phone on the same wifi, use the
 - lenis 1.3.4 (jsDelivr)
 - Google Fonts: Cormorant Garamond, Newsreader, IBM Plex Mono, and a five-glyph subset of Noto Serif JP
 
-## Replacing the old site
+## Publishing
 
-Copy everything in this folder over the `portfolio` repo (keep its `.git`), delete the old `Pictures/`, `assets/hero.jpg`, `assets/case-study.*` and the old `tools/`, then commit and push. GitHub Pages and Vercel both build from `main`, so one push updates both.
+Edit, run the case-study build if a source changed, commit, push. Both hosts build from `main`. `Pictures/` holds the original photos; the site only ships the WebP exports in `assets/img/`.
 
 ## Things left for you to decide
 
