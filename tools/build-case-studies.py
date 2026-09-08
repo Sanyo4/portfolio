@@ -115,9 +115,9 @@ def head(title, description):
   {THEME_BOOT}
   {FAVICON}
   {FONTS}
-  <link rel="stylesheet" href="../assets/css/main.css" />
-  <link rel="stylesheet" href="../assets/css/case-study.css" />
-  <script src="../assets/js/case-study.js" defer></script>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <link rel="stylesheet" href="/assets/css/case-study.css" />
+  <script src="/assets/js/case-study.js" defer></script>
 </head>
 """
 
@@ -126,11 +126,11 @@ def nav(active):
     hub_cls = "cs-nav__link is-active" if active == "hub" else "cs-nav__link"
     return f"""  <div class="grain" aria-hidden="true"></div>
   <header class="nav is-in cs-nav" id="nav">
-    <a class="nav__mark" href="../index.html">sanay<i>.</i>space</a>
+    <a class="nav__mark" href="/">sanay<i>.</i>space</a>
     <nav class="cs-nav__links">
-      <a class="{hub_cls}" href="index.html">Case studies</a>
-      <a class="cs-nav__link" href="../index.html#building">Building</a>
-      <a class="cs-nav__link" href="../index.html#contact">Contact</a>
+      <a class="{hub_cls}" href="/case-studies/">Case studies</a>
+      <a class="cs-nav__link" href="/#building">Building</a>
+      <a class="cs-nav__link" href="/#contact">Contact</a>
     </nav>
     <button class="nav__theme" id="theme-btn" type="button" aria-pressed="false"><span class="nav__theme-label" data-dark="Light" data-light="Dark"></span><i class="nav__theme-dot"></i></button>
   </header>
@@ -179,7 +179,7 @@ def article_page(p, i, posts):
         if not q:
             return f'      <span class="cs-pager__card is-empty is-{kind}"></span>'
         lab = "Next" if kind == "next" else "Previous"
-        return f"""      <a class="cs-pager__card is-{kind}" href="{q['slug']}.html">
+        return f"""      <a class="cs-pager__card is-{kind}" href="/case-studies/{q['slug']}.html">
         <span class="mono label">{lab}</span>
         <span class="cs-pager__title">{html.escape(q['short_title'])}</span>
       </a>"""
@@ -193,12 +193,12 @@ def article_page(p, i, posts):
       <header class="cs-head">
         <div class="cs-head__top">
           <span class="mono label">{html.escape(p['kind'])} <span class="dot"></span> {i:02d} of {n:02d}</span>
-          <a class="mono cs-back" href="index.html">&larr; All case studies</a>
+          <a class="mono cs-back" href="/case-studies/">&larr; All case studies</a>
         </div>
         <h1 class="cs-title" data-split="words">{html.escape(p['title'])}</h1>
         <p class="cs-standfirst reveal-up" style="--d:.5s">{html.escape(p['standfirst'])}</p>
         <div class="cs-meta reveal-up" style="--d:.6s">
-          <img class="cs-meta__avatar" src="../assets/img/me-sm.webp" alt="Sanay Shah" width="32" height="32" />
+          <img class="cs-meta__avatar" src="/assets/img/me-sm.webp" alt="Sanay Shah" width="32" height="32" />
           <span class="mono">Sanay Shah <span class="dot"></span> {html.escape(p['date'])} <span class="dot"></span> {p['minutes']} min read</span>
         </div>
       </header>{intro}
@@ -217,7 +217,7 @@ def article_page(p, i, posts):
 {card(next_p, "next")}
     </nav>
     <div class="cs-pager__all">
-      <a class="arrow-link" href="index.html">All seven case studies <i>&rarr;</i></a>
+      <a class="arrow-link" href="/case-studies/">All seven case studies <i>&rarr;</i></a>
     </div>
   </main>
 {footer()}
@@ -241,7 +241,7 @@ def hub_page(posts):
     </header>
 
     <ol class="studies__list hub__list reveal-up" style="--d:.7s">
-{list_items(posts, "", cls="")}
+{list_items(posts, "/case-studies/", cls="")}
     </ol>
   </main>
 {footer()}
@@ -259,7 +259,7 @@ def update_index(posts):
         return
     before, rest = text.split(start, 1)
     _, after = rest.split(end, 1)
-    block = start + "\n" + list_items(posts, "case-studies/") + "\n        " + end
+    block = start + "\n" + list_items(posts, "/case-studies/") + "\n        " + end
     INDEX.write_text(before + block + after, encoding="utf-8")
 
 
