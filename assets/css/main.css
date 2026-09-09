@@ -317,6 +317,23 @@ main { position: relative; z-index: 1; }
 .ticker__track span { font-family: var(--serif); font-size: clamp(1.15rem, 1rem + 0.8vw, 1.6rem); font-weight: 300; font-style: italic; color: var(--ink-2); white-space: nowrap; }
 .ticker__track i { display: block; width: 4px; height: 4px; border-radius: 50%; background: var(--sage); flex: none; }
 
+/* ---------- contents ---------- */
+.toc { padding: clamp(3rem, 8vh, 5rem) var(--gutter); }
+.toc__inner { max-width: 78rem; margin: 0 auto; }
+.toc__list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 3rem; margin-top: 1rem; }
+.toc__list li { border-bottom: 1px solid var(--line); }
+.toc__list a { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr) auto; align-items: baseline; gap: 1rem; padding: 0.85rem 0; }
+.toc__num { color: var(--sage); }
+.toc__copy { display: grid; gap: 0.2rem; }
+.toc__title { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; line-height: 1.1; }
+.toc__hook { font-family: var(--body); font-size: 0.95rem; line-height: 1.4; color: var(--ink-2); }
+.toc__list i { font-style: normal; color: var(--sage); transition: transform 0.4s var(--ease); }
+.toc__list a:hover i, .toc__list a:focus-visible i { transform: translateX(3px); }
+@media (max-width: 999px) {
+  .toc__list { grid-template-columns: 1fr; }
+  .toc__title { font-size: 1.3rem; }
+}
+
 /* ---------- manifesto ---------- */
 .manifesto {
   padding: clamp(6rem, 16vh, 12rem) var(--gutter);
@@ -586,6 +603,9 @@ main { position: relative; z-index: 1; }
 .ai-timeline { display: grid; gap: 2rem; }
 .ai-sticky { display: none; }
 .ai-step { padding: 2.5rem 0 4rem; border-top: 1px solid var(--line); scroll-margin-top: 6rem; }
+@media (max-width: 999px) {
+  .ai-step { min-height: 0; padding: 3rem 0; }
+}
 .ai-step h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.9rem, 1.3rem + 1.8vw, 3rem); line-height: 1.08; margin: .8rem 0 1.3rem; transition: color .9s var(--ease); }
 .ai-step__summary { color: var(--ink-2); max-width: 62ch; }
 .ai-panels { display: grid; gap: 1rem; margin-top: 1.8rem; }

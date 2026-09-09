@@ -30,7 +30,11 @@
   /* ---------- smooth scroll ---------- */
   let lenis = null;
   if (!reduced && window.Lenis) {
-    lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 0.95, smoothWheel: true, syncTouch: false });
+    lenis = new Lenis({
+      lerp: 0.09, wheelMultiplier: 0.95, smoothWheel: true, syncTouch: false,
+      // Desktop cards have their own scrollable body, including expanded details.
+      prevent: (node) => desktop() && node.classList.contains('card__body'),
+    });
     const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
     requestAnimationFrame(raf);
   }
@@ -208,25 +212,38 @@
   };
   const dragRail = () => {
     let down = false, startX = 0, startLeft = 0, moved = false, pid = null;
+    let endedAt = -Infinity, resetMoved;
     track.addEventListener('pointerdown', (e) => {
       if (railST || e.pointerType !== 'mouse' || e.button !== 0) return;
+      clearTimeout(resetMoved);
       down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft; pid = e.pointerId;
-      track.setPointerCapture(pid);
     });
     track.addEventListener('pointermove', (e) => {
       if (!down) return;
       const dx = e.clientX - startX;
-      if (Math.abs(dx) > 4 && !moved) { moved = true; track.classList.add('is-dragging'); }
+      if (Math.abs(dx) > 4 && !moved) {
+        moved = true; track.classList.add('is-dragging');
+        // Capture only a real drag so ordinary summary/link clicks keep their target.
+        track.setPointerCapture(pid);
+      }
       if (moved) track.scrollLeft = startLeft - dx;
     });
     const end = () => {
       if (!down) return; down = false;
+      endedAt = performance.now();
       if (pid != null) { try { track.releasePointerCapture(pid); } catch (e) {} }
+      pid = null;
       setTimeout(() => track.classList.remove('is-dragging'), 60);
+      resetMoved = setTimeout(() => { moved = false; }, 100);
     };
     track.addEventListener('pointerup', end);
     track.addEventListener('pointercancel', end);
-    track.addEventListener('click', (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+    track.addEventListener('lostpointercapture', end);
+    track.addEventListener('pointerleave', () => { if (!moved) end(); });
+    track.addEventListener('click', (e) => {
+      if (moved && performance.now() - endedAt < 100) { e.preventDefault(); e.stopPropagation(); }
+      moved = false;
+    }, true);
     // a vertical wheel over the rail pushes it sideways when it is not pinned
     track.addEventListener('wheel', (e) => {
       if (railST || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
@@ -242,6 +259,10 @@
     let rw;
     window.addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => { buildRail(); if (hasGsap) ScrollTrigger.refresh(); }, 200); });
   }
+
+  $$('.more').forEach((details) => details.addEventListener('toggle', () => {
+    if (hasGsap) ScrollTrigger.refresh();
+  }));
 
   /* ---------- parallax images ---------- */
   if (hasGsap && !reduced) {
