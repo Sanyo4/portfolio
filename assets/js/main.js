@@ -155,6 +155,68 @@
     e.preventDefault(); scrollTo(id);
   }));
 
+  /* ---------- optional contents paths ---------- */
+  const pathStage = $('#picked-path');
+  if (pathStage) {
+    const picks = $$('.pick');
+    const stops = $('.path__stops', pathStage);
+    const line = $('.path__line', pathStage);
+    const traveller = $('.path__traveller', pathStage);
+    let selected = null, switchTimer;
+    const routeGeometry = () => {
+      const nodes = $$('.path__stop', stops);
+      if (!nodes.length) return;
+      // One pixel-coordinate curve drives both the SVG and the optional CSS dot.
+      const points = nodes.map((node) => desktop()
+        ? [node.offsetLeft + 3.5, 19.5]
+        : [7.5, node.offsetTop + 9.5]);
+      let d = `M ${points[0].join(' ')}`;
+      points.slice(1).forEach(([x, y], i) => {
+        const [px, py] = points[i];
+        d += desktop()
+          ? ` C ${px + (x - px) / 3} -4 ${x - (x - px) / 3} 43 ${x} ${y}`
+          : ` C -1 ${py + (y - py) / 3} 16 ${y - (y - py) / 3} ${x} ${y}`;
+      });
+      line.setAttribute('d', d);
+      traveller.style.offsetPath = `path('${d}')`;
+    };
+    const choose = (key, restore = false) => {
+      const template = $(`#path-${key}`);
+      if (!template || key === selected) return;
+      const hadPick = selected !== null;
+      selected = key;
+      clearTimeout(switchTimer);
+      picks.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.path === key)));
+      try { sessionStorage.setItem('contents-path', key); } catch (e) {}
+      pathStage.classList.remove('is-drawn');
+      stops.inert = true;
+      const render = () => {
+        stops.replaceChildren(template.content.cloneNode(true));
+        stops.inert = false;
+        $('.path__empty', pathStage).hidden = true;
+        routeGeometry();
+        // Commit the undrawn state before starting the next route.
+        void pathStage.offsetWidth;
+        pathStage.classList.add('is-drawn');
+        if (hasGsap) ScrollTrigger.refresh();
+      };
+      if (hadPick && !reduced && !restore) switchTimer = setTimeout(render, 250);
+      else render();
+    };
+    picks.forEach((button) => button.addEventListener('click', () => choose(button.dataset.path)));
+    pathStage.addEventListener('click', (event) => {
+      const link = event.target.closest('a[href^="#"]');
+      if (!link) return;
+      event.preventDefault();
+      scrollTo(link.getAttribute('href'));
+    });
+    new ResizeObserver(routeGeometry).observe(stops);
+    try {
+      const saved = sessionStorage.getItem('contents-path');
+      if (picks.some((button) => button.dataset.path === saved)) choose(saved, true);
+    } catch (e) {}
+  }
+
   /* ---------- typewriter ---------- */
   const tw = $('#typewriter');
   if (tw && !reduced) {

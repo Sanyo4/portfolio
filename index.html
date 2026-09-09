@@ -120,7 +120,107 @@
     <!-- ===== CONTENTS ===== -->
     <section class="toc" id="contents" aria-labelledby="contents-label">
       <div class="toc__inner">
-        <h2 class="mono" id="contents-label">Contents</h2>
+        <h2 class="mono" id="contents-label">Which part of me do you want to see?</h2>
+        <div class="toc__picks" role="group" aria-labelledby="contents-label">
+          <button class="pick" type="button" data-path="engineer" aria-pressed="false" aria-controls="picked-path" data-cursor="link"><span class="mono">01</span><span>The engineer</span></button>
+          <button class="pick" type="button" data-path="product" aria-pressed="false" aria-controls="picked-path" data-cursor="link"><span class="mono">02</span><span>The product thinker</span></button>
+          <button class="pick" type="button" data-path="story" aria-pressed="false" aria-controls="picked-path" data-cursor="link"><span class="mono">03</span><span>The story</span></button>
+          <button class="pick" type="button" data-path="evidence" aria-pressed="false" aria-controls="picked-path" data-cursor="link"><span class="mono">04</span><span>The evidence</span></button>
+          <button class="pick" type="button" data-path="photographer" aria-pressed="false" aria-controls="picked-path" data-cursor="link"><span class="mono">05</span><span>The photographer</span></button>
+        </div>
+        <div class="path" id="picked-path" aria-live="polite" aria-atomic="true">
+          <p class="mono path__empty">pick one, or just keep scrolling</p>
+          <svg class="path__map" aria-hidden="true"><path class="path__line" pathLength="1" /></svg>
+          <span class="path__traveller" aria-hidden="true"></span>
+          <ol class="path__stops"></ol>
+        </div>
+        <template id="path-engineer">
+          <li class="path__stop" style="--stop-delay:0.15s">
+            <p class="mono path__label">stop 1</p>
+            <h3 class="path__title"><a href="#ai-step-5" data-cursor="link">The harness, step five</a></h3>
+            <p class="path__hook">Rules as code: the manager can't open the documents, and the cold review caught a real error.</p><a class="arrow-link" href="#ai-step-5" data-cursor="link">start here <i aria-hidden="true">&rarr;</i></a>
+          </li>
+          <li class="path__stop" style="--stop-delay:0.35s">
+            <p class="mono path__label">stop 2</p>
+            <h3 class="path__title"><a href="#building" data-cursor="link">Vedas Cloud</a></h3>
+            <p class="path__hook">The same harness as a product: one process per job, usage metered, read-only connectors.</p>
+          </li>
+          <li class="path__stop" style="--stop-delay:0.55s">
+            <p class="mono path__label">stop 3</p>
+            <h3 class="path__title"><a href="case-studies/the-engine-and-the-car.html" data-cursor="link">The engine and the car</a></h3>
+            <p class="path__hook">Why the harness matters more than the model.</p>
+          </li>
+        </template>
+        <template id="path-product">
+          <li class="path__stop" style="--stop-delay:0.15s">
+            <p class="mono path__label">stop 1</p>
+            <h3 class="path__title"><a href="case-studies/ten-things-pharmacy-group.html" data-cursor="link">Ten things from a pharmacy group</a></h3>
+            <p class="path__hook">Two days on site, no admin rights, three agents shipped anyway.</p><a class="arrow-link" href="case-studies/ten-things-pharmacy-group.html" data-cursor="link">start here <i aria-hidden="true">&rarr;</i></a>
+          </li>
+          <li class="path__stop" style="--stop-delay:0.35s">
+            <p class="mono path__label">stop 2</p>
+            <h3 class="path__title"><a href="case-studies/fifteen-agents-one-front-desk.html" data-cursor="link">Fifteen agents, one front desk</a></h3>
+            <p class="path__hook">The adoption win that cost almost nothing to build.</p>
+          </li>
+          <li class="path__stop" style="--stop-delay:0.55s">
+            <p class="mono path__label">stop 3</p>
+            <h3 class="path__title"><a href="#experience" data-cursor="link">Experience</a></h3>
+            <p class="path__hook">A regulated firm's AI rebuild and the roles before it.</p>
+          </li>
+        </template>
+        <template id="path-story">
+          <li class="path__stop" style="--stop-delay:0.15s">
+            <p class="mono path__label">stop 1</p>
+            <h3 class="path__title"><a href="#ai" data-cursor="link">The arc, from the start</a></h3>
+            <p class="path__hook">Fifteen stalled chatbots in June to a multi-tenant product in September.</p><a class="arrow-link" href="#ai" data-cursor="link">start here <i aria-hidden="true">&rarr;</i></a>
+          </li>
+          <li class="path__stop" style="--stop-delay:0.35s">
+            <p class="mono path__label">stop 2</p>
+            <h3 class="path__title"><a href="#building" data-cursor="link">Three systems</a></h3>
+            <p class="path__hook">An accountancy firm's agent team, a matching app, a travel engine.</p>
+          </li>
+          <li class="path__stop" style="--stop-delay:0.55s">
+            <p class="mono path__label">stop 3</p>
+            <h3 class="path__title"><a href="#off-the-clock" data-cursor="link">Off the clock</a></h3>
+            <p class="path__hook">43 flights in 45 weeks and a Fujifilm.</p>
+          </li>
+        </template>
+        <template id="path-evidence">
+          <li class="path__stop" style="--stop-delay:0.15s">
+            <p class="mono path__label">stop 1</p>
+            <h3 class="path__title"><a href="case-studies/why-we-stopped-at-80.html" data-cursor="link">Why we stopped at 80%</a></h3>
+            <p class="path__hook">The benchmark, and why the cap is a control, not a shortfall.</p><a class="arrow-link" href="case-studies/why-we-stopped-at-80.html" data-cursor="link">start here <i aria-hidden="true">&rarr;</i></a>
+          </li>
+          <li class="path__stop" style="--stop-delay:0.35s">
+            <p class="mono path__label">stop 2</p>
+            <h3 class="path__title"><a href="#ai-step-4" data-cursor="link">What broke</a></h3>
+            <p class="path__hook">Every step of the timeline has a "what broke" panel. Read those first.</p>
+          </li>
+          <li class="path__stop" style="--stop-delay:0.55s">
+            <p class="mono path__label">stop 3</p>
+            <h3 class="path__title"><a href="#skills" data-cursor="link">Skills</a></h3>
+            <p class="path__hook">What I build with, and the guardrails underneath.</p>
+          </li>
+        </template>
+        <template id="path-photographer">
+          <li class="path__stop" style="--stop-delay:0.15s">
+            <p class="mono path__label">stop 1</p>
+            <h3 class="path__title"><a href="#off-the-clock" data-cursor="link">Off the clock</a></h3>
+            <p class="path__hook">Tokyo, a starry ridge, a lantern alley.</p><a class="arrow-link" href="#off-the-clock" data-cursor="link">start here <i aria-hidden="true">&rarr;</i></a>
+          </li>
+          <li class="path__stop" style="--stop-delay:0.35s">
+            <p class="mono path__label">stop 2</p>
+            <h3 class="path__title"><a href="https://www.instagram.com/sanay.photography/" data-cursor="link">@sanay.photography <i aria-hidden="true">&nearr;</i></a></h3>
+            <p class="path__hook">The public account.</p>
+          </li>
+          <li class="path__stop" style="--stop-delay:0.55s">
+            <p class="mono path__label">stop 3</p>
+            <h3 class="path__title"><a href="#contact" data-cursor="link">Contact</a></h3>
+            <p class="path__hook">Let's build something.</p>
+          </li>
+        </template>
+        <details class="more toc__all">
+          <summary data-cursor="link"><span>or see everything</span><i aria-hidden="true"></i></summary>
         <ol class="toc__list">
           <li class="reveal-up" style="--d:0s"><a href="#building" data-cursor="link"><span class="mono toc__num">01</span><span class="toc__copy"><span class="toc__title">Building</span><span class="toc__hook">Three systems shipped end to end, and the product they became.</span></span><i aria-hidden="true">&rarr;</i></a></li>
           <li class="reveal-up" style="--d:.05s"><a href="#ai" data-cursor="link"><span class="mono toc__num">02</span><span class="toc__copy"><span class="toc__title">AI</span><span class="toc__hook">The year from fifteen stalled chatbots to a multi-tenant harness, with what broke.</span></span><i aria-hidden="true">&rarr;</i></a></li>
@@ -130,6 +230,7 @@
           <li class="reveal-up" style="--d:.25s"><a href="#off-the-clock" data-cursor="link"><span class="mono toc__num">06</span><span class="toc__copy"><span class="toc__title">Off the clock</span><span class="toc__hook">43 flights, a Fujifilm, and the sidequests in between.</span></span><i aria-hidden="true">&rarr;</i></a></li>
           <li class="reveal-up" style="--d:.3s"><a href="#contact" data-cursor="link"><span class="mono toc__num">07</span><span class="toc__copy"><span class="toc__title">Contact</span><span class="toc__hook">Let's build something.</span></span><i aria-hidden="true">&rarr;</i></a></li>
         </ol>
+        </details>
       </div>
     </section>
 
