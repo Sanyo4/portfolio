@@ -155,7 +155,7 @@
   const tw = $('#typewriter');
   if (tw && !reduced) {
     const phrases = [
-      'building an AI agent team for accountants',
+      'turning an accounts prep harness into a SaaS',
       'just wrapped an AI discovery for a national pharmacy group',
       'writing case studies instead of a CV',
     ];
@@ -240,7 +240,7 @@
     buildRail();
     dragRail();
     let rw;
-    window.addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => { buildRail(); ScrollTrigger.refresh(); }, 200); });
+    window.addEventListener('resize', () => { clearTimeout(rw); rw = setTimeout(() => { buildRail(); if (hasGsap) ScrollTrigger.refresh(); }, 200); });
   }
 
   /* ---------- parallax images ---------- */
@@ -332,4 +332,37 @@
 
   /* ---------- rail drag on touch is native; on desktop the pin handles it ---------- */
   window.addEventListener('load', () => { if (hasGsap) ScrollTrigger.refresh(); });
+  /* ---------- ai timeline ---------- */
+  const aiStage = $('.ai-sticky .ai-diagram');
+  const aiSteps = $$('.ai-step');
+  if (aiStage && aiSteps.length) {
+    const setAiState = (step) => {
+      const state = step.dataset.step;
+      aiStage.dataset.state = state;
+      const caption = $(`.ai-caption-${state}`, aiStage.parentElement);
+      aiStage.setAttribute('aria-label', caption.textContent);
+      aiSteps.forEach((el) => el.classList.toggle('is-active', el === step));
+    };
+    const aiObserver = new IntersectionObserver((entries) => {
+      if (!desktop()) return;
+      entries.forEach((entry) => { if (entry.isIntersecting) setAiState(entry.target); });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    aiSteps.forEach((step) => aiObserver.observe(step));
+    // Synchronise restored scroll positions and switches between mobile and desktop.
+    const syncAi = () => {
+      if (!desktop()) return;
+      const middle = window.innerHeight / 2;
+      const step = aiSteps.find((el) => {
+        const rect = el.getBoundingClientRect();
+        return rect.top <= middle && rect.bottom >= middle;
+      });
+      if (step) setAiState(step);
+    };
+    window.addEventListener('resize', syncAi, { passive: true });
+    window.addEventListener('pageshow', syncAi);
+    if (hasGsap) ScrollTrigger.addEventListener('refresh', syncAi);
+    if (reduced) aiStage.classList.add('ai-diagram--still');
+    syncAi();
+  }
+
 })();
