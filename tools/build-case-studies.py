@@ -227,7 +227,7 @@ def article_page(p, i, posts):
 
 
 def hub_page(posts):
-    desc = ("Seven case studies from Sanay Shah on putting AI into real work: an accountancy firm's "
+    desc = ("Eight case studies from Sanay Shah on putting AI into real work: an accountancy firm's "
             "agent system, a pharmacy group, two products built solo, and the philosophy behind the 80% cap.")
     return head("Case studies | Sanay Shah", desc) + f"""<body class="cs-page">
 {nav("hub")}
@@ -235,7 +235,7 @@ def hub_page(posts):
   <main class="hub">
     <header class="hub__head">
       <p class="mono label">Case studies</p>
-      <h1 class="hub__title" data-split="words">Seven pieces on putting AI into real work, <em>written from the record.</em></h1>
+      <h1 class="hub__title" data-split="words">Eight pieces on putting AI into real work, <em>written from the record.</em></h1>
       <p class="hub__lead reveal-up" style="--d:.5s">The evidence behind the one-liners on the front page, and the thinking that runs through all of it.</p>
       <p class="hub__body reveal-up" style="--d:.6s">Two firms, two products, one working paper and one essay. Start with the essay if you want the philosophy first. The rest are the incidents, decisions and numbers it came from. Firms are unnamed until they've agreed to be named.</p>
     </header>
