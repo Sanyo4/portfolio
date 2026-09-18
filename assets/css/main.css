@@ -432,6 +432,14 @@ main { position: relative; z-index: 1; }
 .card__media--type::after { display: none; }
 .card__glyph { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: clamp(4rem, 12vw, 6.5rem); line-height: 1; letter-spacing: -0.03em; color: var(--ink); }
 .card__spec { color: var(--ink-3); }
+.card__media--natter { background: radial-gradient(70% 60% at 50% 70%, #BFE8D4 0%, transparent 70%), #FFF8EC; }
+.card__media--natter::after { display: none; }
+.natter-toad { position: absolute; left: 50%; bottom: 0; height: 92%; width: auto; transform: translateX(-50%); overflow: visible; }
+.natter-toad .n-torso { transform-box: fill-box; transform-origin: 50% 95%; }
+@media (prefers-reduced-motion: no-preference) {
+  .natter-toad .n-torso { animation: natter-breathe 4.5s cubic-bezier(0.45, 0, 0.25, 1.25) infinite; }
+}
+@keyframes natter-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.015, 1.025); } }
 .card__body { padding: clamp(1.3rem, 2.6vw, 2rem); display: grid; gap: 0.9rem; align-content: start; flex: 1; }
 .card__meta { color: var(--sage); }
 .card__title { font-family: var(--serif); font-weight: 400; font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.2rem); line-height: 1.1; letter-spacing: -0.01em; text-wrap: balance; }
