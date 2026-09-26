@@ -44,3 +44,10 @@ exp play       "$P/5. Awards & Extracurriculars/performer/play performance.jpg" 
 exp rowing     "$P/5. Awards & Extracurriculars/rowing national finals/rowing national finals.jpg" 840x420+360+154 360 640
 exp steamunity "$P/3. Leadership & Mentorship/Foundational Design Mentor, steamunity/steamunity group with dpm heng.jpeg" - 400 560 720
 exp innovi     "$P/1. Professional & Industry Experience/Automation Project Manager  Innovi Advisors Ltd/innovi advisors presentation.jpg" - 400 560 720
+
+# The logbook: earlier work and wins
+H="$P/2. Hackathons & Competitions"
+exp cam-stage  "$H/grand finalist and tooling winner, hack the law llm x law winner, university of cambridge/cambridge hackathon presenting stage.jpg" - 360 640
+exp web3       "$H/finalist web3 hackthon easy a vchain/easya vchain hackathon selfie.jpg" 960x720+0+260 360 640
+exp glasses    "$H/Golden Glasses Award for Most Engaging Presentation, future interaction of smart glasses bootcamp/smart glasses group winning.JPG" - 360 640
+exp treehouse  "$P/1. Professional & Industry Experience/Builder & Facilitator  Treehouse Innovation/legal tech talk group.jpeg" - 360 640

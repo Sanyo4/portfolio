@@ -173,6 +173,7 @@ def head(title, description, url, prefix):
 
 def topbar(prefix, active):
     cur = ' aria-current="page"' if active == "hub" else ""
+    mcur = ' aria-current="page"' if active == "map" else ""
     return f"""  <a class="skip" href="#main">Skip to content</a>
 {SPRITE}
   <header class="cs-top">
@@ -180,6 +181,7 @@ def topbar(prefix, active):
       <a class="wordmark" href="{prefix}"><span>sanay<b>.</b>space</span></a>
       <nav class="topnav" aria-label="Site">
         <a class="topnav__extra" href="{prefix}#story">Story</a>
+        <a href="{prefix}map/"{mcur}>Full map</a>
         <a href="{prefix}case-studies/"{cur}>Case studies</a>
         <a class="topnav__extra" href="{prefix}#contact">Contact</a>
       </nav>
@@ -351,6 +353,98 @@ def hub_page(posts):
 """
 
 
+def stub(item):
+    paras = "".join(f"\n                <p class=\"stub__what\">{t}</p>" for t in item["text"])
+    link = ""
+    if item.get("link"):
+        href, label = item["link"]
+        ext = ' target="_blank" rel="noopener"' if href.startswith("http") else ""
+        link = f'\n                <a class="stub__link" href="{href}"{ext}>{html.escape(label)} <span aria-hidden="true">{"↗" if ext else "→"}</span></a>'
+    return f"""            <li class="stub rise">
+              <p class="stub__when">{html.escape(item['when'])}</p>
+              <div class="stub__body">
+                <h3 class="stub__role">{html.escape(item['role'])}</h3>
+                <p class="stub__org">{html.escape(item['org'])}</p>{paras}{link}
+              </div>
+            </li>"""
+
+
+def map_page():
+    import map_data as m
+
+    def block(key, title, items):
+        return f"""        <section class="map-group" id="{key}" aria-labelledby="{key}-title">
+          <h2 class="group__title" id="{key}-title">{title}</h2>
+          <ol class="stubs">
+{chr(10).join(stub(i) for i in items)}
+          </ol>
+        </section>"""
+
+    wins = "\n".join(f"""            <li class="win rise" style="--c: {c}; --rot: {rot}; --rad: {rad}">
+              <span class="win__big">{html.escape(b)}{(" · " + html.escape(d)) if d else ""}</span>
+              <span class="win__event">{html.escape(e)}</span>
+              <span class="win__note">{html.escape(n)}</span>
+            </li>""" for b, d, e, n, c, rot, rad in m.WINS)
+    prints = "\n".join(f"""          <figure class="print{tape}" style="--r: {r}">
+            <img src="../assets/img/{name}-360.webp" srcset="../assets/img/{name}-360.webp 360w, ../assets/img/{name}-640.webp 640w" sizes="(min-width: 960px) 270px, 220px" width="{w}" height="{h}" alt="{html.escape(alt, quote=True)}" loading="lazy" decoding="async" />
+            <figcaption>{html.escape(cap)}</figcaption>
+          </figure>""" for name, w, h, alt, cap, r, tape in m.PRINTS)
+    made = "\n".join(f"""            <li>
+              <a class="entry rise" href="{href}"{' target="_blank" rel="noopener"' if ext else ""}>
+                <span class="entry__kind">{html.escape(kind)}</span>
+                <span class="entry__title">{html.escape(title)}</span>
+                <span class="entry__sf">{html.escape(sf)}</span>
+                <span class="entry__meta">{html.escape(meta)}</span>
+              </a>
+            </li>""" for href, ext, kind, title, sf, meta in m.MADE)
+    legend = [("work", "Work"), ("leadership", "Leadership and volunteering"), ("education", "Education"), ("wins", "Wins"), ("made", "Things I made")]
+    chips = "\n".join(f'          <li><a href="#{k}">{t}</a></li>' for k, t in legend)
+    desc = ("Everything Sanay Shah has done so far in one place: work, leadership and volunteering, "
+            "education, hackathon wins, rowing, theatre and the things he's built.")
+    return head("The full map · Sanay Shah", desc, f"{SITE}/map/", "../") + f"""<body class="cs-page map-page">
+{topbar("../", "map")}
+  <main id="main">
+    <header class="cs-head cs-head--hub">
+      <div class="wrap cs-head__inner">
+        <p class="label">The full map</p>
+        <h1 class="cs-title">Every stop so far</h1>
+        <p class="cs-standfirst">The main page tells the story. This is the whole logbook: every role, prize and course, newest first.</p>
+        <ul class="legend" aria-label="Jump to">
+{chips}
+        </ul>
+      </div>
+    </header>
+
+    <div class="section torn logbook map">
+      <div class="wrap">
+{block("work", "Work", m.WORK)}
+{block("leadership", "Leadership and volunteering", m.LEAD)}
+{block("education", "Education", m.EDUCATION)}
+        <section class="map-group" id="wins" aria-labelledby="wins-title">
+          <h2 class="group__title" id="wins-title">Wins and other stamps</h2>
+          <ul class="wins">
+{wins}
+          </ul>
+          <div class="snaps" role="group" aria-label="Photos from hackathons and earlier work" tabindex="0">
+{prints}
+          </div>
+        </section>
+        <section class="map-group" id="made" aria-labelledby="made-title">
+          <h2 class="group__title" id="made-title">Things I made</h2>
+          <ul class="entries">
+{made}
+          </ul>
+        </section>
+        <p class="cs-all"><a class="more-link" href="../case-studies/">Read the case studies <span aria-hidden="true">&rarr;</span></a></p>
+      </div>
+    </div>
+  </main>
+
+{footer("../")}</body>
+</html>
+"""
+
+
 def update_index(posts):
     text = INDEX.read_text(encoding="utf-8")
     start = "<!-- case-studies:list -->"
@@ -373,6 +467,11 @@ def main():
     print("case-studies/index.html")
     update_index(posts)
     print("index.html list updated")
+    import sys
+    sys.path.insert(0, str(ROOT / "tools"))
+    (ROOT / "map").mkdir(exist_ok=True)
+    (ROOT / "map" / "index.html").write_text(map_page(), encoding="utf-8")
+    print("map/index.html")
 
 
 if __name__ == "__main__":
