@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <title>OG image source</title>
+  <!-- Source for assets/img/og.jpg. Render at 1200x630 and save as JPEG. -->
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <style>
+    body { width: 1200px; height: 630px; overflow: hidden; }
+    body::before { display: none; }
+    .hero { height: 630px; padding: 0; }
+    .hero__grid { grid-template-columns: 1.25fr .75fr; align-items: center; gap: 30px; padding: 70px 60px 0; max-width: none; }
+    .hero h1 { font-size: 60px; }
+    .hero__collage { order: 0; height: 430px; }
+    .og-url { margin-top: 26px; font-family: var(--mono); font-size: 20px; font-weight: 500; letter-spacing: .04em; color: var(--slate-3); }
+    .flight__trail, .flight__plane { animation: none !important; opacity: 1 !important; stroke-dashoffset: 0 !important; }
+    .cloud { animation: none; }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="ink" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G" result="d" />
+        <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.2 0 0 0 2" result="m" />
+        <feComposite in="d" in2="m" operator="in" />
+      </filter>
+      <symbol id="plane" viewBox="0 0 32 32">
+        <path d="M2 15 L30 3 L21 29 L15 19 Z" fill="#fbfbf8" stroke="#1b2528" stroke-width="1.5" stroke-linejoin="round" />
+        <path d="M30 3 L15 19 L13.5 26.5 L17.8 22" fill="#d9e2e0" stroke="#1b2528" stroke-width="1.5" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="go" viewBox="0 0 16 16">
+        <path d="M4 12 L12 4 M6 4 H12 V10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="mail" viewBox="0 0 16 16">
+        <path d="M2 4 H14 V12 H2 Z M2 4 L8 9 L14 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+      </symbol>
+    </defs>
+  </svg>
+  <header class="hero">
+    <div class="scene" aria-hidden="true">
+      <div class="sun" data-d=".08"></div>
+      <svg class="cloud cloud--1" data-d=".22" viewBox="0 0 160 70"><path d="M14 62 Q10 44 30 42 Q30 22 54 24 Q64 6 88 14 Q106 6 116 24 Q142 22 142 44 Q156 48 150 62 Z" fill="#fbfbf8" /></svg>
+      <svg class="cloud cloud--2" data-d=".34" viewBox="0 0 160 70"><path d="M12 62 Q8 46 28 44 Q34 26 58 30 Q72 12 96 22 Q124 18 126 42 Q150 42 148 62 Z" fill="#f4f7f5" /></svg>
+      <svg class="cloud cloud--3" data-d=".16" viewBox="0 0 160 70"><path d="M16 60 Q14 46 34 46 Q42 30 64 34 Q80 20 100 32 Q128 30 130 48 Q146 50 142 60 Z" fill="#f7f9f7" /></svg>
+      <svg class="hills hills--far" data-d=".05" viewBox="0 0 1440 240"><path fill="#aebfc2" d="M0 240 V176 H38 V158 H64 V172 H96 V140 H118 V126 H136 V140 H156 V182 H196 V164 H232 V186 H278 V146 H300 V132 H316 V146 H334 V184 H380 V170 H414 V190 H462 V156 H480 V120 H488 V104 H496 V120 H504 V156 H526 V186 H588 V172 H624 V158 H650 V184 H706 V176 H744 V150 H772 V178 H830 V186 H1040 V170 H1080 V148 H1104 V170 H1150 V160 H1190 V182 H1250 V168 H1290 V150 H1316 V136 H1340 V150 H1366 V176 H1440 V240 Z M884 240 L888 128 L906 128 L909 240 Z M920 240 L923 128 L941 128 L944 240 Z M955 240 L958 128 L976 128 L979 240 Z M868 122 L1006 116 Q1014 119 1006 124 L868 128 Z" /></svg>
+      <svg class="hills hills--mid" data-d=".1" viewBox="0 0 1440 240"><path fill="#a8bca1" d="M0 240 V200 C120 170 220 168 330 186 C430 202 520 176 640 170 C760 164 820 196 940 198 C1060 200 1140 168 1250 166 C1340 164 1400 178 1440 184 V240 Z" /></svg>
+      <svg class="hills hills--near" data-d=".16" viewBox="0 0 1440 240"><path fill="#7f9a7b" d="M0 240 V218 C160 196 300 210 420 222 C560 236 700 206 860 204 C1000 202 1100 226 1240 222 C1340 219 1400 208 1440 206 V240 Z" /><g fill="#4c6a51"><path d="M238 222 L226 222 L238 170 L250 222 Z" /><path d="M262 224 L253 224 L262 186 L271 224 Z" /><path d="M1180 222 L1166 222 L1180 162 L1194 222 Z" /><path d="M1204 220 L1195 220 L1204 184 L1213 220 Z" /></g></svg>
+    </div>
+
+    
+    <div class="wrap hero__grid">
+      <div>
+        <p class="kicker" style="font-size:18px">Sanay Shah <i></i> London</p>
+        <h1>I took <span class="hl">43 flights in 45 weeks</span> doing street photography during my year abroad in Singapore.</h1>
+        <p class="og-url">sanay.space</p>
+      </div>
+      <div class="hero__collage">
+        <svg class="flight" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+          <defs><mask id="flight-mask"><path class="flight__trail" d="M-10 380 C 70 250, 150 350, 225 220 S 330 70, 372 42" fill="none" stroke="#fff" stroke-width="8" /></mask></defs>
+          <path class="flight__path" d="M-10 380 C 70 250, 150 350, 225 220 S 330 70, 372 42" fill="none" stroke="#3b4f59" stroke-width="2" stroke-linecap="round" mask="url(#flight-mask)" />
+          <use class="flight__plane" href="#plane" x="360" y="22" width="30" height="30" />
+        </svg>
+        <figure class="print tape print--bromo" data-d=".5">
+          <img src="../assets/img/bromo-420.webp" srcset="../assets/img/bromo-420.webp 420w, ../assets/img/bromo-760.webp 760w" sizes="(min-width: 900px) 260px, 124px" width="420" height="630" alt="Me at sunrise in front of a volcano, one hand over my eyes, the sky pink behind the peaks." fetchpriority="high" />
+          <figcaption>Apr 2025</figcaption>
+        </figure>
+        <figure class="print tape tape--ver print--tower" data-d=".3" style="--tr: 6deg">
+          <img src="../assets/img/tower-360.webp" srcset="../assets/img/tower-360.webp 360w, ../assets/img/tower-640.webp 640w" sizes="(min-width: 900px) 200px, 104px" width="360" height="540" alt="Tokyo Tower in evening light, framed by trees and a dark building." />
+          <figcaption>Tokyo Tower, Mar 2025</figcaption>
+        </figure>
+        <svg class="stamp-ring" data-d=".7" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+          <defs><path id="ring-a" d="M60 60 m-43 0 a43 43 0 1 1 86 0 a43 43 0 1 1 -86 0" /></defs>
+          <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="3" />
+          <circle cx="60" cy="60" r="31" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <text font-size="9.6"><textPath href="#ring-a" textLength="266" lengthAdjust="spacing">43 FLIGHTS · 45 WEEKS · SINGAPORE ·</textPath></text>
+          <text x="60" y="61" text-anchor="middle" font-size="17">SIN</text>
+          <text x="60" y="74" text-anchor="middle" font-size="7.5">2024-25</text>
+        </svg>
+      </div>
+    </div>
+  
+  </header>
+</body>
+</html>

@@ -1,0 +1,120 @@
+/* /hi: the meetup card. One screen, no scrolling on a phone. */
+
+.hi {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, #cfdede 0%, var(--sky) 55%, #e3eae7 100%);
+  overflow: hidden;
+}
+
+.hi__scene { position: fixed; inset: 0; pointer-events: none; }
+.hi__cloud { position: absolute; width: 120px; filter: drop-shadow(0 5px 5px rgba(40, 60, 64, .16)); }
+.hi__cloud--1 { top: 3%; left: -30px; }
+.hi__cloud--2 { top: 12%; right: -24px; width: 96px; }
+.hi__hills { position: absolute; left: 0; bottom: 0; width: 100%; height: 22vh; filter: drop-shadow(0 -3px 5px rgba(30, 50, 56, .18)); }
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: min(430px, 100%);
+  padding: 16px 16px 12px;
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: var(--shadow-3);
+}
+
+.card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2px 10px;
+  margin-bottom: 12px;
+  border-bottom: 2px dashed rgba(27, 37, 40, .16);
+  font-family: var(--mono);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.card__route { color: var(--ver-ink); }
+
+.card__who {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.card__photo {
+  width: 92px;
+  height: 92px;
+  flex: none;
+  object-fit: cover;
+  border: 5px solid #fff;
+  box-shadow: var(--shadow-2);
+  transform: rotate(-3deg);
+}
+.card__label {
+  margin: 0 0 2px;
+  font-family: var(--mono);
+  font-size: .66rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.card h1 { font-size: clamp(1.7rem, 1.3rem + 2vw, 2.1rem); font-weight: 480; font-variation-settings: "SOFT" 60, "WONK" 1; }
+.card__stamp { position: absolute; right: -2px; top: -6px; font-size: .56rem; padding: 6px 8px 5px; --rot: 12deg; }
+.card__stamp strong { font-size: 1rem; }
+
+.card__hook {
+  margin: 14px 0 14px;
+  font-size: 1.04rem;
+  line-height: 1.45;
+}
+
+.card__links {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.card__links li { display: flex; }
+.card__links .pass { --stub: 48px; min-height: 58px; }
+.card__links .pass__dest { font-size: 1.06rem; }
+.card__links .pass__bar { display: none; }
+.card__links .pass__stub { display: grid; padding: 0; }
+
+.card__site {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: .74rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--slate-3);
+  text-decoration: none;
+}
+.card__site:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+@media (max-height: 640px) {
+  .card { padding: 12px 14px 8px; }
+  .card__photo { width: 76px; height: 76px; }
+  .card__hook { margin: 10px 0; font-size: .98rem; }
+  .card__links { gap: 6px; }
+  .card__links .pass { min-height: 52px; }
+}
+
+@media (max-width: 379px) {
+  .card__stamp { right: auto; left: 56px; top: 50px; font-size: .5rem; padding: 5px 6px 4px; --rot: -10deg; }
+  .card__stamp strong { font-size: .85rem; }
+}

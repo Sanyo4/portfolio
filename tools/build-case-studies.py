@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the case study pages from case-studies/src/*.md.
 
-Run from the site root:  python tools/build-case-studies.py
+Run from anywhere:  python tools/build-case-studies.py
 
 Writes:
   case-studies/<slug>.html   one page per source file, in file order
@@ -9,7 +9,12 @@ Writes:
   index.html                 the list between the case-studies:list markers
 
 The vault (Projects/Substack) is the source of truth for the text. Copy a
-post here when it changes, then rerun this script. Standard library only.
+post here when it changes, then rerun this script. The script only restyles:
+it never changes the words. Standard library only.
+
+Every link is relative, so the pages work on sanay.space (Vercel) and on the
+GitHub Pages project path. The hub links through ../case-studies/ so it also
+works when a host serves /case-studies without the trailing slash.
 """
 
 import html
@@ -20,6 +25,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "case-studies" / "src"
 OUT = ROOT / "case-studies"
 INDEX = ROOT / "index.html"
+SITE = "https://sanay.space"
 
 DISCLOSURE = (
     "This piece was written with AI assistance, which I use as a dyslexia "
@@ -27,21 +33,38 @@ DISCLOSURE = (
     "fact in it comes from my own maintained record and has been checked by me."
 )
 
-FONTS = (
-    '<link rel="preconnect" href="https://fonts.googleapis.com" />\n'
-    '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n'
-    '  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400'
-    '&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400'
-    '&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />'
-)
+# Which shelf each piece sits on. Anything not listed is Work.
+MADE = {"beau", "gonzo"}
 
-FAVICON = (
-    '<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E'
-    '%3Crect width=%2732%27 height=%2732%27 fill=%27%230d1110%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%239db08c%27/%3E%3C/svg%3E" />'
-)
+# Natter has no write-up yet, so it links out to its own page.
+NATTER = {
+    "href": "https://natter-landing.vercel.app",
+    "kind": "App · Android",
+    "title": "Natter: a voice journal that writes the entry for you, on the phone, with nothing sent anywhere",
+    "standfirst": "You talk about your day and a small toad asks up to three questions, then writes the page from your own sentences. Beau and Gonzo are folding into it.",
+    "meta": "natter-landing.vercel.app ↗",
+}
 
-THEME_BOOT = ('<script>try{var t=localStorage.getItem("theme");'
-              'if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}</script>')
+SPRITE = """  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="ink" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G" result="d" />
+        <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.2 0 0 0 2" result="m" />
+        <feComposite in="d" in2="m" operator="in" />
+      </filter>
+      <symbol id="plane" viewBox="0 0 32 32">
+        <path d="M2 15 L30 3 L21 29 L15 19 Z" fill="#fbfbf8" stroke="#1b2528" stroke-width="1.5" stroke-linejoin="round" />
+        <path d="M30 3 L15 19 L13.5 26.5 L17.8 22" fill="#d9e2e0" stroke="#1b2528" stroke-width="1.5" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="go" viewBox="0 0 16 16">
+        <path d="M4 12 L12 4 M6 4 H12 V10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="mail" viewBox="0 0 16 16">
+        <path d="M2 4 H14 V12 H2 Z M2 4 L8 9 L14 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+      </symbol>
+    </defs>
+  </svg>"""
 
 
 def parse(path):
@@ -61,14 +84,22 @@ def parse(path):
     meta["body"] = m.group(2).strip()
     meta["short_title"] = meta.get("short_title") or meta["title"]
     meta["start_here"] = meta.get("start_here", "false").lower() == "true"
+    meta["group"] = "made" if meta["slug"] in MADE else "work"
     words = len(re.findall(r"\w+", meta["body"]))
     meta["minutes"] = max(1, round(words / 220))
     return meta
 
 
+def link(m):
+    text, href = m.group(1), m.group(2)
+    if href.startswith("/case-studies/"):
+        return f'<a href="{href[len("/case-studies/"):]}">{text}</a>'
+    return f'<a href="{href}" target="_blank" rel="noopener">{text}</a>'
+
+
 def inline(s):
     s = html.escape(s, quote=False)
-    s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2" target="_blank" rel="noopener">\1</a>', s)
+    s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", link, s)
     s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
     s = re.sub(r"(?<!\*)\*(?!\s)(.+?)(?<!\s)\*(?!\*)", r"<em>\1</em>", s)
     return s
@@ -78,21 +109,26 @@ def md_to_html(body):
     out = []
     para = []
     n = 0
+    # A post with its own numbered list keeps only those numbers.
+    has_numbers = bool(re.search(r"^#{2,3} \d+\.\s", body, re.M))
 
     def flush():
         if para:
-            out.append("<p>" + inline(" ".join(para)) + "</p>")
+            out.append("        <p>" + inline(" ".join(para)) + "</p>")
             para.clear()
 
     for line in body.splitlines():
         if line.startswith("### ") or line.startswith("## "):
             flush()
             text = line[4:].strip() if line.startswith("### ") else line[3:].strip()
-            if re.match(r"^\d+\.\s", text):
-                out.append(f'<h2>{inline(text)}</h2>')
+            num = re.match(r"^(\d+)\.\s+(.*)$", text)
+            if num:
+                out.append(f'        <h2><span class="prose__n" aria-hidden="true">{int(num.group(1)):02d}</span><span class="sr-only">{num.group(1)}. </span>{inline(num.group(2))}</h2>')
+            elif has_numbers:
+                out.append(f'        <h2 class="prose__plain">{inline(text)}</h2>')
             else:
                 n += 1
-                out.append(f'<h2><span class="cs-h2__n">{n:02d}</span>{inline(text)}</h2>')
+                out.append(f'        <h2><span class="prose__n" aria-hidden="true">{n:02d}</span>{inline(text)}</h2>')
         elif line.strip() == "":
             flush()
         else:
@@ -101,151 +137,216 @@ def md_to_html(body):
     return "\n".join(out)
 
 
-def head(title, description):
+def head(title, description, url, prefix):
+    t = html.escape(title)
+    d = html.escape(description, quote=True)
     return f"""<!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en-GB" class="no-js">
 <head>
-  <script>document.documentElement.classList.replace('no-js','js');</script>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>{html.escape(title)}</title>
-  <meta name="description" content="{html.escape(description, quote=True)}" />
-  <meta name="theme-color" content="#0d1110" />
-  <meta name="color-scheme" content="dark light" />
-  {THEME_BOOT}
-  {FAVICON}
-  {FONTS}
-  <link rel="stylesheet" href="/assets/css/main.css" />
-  <link rel="stylesheet" href="/assets/css/case-study.css" />
-  <script src="/assets/js/case-study.js" defer></script>
+  <script>document.documentElement.classList.replace("no-js", "js");</script>
+  <title>{t}</title>
+  <meta name="description" content="{d}" />
+  <link rel="canonical" href="{url}" />
+  <meta name="theme-color" content="#d7e3e3" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="sanay.space" />
+  <meta property="og:url" content="{url}" />
+  <meta property="og:title" content="{t}" />
+  <meta property="og:description" content="{d}" />
+  <meta property="og:image" content="{SITE}/assets/img/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{t}" />
+  <meta name="twitter:description" content="{d}" />
+  <meta name="twitter:image" content="{SITE}/assets/img/og.jpg" />
+  <link rel="icon" href="{prefix}assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="{prefix}assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="{prefix}assets/css/site.css" />
+  <link rel="stylesheet" href="{prefix}assets/css/case-study.css" />
+  <script src="{prefix}assets/js/site.js" defer></script>
 </head>
 """
 
 
-def nav(active):
-    hub_cls = "cs-nav__link is-active" if active == "hub" else "cs-nav__link"
-    return f"""  <div class="grain" aria-hidden="true"></div>
-  <header class="nav is-in cs-nav" id="nav">
-    <a class="nav__mark" href="/">sanay<i>.</i>space</a>
-    <nav class="cs-nav__links">
-      <a class="{hub_cls}" href="/case-studies/">Case studies</a>
-      <a class="cs-nav__link" href="/#building">Building</a>
-      <a class="cs-nav__link" href="/#contact">Contact</a>
-    </nav>
-    <button class="nav__theme" id="theme-btn" type="button" aria-pressed="false"><span class="nav__theme-label" data-dark="Light" data-light="Dark"></span><i class="nav__theme-dot"></i></button>
+def topbar(prefix, active):
+    cur = ' aria-current="page"' if active == "hub" else ""
+    return f"""  <a class="skip" href="#main">Skip to content</a>
+{SPRITE}
+  <header class="cs-top">
+    <div class="wrap topbar">
+      <a class="wordmark" href="{prefix}"><span>sanay<b>.</b>space</span></a>
+      <nav class="topnav" aria-label="Site">
+        <a class="topnav__extra" href="{prefix}#story">Story</a>
+        <a href="{prefix}case-studies/"{cur}>Case studies</a>
+        <a class="topnav__extra" href="{prefix}#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 """
 
 
-def footer():
-    return """    <footer class="foot cs-foot-bar">
-      <span class="mono">sanay<i>.</i>space</span>
-      <span class="mono"><a href="mailto:sanays.mail@gmail.com">sanays.mail@gmail.com</a> <span class="dot"></span> <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a></span>
-      <span class="mono">2026</span>
-    </footer>
+def pass_link(cls, href, label, dest, icon="go", external=True):
+    ext = ' target="_blank" rel="noopener"' if external else ""
+    return (f'<a class="pass {cls}" href="{href}"{ext}><span class="pass__paper"><span class="pass__body">'
+            f'<span class="pass__label">{label}</span><span class="pass__dest">{dest}</span></span>'
+            f'<span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#{icon}" /></svg></span></span></a>')
+
+
+def footer(prefix):
+    return f"""  <footer class="section torn foot foot--small" id="contact">
+    <div class="wrap">
+      <div class="foot__grid">
+        <div>
+          <p class="label">Contact</p>
+          <h2 class="foot__title">Say hello</h2>
+          <p class="foot__where">Based in London.</p>
+        </div>
+        <ul class="passes" aria-label="Find me elsewhere">
+          <li>{pass_link("pass--li", "https://www.linkedin.com/in/sanay-shah/", "LinkedIn", "sanay-shah")}</li>
+          <li>{pass_link("pass--ig", "https://www.instagram.com/_s4nay/", "Instagram", "@_s4nay")}</li>
+          <li>{pass_link("pass--ph", "https://www.instagram.com/sanay.photography/", "Photography", "@sanay<wbr>.photography")}</li>
+          <li>{pass_link("pass--mail", "mailto:sanays.mail@gmail.com", "Email", "sanays.mail<wbr>@gmail.com", "mail", False)}</li>
+        </ul>
+      </div>
+      <div class="foot__small">
+        <p class="mono">Sanay Shah · 2026 · <a href="{prefix}">sanay.space</a></p>
+      </div>
+    </div>
+  </footer>
 """
 
 
-def list_items(posts, prefix, cls="reveal-up"):
-    rows = []
-    for i, p in enumerate(posts, 1):
-        pill = ' <span class="dot"></span> start here' if p["start_here"] else ""
-        rows.append(f"""        <li class="study {cls}">
-          <a class="study__link" href="{prefix}{p['slug']}.html" data-cursor="link">
-            <span class="study__num mono">{i:02d}</span>
-            <span class="study__main">
-              <span class="mono study__kind">{html.escape(p['kind'])}{pill}</span>
-              <span class="study__title">{html.escape(p['title'])}</span>
-              <span class="study__sf">{html.escape(p['standfirst'])}</span>
-            </span>
-            <span class="study__time mono">{p['minutes']} min</span>
-          </a>
-        </li>""")
-    return "\n".join(rows)
+def entry(p, href, with_sf, date=True):
+    pill = " · start here" if p.get("start_here") else ""
+    sf = f'\n              <span class="entry__sf">{html.escape(p["standfirst"])}</span>' if with_sf else ""
+    kind = f'{html.escape(p["kind"])}{" · " + html.escape(p["date"]) if date and p.get("date") else ""}{pill}'
+    return f"""          <li>
+            <a class="entry rise" href="{href}">
+              <span class="entry__kind">{kind}</span>
+              <span class="entry__title">{html.escape(p['title'])}</span>{sf}
+              <span class="entry__meta">{p['minutes']} min read</span>
+            </a>
+          </li>"""
+
+
+def natter_entry(with_sf):
+    sf = f'\n              <span class="entry__sf">{html.escape(NATTER["standfirst"])}</span>' if with_sf else ""
+    return f"""          <li>
+            <a class="entry rise" href="{NATTER['href']}" target="_blank" rel="noopener">
+              <span class="entry__kind">{html.escape(NATTER['kind'])}</span>
+              <span class="entry__title">{html.escape(NATTER['title'])}</span>{sf}
+              <span class="entry__meta">{html.escape(NATTER['meta'])}</span>
+            </a>
+          </li>"""
+
+
+def groups(posts, href_prefix, with_sf, heading="h3"):
+    work = "\n".join(entry(p, f"{href_prefix}{p['slug']}.html", with_sf) for p in posts if p["group"] == "work")
+    made = "\n".join(entry(p, f"{href_prefix}{p['slug']}.html", with_sf) for p in posts if p["group"] == "made")
+    made += "\n" + natter_entry(with_sf)
+    return f"""        <div class="group">
+          <{heading} class="group__title">Work</{heading}>
+          <ul class="entries">
+{work}
+          </ul>
+        </div>
+        <div class="group">
+          <{heading} class="group__title">Things I made</{heading}>
+          <ul class="entries">
+{made}
+          </ul>
+        </div>"""
 
 
 def article_page(p, i, posts):
     n = len(posts)
     prev_p = posts[i - 2] if i > 1 else None
     next_p = posts[i] if i < n else None
-    body_html = md_to_html(p["body"])
-    intro = f'\n      <p class="cs-intro">{inline(p["intro"])}</p>' if p.get("intro") else ""
-    links = ""
+    url = f"{SITE}/case-studies/{p['slug']}.html"
+    intro = f'\n        <p class="cs-intro">{inline(p["intro"])}</p>' if p.get("intro") else ""
+    ext = ""
     if p.get("link_url"):
-        links = f"""
-        <a class="btn cs-foot__link" href="{p['link_url']}" target="_blank" rel="noopener"><span>{html.escape(p['link_label'])} &rarr;</span></a>"""
+        ext = "\n        <div class=\"cs-ext\">" + pass_link("pass--ph", p["link_url"], "Visit", html.escape(p["link_label"])) + "</div>"
+    shelf = "Things I made" if p["group"] == "made" else "Work"
 
     def card(q, kind):
         if not q:
-            return f'      <span class="cs-pager__card is-empty is-{kind}"></span>'
+            return '      <span class="cs-pager__card is-empty" aria-hidden="true"></span>'
         lab = "Next" if kind == "next" else "Previous"
-        return f"""      <a class="cs-pager__card is-{kind}" href="/case-studies/{q['slug']}.html">
-        <span class="mono label">{lab}</span>
+        arrow = "&rarr;" if kind == "next" else "&larr;"
+        return f"""      <a class="cs-pager__card is-{kind}" href="{q['slug']}.html">
+        <span class="label">{lab} <span aria-hidden="true">{arrow}</span></span>
         <span class="cs-pager__title">{html.escape(q['short_title'])}</span>
       </a>"""
 
-    return head(f"{p['short_title']} | Sanay Shah", p["standfirst"]) + f"""<body class="cs-page">
-{nav("article")}
-  <div class="progress" id="progress" aria-hidden="true"></div>
+    return head(f"{p['short_title']} · Sanay Shah", p["standfirst"], url, "../") + f"""<body class="cs-page">
+{topbar("../", "article")}  <div class="cs-progress" aria-hidden="true"><span></span><svg><use href="#plane" /></svg></div>
 
-  <main class="cs">
-    <article class="cs-article">
+  <main id="main">
+    <article class="cs">
       <header class="cs-head">
-        <div class="cs-head__top">
-          <span class="mono label">{html.escape(p['kind'])} <span class="dot"></span> {i:02d} of {n:02d}</span>
-          <a class="mono cs-back" href="/case-studies/">&larr; All case studies</a>
+        <div class="wrap cs-head__inner">
+          <p class="cs-head__row">
+            <span class="stamp" style="--rot: -5deg">{html.escape(p['kind'])}<strong>{i:02d}/{n:02d}</strong>{html.escape(p['date'])}</span>
+            <a class="cs-back" href="./">&larr; All case studies</a>
+          </p>
+          <p class="label">{shelf}{" · start here" if p["start_here"] else ""}</p>
+          <h1 class="cs-title">{html.escape(p['title'])}</h1>
+          <p class="cs-standfirst">{html.escape(p['standfirst'])}</p>
+          <p class="cs-meta">
+            <img src="../assets/img/portrait-240.webp" alt="" width="40" height="40" />
+            <span class="mono">Sanay Shah · {html.escape(p['date'])} · {p['minutes']} min read</span>
+          </p>
         </div>
-        <h1 class="cs-title" data-split="words">{html.escape(p['title'])}</h1>
-        <p class="cs-standfirst reveal-up" style="--d:.5s">{html.escape(p['standfirst'])}</p>
-        <div class="cs-meta reveal-up" style="--d:.6s">
-          <img class="cs-meta__avatar" src="/assets/img/me-sm.webp" alt="Sanay Shah" width="32" height="32" />
-          <span class="mono">Sanay Shah <span class="dot"></span> {html.escape(p['date'])} <span class="dot"></span> {p['minutes']} min read</span>
+      </header>
+
+      <div class="wrap">
+        <div class="sheet tape">{intro}
+          <div class="prose">
+{md_to_html(p["body"])}
+          </div>{ext}
+          <p class="cs-disclosure">{html.escape(DISCLOSURE)}</p>
         </div>
-      </header>{intro}
 
-      <div class="cs-body">
-{body_html}
-      </div>
-
-      <footer class="cs-foot">{links}
-        <p class="cs-disclosure">{html.escape(DISCLOSURE)}</p>
-      </footer>
-    </article>
-
-    <nav class="cs-pager" aria-label="More case studies">
+        <nav class="cs-pager" aria-label="More case studies">
 {card(prev_p, "prev")}
 {card(next_p, "next")}
-    </nav>
-    <div class="cs-pager__all">
-      <a class="arrow-link" href="/case-studies/">All seven case studies <i>&rarr;</i></a>
-    </div>
+        </nav>
+        <p class="cs-all"><a class="more-link" href="./">All case studies <span aria-hidden="true">&rarr;</span></a></p>
+      </div>
+    </article>
   </main>
-{footer()}
-</body>
+
+{footer("../")}</body>
 </html>
 """
 
 
 def hub_page(posts):
-    desc = ("Eight case studies from Sanay Shah on putting AI into real work: an accountancy firm's "
-            "agent system, a pharmacy group, two products built solo, and the philosophy behind the 80% cap.")
-    return head("Case studies | Sanay Shah", desc) + f"""<body class="cs-page">
-{nav("hub")}
-
-  <main class="hub">
-    <header class="hub__head">
-      <p class="mono label">Case studies</p>
-      <h1 class="hub__title" data-split="words">Eight pieces on putting AI into real work, <em>written from the record.</em></h1>
-      <p class="hub__lead reveal-up" style="--d:.5s">The evidence behind the one-liners on the front page, and the thinking that runs through all of it.</p>
-      <p class="hub__body reveal-up" style="--d:.6s">Two firms, two products, one working paper and one essay. Start with the essay if you want the philosophy first. The rest are the incidents, decisions and numbers it came from. Firms are unnamed until they've agreed to be named.</p>
+    desc = ("Case studies by Sanay Shah on putting AI into real work at an accountancy "
+            "practice and a national pharmacy group, plus the things he's built.")
+    return head("Case studies · Sanay Shah", desc, f"{SITE}/case-studies/", "../") + f"""<body class="cs-page">
+{topbar("../", "hub")}
+  <main id="main">
+    <header class="cs-head cs-head--hub">
+      <div class="wrap cs-head__inner">
+        <p class="label">Stamped entries</p>
+        <h1 class="cs-title">Case studies</h1>
+        <p class="cs-standfirst">Longer write-ups of the work and the things I've built, in my own words. Firms stay unnamed.</p>
+      </div>
     </header>
 
-    <ol class="studies__list hub__list reveal-up" style="--d:.7s">
-{list_items(posts, "/case-studies/", cls="")}
-    </ol>
+    <section class="section torn writing hub" aria-label="All case studies">
+      <div class="wrap">
+{groups(posts, "../case-studies/", True, "h2")}
+      </div>
+    </section>
   </main>
-{footer()}
-</body>
+
+{footer("../")}</body>
 </html>
 """
 
@@ -259,7 +360,7 @@ def update_index(posts):
         return
     before, rest = text.split(start, 1)
     _, after = rest.split(end, 1)
-    block = start + "\n" + list_items(posts, "/case-studies/") + "\n        " + end
+    block = start + "\n" + groups(posts, "case-studies/", False) + "\n        " + end
     INDEX.write_text(before + block + after, encoding="utf-8")
 
 

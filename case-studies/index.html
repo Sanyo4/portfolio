@@ -1,139 +1,180 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en-GB" class="no-js">
 <head>
-  <script>document.documentElement.classList.replace('no-js','js');</script>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Case studies | Sanay Shah</title>
-  <meta name="description" content="Eight case studies from Sanay Shah on putting AI into real work: an accountancy firm&#x27;s agent system, a pharmacy group, two products built solo, and the philosophy behind the 80% cap." />
-  <meta name="theme-color" content="#0d1110" />
-  <meta name="color-scheme" content="dark light" />
-  <script>try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}</script>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230d1110%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%239db08c%27/%3E%3C/svg%3E" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
-  <link rel="stylesheet" href="/assets/css/case-study.css" />
-  <script src="/assets/js/case-study.js" defer></script>
+  <script>document.documentElement.classList.replace("no-js", "js");</script>
+  <title>Case studies · Sanay Shah</title>
+  <meta name="description" content="Case studies by Sanay Shah on putting AI into real work at an accountancy practice and a national pharmacy group, plus the things he&#x27;s built." />
+  <link rel="canonical" href="https://sanay.space/case-studies/" />
+  <meta name="theme-color" content="#d7e3e3" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="sanay.space" />
+  <meta property="og:url" content="https://sanay.space/case-studies/" />
+  <meta property="og:title" content="Case studies · Sanay Shah" />
+  <meta property="og:description" content="Case studies by Sanay Shah on putting AI into real work at an accountancy practice and a national pharmacy group, plus the things he&#x27;s built." />
+  <meta property="og:image" content="https://sanay.space/assets/img/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Case studies · Sanay Shah" />
+  <meta name="twitter:description" content="Case studies by Sanay Shah on putting AI into real work at an accountancy practice and a national pharmacy group, plus the things he&#x27;s built." />
+  <meta name="twitter:image" content="https://sanay.space/assets/img/og.jpg" />
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="../assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/case-study.css" />
+  <script src="../assets/js/site.js" defer></script>
 </head>
 <body class="cs-page">
-  <div class="grain" aria-hidden="true"></div>
-  <header class="nav is-in cs-nav" id="nav">
-    <a class="nav__mark" href="/">sanay<i>.</i>space</a>
-    <nav class="cs-nav__links">
-      <a class="cs-nav__link is-active" href="/case-studies/">Case studies</a>
-      <a class="cs-nav__link" href="/#building">Building</a>
-      <a class="cs-nav__link" href="/#contact">Contact</a>
-    </nav>
-    <button class="nav__theme" id="theme-btn" type="button" aria-pressed="false"><span class="nav__theme-label" data-dark="Light" data-light="Dark"></span><i class="nav__theme-dot"></i></button>
+  <a class="skip" href="#main">Skip to content</a>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="ink" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G" result="d" />
+        <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.2 0 0 0 2" result="m" />
+        <feComposite in="d" in2="m" operator="in" />
+      </filter>
+      <symbol id="plane" viewBox="0 0 32 32">
+        <path d="M2 15 L30 3 L21 29 L15 19 Z" fill="#fbfbf8" stroke="#1b2528" stroke-width="1.5" stroke-linejoin="round" />
+        <path d="M30 3 L15 19 L13.5 26.5 L17.8 22" fill="#d9e2e0" stroke="#1b2528" stroke-width="1.5" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="go" viewBox="0 0 16 16">
+        <path d="M4 12 L12 4 M6 4 H12 V10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="mail" viewBox="0 0 16 16">
+        <path d="M2 4 H14 V12 H2 Z M2 4 L8 9 L14 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+      </symbol>
+    </defs>
+  </svg>
+  <header class="cs-top">
+    <div class="wrap topbar">
+      <a class="wordmark" href="../"><span>sanay<b>.</b>space</span></a>
+      <nav class="topnav" aria-label="Site">
+        <a class="topnav__extra" href="../#story">Story</a>
+        <a href="../case-studies/" aria-current="page">Case studies</a>
+        <a class="topnav__extra" href="../#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-
-  <main class="hub">
-    <header class="hub__head">
-      <p class="mono label">Case studies</p>
-      <h1 class="hub__title" data-split="words">Eight pieces on putting AI into real work, <em>written from the record.</em></h1>
-      <p class="hub__lead reveal-up" style="--d:.5s">The evidence behind the one-liners on the front page, and the thinking that runs through all of it.</p>
-      <p class="hub__body reveal-up" style="--d:.6s">Two firms, two products, one working paper and one essay. Start with the essay if you want the philosophy first. The rest are the incidents, decisions and numbers it came from. Firms are unnamed until they've agreed to be named.</p>
+  <main id="main">
+    <header class="cs-head cs-head--hub">
+      <div class="wrap cs-head__inner">
+        <p class="label">Stamped entries</p>
+        <h1 class="cs-title">Case studies</h1>
+        <p class="cs-standfirst">Longer write-ups of the work and the things I've built, in my own words. Firms stay unnamed.</p>
+      </div>
     </header>
 
-    <ol class="studies__list hub__list reveal-up" style="--d:.7s">
-        <li class="study ">
-          <a class="study__link" href="/case-studies/why-we-stopped-at-80.html" data-cursor="link">
-            <span class="study__num mono">01</span>
-            <span class="study__main">
-              <span class="mono study__kind">Essay <span class="dot"></span> start here</span>
-              <span class="study__title">Why we stopped at 80%</span>
-              <span class="study__sf">The AI did about 80% of the work in about a quarter of the time. Why we chose not to push it to 100, and the handful of things I now believe about putting AI into real work.</span>
-            </span>
-            <span class="study__time mono">6 min</span>
-          </a>
-        </li>
-        <li class="study ">
-          <a class="study__link" href="/case-studies/fifteen-agents-one-front-desk.html" data-cursor="link">
-            <span class="study__num mono">02</span>
-            <span class="study__main">
-              <span class="mono study__kind">Case study</span>
-              <span class="study__title">Fifteen agents, one front desk: a year of building AI for an accountancy firm</span>
-              <span class="study__sf">A year building agents for real accountants. Fifteen drafts became six, six became one, a sixteen-minute run became four, and the rules that stuck came out of the incidents.</span>
-            </span>
-            <span class="study__time mono">6 min</span>
-          </a>
-        </li>
-        <li class="study ">
-          <a class="study__link" href="/case-studies/a-practice-team-in-software.html" data-cursor="link">
-            <span class="study__num mono">03</span>
-            <span class="study__main">
-              <span class="mono study__kind">Working paper</span>
-              <span class="study__title">A practice team in software</span>
-              <span class="study__sf">The public cut of a working paper for the firm&#x27;s leadership. A manager model, a worker model and a human partner, with the roles enforced in code rather than requested in a prompt.</span>
-            </span>
-            <span class="study__time mono">5 min</span>
-          </a>
-        </li>
-        <li class="study ">
-          <a class="study__link" href="/case-studies/the-engine-and-the-car.html" data-cursor="link">
-            <span class="study__num mono">04</span>
-            <span class="study__main">
-              <span class="mono study__kind">Case study</span>
-              <span class="study__title">The engine and the car: why I moved our AI system three times in one summer</span>
-              <span class="study__sf">The same system ran on three different harnesses between June and August. Same skills, same integrations, same rules. Where the value actually sits when the model is a line in a config file.</span>
-            </span>
-            <span class="study__time mono">5 min</span>
-          </a>
-        </li>
-        <li class="study ">
-          <a class="study__link" href="/case-studies/whats-left-of-the-job.html" data-cursor="link">
-            <span class="study__num mono">05</span>
-            <span class="study__main">
-              <span class="mono study__kind">Essay</span>
-              <span class="study__title">What&#x27;s left of the job when the reading leaves it</span>
-              <span class="study__sf">The AI did about 80% of an accountant&#x27;s job in about a quarter of the time. What&#x27;s in the other 20%, and why I tell the staff they&#x27;re being promoted.</span>
-            </span>
-            <span class="study__time mono">6 min</span>
-          </a>
-        </li>
-        <li class="study ">
-          <a class="study__link" href="/case-studies/ten-things-pharmacy-group.html" data-cursor="link">
-            <span class="study__num mono">06</span>
-            <span class="study__main">
-              <span class="mono study__kind">Case study</span>
-              <span class="study__title">Ten things I learned putting AI into a national pharmacy group</span>
-              <span class="study__sf">Three days of discovery that turned into building. Three agents shipped, four didn&#x27;t, most of the time went on access, and governance moved from the back of the proposal to the front.</span>
-            </span>
-            <span class="study__time mono">7 min</span>
-          </a>
-        </li>
-        <li class="study ">
-          <a class="study__link" href="/case-studies/beau.html" data-cursor="link">
-            <span class="study__num mono">07</span>
-            <span class="study__main">
-              <span class="mono study__kind">Case study</span>
-              <span class="study__title">Beau: I built a matching app that watches how you react, then I turned it off</span>
-              <span class="study__sf">A matching app that shows you a social moment and watches what you do, instead of asking you to describe yourself. Built solo to a working beta in two months, then wound down, and the question it left me with.</span>
-            </span>
-            <span class="study__time mono">4 min</span>
-          </a>
-        </li>
-        <li class="study ">
-          <a class="study__link" href="/case-studies/gonzo.html" data-cursor="link">
-            <span class="study__num mono">08</span>
-            <span class="study__main">
-              <span class="mono study__kind">Case study</span>
-              <span class="study__title">Gonzo: six personas, one argument, and a phone call to Google Maps</span>
-              <span class="study__sf">A travel engine that searches in the local language, lets six personas argue over the answer, and checks every place against Google Maps before it&#x27;s allowed to recommend it.</span>
-            </span>
-            <span class="study__time mono">3 min</span>
-          </a>
-        </li>
-    </ol>
+    <section class="section torn writing hub" aria-label="All case studies">
+      <div class="wrap">
+        <div class="group">
+          <h2 class="group__title">Work</h2>
+          <ul class="entries">
+          <li>
+            <a class="entry rise" href="../case-studies/why-we-stopped-at-80.html">
+              <span class="entry__kind">Essay · August 2026 · start here</span>
+              <span class="entry__title">Why we stopped at 80%</span>
+              <span class="entry__sf">The AI did about 80% of the work in about a quarter of the time. Why we chose not to push it to 100, and the handful of things I now believe about putting AI into real work.</span>
+              <span class="entry__meta">6 min read</span>
+            </a>
+          </li>
+          <li>
+            <a class="entry rise" href="../case-studies/fifteen-agents-one-front-desk.html">
+              <span class="entry__kind">Case study · August 2026</span>
+              <span class="entry__title">Fifteen agents, one front desk: a year of building AI for an accountancy firm</span>
+              <span class="entry__sf">A year building agents for real accountants. Fifteen drafts became six, six became one, a sixteen-minute run became four, and the rules that stuck came out of the incidents.</span>
+              <span class="entry__meta">6 min read</span>
+            </a>
+          </li>
+          <li>
+            <a class="entry rise" href="../case-studies/a-practice-team-in-software.html">
+              <span class="entry__kind">Working paper · August 2026</span>
+              <span class="entry__title">A practice team in software</span>
+              <span class="entry__sf">The public cut of a working paper for the firm&#x27;s leadership. A manager model, a worker model and a human partner, with the roles enforced in code rather than requested in a prompt.</span>
+              <span class="entry__meta">5 min read</span>
+            </a>
+          </li>
+          <li>
+            <a class="entry rise" href="../case-studies/the-engine-and-the-car.html">
+              <span class="entry__kind">Case study · August 2026</span>
+              <span class="entry__title">The engine and the car: why I moved our AI system three times in one summer</span>
+              <span class="entry__sf">The same system ran on three different harnesses between June and August. Same skills, same integrations, same rules. Where the value actually sits when the model is a line in a config file.</span>
+              <span class="entry__meta">5 min read</span>
+            </a>
+          </li>
+          <li>
+            <a class="entry rise" href="../case-studies/whats-left-of-the-job.html">
+              <span class="entry__kind">Essay · September 2026</span>
+              <span class="entry__title">What&#x27;s left of the job when the reading leaves it</span>
+              <span class="entry__sf">The AI did about 80% of an accountant&#x27;s job in about a quarter of the time. What&#x27;s in the other 20%, and why I tell the staff they&#x27;re being promoted.</span>
+              <span class="entry__meta">6 min read</span>
+            </a>
+          </li>
+          <li>
+            <a class="entry rise" href="../case-studies/ten-things-pharmacy-group.html">
+              <span class="entry__kind">Case study · August 2026</span>
+              <span class="entry__title">Ten things I learned putting AI into a national pharmacy group</span>
+              <span class="entry__sf">Three days of discovery that turned into building. Three agents shipped, four didn&#x27;t, most of the time went on access, and governance moved from the back of the proposal to the front.</span>
+              <span class="entry__meta">7 min read</span>
+            </a>
+          </li>
+          </ul>
+        </div>
+        <div class="group">
+          <h2 class="group__title">Things I made</h2>
+          <ul class="entries">
+          <li>
+            <a class="entry rise" href="../case-studies/beau.html">
+              <span class="entry__kind">Case study · August 2026</span>
+              <span class="entry__title">Beau: I built a matching app that watches how you react, then I turned it off</span>
+              <span class="entry__sf">A matching app that shows you a social moment and watches what you do, instead of asking you to describe yourself. Built solo to a working beta in two months, then wound down, and the question it left me with.</span>
+              <span class="entry__meta">4 min read</span>
+            </a>
+          </li>
+          <li>
+            <a class="entry rise" href="../case-studies/gonzo.html">
+              <span class="entry__kind">Case study · August 2026</span>
+              <span class="entry__title">Gonzo: six personas, one argument, and a phone call to Google Maps</span>
+              <span class="entry__sf">A travel engine that searches in the local language, lets six personas argue over the answer, and checks every place against Google Maps before it&#x27;s allowed to recommend it.</span>
+              <span class="entry__meta">3 min read</span>
+            </a>
+          </li>
+          <li>
+            <a class="entry rise" href="https://natter-landing.vercel.app" target="_blank" rel="noopener">
+              <span class="entry__kind">App · Android</span>
+              <span class="entry__title">Natter: a voice journal that writes the entry for you, on the phone, with nothing sent anywhere</span>
+              <span class="entry__sf">You talk about your day and a small toad asks up to three questions, then writes the page from your own sentences. Beau and Gonzo are folding into it.</span>
+              <span class="entry__meta">natter-landing.vercel.app ↗</span>
+            </a>
+          </li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
-    <footer class="foot cs-foot-bar">
-      <span class="mono">sanay<i>.</i>space</span>
-      <span class="mono"><a href="mailto:sanays.mail@gmail.com">sanays.mail@gmail.com</a> <span class="dot"></span> <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a></span>
-      <span class="mono">2026</span>
-    </footer>
 
+  <footer class="section torn foot foot--small" id="contact">
+    <div class="wrap">
+      <div class="foot__grid">
+        <div>
+          <p class="label">Contact</p>
+          <h2 class="foot__title">Say hello</h2>
+          <p class="foot__where">Based in London.</p>
+        </div>
+        <ul class="passes" aria-label="Find me elsewhere">
+          <li><a class="pass pass--li" href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener"><span class="pass__paper"><span class="pass__body"><span class="pass__label">LinkedIn</span><span class="pass__dest">sanay-shah</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#go" /></svg></span></span></a></li>
+          <li><a class="pass pass--ig" href="https://www.instagram.com/_s4nay/" target="_blank" rel="noopener"><span class="pass__paper"><span class="pass__body"><span class="pass__label">Instagram</span><span class="pass__dest">@_s4nay</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#go" /></svg></span></span></a></li>
+          <li><a class="pass pass--ph" href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener"><span class="pass__paper"><span class="pass__body"><span class="pass__label">Photography</span><span class="pass__dest">@sanay<wbr>.photography</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#go" /></svg></span></span></a></li>
+          <li><a class="pass pass--mail" href="mailto:sanays.mail@gmail.com"><span class="pass__paper"><span class="pass__body"><span class="pass__label">Email</span><span class="pass__dest">sanays.mail<wbr>@gmail.com</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#mail" /></svg></span></span></a></li>
+        </ul>
+      </div>
+      <div class="foot__small">
+        <p class="mono">Sanay Shah · 2026 · <a href="../">sanay.space</a></p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

@@ -1,1893 +1,441 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en-GB" class="no-js">
 <head>
-  <script>document.documentElement.classList.replace('no-js','js');</script>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Sanay Shah</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230d1110%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%239db08c%27/%3E%3C/svg%3E" />
-  <meta name="description" content="Sanay Shah builds AI products end to end, and thinks hard about what they should do. London, open to APAC." />
-  <meta name="theme-color" content="#0d1110" />
-  <meta name="color-scheme" content="dark light" />
-  <script>try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300&text=%E4%BA%8C%E5%8D%81%E4%BA%94%E6%99%82%E9%96%93%E7%9B%AE%E6%9D%B1%E4%BA%AC%E6%98%9F%E3%83%AB%E3%83%BC%E3%83%88&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <script type="importmap">
-    {"imports": {"three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
-  <script type="module" src="assets/js/terrain.js"></script>
-  <script src="assets/js/main.js" defer></script>
+  <script>document.documentElement.classList.replace("no-js", "js");</script>
+  <title>Sanay Shah · 43 flights in 45 weeks</title>
+  <meta name="description" content="I took 43 flights in 45 weeks doing street photography during my year abroad in Singapore. Now I work on AI strategy and adoption. Based in London." />
+  <link rel="canonical" href="https://sanay.space/" />
+  <meta name="theme-color" content="#d7e3e3" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="sanay.space" />
+  <meta property="og:url" content="https://sanay.space/" />
+  <meta property="og:title" content="Sanay Shah · 43 flights in 45 weeks" />
+  <meta property="og:description" content="I took 43 flights in 45 weeks doing street photography during my year abroad in Singapore. Now I work on AI strategy and adoption." />
+  <meta property="og:image" content="https://sanay.space/assets/img/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Sanay Shah's scrapbook: a taped-in print of him at sunrise and the line about 43 flights in 45 weeks." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sanay Shah · 43 flights in 45 weeks" />
+  <meta name="twitter:description" content="I took 43 flights in 45 weeks doing street photography during my year abroad in Singapore. Now I work on AI strategy and adoption." />
+  <meta name="twitter:image" content="https://sanay.space/assets/img/og.jpg" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/img/bromo-420.webp" as="image" imagesrcset="assets/img/bromo-420.webp 420w, assets/img/bromo-760.webp 760w" imagesizes="(min-width: 900px) 260px, 124px" />
+  <link rel="stylesheet" href="assets/css/site.css" />
+  <script src="assets/js/site.js" defer></script>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <!-- loader -->
-  <div class="loader" id="loader" aria-hidden="true">
-    <div class="loader__inner">
-      <span class="loader__mark">sanay<i>.</i>space</span>
-      <span class="loader__count" id="loader-count">00</span>
-      <span class="loader__line">loading the 25th hour</span>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="ink" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G" result="d" />
+        <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.2 0 0 0 2" result="m" />
+        <feComposite in="d" in2="m" operator="in" />
+      </filter>
+      <symbol id="plane" viewBox="0 0 32 32">
+        <path d="M2 15 L30 3 L21 29 L15 19 Z" fill="#fbfbf8" stroke="#1b2528" stroke-width="1.5" stroke-linejoin="round" />
+        <path d="M30 3 L15 19 L13.5 26.5 L17.8 22" fill="#d9e2e0" stroke="#1b2528" stroke-width="1.5" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="go" viewBox="0 0 16 16">
+        <path d="M4 12 L12 4 M6 4 H12 V10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="mail" viewBox="0 0 16 16">
+        <path d="M2 4 H14 V12 H2 Z M2 4 L8 9 L14 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="hero" id="top">
+    <div class="scene" aria-hidden="true">
+      <div class="sun" data-depth=".08"></div>
+      <svg class="cloud cloud--1" data-depth=".22" viewBox="0 0 160 70"><path d="M14 62 Q10 44 30 42 Q30 22 54 24 Q64 6 88 14 Q106 6 116 24 Q142 22 142 44 Q156 48 150 62 Z" fill="#fbfbf8" /></svg>
+      <svg class="cloud cloud--2" data-depth=".34" viewBox="0 0 160 70"><path d="M12 62 Q8 46 28 44 Q34 26 58 30 Q72 12 96 22 Q124 18 126 42 Q150 42 148 62 Z" fill="#f4f7f5" /></svg>
+      <svg class="cloud cloud--3" data-depth=".16" viewBox="0 0 160 70"><path d="M16 60 Q14 46 34 46 Q42 30 64 34 Q80 20 100 32 Q128 30 130 48 Q146 50 142 60 Z" fill="#f7f9f7" /></svg>
+      <svg class="hills hills--far" data-depth=".05" viewBox="0 0 1440 240"><path fill="#aebfc2" d="M0 240 V176 H38 V158 H64 V172 H96 V140 H118 V126 H136 V140 H156 V182 H196 V164 H232 V186 H278 V146 H300 V132 H316 V146 H334 V184 H380 V170 H414 V190 H462 V156 H480 V120 H488 V104 H496 V120 H504 V156 H526 V186 H588 V172 H624 V158 H650 V184 H706 V176 H744 V150 H772 V178 H830 V186 H1040 V170 H1080 V148 H1104 V170 H1150 V160 H1190 V182 H1250 V168 H1290 V150 H1316 V136 H1340 V150 H1366 V176 H1440 V240 Z M884 240 L888 128 L906 128 L909 240 Z M920 240 L923 128 L941 128 L944 240 Z M955 240 L958 128 L976 128 L979 240 Z M868 122 L1006 116 Q1014 119 1006 124 L868 128 Z" /></svg>
+      <svg class="hills hills--mid" data-depth=".1" viewBox="0 0 1440 240"><path fill="#a8bca1" d="M0 240 V200 C120 170 220 168 330 186 C430 202 520 176 640 170 C760 164 820 196 940 198 C1060 200 1140 168 1250 166 C1340 164 1400 178 1440 184 V240 Z" /></svg>
+      <svg class="hills hills--near" data-depth=".16" viewBox="0 0 1440 240"><path fill="#7f9a7b" d="M0 240 V218 C160 196 300 210 420 222 C560 236 700 206 860 204 C1000 202 1100 226 1240 222 C1340 219 1400 208 1440 206 V240 Z" /><g fill="#4c6a51"><path d="M238 222 L226 222 L238 170 L250 222 Z" /><path d="M262 224 L253 224 L262 186 L271 224 Z" /><path d="M1180 222 L1166 222 L1180 162 L1194 222 Z" /><path d="M1204 220 L1195 220 L1204 184 L1213 220 Z" /></g></svg>
     </div>
-  </div>
 
-  <!-- atmosphere -->
-  <div class="grain" aria-hidden="true"></div>
-  <canvas class="terrain" id="terrain" aria-hidden="true"></canvas>
-  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
-
-  <!-- nav -->
-  <header class="nav" id="nav">
-    <a class="nav__mark" href="#top" data-cursor="link">sanay<i>.</i>space</a>
-    <div class="nav__mid">
-      <span class="nav__clock" id="clock" aria-label="Time in London">London 00:00</span>
+    <div class="wrap topbar">
+      <a class="wordmark" href="./"><span>sanay<b>.</b>space</span></a>
+      <nav class="topnav" aria-label="Sections">
+        <a class="topnav__extra" href="#story">Story</a>
+        <a class="topnav__extra" href="#work">Work</a>
+        <a class="topnav__extra" href="#photos">Photos</a>
+        <a href="case-studies/">Case studies</a>
+      </nav>
     </div>
-    <button class="nav__theme" id="theme-btn" type="button" aria-pressed="false" data-cursor="link"><span class="nav__theme-label" data-dark="Light" data-light="Dark"></span><i class="nav__theme-dot"></i></button>
-    <button class="nav__menu" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-cursor="link">
-      <span class="nav__menu-label" data-open="Menu" data-close="Close"></span>
-      <span class="nav__menu-lines"><i></i><i></i></span>
-    </button>
+
+    <div class="wrap hero__grid">
+      <div class="hero__text">
+        <p class="kicker">Sanay Shah <i></i> London</p>
+        <h1>I took <span class="hl">43 flights in 45 weeks</span> doing street photography during my year abroad in Singapore.</h1>
+        <ul class="passes hero__passes" aria-label="Find me elsewhere">
+          <li><a class="pass pass--li" href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="me noopener"><span class="pass__paper"><span class="pass__body"><span class="pass__label">LinkedIn</span><span class="pass__dest">sanay-shah</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#go" /></svg></span></span></a></li>
+          <li><a class="pass pass--ig" href="https://www.instagram.com/_s4nay/" target="_blank" rel="me noopener"><span class="pass__paper"><span class="pass__body"><span class="pass__label">Instagram</span><span class="pass__dest">@_s4nay</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#go" /></svg></span></span></a></li>
+          <li><a class="pass pass--ph" href="https://www.instagram.com/sanay.photography/" target="_blank" rel="me noopener"><span class="pass__paper"><span class="pass__body"><span class="pass__label">Photography</span><span class="pass__dest">@sanay<wbr>.photography</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#go" /></svg></span></span></a></li>
+          <li><a class="pass pass--mail" href="mailto:sanays.mail@gmail.com"><span class="pass__paper"><span class="pass__body"><span class="pass__label">Email</span><span class="pass__dest">sanays.mail<wbr>@gmail.com</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#mail" /></svg></span></span></a></li>
+        </ul>
+        <p class="hero__sub">These days it's AI strategy and adoption: finding where a team's time goes, then getting them using something that helps. The story and the work are below.</p>
+      </div>
+
+      <div class="hero__collage">
+        <svg class="flight" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+          <defs><mask id="flight-mask"><path class="flight__trail" d="M-10 380 C 70 250, 150 350, 225 220 S 330 70, 372 42" fill="none" stroke="#fff" stroke-width="8" /></mask></defs>
+          <path class="flight__path" d="M-10 380 C 70 250, 150 350, 225 220 S 330 70, 372 42" fill="none" stroke="#3b4f59" stroke-width="2" stroke-linecap="round" mask="url(#flight-mask)" />
+          <use class="flight__plane" href="#plane" x="360" y="22" width="30" height="30" />
+        </svg>
+        <figure class="print tape print--bromo" data-depth=".5">
+          <img src="assets/img/bromo-420.webp" srcset="assets/img/bromo-420.webp 420w, assets/img/bromo-760.webp 760w" sizes="(min-width: 900px) 260px, 124px" width="420" height="630" alt="Me at sunrise in front of a volcano, one hand over my eyes, the sky pink behind the peaks." fetchpriority="high" />
+          <figcaption>Apr 2025</figcaption>
+        </figure>
+        <figure class="print tape tape--ver print--tower" data-depth=".3" style="--tr: 6deg">
+          <img src="assets/img/tower-360.webp" srcset="assets/img/tower-240.webp 240w, assets/img/tower-360.webp 360w, assets/img/tower-640.webp 640w" sizes="(min-width: 900px) 200px, 104px" width="360" height="540" alt="Tokyo Tower in evening light, framed by trees and a dark building." />
+          <figcaption>Tokyo Tower, Mar 2025</figcaption>
+        </figure>
+        <svg class="stamp-ring" data-depth=".7" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+          <defs><path id="ring-a" d="M60 60 m-43 0 a43 43 0 1 1 86 0 a43 43 0 1 1 -86 0" /></defs>
+          <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="3" />
+          <circle cx="60" cy="60" r="31" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <text font-size="9.6"><textPath href="#ring-a" textLength="266" lengthAdjust="spacing">43 FLIGHTS · 45 WEEKS · SINGAPORE ·</textPath></text>
+          <text x="60" y="61" text-anchor="middle" font-size="17">SIN</text>
+          <text x="60" y="74" text-anchor="middle" font-size="7.5">2024-25</text>
+        </svg>
+      </div>
+    </div>
   </header>
 
-  <nav class="menu" id="menu" aria-hidden="true">
-    <div class="menu__bg"></div>
-    <div class="menu__inner">
-      <ol class="menu__list">
-        <li><a href="#building" data-cursor="link"><span class="menu__num">01</span><span class="menu__word">Building</span></a></li>
-        <li><a href="#ai" data-cursor="link"><span class="menu__num">02</span><span class="menu__word">AI</span></a></li>
-        <li><a href="#case-studies" data-cursor="link"><span class="menu__num">03</span><span class="menu__word">Case studies</span></a></li>
-        <li><a href="#experience" data-cursor="link"><span class="menu__num">04</span><span class="menu__word">Experience</span></a></li>
-        <li><a href="#skills" data-cursor="link"><span class="menu__num">05</span><span class="menu__word">Skills</span></a></li>
-        <li><a href="#off-the-clock" data-cursor="link"><span class="menu__num">06</span><span class="menu__word">Off the clock</span></a></li>
-        <li><a href="#contact" data-cursor="link"><span class="menu__num">07</span><span class="menu__word">Contact</span></a></li>
-      </ol>
-      <div class="menu__foot">
-        <a href="mailto:sanays.mail@gmail.com" data-cursor="link">sanays.mail@gmail.com</a>
-        <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener" data-cursor="link">LinkedIn</a>
-        <a href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener" data-cursor="link">@sanay.photography</a>
-        <a href="case-studies/index.html" data-cursor="link">Case studies</a>
-        <button class="menu__theme" type="button" data-theme-toggle data-cursor="link"><span data-dark="Light mode" data-light="Dark mode"></span></button>
-      </div>
-    </div>
-  </nav>
-
-  <main id="top">
-
-    <!-- ===== HERO ===== -->
-    <section class="hero" id="hero">
-      <div class="hero__jp" aria-hidden="true"><span>二十五時</span><small>the 25th hour</small></div>
-      <div class="hero__inner">
-        <p class="hero__eyebrow mono reveal-up" style="--d:.1s">
-          <img class="hero__avatar" src="assets/img/me-sm.webp" alt="" width="36" height="36" />
-          Sanay Shah <span class="dot"></span> London <span class="dot"></span> open to APAC
-        </p>
-        <h1 class="hero__title" data-split="words">
-          I build AI products end to end, <em>and think hard about what they should do.</em>
-        </h1>
-        <div class="hero__row">
-          <p class="hero__lead reveal-up" style="--d:.9s">
-            First-Class Computer Science from Cardiff, July 2026. For the past year I've run the AI programme at Innovi Advisors: 15 stalled agents became one production system, and it's now the firm's own product on a custom harness, live at vedas.cloud.
-          </p>
-          <div class="hero__now reveal-up" style="--d:1.05s">
-            <span class="mono hero__now-label">right now</span>
-            <span class="hero__now-text"><span id="typewriter">turning an accounts prep harness into a SaaS</span><i class="caret"></i></span>
-            <a class="hero__latest" href="case-studies/ten-things-pharmacy-group.html" data-cursor="link"><span class="mono hero__now-label">latest</span> Ten things I learned putting AI into a national pharmacy group <i>&rarr;</i></a>
-          </div>
+  <main id="main">
+    <section class="section torn story" id="story" aria-labelledby="story-title">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="label">The route so far</p>
+          <h2 class="section__title" id="story-title">Who I am</h2>
         </div>
-      </div>
-      <div class="hero__foot">
-        <a class="hero__scroll mono" href="#manifesto" data-cursor="link"><span>scroll</span><i></i></a>
-        <p class="hero__note mono">The lines behind this text are a live terrain, drawn by a shader. Move to tilt it.</p>
-      </div>
-    </section>
 
-    <!-- ===== TICKER ===== -->
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker__track" id="ticker">
-        <span>AI product builder</span><i></i>
-        <span>43 flights in 45 weeks</span><i></i>
-        <span>First-Class CS, Cardiff</span><i></i>
-        <span>a year in Singapore</span><i></i>
-        <span>a Fujifilm</span><i></i>
-        <span>London to APAC</span><i></i>
-      </div>
-    </div>
+        <div class="route">
+          <div class="route__line" aria-hidden="true"></div>
+          <div class="route__flown" aria-hidden="true"></div>
+          <svg class="route__plane" aria-hidden="true" focusable="false"><use href="#plane" /></svg>
 
-    <!-- ===== CONTENTS ===== -->
-    <section class="toc" id="contents" aria-labelledby="contents-label">
-      <div class="toc__inner">
-        <h2 class="mono" id="contents-label">Which part of me do you want to see?</h2>
-        <div class="toc__picks" role="group" aria-labelledby="contents-label">
-          <button class="pick" type="button" data-path="engineer" aria-pressed="false" aria-controls="picked-path" data-cursor="link"><span class="mono">01</span><span>The engineer</span></button>
-          <button class="pick" type="button" data-path="product" aria-pressed="false" aria-controls="picked-path" data-cursor="link"><span class="mono">02</span><span>The product thinker</span></button>
-          <button class="pick" type="button" data-path="story" aria-pressed="false" aria-controls="picked-path" data-cursor="link"><span class="mono">03</span><span>The story</span></button>
-          <button class="pick" type="button" data-path="evidence" aria-pressed="false" aria-controls="picked-path" data-cursor="link"><span class="mono">04</span><span>The evidence</span></button>
-          <button class="pick" type="button" data-path="photographer" aria-pressed="false" aria-controls="picked-path" data-cursor="link"><span class="mono">05</span><span>The photographer</span></button>
-        </div>
-        <div class="path" id="picked-path" aria-live="polite" aria-atomic="true">
-          <p class="mono path__empty">pick one, or just keep scrolling</p>
-          <svg class="path__map" aria-hidden="true"><path class="path__line" pathLength="1" /></svg>
-          <span class="path__traveller" aria-hidden="true"></span>
-          <ol class="path__stops"></ol>
-        </div>
-        <template id="path-engineer">
-          <li class="path__stop" style="--stop-delay:0.15s">
-            <p class="mono path__label">stop 1</p>
-            <h3 class="path__title"><a href="#ai-step-5" data-cursor="link">The harness, step five</a></h3>
-            <p class="path__hook">Rules as code: the manager can't open the documents, and the cold review caught a real error.</p><a class="arrow-link" href="#ai-step-5" data-cursor="link">start here <i aria-hidden="true">&rarr;</i></a>
-          </li>
-          <li class="path__stop" style="--stop-delay:0.35s">
-            <p class="mono path__label">stop 2</p>
-            <h3 class="path__title"><a href="#building" data-cursor="link">Vedas Cloud</a></h3>
-            <p class="path__hook">The same harness as a product: one process per job, usage metered, read-only connectors.</p>
-          </li>
-          <li class="path__stop" style="--stop-delay:0.55s">
-            <p class="mono path__label">stop 3</p>
-            <h3 class="path__title"><a href="case-studies/the-engine-and-the-car.html" data-cursor="link">The engine and the car</a></h3>
-            <p class="path__hook">Why the harness matters more than the model.</p>
-          </li>
-        </template>
-        <template id="path-product">
-          <li class="path__stop" style="--stop-delay:0.15s">
-            <p class="mono path__label">stop 1</p>
-            <h3 class="path__title"><a href="case-studies/ten-things-pharmacy-group.html" data-cursor="link">Ten things from a pharmacy group</a></h3>
-            <p class="path__hook">Two days on site, no admin rights, three agents shipped anyway.</p><a class="arrow-link" href="case-studies/ten-things-pharmacy-group.html" data-cursor="link">start here <i aria-hidden="true">&rarr;</i></a>
-          </li>
-          <li class="path__stop" style="--stop-delay:0.35s">
-            <p class="mono path__label">stop 2</p>
-            <h3 class="path__title"><a href="case-studies/fifteen-agents-one-front-desk.html" data-cursor="link">Fifteen agents, one front desk</a></h3>
-            <p class="path__hook">The adoption win that cost almost nothing to build.</p>
-          </li>
-          <li class="path__stop" style="--stop-delay:0.55s">
-            <p class="mono path__label">stop 3</p>
-            <h3 class="path__title"><a href="#experience" data-cursor="link">Experience</a></h3>
-            <p class="path__hook">A regulated firm's AI rebuild and the roles before it.</p>
-          </li>
-        </template>
-        <template id="path-story">
-          <li class="path__stop" style="--stop-delay:0.15s">
-            <p class="mono path__label">stop 1</p>
-            <h3 class="path__title"><a href="#ai" data-cursor="link">The arc, from the start</a></h3>
-            <p class="path__hook">Fifteen stalled chatbots in June to a multi-tenant product in September.</p><a class="arrow-link" href="#ai" data-cursor="link">start here <i aria-hidden="true">&rarr;</i></a>
-          </li>
-          <li class="path__stop" style="--stop-delay:0.35s">
-            <p class="mono path__label">stop 2</p>
-            <h3 class="path__title"><a href="#building" data-cursor="link">Three systems</a></h3>
-            <p class="path__hook">An accountancy firm's agent team, a matching app, a travel engine.</p>
-          </li>
-          <li class="path__stop" style="--stop-delay:0.55s">
-            <p class="mono path__label">stop 3</p>
-            <h3 class="path__title"><a href="#off-the-clock" data-cursor="link">Off the clock</a></h3>
-            <p class="path__hook">43 flights in 45 weeks and a Fujifilm.</p>
-          </li>
-        </template>
-        <template id="path-evidence">
-          <li class="path__stop" style="--stop-delay:0.15s">
-            <p class="mono path__label">stop 1</p>
-            <h3 class="path__title"><a href="case-studies/why-we-stopped-at-80.html" data-cursor="link">Why we stopped at 80%</a></h3>
-            <p class="path__hook">The benchmark, and why the cap is a control, not a shortfall.</p><a class="arrow-link" href="case-studies/why-we-stopped-at-80.html" data-cursor="link">start here <i aria-hidden="true">&rarr;</i></a>
-          </li>
-          <li class="path__stop" style="--stop-delay:0.35s">
-            <p class="mono path__label">stop 2</p>
-            <h3 class="path__title"><a href="#ai-step-4" data-cursor="link">What broke</a></h3>
-            <p class="path__hook">Every step of the timeline has a "what broke" panel. Read those first.</p>
-          </li>
-          <li class="path__stop" style="--stop-delay:0.55s">
-            <p class="mono path__label">stop 3</p>
-            <h3 class="path__title"><a href="#skills" data-cursor="link">Skills</a></h3>
-            <p class="path__hook">What I build with, and the guardrails underneath.</p>
-          </li>
-        </template>
-        <template id="path-photographer">
-          <li class="path__stop" style="--stop-delay:0.15s">
-            <p class="mono path__label">stop 1</p>
-            <h3 class="path__title"><a href="#off-the-clock" data-cursor="link">Off the clock</a></h3>
-            <p class="path__hook">Tokyo, a starry ridge, a lantern alley.</p><a class="arrow-link" href="#off-the-clock" data-cursor="link">start here <i aria-hidden="true">&rarr;</i></a>
-          </li>
-          <li class="path__stop" style="--stop-delay:0.35s">
-            <p class="mono path__label">stop 2</p>
-            <h3 class="path__title"><a href="https://www.instagram.com/sanay.photography/" data-cursor="link">@sanay.photography <i aria-hidden="true">&nearr;</i></a></h3>
-            <p class="path__hook">The public account.</p>
-          </li>
-          <li class="path__stop" style="--stop-delay:0.55s">
-            <p class="mono path__label">stop 3</p>
-            <h3 class="path__title"><a href="#contact" data-cursor="link">Contact</a></h3>
-            <p class="path__hook">Let's build something.</p>
-          </li>
-        </template>
-        <details class="more toc__all">
-          <summary data-cursor="link"><span>or see everything</span><i aria-hidden="true"></i></summary>
-        <ol class="toc__list">
-          <li class="reveal-up" style="--d:0s"><a href="#building" data-cursor="link"><span class="mono toc__num">01</span><span class="toc__copy"><span class="toc__title">Building</span><span class="toc__hook">Three systems shipped end to end, and the product they became.</span></span><i aria-hidden="true">&rarr;</i></a></li>
-          <li class="reveal-up" style="--d:.05s"><a href="#ai" data-cursor="link"><span class="mono toc__num">02</span><span class="toc__copy"><span class="toc__title">AI</span><span class="toc__hook">The year from fifteen stalled chatbots to a multi-tenant harness, with what broke.</span></span><i aria-hidden="true">&rarr;</i></a></li>
-          <li class="reveal-up" style="--d:.1s"><a href="#case-studies" data-cursor="link"><span class="mono toc__num">03</span><span class="toc__copy"><span class="toc__title">Case studies</span><span class="toc__hook">Eight pieces on putting AI into real work.</span></span><i aria-hidden="true">&rarr;</i></a></li>
-          <li class="reveal-up" style="--d:.15s"><a href="#experience" data-cursor="link"><span class="mono toc__num">04</span><span class="toc__copy"><span class="toc__title">Experience</span><span class="toc__hook">A regulated firm's AI rebuild, a pharmacy group, and the roles before.</span></span><i aria-hidden="true">&rarr;</i></a></li>
-          <li class="reveal-up" style="--d:.2s"><a href="#skills" data-cursor="link"><span class="mono toc__num">05</span><span class="toc__copy"><span class="toc__title">Skills</span><span class="toc__hook">System design first, with the guardrails that make it trustworthy.</span></span><i aria-hidden="true">&rarr;</i></a></li>
-          <li class="reveal-up" style="--d:.25s"><a href="#off-the-clock" data-cursor="link"><span class="mono toc__num">06</span><span class="toc__copy"><span class="toc__title">Off the clock</span><span class="toc__hook">43 flights, a Fujifilm, and the sidequests in between.</span></span><i aria-hidden="true">&rarr;</i></a></li>
-          <li class="reveal-up" style="--d:.3s"><a href="#contact" data-cursor="link"><span class="mono toc__num">07</span><span class="toc__copy"><span class="toc__title">Contact</span><span class="toc__hook">Let's build something.</span></span><i aria-hidden="true">&rarr;</i></a></li>
-        </ol>
-        </details>
-      </div>
-    </section>
-
-    <!-- ===== MANIFESTO ===== -->
-    <section class="manifesto" id="manifesto">
-      <p class="mono label reveal-up">How I think about agents</p>
-      <p class="manifesto__text" data-split="words">
-        The way I've found this works is basically the way a good team already runs. A capable model as the manager, cheaper models doing the legwork, and a person at the top holding the accountability. Reviewing everything at the end doesn't hold up. After twenty correct outputs, review turns into a reflex and the twenty-first error sails through. So the system brings the judgement calls forward as they come up, and remembers the answer.
-      </p>
-      <a class="arrow-link reveal-up" href="case-studies/why-we-stopped-at-80.html" data-cursor="link">Read the essay: why we stopped at 80% <i>&rarr;</i></a>
-    </section>
-
-    <!-- ===== BUILDING ===== -->
-    <section class="building" id="building">
-      <div class="section-head">
-        <p class="mono label reveal-up">01 <span class="dot"></span> Building</p>
-        <h2 class="h2 reveal-up" style="--d:.1s">Three systems, designed and shipped end to end.</h2>
-      </div>
-
-      <div class="rail" id="rail">
-        <div class="rail__track" id="rail-track">
-
-          <article class="card card--wide" data-cursor="drag">
-            <div class="card__media">
-              <img style="--pos: 72% 25%" src="assets/img/innovi.webp" alt="Sanay presenting the automation initiative to the partners at Innovi Advisors" loading="lazy" />
-            </div>
-            <div class="card__body">
-              <p class="mono card__meta">Oracle, then Vedas <span class="dot"></span> 2025 to now <span class="dot"></span> in production</p>
-              <h3 class="card__title">An AI agent team for an accountancy firm.</h3>
-              <p class="card__text">Fifteen stalled draft agents became one router in front of eighteen specialist lanes. Staff brief it like a junior and it routes itself. Now being rebuilt as the firm's own product on a custom harness, with the working rules enforced in code: the manager model can't do the juniors' legwork, memory saves need the user's word-for-word approval, and anything leaving the system needs human sign-off.</p>
-              <details class="more">
-                <summary data-cursor="link"><span>What it actually does</span><i></i></summary>
-                <div class="more__body">
-                  <p>The VAT return auditor runs a tab-by-tab audit of Xero VAT exports against HMRC rules. The accounts-preparation agent runs a three-way reconciliation, from bank to ledger to trial balance, and raises a suspense report for anything unresolved. The client-onboarding agent builds a client's KYC and permanent file through a guided interview, auto-filling from firm records and Companies House. Job-card automation fills job-setup templates from prior-year data. Alfred, an onboarding and support agent that routes staff to the right tool, was the single biggest adoption win in staff testing.</p>
-                  <h4>Two design rules that came out of incidents</h4>
-                  <p>An overloaded combined agent hung under real data load. Root-caused to turn-size overload, split into two purpose-bound agents joined by a shared handover artefact. The rule that stuck: separate by function, bound each turn. And every agent drafts for staff review; nothing auto-sends or auto-files.</p>
-                </div>
-              </details>
-              <div class="card__links">
-                <a href="case-studies/fifteen-agents-one-front-desk.html" data-cursor="link">Fifteen agents, one front desk <i>&rarr;</i></a>
-                <a href="case-studies/a-practice-team-in-software.html" data-cursor="link">A practice team in software <i>&rarr;</i></a>
-                <a href="case-studies/the-engine-and-the-car.html" data-cursor="link">The engine and the car <i>&rarr;</i></a>
+          <ol class="route__list">
+            <li class="beat">
+              <span class="beat__stop" aria-hidden="true">01</span>
+              <div class="beat__card tape rise">
+                <span class="label">School · Whitgift, Croydon</span>
+                <h3>Theatre and rowing</h3>
+                <p>I played Lady Macbeth in the school's Macbeth. It was a boys' school, so someone had to. I was also in its first student-led play and got scouted by an acting agency at 15. On the water, I coxed an under-15 four that won a national B final.</p>
               </div>
-            </div>
-          </article>
-
-          <article class="card" data-cursor="drag">
-            <div class="card__media card__media--type"><span class="card__glyph">Vedas</span><span class="mono card__spec">vedas.cloud <span class="dot"></span> multi-tenant <span class="dot"></span> usage metered</span></div>
-            <div class="card__body"><p class="mono card__meta">vedas.cloud <span class="dot"></span> September 2026 <span class="dot"></span> live, tenant zero</p><h3 class="card__title">The accounts prep harness, as a product any UK practice can sign into.</h3><p class="card__text">A practice signs in, connects its practice system read-only, and every job runs its own harness process with the working rules enforced in code and a credit balance showing what it's costing. Built in a week on top of the pi harness, which moved in unchanged. One tenant, one real job end to end, nobody's paid yet.</p>
-              <details class="more"><summary data-cursor="link"><span>What's in the build</span><i></i></summary><div class="more__body"><p>Next.js and a worker on Railway, Supabase for Postgres and storage, Better Auth with one organisation per practice and five roles, Stripe for prepaid credit in one pool per firm, OpenRouter with every model request routed only to zero-retention providers and the serving provider recorded per request. Read-only connectors for the practice system, Companies House, Xero, QuickBooks, Sage and Microsoft 365. Templates and memory belong to each firm and never ship in the product.</p></div></details>
-              <div class="card__links"><a href="#ai" data-cursor="link">See the timeline <i>&rarr;</i></a><a href="https://vedas.cloud" target="_blank" rel="noopener" data-cursor="link">vedas.cloud <i>&nearr;</i></a></div>
-            </div>
-          </article>
-
-          <article class="card card--wide" data-cursor="drag">
-            <div class="card__media card__media--natter">
-              <svg class="natter-toad" xmlns="http://www.w3.org/2000/svg" viewBox="20 100 360 275" role="img" aria-label="Natter, the natterjack toad, holding a notebook and a pencil">
-      <g stroke="#5B4636" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-      <g class="n-mound">
-      <path d="M27 348C46 318 113 324 148 322C227 307 329 319 373 348C386 364 19 371 27 348Z" fill="#FFE9A8" stroke="none"/>
-      <path d="M52 337q-13-17-18-13m18 13q-2-27 5-33m-5 33q8-18 18-20" fill="none" stroke="#86CDAB" stroke-width="6"/>
-      <path d="M104 350h12m188-7h9m-157 11h6" stroke="#EBC44F" stroke-width="3"/>
-      </g>
-      <g class="n-character">
-      <g class="n-legs" fill="#86CDAB">
-      <g class="n-leg-l"><path d="M116 285C88 284 65 310 73 331C79 344 127 344 149 332L150 310Z"/><path d="m87 327 7 5m8-10 8 9" fill="none" stroke-width="3"/></g>
-      <g class="n-leg-r"><path d="M280 285C310 284 335 310 326 331C320 344 274 344 250 332L250 310Z"/><path d="m313 327-7 5m-8-10-8 9" fill="none" stroke-width="3"/></g>
-      </g>
-      <g class="n-torso">
-      <g class="n-body"><path d="M74 236C67 167 116 119 199 120C282 117 333 168 326 238C324 306 278 335 200 335C120 335 77 306 74 236Z" fill="#BFE8D4"/><path d="M83 251C100 300 156 319 207 318C271 318 311 286 323 251C314 309 273 335 200 335C130 335 92 311 83 251Z" fill="#86CDAB" stroke="none"/></g>
-      <g class="n-stripe"><path d="M194 124C182 161 187 179 196 207C202 228 190 252 195 273L213 274C207 251 219 229 209 204C199 179 202 149 210 124Z" fill="#FFE9A8" stroke="none"/></g>
-      <g class="n-belly"><path d="M123 276C122 238 151 219 200 219C249 219 278 239 277 276C276 315 241 325 200 325C159 325 124 314 123 276Z" fill="#FFF8EC" stroke="none"/></g>
-      <g class="n-head">
-      <g class="n-eye-bumps" fill="#BFE8D4"><path d="M80 187C75 130 91 110 124 112C151 112 167 135 165 159"/><path d="M234 159C232 135 249 112 276 112C309 110 325 131 320 187"/></g>
-      <g class="n-eyes" fill="#FFFDF7" stroke-width="3.5"><ellipse cx="124" cy="161" rx="28" ry="31"/><ellipse cx="276" cy="161" rx="28" ry="31"/></g>
-      <g class="n-pupils" fill="#5B4636" stroke="none"><ellipse cx="128" cy="165" rx="12" ry="16"/><ellipse cx="272" cy="165" rx="12" ry="16"/><g fill="#FFFDF7"><ellipse cx="124" cy="159" rx="4" ry="5"/><ellipse cx="268" cy="159" rx="4" ry="5"/><circle cx="132" cy="172" r="2"/><circle cx="276" cy="172" r="2"/></g></g>
-      <g class="n-cheeks" fill="#FFD3B8" stroke="none"><ellipse cx="105" cy="205" rx="21" ry="12"/><ellipse cx="295" cy="205" rx="21" ry="12"/></g>
-      <g class="n-freckles" fill="#86CDAB" stroke="none"><circle cx="83" cy="227" r="4"/><circle cx="96" cy="237" r="3"/><circle cx="317" cy="227" r="4"/><circle cx="304" cy="237" r="3"/></g>
-      <g class="n-throat"><ellipse cx="200" cy="235" rx="31" ry="18" fill="#FFE9A8" stroke="#D5BB78" stroke-width="2"/><path d="M187 244q13 5 26 0" fill="none" stroke="#D5BB78" stroke-width="2"/></g>
-      <g class="n-mouth"><path d="M184 207q16 14 32 0" fill="none"/></g>
-      <g class="n-nose" fill="#5B4636" stroke="none"><ellipse cx="189" cy="191" rx="2" ry="1.5"/><ellipse cx="211" cy="191" rx="2" ry="1.5"/></g>
-      </g>
-      <g class="n-notebook"><path d="m144 265 86-8q8 0 9 9l5 59q1 8-7 9l-86 7Z" fill="#EFA078"/><path d="m155 261 79-5 5 65-79 7Z" fill="#FFF8EC"/><path d="m155 261 5 67-10 9-5-69Z" fill="#FFD3B8"/><path d="m170 279 48-4m-47 16 38-3m-36 15 43-4" fill="none" stroke="#C9BAA2" stroke-width="3"/><path d="m149 278 9-1m-8 16 9-1m-8 16 9-1" stroke-width="3"/></g>
-      <g class="n-arm-l"><path d="M98 249C88 265 103 297 135 302C154 307 166 298 157 286C152 280 144 284 137 281L118 255" fill="#BFE8D4"/><path d="m144 289 6 5" fill="none" stroke-width="3"/></g>
-      <g class="n-writing-hand">
-      <g class="n-pencil"><path d="m251 280 20-54 10 4-20 54-9 8Z" fill="#FFE9A8" stroke-width="3"/><path d="m251 280 10 4-9 8Z" fill="#FFF8EC" stroke-width="2"/><path d="m252 287 0 5 4-4Z" fill="#5B4636" stroke="none"/><path d="m273 237-14 38" stroke="#EBC44F" stroke-width="3"/></g>
-      <g class="n-arm-r"><path d="M301 247C317 267 299 291 280 289C266 289 257 281 262 273C265 266 276 269 279 266L281 253" fill="#BFE8D4"/><path d="m271 276 9 3" fill="none" stroke-width="3"/></g>
-      </g>
-      </g>
-      </g>
-      </g>
-      </svg>
-            </div>
-            <div class="card__body">
-              <p class="mono card__meta">natter <span class="dot"></span> September 2026 <span class="dot"></span> 0.2.0 on Android, Beau and Gonzo folding in</p>
-              <h3 class="card__title">A voice journal that writes the entry for you, on the phone, with nothing sent anywhere.</h3>
-              <p class="card__text">You talk about your day; a small toad asks up to three questions and writes the page from your own sentences. Behind it, a notebook of the people, places and stories in your life builds itself. Speech, writing and a small clerk model all run on the handset, so it works in airplane mode. Beau and Gonzo, the two apps that used to sit here, are folding into it: the taste page comes from Beau, the place search from Gonzo.</p>
-              <details class="more">
-                <summary data-cursor="link"><span>How it was built, and where Beau and Gonzo went</span><i></i></summary>
-                <div class="more__body">
-                  <h4>Three models, three jobs</h4>
-                  <p>Parakeet hears, Gemma asks and writes, and a 35 MB Cactus Needle model acts as a clerk for spoken shortcuts. Version 1.5 started with a measured gate: 200 fixture passages on the PC and on the phone, the small model against the existing code and the large one. It won one job of five, so that is the one it got. The rest stayed where the numbers said.</p>
-                  <h4>Stated, not guessed</h4>
-                  <p>The writer only groups the user's own sentences; it cannot invent, soften or drop a fact. Notebook pages hold dated lines from what was said, never a character summary. "Ask me about your days" answers only from sources it can show as chips, and says plainly when it has nothing written down.</p>
-                  <h4>Built by an agent team</h4>
-                  <p>Planned and verified by Claude as orchestrator, built by Codex as the worker, each milestone gated by one unattended script driving the real phone. Two releases in two days, the second installed in place over the first with the journal intact.</p>
-                  <h4>Where Beau and Gonzo went</h4>
-                  <p>Beau was a matching app that watched how people react instead of asking who they are. Gonzo was a travel engine that argued with itself and checked every place against the map. Both taught me something Natter now uses: a taste profile that builds from what you actually do, and a place search where only the plain question leaves the phone and the journal never does. The write-ups stay up: <a href="case-studies/beau.html" data-cursor="link">Beau</a> and <a href="case-studies/gonzo.html" data-cursor="link">Gonzo</a>.</p>
-                </div>
-              </details>
-              <div class="card__links">
-                <a href="https://natter-landing.vercel.app" target="_blank" rel="noopener" data-cursor="link">natter <i>&nearr;</i></a>
-                <a href="https://github.com/Sanyo4/natter-releases/releases/latest" target="_blank" rel="noopener" data-cursor="link">Download for Android <i>&nearr;</i></a>
+              <div class="beat__media rise">
+                <figure class="print" style="--r: -3deg">
+                  <img src="assets/img/play-320.webp" srcset="assets/img/play-320.webp 320w, assets/img/play-440.webp 440w, assets/img/play-560.webp 560w" sizes="(min-width: 960px) 250px, 55vw" width="320" height="400" alt="Me on stage in a school play, mid-line, in a long coat against a dark set." loading="lazy" decoding="async" />
+                  <figcaption>School theatre</figcaption>
+                </figure>
+                <figure class="print tape" style="--r: 4deg; --tr: 3deg">
+                  <img src="assets/img/rowing-360.webp" srcset="assets/img/rowing-360.webp 360w, assets/img/rowing-640.webp 640w" sizes="(min-width: 960px) 250px, 55vw" width="360" height="180" alt="A rowing four racing on a river, with the cox circled in red." loading="lazy" decoding="async" />
+                  <figcaption>The cox, circled</figcaption>
+                </figure>
               </div>
-            </div>
-          </article>
-
-          <div class="rail__end mono" aria-hidden="true"><span>that's the lot</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== AI ===== -->
-    <section class="ai" id="ai">
-      <div class="section-head section-head--split">
-        <div>
-          <p class="mono label reveal-up">02 <span class="dot">
-            </span> AI</p>
-          <h2 class="h2 reveal-up">A year of putting agents into real work, one step at a time.</h2>
-        </div>
-        <p class="section-head__aside reveal-up">The whole arc, including the bits that broke. It's written at the level I'd talk about it in an interview: the decisions and the failures, not the recipe.</p>
-      </div>
-      <div class="ai__inner">
-        <div class="ai-intro reveal-up">
-          <p class="mono label">The arc <span class="dot">
-            </span> June 2026 to now</p>
-          <p>Six steps from fifteen stalled chatbots to a multi-tenant product. Scroll through them. The diagram on the left shows what the system looked like at each step.</p>
-        </div>
-        <div class="ai-timeline">
-          <div class="ai-sticky">
-            <figure class="ai-figure ai-figure--desktop">
-              <div class="ai-diagram" data-state="1" role="img" aria-label="fifteen agents, no front desk">
-                <div class="ai-network">
-                  <div class="ai-boundary">
-                    <span class="ai-prompts-label">harness (prompts)</span>
-                    <span class="ai-code-label">harness (code)</span>
-                  </div>
-                  <div class="ai-process">
-                    <span>one process per job</span>
-                  </div>
-                  <svg class="ai-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                    <g class="ai-lines-2">
-                      <path class="" d="M50 18 V34 M50 39 V48 M10 48 H90" />
-                      <path class="" d="M10 48 V60" />
-                      <path class="" d="M26 48 V60" />
-                      <path class="" d="M42 48 V60" />
-                      <path class="" d="M58 48 V60" />
-                      <path class="" d="M74 48 V60" />
-                      <path class="" d="M90 48 V60" />
-                    </g>
-                    <g class="ai-lines-3">
-                      <path class="" d="M50 18 V38 M50 42 V60 H35 V66 M50 60 H70 V66 M68 42 H78" />
-                    </g>
-                    <g class="ai-lines-late">
-                      <path class="" d="M50 16 V29 M50 35 V43 M26 43 H74 M26 43 V49 M50 43 V49 M74 43 V49 M26 55 V63 H74 V55 M50 63 V70" />
-                    </g>
-                    <g class="ai-lines-4">
-                      <path class="ai-warning" d="M62 32 V73" />
-                    </g>
-                    <g class="ai-lines-safe">
-                      <path class="ai-warning" d="M62 32 V48 M62 56 V73" />
-                      <path class="ai-cut" d="M60 50 L64 54 M64 50 L60 54" />
-                      <path class="ai-gate" d="M46 13 H22 V30" />
-                      <path class="ai-review-line" d="M54 13 H73" />
-                    </g>
-                  </svg>
-                  <span class="ai-node n-agent n-agent-1">
-                    <span class="ai-agent-label">agent</span>
-                    <span class="ai-router-label">router</span>
-                    <span class="ai-manager-label">manager</span>
-                  </span>
-                  <span class="ai-node n-agent n-agent-2">
-                    <span class="ai-agent-label">agent</span>
-                    <span class="ai-worker-label">worker</span>
-                  </span>
-                  <span class="ai-node n-agent n-agent-3">
-                    <span class="ai-agent-label">agent</span>
-                    <span class="ai-worker-label">worker</span>
-                  </span>
-                  <span class="ai-node n-agent n-agent-4">
-                    <span class="ai-agent-label">agent</span>
-                    <span class="ai-worker-label">worker</span>
-                  </span>
-                  <span class="ai-node n-agent n-agent-5">
-                    <span class="ai-agent-label">agent</span>
-                  </span>
-                  <span class="ai-node n-agent n-agent-6">
-                    <span class="ai-agent-label">agent</span>
-                  </span>
-                  <span class="ai-node n-agent n-agent-7">
-                    <span class="ai-agent-label">agent</span>
-                  </span>
-                  <span class="ai-node n-agent n-agent-8">
-                    <span class="ai-agent-label">agent</span>
-                  </span>
-                  <span class="ai-node n-agent n-agent-9">
-                    <span class="ai-agent-label">agent</span>
-                  </span>
-                  <span class="ai-node n-agent n-agent-10">
-                    <span class="ai-agent-label">agent</span>
-                  </span>
-                  <span class="ai-node n-agent n-agent-11">
-                    <span class="ai-agent-label">agent</span>
-                  </span>
-                  <span class="ai-node n-agent n-agent-12">
-                    <span class="ai-agent-label">agent</span>
-                  </span>
-                  <span class="ai-node n-agent n-agent-13">
-                    <span class="ai-agent-label">agent</span>
-                  </span>
-                  <span class="ai-node n-agent n-agent-14">
-                    <span class="ai-agent-label">agent</span>
-                  </span>
-                  <span class="ai-node n-agent n-agent-15">
-                    <span class="ai-agent-label">agent</span>
-                  </span>
-                  <span class="ai-node n-person">person</span>
-                  <span class="ai-node n-desk">front desk</span>
-                  <span class="ai-node n-skills">skills (md)</span>
-                  <span class="ai-node n-calc">calc</span>
-                  <span class="ai-node n-mcp">MCP</span>
-                  <span class="ai-node n-documents">documents</span>
-                  <span class="ai-node n-memory">memory</span>
-                  <span class="ai-node n-review">cold review</span>
-                </div>
-                <div class="ai-cloud">
-                  <span class="ai-node n-web">web</span>
-                  <span class="ai-node n-practice">practice system<br>(read-only)</span>
-                  <span class="ai-credit">credit<i>
-                    </i>
-                  </span>
-                  <svg class="ai-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                    <path class="" d="M62 10 V22 M60 20 L62 22 L64 20 M24 49 H33 M31 47 L33 49 L31 51" />
-                  </svg>
-                </div>
-              </div>
-              <figcaption class="ai-caption mono">
-                <span class="ai-caption-1">fifteen agents, no front desk</span>
-                <span class="ai-caption-2">one door, six rooms</span>
-                <span class="ai-caption-3">one router, skills as files, arithmetic in code</span>
-                <span class="ai-caption-4">the manager could reach the documents</span>
-                <span class="ai-caption-5">rules enforced in code</span>
-                <span class="ai-caption-6">many practices, one harness</span>
-              </figcaption>
-            </figure>
-          </div>
-          <div class="ai-steps">
-            <article class="ai-step is-active" id="ai-step-1" data-step="1" aria-labelledby="ai-title-1">
-              <figure class="ai-figure ai-figure--mobile">
-                <div class="ai-diagram" data-state="1" role="img" aria-label="fifteen agents, no front desk">
-                  <div class="ai-network">
-                    <div class="ai-boundary">
-                      <span class="ai-prompts-label">harness (prompts)</span>
-                      <span class="ai-code-label">harness (code)</span>
-                    </div>
-                    <div class="ai-process">
-                      <span>one process per job</span>
-                    </div>
-                    <svg class="ai-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                      <g class="ai-lines-2">
-                        <path class="" d="M50 18 V34 M50 39 V48 M10 48 H90" />
-                        <path class="" d="M10 48 V60" />
-                        <path class="" d="M26 48 V60" />
-                        <path class="" d="M42 48 V60" />
-                        <path class="" d="M58 48 V60" />
-                        <path class="" d="M74 48 V60" />
-                        <path class="" d="M90 48 V60" />
-                      </g>
-                      <g class="ai-lines-3">
-                        <path class="" d="M50 18 V38 M50 42 V60 H35 V66 M50 60 H70 V66 M68 42 H78" />
-                      </g>
-                      <g class="ai-lines-late">
-                        <path class="" d="M50 16 V29 M50 35 V43 M26 43 H74 M26 43 V49 M50 43 V49 M74 43 V49 M26 55 V63 H74 V55 M50 63 V70" />
-                      </g>
-                      <g class="ai-lines-4">
-                        <path class="ai-warning" d="M62 32 V73" />
-                      </g>
-                      <g class="ai-lines-safe">
-                        <path class="ai-warning" d="M62 32 V48 M62 56 V73" />
-                        <path class="ai-cut" d="M60 50 L64 54 M64 50 L60 54" />
-                        <path class="ai-gate" d="M46 13 H22 V30" />
-                        <path class="ai-review-line" d="M54 13 H73" />
-                      </g>
-                    </svg>
-                    <span class="ai-node n-agent n-agent-1">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-router-label">router</span>
-                      <span class="ai-manager-label">manager</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-2">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-3">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-4">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-5">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-6">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-7">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-8">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-9">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-10">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-11">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-12">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-13">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-14">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-15">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-person">person</span>
-                    <span class="ai-node n-desk">front desk</span>
-                    <span class="ai-node n-skills">skills (md)</span>
-                    <span class="ai-node n-calc">calc</span>
-                    <span class="ai-node n-mcp">MCP</span>
-                    <span class="ai-node n-documents">documents</span>
-                    <span class="ai-node n-memory">memory</span>
-                    <span class="ai-node n-review">cold review</span>
-                  </div>
-                  <div class="ai-cloud">
-                    <span class="ai-node n-web">web</span>
-                    <span class="ai-node n-practice">practice system<br>(read-only)</span>
-                    <span class="ai-credit">credit<i>
-                      </i>
-                    </span>
-                    <svg class="ai-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                      <path class="" d="M62 10 V22 M60 20 L62 22 L64 20 M24 49 H33 M31 47 L33 49 L31 51" />
-                    </svg>
-                  </div>
-                </div>
-                <figcaption class="ai-caption mono">
-                  <span class="ai-caption-1">fifteen agents, no front desk</span>
-                  <span class="ai-caption-2">one door, six rooms</span>
-                  <span class="ai-caption-3">one router, skills as files, arithmetic in code</span>
-                  <span class="ai-caption-4">the manager could reach the documents</span>
-                  <span class="ai-caption-5">rules enforced in code</span>
-                  <span class="ai-caption-6">many practices, one harness</span>
-                </figcaption>
-              </figure>
-              <div class="ai-step__copy reveal-up">
-                <p class="mono label">01 <span class="dot">
-                  </span> June 2026</p>
-                <h3 id="ai-title-1">Fifteen agents, no code</h3>
-                <p class="ai-step__summary">I joined a fifteen-person accountancy firm as the only AI person. A partner had already built fifteen draft chatbots on a no-code builder. Overlapping, untested, and half of them pointed at Google Drive in a Microsoft firm. I treated them as signal for what he wanted, never as a spec.</p>
-                <div class="ai-panels">
-                  <div class="ai-panel">
-                    <h4 class="mono label">Models and tools</h4>
-                    <p>The firm's no-code agent builder on the model that came with it. I stayed on it because the partner had, and because switching platforms before I understood the work would've been guessing.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">The trade-off</h4>
-                    <p>Speed to a first draft against having anything testable. Fifteen agents in a week is fast. Fifteen agents nobody can pick between is nothing.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">How I checked it worked</h4>
-                    <p>Staff testing. The test wasn't accuracy yet, it was whether a person could tell which agent to open. Mostly they couldn't.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">What broke</h4>
-                    <p>A combined agent that did categorisation and analytical review in one turn hung under real transaction volume. Splitting it by function, joined by a handover file, fixed it. That became a standing rule: separate by function, bound each turn.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">What I'd do differently</h4>
-                    <p>Nothing much here. Reading the fifteen as intent rather than throwing them out is the reason the next step landed with the partner.</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-            <article class="ai-step" id="ai-step-2" data-step="2" aria-labelledby="ai-title-2">
-              <figure class="ai-figure ai-figure--mobile">
-                <div class="ai-diagram" data-state="2" role="img" aria-label="one door, six rooms">
-                  <div class="ai-network">
-                    <div class="ai-boundary">
-                      <span class="ai-prompts-label">harness (prompts)</span>
-                      <span class="ai-code-label">harness (code)</span>
-                    </div>
-                    <div class="ai-process">
-                      <span>one process per job</span>
-                    </div>
-                    <svg class="ai-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                      <g class="ai-lines-2">
-                        <path class="" d="M50 18 V34 M50 39 V48 M10 48 H90" />
-                        <path class="" d="M10 48 V60" />
-                        <path class="" d="M26 48 V60" />
-                        <path class="" d="M42 48 V60" />
-                        <path class="" d="M58 48 V60" />
-                        <path class="" d="M74 48 V60" />
-                        <path class="" d="M90 48 V60" />
-                      </g>
-                      <g class="ai-lines-3">
-                        <path class="" d="M50 18 V38 M50 42 V60 H35 V66 M50 60 H70 V66 M68 42 H78" />
-                      </g>
-                      <g class="ai-lines-late">
-                        <path class="" d="M50 16 V29 M50 35 V43 M26 43 H74 M26 43 V49 M50 43 V49 M74 43 V49 M26 55 V63 H74 V55 M50 63 V70" />
-                      </g>
-                      <g class="ai-lines-4">
-                        <path class="ai-warning" d="M62 32 V73" />
-                      </g>
-                      <g class="ai-lines-safe">
-                        <path class="ai-warning" d="M62 32 V48 M62 56 V73" />
-                        <path class="ai-cut" d="M60 50 L64 54 M64 50 L60 54" />
-                        <path class="ai-gate" d="M46 13 H22 V30" />
-                        <path class="ai-review-line" d="M54 13 H73" />
-                      </g>
-                    </svg>
-                    <span class="ai-node n-agent n-agent-1">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-router-label">router</span>
-                      <span class="ai-manager-label">manager</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-2">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-3">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-4">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-5">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-6">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-7">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-8">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-9">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-10">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-11">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-12">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-13">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-14">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-15">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-person">person</span>
-                    <span class="ai-node n-desk">front desk</span>
-                    <span class="ai-node n-skills">skills (md)</span>
-                    <span class="ai-node n-calc">calc</span>
-                    <span class="ai-node n-mcp">MCP</span>
-                    <span class="ai-node n-documents">documents</span>
-                    <span class="ai-node n-memory">memory</span>
-                    <span class="ai-node n-review">cold review</span>
-                  </div>
-                  <div class="ai-cloud">
-                    <span class="ai-node n-web">web</span>
-                    <span class="ai-node n-practice">practice system<br>(read-only)</span>
-                    <span class="ai-credit">credit<i>
-                      </i>
-                    </span>
-                    <svg class="ai-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                      <path class="" d="M62 10 V22 M60 20 L62 22 L64 20 M24 49 H33 M31 47 L33 49 L31 51" />
-                    </svg>
-                  </div>
-                </div>
-                <figcaption class="ai-caption mono">
-                  <span class="ai-caption-1">fifteen agents, no front desk</span>
-                  <span class="ai-caption-2">one door, six rooms</span>
-                  <span class="ai-caption-3">one router, skills as files, arithmetic in code</span>
-                  <span class="ai-caption-4">the manager could reach the documents</span>
-                  <span class="ai-caption-5">rules enforced in code</span>
-                  <span class="ai-caption-6">many practices, one harness</span>
-                </figcaption>
-              </figure>
-              <div class="ai-step__copy reveal-up">
-                <p class="mono label">02 <span class="dot">
-                  </span> July 2026</p>
-                <h3 id="ai-title-2">Six agents and a front desk</h3>
-                <p class="ai-step__summary">Fifteen became six with proper jobs: a regulatory researcher grounded in curated copies of the official sources, a VAT auditor, accounts prep, analytical review, a cash flow forecaster. Staff still couldn't pick. So the sixth agent's only job was to ask what you needed, choose the specialist, and write the prompt for you. Biggest adoption win of the year, for almost no build.</p>
-                <div class="ai-panels">
-                  <div class="ai-panel">
-                    <h4 class="mono label">Models and tools</h4>
-                    <p>Same builder. The change was structure, not model. Search couldn't be locked to one domain, so the researcher read from curated copies instead of the open web.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">The trade-off</h4>
-                    <p>One extra hop for the user against adoption. The front desk adds a turn to every request. It also meant people used the thing.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">How I checked it worked</h4>
-                    <p>The partner's test runs of one workflow took sixteen minutes. Mine took four. That gap was the evaluation, and it took a week to explain.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">What broke</h4>
-                    <p>Two causes for the sixteen minutes. An instruction asked the document connector for something it couldn't return, so the model went hunting and hit two five-minute timeouts. And the partner's personal system prompt, which just said hello and his name, derailed routing. Rule since: route the work first, personalise after, and never give the model an instruction the tool can't satisfy.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">What I'd do differently</h4>
-                    <p>Put the front desk in on day one. I built specialists first because that's what looked like progress.</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-            <article class="ai-step" id="ai-step-3" data-step="3" aria-labelledby="ai-title-3">
-              <figure class="ai-figure ai-figure--mobile">
-                <div class="ai-diagram" data-state="3" role="img" aria-label="one router, skills as files, arithmetic in code">
-                  <div class="ai-network">
-                    <div class="ai-boundary">
-                      <span class="ai-prompts-label">harness (prompts)</span>
-                      <span class="ai-code-label">harness (code)</span>
-                    </div>
-                    <div class="ai-process">
-                      <span>one process per job</span>
-                    </div>
-                    <svg class="ai-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                      <g class="ai-lines-2">
-                        <path class="" d="M50 18 V34 M50 39 V48 M10 48 H90" />
-                        <path class="" d="M10 48 V60" />
-                        <path class="" d="M26 48 V60" />
-                        <path class="" d="M42 48 V60" />
-                        <path class="" d="M58 48 V60" />
-                        <path class="" d="M74 48 V60" />
-                        <path class="" d="M90 48 V60" />
-                      </g>
-                      <g class="ai-lines-3">
-                        <path class="" d="M50 18 V38 M50 42 V60 H35 V66 M50 60 H70 V66 M68 42 H78" />
-                      </g>
-                      <g class="ai-lines-late">
-                        <path class="" d="M50 16 V29 M50 35 V43 M26 43 H74 M26 43 V49 M50 43 V49 M74 43 V49 M26 55 V63 H74 V55 M50 63 V70" />
-                      </g>
-                      <g class="ai-lines-4">
-                        <path class="ai-warning" d="M62 32 V73" />
-                      </g>
-                      <g class="ai-lines-safe">
-                        <path class="ai-warning" d="M62 32 V48 M62 56 V73" />
-                        <path class="ai-cut" d="M60 50 L64 54 M64 50 L60 54" />
-                        <path class="ai-gate" d="M46 13 H22 V30" />
-                        <path class="ai-review-line" d="M54 13 H73" />
-                      </g>
-                    </svg>
-                    <span class="ai-node n-agent n-agent-1">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-router-label">router</span>
-                      <span class="ai-manager-label">manager</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-2">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-3">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-4">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-5">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-6">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-7">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-8">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-9">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-10">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-11">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-12">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-13">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-14">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-15">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-person">person</span>
-                    <span class="ai-node n-desk">front desk</span>
-                    <span class="ai-node n-skills">skills (md)</span>
-                    <span class="ai-node n-calc">calc</span>
-                    <span class="ai-node n-mcp">MCP</span>
-                    <span class="ai-node n-documents">documents</span>
-                    <span class="ai-node n-memory">memory</span>
-                    <span class="ai-node n-review">cold review</span>
-                  </div>
-                  <div class="ai-cloud">
-                    <span class="ai-node n-web">web</span>
-                    <span class="ai-node n-practice">practice system<br>(read-only)</span>
-                    <span class="ai-credit">credit<i>
-                      </i>
-                    </span>
-                    <svg class="ai-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                      <path class="" d="M62 10 V22 M60 20 L62 22 L64 20 M24 49 H33 M31 47 L33 49 L31 51" />
-                    </svg>
-                  </div>
-                </div>
-                <figcaption class="ai-caption mono">
-                  <span class="ai-caption-1">fifteen agents, no front desk</span>
-                  <span class="ai-caption-2">one door, six rooms</span>
-                  <span class="ai-caption-3">one router, skills as files, arithmetic in code</span>
-                  <span class="ai-caption-4">the manager could reach the documents</span>
-                  <span class="ai-caption-5">rules enforced in code</span>
-                  <span class="ai-caption-6">many practices, one harness</span>
-                </figcaption>
-              </figure>
-              <div class="ai-step__copy reveal-up">
-                <p class="mono label">03 <span class="dot">
-                  </span> Late July 2026</p>
-                <h3 id="ai-title-3">Moving onto Claude</h3>
-                <p class="ai-step__summary">We moved platforms because the new one could write real Excel and Word files from a sandbox that could see the uploads. Six agents became one router with seventeen lanes behind it, then the lanes became forty-odd markdown skills, read-only and provisioned to the whole firm. Integrations became MCP servers in their own repo. Built portable on purpose.</p>
-                <div class="ai-panels">
-                  <div class="ai-panel">
-                    <h4 class="mono label">Models and tools</h4>
-                    <p>Claude with Projects and Skills. Skills as plain markdown, so they'd survive the next platform move. Integrations behind MCP, so the harness could change without the infrastructure moving. Both of those paid off twice within two months.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">The trade-off</h4>
-                    <p>Platform lock-in against output quality. The sandbox was the reason to move. Keeping everything as files was the hedge against needing to move again.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">How I checked it worked</h4>
-                    <p>In July we ran it head to head against the firm's best accounts prep staff on live jobs. About 80% of the work in about a quarter of the time, figures matching. Internal observation, not an audited study. The 80% is a cap I chose, not a ceiling it hit: after twenty correct outputs a reviewer stops reading the twenty-first.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">What broke</h4>
-                    <p>A wrong column sum from a model looks identical to a right one. So the rule flipped: the model reads and judges, code adds up. Every figure in a deliverable now comes from a deterministic calculator the model can only call.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">What I'd do differently</h4>
-                    <p>Move the arithmetic into code from the start. It took a wrong sum that looked right to convince me.</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-            <article class="ai-step" id="ai-step-4" data-step="4" aria-labelledby="ai-title-4">
-              <figure class="ai-figure ai-figure--mobile">
-                <div class="ai-diagram" data-state="4" role="img" aria-label="the manager could reach the documents">
-                  <div class="ai-network">
-                    <div class="ai-boundary">
-                      <span class="ai-prompts-label">harness (prompts)</span>
-                      <span class="ai-code-label">harness (code)</span>
-                    </div>
-                    <div class="ai-process">
-                      <span>one process per job</span>
-                    </div>
-                    <svg class="ai-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                      <g class="ai-lines-2">
-                        <path class="" d="M50 18 V34 M50 39 V48 M10 48 H90" />
-                        <path class="" d="M10 48 V60" />
-                        <path class="" d="M26 48 V60" />
-                        <path class="" d="M42 48 V60" />
-                        <path class="" d="M58 48 V60" />
-                        <path class="" d="M74 48 V60" />
-                        <path class="" d="M90 48 V60" />
-                      </g>
-                      <g class="ai-lines-3">
-                        <path class="" d="M50 18 V38 M50 42 V60 H35 V66 M50 60 H70 V66 M68 42 H78" />
-                      </g>
-                      <g class="ai-lines-late">
-                        <path class="" d="M50 16 V29 M50 35 V43 M26 43 H74 M26 43 V49 M50 43 V49 M74 43 V49 M26 55 V63 H74 V55 M50 63 V70" />
-                      </g>
-                      <g class="ai-lines-4">
-                        <path class="ai-warning" d="M62 32 V73" />
-                      </g>
-                      <g class="ai-lines-safe">
-                        <path class="ai-warning" d="M62 32 V48 M62 56 V73" />
-                        <path class="ai-cut" d="M60 50 L64 54 M64 50 L60 54" />
-                        <path class="ai-gate" d="M46 13 H22 V30" />
-                        <path class="ai-review-line" d="M54 13 H73" />
-                      </g>
-                    </svg>
-                    <span class="ai-node n-agent n-agent-1">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-router-label">router</span>
-                      <span class="ai-manager-label">manager</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-2">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-3">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-4">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-5">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-6">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-7">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-8">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-9">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-10">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-11">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-12">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-13">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-14">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-15">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-person">person</span>
-                    <span class="ai-node n-desk">front desk</span>
-                    <span class="ai-node n-skills">skills (md)</span>
-                    <span class="ai-node n-calc">calc</span>
-                    <span class="ai-node n-mcp">MCP</span>
-                    <span class="ai-node n-documents">documents</span>
-                    <span class="ai-node n-memory">memory</span>
-                    <span class="ai-node n-review">cold review</span>
-                  </div>
-                  <div class="ai-cloud">
-                    <span class="ai-node n-web">web</span>
-                    <span class="ai-node n-practice">practice system<br>(read-only)</span>
-                    <span class="ai-credit">credit<i>
-                      </i>
-                    </span>
-                    <svg class="ai-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                      <path class="" d="M62 10 V22 M60 20 L62 22 L64 20 M24 49 H33 M31 47 L33 49 L31 51" />
-                    </svg>
-                  </div>
-                </div>
-                <figcaption class="ai-caption mono">
-                  <span class="ai-caption-1">fifteen agents, no front desk</span>
-                  <span class="ai-caption-2">one door, six rooms</span>
-                  <span class="ai-caption-3">one router, skills as files, arithmetic in code</span>
-                  <span class="ai-caption-4">the manager could reach the documents</span>
-                  <span class="ai-caption-5">rules enforced in code</span>
-                  <span class="ai-caption-6">many practices, one harness</span>
-                </figcaption>
-              </figure>
-              <div class="ai-step__copy reveal-up">
-                <p class="mono label">04 <span class="dot">
-                  </span> August 2026</p>
-                <h3 id="ai-title-4">Two harnesses that couldn't say no</h3>
-                <p class="ai-step__summary">The next build, Vedas, was the same system rebuilt as the firm's own product on infrastructure it controls. It ran on two commercial agent harnesses in turn. Both worked. Neither could enforce the rules that mattered, because every rule was a sentence in a prompt, and I watched each one break.</p>
-                <div class="ai-panels">
-                  <div class="ai-panel">
-                    <h4 class="mono label">Models and tools</h4>
-                    <p>An expensive model as the manager, a cheap one as the workers, wired through the harnesses' own delegation. Model slots through OpenRouter so the model behind each slot could swap by config.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">The trade-off</h4>
-                    <p>A harness someone else maintains against one I'd have to. I stayed on commercial harnesses as long as the rules held. They didn't.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">How I checked it worked</h4>
-                    <p>Telemetry. Sessions where the manager did all the mechanical extraction itself, at roughly eleven times the worker's price, because the document was right there in context and "please delegate" is a request.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">What broke</h4>
-                    <p>A config slip routed the cheap model's work to the expensive model with nothing in any log saying so. Most expensive bug in the project. And once a bank statement was extracted and confirmed, its raw text sat in context until the harness compacted wholesale, throwing away the month-two note that mattered in month nine.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">What I'd do differently</h4>
-                    <p>Ask "which of these rules has to be code" on day one. Three platforms in three months because the rules lived in prompts.</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-            <article class="ai-step" id="ai-step-5" data-step="5" aria-labelledby="ai-title-5">
-              <figure class="ai-figure ai-figure--mobile">
-                <div class="ai-diagram" data-state="5" role="img" aria-label="rules enforced in code">
-                  <div class="ai-network">
-                    <div class="ai-boundary">
-                      <span class="ai-prompts-label">harness (prompts)</span>
-                      <span class="ai-code-label">harness (code)</span>
-                    </div>
-                    <div class="ai-process">
-                      <span>one process per job</span>
-                    </div>
-                    <svg class="ai-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                      <g class="ai-lines-2">
-                        <path class="" d="M50 18 V34 M50 39 V48 M10 48 H90" />
-                        <path class="" d="M10 48 V60" />
-                        <path class="" d="M26 48 V60" />
-                        <path class="" d="M42 48 V60" />
-                        <path class="" d="M58 48 V60" />
-                        <path class="" d="M74 48 V60" />
-                        <path class="" d="M90 48 V60" />
-                      </g>
-                      <g class="ai-lines-3">
-                        <path class="" d="M50 18 V38 M50 42 V60 H35 V66 M50 60 H70 V66 M68 42 H78" />
-                      </g>
-                      <g class="ai-lines-late">
-                        <path class="" d="M50 16 V29 M50 35 V43 M26 43 H74 M26 43 V49 M50 43 V49 M74 43 V49 M26 55 V63 H74 V55 M50 63 V70" />
-                      </g>
-                      <g class="ai-lines-4">
-                        <path class="ai-warning" d="M62 32 V73" />
-                      </g>
-                      <g class="ai-lines-safe">
-                        <path class="ai-warning" d="M62 32 V48 M62 56 V73" />
-                        <path class="ai-cut" d="M60 50 L64 54 M64 50 L60 54" />
-                        <path class="ai-gate" d="M46 13 H22 V30" />
-                        <path class="ai-review-line" d="M54 13 H73" />
-                      </g>
-                    </svg>
-                    <span class="ai-node n-agent n-agent-1">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-router-label">router</span>
-                      <span class="ai-manager-label">manager</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-2">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-3">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-4">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-5">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-6">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-7">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-8">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-9">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-10">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-11">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-12">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-13">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-14">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-15">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-person">person</span>
-                    <span class="ai-node n-desk">front desk</span>
-                    <span class="ai-node n-skills">skills (md)</span>
-                    <span class="ai-node n-calc">calc</span>
-                    <span class="ai-node n-mcp">MCP</span>
-                    <span class="ai-node n-documents">documents</span>
-                    <span class="ai-node n-memory">memory</span>
-                    <span class="ai-node n-review">cold review</span>
-                  </div>
-                  <div class="ai-cloud">
-                    <span class="ai-node n-web">web</span>
-                    <span class="ai-node n-practice">practice system<br>(read-only)</span>
-                    <span class="ai-credit">credit<i>
-                      </i>
-                    </span>
-                    <svg class="ai-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                      <path class="" d="M62 10 V22 M60 20 L62 22 L64 20 M24 49 H33 M31 47 L33 49 L31 51" />
-                    </svg>
-                  </div>
-                </div>
-                <figcaption class="ai-caption mono">
-                  <span class="ai-caption-1">fifteen agents, no front desk</span>
-                  <span class="ai-caption-2">one door, six rooms</span>
-                  <span class="ai-caption-3">one router, skills as files, arithmetic in code</span>
-                  <span class="ai-caption-4">the manager could reach the documents</span>
-                  <span class="ai-caption-5">rules enforced in code</span>
-                  <span class="ai-caption-6">many practices, one harness</span>
-                </figcaption>
-              </figure>
-              <div class="ai-step__copy reveal-up">
-                <p class="mono label">05 <span class="dot">
-                  </span> August 2026</p>
-                <h3 id="ai-title-5">A harness of my own, on pi</h3>
-                <p class="ai-step__summary">I moved the system onto pi, a minimal open-source harness that extends in TypeScript, and wrote the rules as code that runs around the model. Four of them: the manager can't open source documents, so delegation is structural. Workers return a fixed summary and their transcript is dropped. Nothing is remembered until the user approves the exact wording. And once a figure table is confirmed, the raw document leaves the model's memory by decision rather than by overflow.</p>
-                <div class="ai-panels">
-                  <div class="ai-panel">
-                    <h4 class="mono label">Models and tools</h4>
-                    <p>Three model slots set by environment variable, never chosen by the model: big for the manager and the cold review, small for conversion and extraction, vision only for pages the converter can't parse. Routing is static by task type because models are bad at judging difficulty before trying and good at recognising failure after. So the table is fixed and the dynamic rule is escalation. Small slot pinned to a dated version, because practice work may need explaining months later.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">The trade-off</h4>
-                    <p>Cost: the manager is about eleven times the worker's input price, so it physically can't read the documents folder. Latency: extraction runs in parallel, computation never does, because each month's closing feeds the next month's opening. Quality: a low-confidence extraction triggers a second blind read, compared row by row, and every disagreement goes to a person. The tool can't average or pick a side. Reliability: a stage machine with teeth. You can't draft while any conversion lacks a confirmed table, and the cold review only runs on a finished draft.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">How I checked it worked</h4>
-                    <p>First full run on 11 August: a real sole-trader year, bank tie-out to the penny, and the cold review caught a real figure error before any human saw it. That's one run, and I say so. What I don't have is a regression suite I can re-run when a model changes.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">What broke</h4>
-                    <p>The practice system's API silently discards filters it doesn't recognise. One wrong parameter name returned the whole firm's jobs, HTTP 200, no error, plausible data about the wrong clients. Every response is now checked row by row against the scope asked for, and one foreign row fails the call. Separately, a blanket "re-run failures on the big model" rule sent thirteen document conversions to the expensive slot when the real fault was a cap in the dispatch layer. Keep the error text; the remedy differs per cause.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">What I'd do differently</h4>
-                    <p>pi is young and its extension API moves, so every extension will need re-fitting. I chose it anyway because the alternative was a harness too big to hold the rules. I'd make the same call, and I'd budget for the re-fits.</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-            <article class="ai-step" id="ai-step-6" data-step="6" aria-labelledby="ai-title-6">
-              <figure class="ai-figure ai-figure--mobile">
-                <div class="ai-diagram" data-state="6" role="img" aria-label="many practices, one harness">
-                  <div class="ai-network">
-                    <div class="ai-boundary">
-                      <span class="ai-prompts-label">harness (prompts)</span>
-                      <span class="ai-code-label">harness (code)</span>
-                    </div>
-                    <div class="ai-process">
-                      <span>one process per job</span>
-                    </div>
-                    <svg class="ai-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                      <g class="ai-lines-2">
-                        <path class="" d="M50 18 V34 M50 39 V48 M10 48 H90" />
-                        <path class="" d="M10 48 V60" />
-                        <path class="" d="M26 48 V60" />
-                        <path class="" d="M42 48 V60" />
-                        <path class="" d="M58 48 V60" />
-                        <path class="" d="M74 48 V60" />
-                        <path class="" d="M90 48 V60" />
-                      </g>
-                      <g class="ai-lines-3">
-                        <path class="" d="M50 18 V38 M50 42 V60 H35 V66 M50 60 H70 V66 M68 42 H78" />
-                      </g>
-                      <g class="ai-lines-late">
-                        <path class="" d="M50 16 V29 M50 35 V43 M26 43 H74 M26 43 V49 M50 43 V49 M74 43 V49 M26 55 V63 H74 V55 M50 63 V70" />
-                      </g>
-                      <g class="ai-lines-4">
-                        <path class="ai-warning" d="M62 32 V73" />
-                      </g>
-                      <g class="ai-lines-safe">
-                        <path class="ai-warning" d="M62 32 V48 M62 56 V73" />
-                        <path class="ai-cut" d="M60 50 L64 54 M64 50 L60 54" />
-                        <path class="ai-gate" d="M46 13 H22 V30" />
-                        <path class="ai-review-line" d="M54 13 H73" />
-                      </g>
-                    </svg>
-                    <span class="ai-node n-agent n-agent-1">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-router-label">router</span>
-                      <span class="ai-manager-label">manager</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-2">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-3">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-4">
-                      <span class="ai-agent-label">agent</span>
-                      <span class="ai-worker-label">worker</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-5">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-6">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-7">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-8">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-9">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-10">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-11">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-12">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-13">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-14">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-agent n-agent-15">
-                      <span class="ai-agent-label">agent</span>
-                    </span>
-                    <span class="ai-node n-person">person</span>
-                    <span class="ai-node n-desk">front desk</span>
-                    <span class="ai-node n-skills">skills (md)</span>
-                    <span class="ai-node n-calc">calc</span>
-                    <span class="ai-node n-mcp">MCP</span>
-                    <span class="ai-node n-documents">documents</span>
-                    <span class="ai-node n-memory">memory</span>
-                    <span class="ai-node n-review">cold review</span>
-                  </div>
-                  <div class="ai-cloud">
-                    <span class="ai-node n-web">web</span>
-                    <span class="ai-node n-practice">practice system<br>(read-only)</span>
-                    <span class="ai-credit">credit<i>
-                      </i>
-                    </span>
-                    <svg class="ai-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                      <path class="" d="M62 10 V22 M60 20 L62 22 L64 20 M24 49 H33 M31 47 L33 49 L31 51" />
-                    </svg>
-                  </div>
-                </div>
-                <figcaption class="ai-caption mono">
-                  <span class="ai-caption-1">fifteen agents, no front desk</span>
-                  <span class="ai-caption-2">one door, six rooms</span>
-                  <span class="ai-caption-3">one router, skills as files, arithmetic in code</span>
-                  <span class="ai-caption-4">the manager could reach the documents</span>
-                  <span class="ai-caption-5">rules enforced in code</span>
-                  <span class="ai-caption-6">many practices, one harness</span>
-                </figcaption>
-              </figure>
-              <div class="ai-step__copy reveal-up">
-                <p class="mono label">06 <span class="dot">
-                  </span> September 2026</p>
-                <h3 id="ai-title-6">Vedas Cloud</h3>
-                <p class="ai-step__summary">Last week I wrapped the harness in a multi-tenant web app. A practice signs in, connects its practice system read-only, and every job runs its own harness process in a worker with metered usage. The firm I built it for is tenant zero. It's days old, one real job has run end to end, and nobody has paid. I'm listing it because it's where the arc ends today, not because it's a result.</p>
-                <div class="ai-panels">
-                  <div class="ai-panel">
-                    <h4 class="mono label">Models and tools</h4>
-                    <p>Next.js, a worker service on Railway, Postgres and storage on Supabase, Better Auth with organisations, Stripe for prepaid credit, OpenRouter with every request routed only to providers that keep nothing. The harness moved in unchanged. Most of the week was build tooling and agent orchestration on my side.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">The trade-off</h4>
-                    <p>Privacy against availability. Zero-retention routing with fallbacks off is the strictest setting, and it's also the one that fails when a single provider has a bad hour. Three design rules shaped the rest: connectors are read-only by construction so nobody changes how they work. Doctrine is one static file for every practice and the runner injects what this practice actually has, so the model never pretends to have a tool it lacks. Templates are each firm's own, and none ship in the product.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">How I checked it worked</h4>
-                    <p>One end-to-end job on a real tenant, and a browser walkthrough of every screen. That's the honest extent of it.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">What broke</h4>
-                    <p>The first live job failed in twelve seconds with "model turn failed". Zero-retention routing with fallbacks off had landed on one upstream provider that was rate limited, and the request failed closed. Fix: allow fallbacks inside the zero-retention pool only, and record which provider served each request so the routing is auditable. Kept the fail-closed guarantee for when no zero-retention provider exists.</p>
-                  </div>
-                  <div class="ai-panel">
-                    <h4 class="mono label">What I'd do differently</h4>
-                    <p>Build the evaluation harness before the product. The July benchmark is a one-off observation. Now that the default model has changed and the system is multi-tenant, a fixture set I can re-run on every model change is the most important thing I haven't built.</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-            <p class="manifesto__text ai-closing reveal-up">Ninety percent of what the firm needed I built at the harness level and taught people to run. The last ten percent I built myself, and that's how I know where the line is.</p>
-          </div>
-        </div>
-        <div class="ai-day" id="ai-day">
-          <div class="ai-intro reveal-up">
-            <h3 class="mono label">Day to day <span class="dot">
-              </span> how I actually work</h3>
-            <p>I build through agents rather than by typing code. This section was made the same way: I wrote the copy and the spec, a worker built it, and I checked the result.</p>
-          </div>
-          <ol class="ai-stations">
-            <li class="ai-station reveal-up">
-              <h4>Obsidian</h4>
-              <p class="mono label">the second brain</p>
-              <p>Every project, decision and conversation lands in one vault, as plain markdown in git. Agents read it before they start and file into it when they finish, so nothing depends on my memory or theirs.</p>
             </li>
-            <li class="ai-station reveal-up">
-              <h4>Claude Code and T3 Code</h4>
-              <p class="mono label">the manager</p>
-              <p>Planning, decomposition, briefs, design, and checking what comes back. Same shape as the accounts system: the expensive model routes and reviews, it doesn't do the legwork.</p>
+
+            <li class="beat">
+              <span class="beat__stop" aria-hidden="true">SIN</span>
+              <div class="beat__card tape rise">
+                <span class="label">Singapore · Sep 2024 to May 2025</span>
+                <h3>A year at SUTD</h3>
+                <p>I spent a year on exchange at SUTD in Singapore. I shot street photography on a Fujifilm and took 43 flights in 45 weeks, fitted around the degree.</p>
+                <p>I also mentored a student team for STEAMunity, who won Best Prototype and presented to the Deputy Prime Minister, and did research for ALITA, a legal innovation group in Asia-Pacific.</p>
+              </div>
+              <div class="beat__media rise">
+                <figure class="print tape print--wide" style="--r: 2deg">
+                  <img src="assets/img/steamunity-400.webp" srcset="assets/img/steamunity-400.webp 400w, assets/img/steamunity-560.webp 560w, assets/img/steamunity-720.webp 720w" sizes="(min-width: 960px) 330px, 80vw" width="400" height="303" alt="Me with the STEAMunity student team and Deputy Prime Minister Heng Swee Keat, the students holding their award and their plant sensor project." loading="lazy" decoding="async" />
+                  <figcaption>STEAMunity, Best Prototype</figcaption>
+                </figure>
+              </div>
             </li>
-            <li class="ai-station reveal-up">
-              <h4>Codex</h4>
-              <p class="mono label">the workers</p>
-              <p>Scoped implementation slices, each in its own git worktree, running in parallel. A brief goes in, a report comes out, and I read the diff before I believe it.</p>
+
+            <li class="strip" aria-label="Frames from the road">
+              <div class="strip__head">
+                <p class="label">Frames from the road</p>
+                <p class="mono strip__hint" aria-hidden="true">Swipe &rarr;</p>
+              </div>
+              <div class="strip__scroller" tabindex="0" role="group" aria-label="Photos of me travelling, 2025">
+                <figure class="print tape">
+                  <img src="assets/img/sanoai-360.webp" srcset="assets/img/sanoai-260.webp 260w, assets/img/sanoai-360.webp 360w, assets/img/sanoai-640.webp 640w" sizes="(min-width: 960px) 200px, 150px" width="360" height="540" alt="Me pointing up at a shop sign on an old wooden street in Japan." loading="lazy" decoding="async" />
+                  <figcaption>Jan 2025</figcaption>
+                </figure>
+                <figure class="print">
+                  <img src="assets/img/steps-360.webp" srcset="assets/img/steps-260.webp 260w, assets/img/steps-360.webp 360w, assets/img/steps-640.webp 640w" sizes="(min-width: 960px) 200px, 150px" width="360" height="540" alt="Me climbing mossy stone steps to a small wooden shrine in a forest." loading="lazy" decoding="async" />
+                  <figcaption>May 2025</figcaption>
+                </figure>
+                <figure class="print tape tape--ver">
+                  <img src="assets/img/books-360.webp" srcset="assets/img/books-260.webp 260w, assets/img/books-360.webp 360w, assets/img/books-640.webp 640w" sizes="(min-width: 960px) 200px, 150px" width="360" height="540" alt="Me reading on a bench under a wall of bookshelves." loading="lazy" decoding="async" />
+                  <figcaption>May 2025</figcaption>
+                </figure>
+                <figure class="print print--land">
+                  <img src="assets/img/mural-480.webp" srcset="assets/img/mural-480.webp 480w, assets/img/mural-820.webp 820w" sizes="(min-width: 960px) 280px, 220px" width="480" height="320" alt="Me pointing at a long painted mural on a temple wall." loading="lazy" decoding="async" />
+                  <figcaption>Jun 2025</figcaption>
+                </figure>
+                <figure class="print tape">
+                  <img src="assets/img/monorail-360.webp" srcset="assets/img/monorail-260.webp 260w, assets/img/monorail-360.webp 360w, assets/img/monorail-640.webp 640w" sizes="(min-width: 960px) 200px, 150px" width="360" height="540" alt="Me with my hands on my head in the street while a monorail train runs through the middle of a tower block behind me." loading="lazy" decoding="async" />
+                  <figcaption>Jun 2025</figcaption>
+                </figure>
+              </div>
             </li>
-            <li class="ai-station reveal-up">
-              <h4>Skills and MCP</h4>
-              <p class="mono label">the hands</p>
-              <p>Rules and methods as markdown skills, integrations as MCP servers in their own repo. Draft-never-send is skill law: nothing goes out without a yes from me.</p>
+
+            <li class="beat">
+              <span class="beat__stop" aria-hidden="true">CWL</span>
+              <div class="beat__card tape rise">
+                <span class="label">Cardiff · Aug 2025 onwards</span>
+                <h3>The AI programme at Innovi</h3>
+                <p>Back in Cardiff for final year, I took on the AI programme at Innovi Advisors, a UK accountancy practice, part-time. I sat with the partners to find where staff time went, then turned 15 stalled draft agents into one agent the team now uses day to day. I run the staff training too.</p>
+              </div>
+              <div class="beat__media rise">
+                <figure class="print tape print--wide" style="--r: -2deg">
+                  <img src="assets/img/innovi-400.webp" srcset="assets/img/innovi-400.webp 400w, assets/img/innovi-560.webp 560w, assets/img/innovi-720.webp 720w" sizes="(min-width: 960px) 330px, 80vw" width="400" height="277" alt="Me presenting the Innovi Automation Initiative on a screen in a meeting room." loading="lazy" decoding="async" />
+                  <figcaption>Innovi Automation Initiative</figcaption>
+                </figure>
+              </div>
             </li>
+
+            <li class="beat">
+              <span class="beat__stop" aria-hidden="true">04</span>
+              <div class="beat__card tape rise">
+                <span class="label">First client · Summer 2026</span>
+                <h3>A national pharmacy group</h3>
+                <p>This summer I got my first client of my own, a national UK pharmacy group with about £500m turnover, delivered through Innovi. I spent three days on site with Finance and HR, and three Copilot agents shipped. HR staff built two of them after an hour with me. Then I wrote the Executive Director a letter on what worked and who should own the next phase.</p>
+              </div>
+              <div class="beat__media rise">
+                <p class="stamp" style="--rot: -8deg">Delivered through Innovi<strong>Aug 2026</strong>Three days on site</p>
+              </div>
+            </li>
+
+            <li class="beat">
+              <span class="beat__stop" aria-hidden="true">05</span>
+              <div class="beat__card tape rise">
+                <span class="label">Graduation · July 2026</span>
+                <h3>A First from Cardiff</h3>
+                <p>I graduated with a First in Computer Science from Cardiff University. Alongside the degree I ran events for the university's AI safety society.</p>
+              </div>
+              <div class="beat__media rise">
+                <p class="stamp stamp--slate" style="--rot: 7deg">Cardiff University<strong>First</strong>BSc Computer Science</p>
+              </div>
+            </li>
+            <!-- India: Sanay is back around 10 October and will supply this part.
+                 Add it here as a sixth .beat (stop code IND) once he has. Do not write it before then. -->
           </ol>
-          <div class="ai-writing reveal-up">
-            <h3 class="mono label">Writing</h3>
-            <p>I'm dyslexic. The thinking is fine; when I talk the ideas come out in order. What goes missing is on the page: one word won't come and the sentence stalls behind it. So anything that has to be mine, I write with a method. I talk it out first. The AI hands back a skeleton of numbered prompts, never sentences. I write each one, and when a word blocks I put its meaning in square brackets and keep going. Then I get three options per bracket and pick. It counts words, names the clause to cut, and scans for the tells. It never writes a sentence.</p>
-            <p>Everything else in my name, including most of this site, is drafted with AI assistance, which I use as a dyslexia adjustment first provided through my Disabled Students' Allowance. Every fact on it comes from my own maintained record and has been checked by me.</p>
-          </div>
         </div>
-        <div class="ai-beliefs">
-          <h3 class="mono label reveal-up">Where it's going <span class="dot">
-            </span> four things I believe, each with the incident behind it</h3>
-          <ol>
-            <li class="ai-belief reveal-up">
-              <span class="mono label">01</span>
-              <div class="ai-belief__body">
-                <h3>The model is the cheap part.</h3>
-                <p>The whole accounts system now runs on a flash-class open-weight model by default, swapped in with a one-line config change. A Sonnet-class model is plenty for professional back-office work, and open-weight models are there. What's durable is the method, the harness, and the corrections a firm has accumulated. The last three months of the project were all harness and zero model.</p>
-              </div>
-            </li>
-            <li class="ai-belief reveal-up">
-              <span class="mono label">02</span>
-              <div class="ai-belief__body">
-                <h3>A rule that matters has to be code.</h3>
-                <p>Every prompt-level rule I've written has eventually been ignored, and the cost showed up in telemetry, not in a log. The version that holds is the one where the manager can't open the file, the worker can't compute, and nobody can edit the instructions from inside a session.</p>
-              </div>
-            </li>
-            <li class="ai-belief reveal-up">
-              <span class="mono label">03</span>
-              <div class="ai-belief__body">
-                <h3>Memory is the permanent file.</h3>
-                <p>The industry treats memory as a feature. Accountancy invented it a century ago. The interesting engineering is making it reviewable: nothing written until the person confirms the wording, dated, with provenance, append only. A wrong memory compounds silently, quarter after quarter.</p>
-              </div>
-            </li>
-            <li class="ai-belief reveal-up">
-              <span class="mono label">04</span>
-              <div class="ai-belief__body">
-                <h3>The human belongs in the middle, not at the end.</h3>
-                <p>Review at the end degrades after twenty correct outputs. The system stops and asks when the ambiguity appears, and the answer steers the job. That's why the work is capped at 80% on purpose, and why the partner reviews working papers, never conclusions.</p>
-              </div>
-            </li>
-          </ol>
-          <a class="arrow-link reveal-up" href="case-studies/why-we-stopped-at-80.html" data-cursor="link">Read the essay: why we stopped at 80% <i>&rarr;</i>
+      </div>
+    </section>
+
+    <section class="section torn torn--flip work" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="label">Right now</p>
+          <h2 class="section__title" id="work-title">Work</h2>
+        </div>
+        <div class="tickets">
+          <a class="ticket rise" href="case-studies/fifteen-agents-one-front-desk.html">
+            <span class="label">Innovi Advisors · Automation Project Manager · Aug 2025 to now</span>
+            <span class="stamp stamp--slate" style="--rot: 9deg" aria-hidden="true">Part-time<strong>2025</strong></span>
+            <h3>The AI programme at a UK accountancy practice</h3>
+            <p>I own it part-time, from partner interviews through to staff using it every day.</p>
+            <span class="ticket__go"><span>Case study: Fifteen agents, one front desk</span><span aria-hidden="true">&rarr;</span></span>
+          </a>
+          <a class="ticket rise" href="case-studies/ten-things-pharmacy-group.html">
+            <span class="label">National UK pharmacy group · through Innovi · Aug 2026</span>
+            <span class="stamp" style="--rot: -8deg" aria-hidden="true">Client<strong>2026</strong></span>
+            <h3>My first client of my own</h3>
+            <p>Three days on site, three Copilot agents shipped, and a letter to the Executive Director on what comes next.</p>
+            <span class="ticket__go"><span>Case study: Ten things I learned</span><span aria-hidden="true">&rarr;</span></span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- ===== CASE STUDIES ===== -->
-    <section class="studies" id="case-studies">
-      <div class="section-head section-head--split">
-        <div>
-          <p class="mono label reveal-up">03 <span class="dot"></span> Case studies</p>
-          <h2 class="h2 reveal-up" style="--d:.1s">Eight pieces on putting AI into real work.</h2>
+    <section class="section torn photos" id="photos" aria-labelledby="photos-title">
+      <div class="wrap">
+        <div class="album__intro">
+          <div class="section__head">
+            <p class="label">On the Fujifilm</p>
+            <h2 class="section__title" id="photos-title">Photography</h2>
+            <p class="section__lead">I shoot street photography on a Fujifilm X100VI. These are a few frames from 2025. The rest are on <a href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener">@sanay.photography</a>.</p>
+          </div>
+          <figure class="print corners rise">
+            <img src="assets/img/mirror-420.webp" srcset="assets/img/mirror-420.webp 420w, assets/img/mirror-760.webp 760w" sizes="(min-width: 820px) 300px, 60vw" width="420" height="630" alt="Me taking a photo of myself in a round mirror on a train, the camera held up to my eye." loading="lazy" decoding="async" />
+            <figcaption>The camera, Mar 2026</figcaption>
+          </figure>
         </div>
-        <p class="section-head__aside reveal-up" style="--d:.2s">Start with the essay if you want the philosophy first. The rest are the incidents, decisions and numbers it came from.</p>
-      </div>
 
-      <ol class="studies__list">
+        <div class="album">
+          <figure class="print corners rise">
+            <img src="assets/img/st-1951-400.webp" srcset="assets/img/st-1951-400.webp 400w, assets/img/st-1951-800.webp 800w" sizes="(min-width: 1200px) 370px, (min-width: 760px) 30vw, 46vw" width="400" height="600" alt="A street food stall at dusk, smoke rising from the grill under a canopy while a woman waits." loading="lazy" decoding="async" />
+            <figcaption>Apr 2025</figcaption>
+          </figure>
+          <figure class="print corners rise">
+            <img src="assets/img/st-0582-400.webp" srcset="assets/img/st-0582-400.webp 400w, assets/img/st-0582-800.webp 800w" sizes="(min-width: 1200px) 370px, (min-width: 760px) 30vw, 46vw" width="400" height="267" alt="A small restaurant in Japan at night, its front open to the street, red lanterns over the counter." loading="lazy" decoding="async" />
+            <figcaption>Mar 2025</figcaption>
+          </figure>
+          <figure class="print corners rise">
+            <img src="assets/img/st-7328-400.webp" srcset="assets/img/st-7328-400.webp 400w, assets/img/st-7328-800.webp 800w" sizes="(min-width: 1200px) 370px, (min-width: 760px) 30vw, 46vw" width="400" height="600" alt="A man in a yellow shirt playing a painted public piano in a dark train station." loading="lazy" decoding="async" />
+            <figcaption>Jun 2025</figcaption>
+          </figure>
+          <figure class="print corners rise">
+            <img src="assets/img/st-1552-400.webp" srcset="assets/img/st-1552-400.webp 400w, assets/img/st-1552-800.webp 800w" sizes="(min-width: 1200px) 370px, (min-width: 760px) 30vw, 46vw" width="400" height="267" alt="People sitting in shade under a bridge by the water, a boy standing on the wall, fishing boats moored beyond." loading="lazy" decoding="async" />
+            <figcaption>Apr 2025</figcaption>
+          </figure>
+          <figure class="print corners rise">
+            <img src="assets/img/st-3685-400.webp" srcset="assets/img/st-3685-400.webp 400w, assets/img/st-3685-800.webp 800w" sizes="(min-width: 1200px) 370px, (min-width: 760px) 30vw, 46vw" width="400" height="600" alt="Two macaques on a wooden post, one grooming the other, trees behind." loading="lazy" decoding="async" />
+            <figcaption>May 2025</figcaption>
+          </figure>
+          <figure class="print corners rise">
+            <img src="assets/img/st-3232-400.webp" srcset="assets/img/st-3232-400.webp 400w, assets/img/st-3232-800.webp 800w" sizes="(min-width: 1200px) 370px, (min-width: 760px) 30vw, 46vw" width="400" height="267" alt="A room full of life-size handmade dolls seated at desks under strings of paper lanterns." loading="lazy" decoding="async" />
+            <figcaption>May 2025</figcaption>
+          </figure>
+          <figure class="print corners rise">
+            <img src="assets/img/st-6740-400.webp" srcset="assets/img/st-6740-400.webp 400w, assets/img/st-6740-800.webp 800w" sizes="(min-width: 1200px) 370px, (min-width: 760px) 30vw, 46vw" width="400" height="267" alt="A curved wall of old apartment blocks seen from the street, a green pedestrian light in front." loading="lazy" decoding="async" />
+            <figcaption>Jun 2025</figcaption>
+          </figure>
+          <figure class="print corners rise">
+            <img src="assets/img/st-0721-400.webp" srcset="assets/img/st-0721-400.webp 400w, assets/img/st-0721-800.webp 800w" sizes="(min-width: 1200px) 370px, (min-width: 760px) 30vw, 46vw" width="400" height="600" alt="A purple and pink sky at dusk above the silhouettes of trees." loading="lazy" decoding="async" />
+            <figcaption>Mar 2025</figcaption>
+          </figure>
+          <figure class="print corners rise">
+            <img src="assets/img/st-6667-400.webp" srcset="assets/img/st-6667-400.webp 400w, assets/img/st-6667-800.webp 800w" sizes="(min-width: 1200px) 370px, (min-width: 760px) 30vw, 46vw" width="400" height="600" alt="The side of an old apartment block in hard afternoon light, air conditioners on every floor." loading="lazy" decoding="async" />
+            <figcaption>Jun 2025</figcaption>
+          </figure>
+          <figure class="print corners rise">
+            <img src="assets/img/st-1948-400.webp" srcset="assets/img/st-1948-400.webp 400w, assets/img/st-1948-800.webp 800w" sizes="(min-width: 1200px) 370px, (min-width: 760px) 30vw, 46vw" width="400" height="267" alt="A street of low shophouses at dusk under a pink sky, cars parked along both sides." loading="lazy" decoding="async" />
+            <figcaption>Apr 2025</figcaption>
+          </figure>
+          <figure class="print corners rise">
+            <img src="assets/img/st-7145-400.webp" srcset="assets/img/st-7145-400.webp 400w, assets/img/st-7145-800.webp 800w" sizes="(min-width: 1200px) 370px, (min-width: 760px) 30vw, 46vw" width="400" height="267" alt="A city skyline at blue hour across a river, the towers and a bridge lit up." loading="lazy" decoding="async" />
+            <figcaption>Jun 2025</figcaption>
+          </figure>
+          <figure class="print corners rise">
+            <img src="assets/img/st-6403-400.webp" srcset="assets/img/st-6403-400.webp 400w, assets/img/st-6403-800.webp 800w" sizes="(min-width: 1200px) 370px, (min-width: 760px) 30vw, 46vw" width="400" height="267" alt="Rows of pagodas leading to a large seated Buddha on a green hillside." loading="lazy" decoding="async" />
+            <figcaption>Jun 2025</figcaption>
+          </figure>
+        </div>
+        <div class="album__more">
+          <a class="pass pass--ph" href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener"><span class="pass__paper"><span class="pass__body"><span class="pass__label">More photos</span><span class="pass__dest">@sanay.photography</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#go" /></svg></span></span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section torn torn--flip writing" id="case-studies" aria-labelledby="writing-title">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="label">Stamped entries</p>
+          <h2 class="section__title" id="writing-title">Case studies</h2>
+          <p class="section__lead">Longer write-ups of the work and the things I've built, in my own words. Firms stay unnamed.</p>
+        </div>
         <!-- case-studies:list -->
-        <li class="study reveal-up">
-          <a class="study__link" href="/case-studies/why-we-stopped-at-80.html" data-cursor="link">
-            <span class="study__num mono">01</span>
-            <span class="study__main">
-              <span class="mono study__kind">Essay <span class="dot"></span> start here</span>
-              <span class="study__title">Why we stopped at 80%</span>
-              <span class="study__sf">The AI did about 80% of the work in about a quarter of the time. Why we chose not to push it to 100, and the handful of things I now believe about putting AI into real work.</span>
-            </span>
-            <span class="study__time mono">6 min</span>
-          </a>
-        </li>
-        <li class="study reveal-up">
-          <a class="study__link" href="/case-studies/fifteen-agents-one-front-desk.html" data-cursor="link">
-            <span class="study__num mono">02</span>
-            <span class="study__main">
-              <span class="mono study__kind">Case study</span>
-              <span class="study__title">Fifteen agents, one front desk: a year of building AI for an accountancy firm</span>
-              <span class="study__sf">A year building agents for real accountants. Fifteen drafts became six, six became one, a sixteen-minute run became four, and the rules that stuck came out of the incidents.</span>
-            </span>
-            <span class="study__time mono">6 min</span>
-          </a>
-        </li>
-        <li class="study reveal-up">
-          <a class="study__link" href="/case-studies/a-practice-team-in-software.html" data-cursor="link">
-            <span class="study__num mono">03</span>
-            <span class="study__main">
-              <span class="mono study__kind">Working paper</span>
-              <span class="study__title">A practice team in software</span>
-              <span class="study__sf">The public cut of a working paper for the firm&#x27;s leadership. A manager model, a worker model and a human partner, with the roles enforced in code rather than requested in a prompt.</span>
-            </span>
-            <span class="study__time mono">5 min</span>
-          </a>
-        </li>
-        <li class="study reveal-up">
-          <a class="study__link" href="/case-studies/the-engine-and-the-car.html" data-cursor="link">
-            <span class="study__num mono">04</span>
-            <span class="study__main">
-              <span class="mono study__kind">Case study</span>
-              <span class="study__title">The engine and the car: why I moved our AI system three times in one summer</span>
-              <span class="study__sf">The same system ran on three different harnesses between June and August. Same skills, same integrations, same rules. Where the value actually sits when the model is a line in a config file.</span>
-            </span>
-            <span class="study__time mono">5 min</span>
-          </a>
-        </li>
-        <li class="study reveal-up">
-          <a class="study__link" href="/case-studies/whats-left-of-the-job.html" data-cursor="link">
-            <span class="study__num mono">05</span>
-            <span class="study__main">
-              <span class="mono study__kind">Essay</span>
-              <span class="study__title">What&#x27;s left of the job when the reading leaves it</span>
-              <span class="study__sf">The AI did about 80% of an accountant&#x27;s job in about a quarter of the time. What&#x27;s in the other 20%, and why I tell the staff they&#x27;re being promoted.</span>
-            </span>
-            <span class="study__time mono">6 min</span>
-          </a>
-        </li>
-        <li class="study reveal-up">
-          <a class="study__link" href="/case-studies/ten-things-pharmacy-group.html" data-cursor="link">
-            <span class="study__num mono">06</span>
-            <span class="study__main">
-              <span class="mono study__kind">Case study</span>
-              <span class="study__title">Ten things I learned putting AI into a national pharmacy group</span>
-              <span class="study__sf">Three days of discovery that turned into building. Three agents shipped, four didn&#x27;t, most of the time went on access, and governance moved from the back of the proposal to the front.</span>
-            </span>
-            <span class="study__time mono">7 min</span>
-          </a>
-        </li>
-        <li class="study reveal-up">
-          <a class="study__link" href="/case-studies/beau.html" data-cursor="link">
-            <span class="study__num mono">07</span>
-            <span class="study__main">
-              <span class="mono study__kind">Case study</span>
-              <span class="study__title">Beau: I built a matching app that watches how you react, then I turned it off</span>
-              <span class="study__sf">A matching app that shows you a social moment and watches what you do, instead of asking you to describe yourself. Built solo to a working beta in two months, then wound down, and the question it left me with.</span>
-            </span>
-            <span class="study__time mono">4 min</span>
-          </a>
-        </li>
-        <li class="study reveal-up">
-          <a class="study__link" href="/case-studies/gonzo.html" data-cursor="link">
-            <span class="study__num mono">08</span>
-            <span class="study__main">
-              <span class="mono study__kind">Case study</span>
-              <span class="study__title">Gonzo: six personas, one argument, and a phone call to Google Maps</span>
-              <span class="study__sf">A travel engine that searches in the local language, lets six personas argue over the answer, and checks every place against Google Maps before it&#x27;s allowed to recommend it.</span>
-            </span>
-            <span class="study__time mono">3 min</span>
-          </a>
-        </li>
+        <div class="group">
+          <h3 class="group__title">Work</h3>
+          <ul class="entries">
+          <li>
+            <a class="entry rise" href="case-studies/why-we-stopped-at-80.html">
+              <span class="entry__kind">Essay · August 2026 · start here</span>
+              <span class="entry__title">Why we stopped at 80%</span>
+              <span class="entry__meta">6 min read</span>
+            </a>
+          </li>
+          <li>
+            <a class="entry rise" href="case-studies/fifteen-agents-one-front-desk.html">
+              <span class="entry__kind">Case study · August 2026</span>
+              <span class="entry__title">Fifteen agents, one front desk: a year of building AI for an accountancy firm</span>
+              <span class="entry__meta">6 min read</span>
+            </a>
+          </li>
+          <li>
+            <a class="entry rise" href="case-studies/a-practice-team-in-software.html">
+              <span class="entry__kind">Working paper · August 2026</span>
+              <span class="entry__title">A practice team in software</span>
+              <span class="entry__meta">5 min read</span>
+            </a>
+          </li>
+          <li>
+            <a class="entry rise" href="case-studies/the-engine-and-the-car.html">
+              <span class="entry__kind">Case study · August 2026</span>
+              <span class="entry__title">The engine and the car: why I moved our AI system three times in one summer</span>
+              <span class="entry__meta">5 min read</span>
+            </a>
+          </li>
+          <li>
+            <a class="entry rise" href="case-studies/whats-left-of-the-job.html">
+              <span class="entry__kind">Essay · September 2026</span>
+              <span class="entry__title">What&#x27;s left of the job when the reading leaves it</span>
+              <span class="entry__meta">6 min read</span>
+            </a>
+          </li>
+          <li>
+            <a class="entry rise" href="case-studies/ten-things-pharmacy-group.html">
+              <span class="entry__kind">Case study · August 2026</span>
+              <span class="entry__title">Ten things I learned putting AI into a national pharmacy group</span>
+              <span class="entry__meta">7 min read</span>
+            </a>
+          </li>
+          </ul>
+        </div>
+        <div class="group">
+          <h3 class="group__title">Things I made</h3>
+          <ul class="entries">
+          <li>
+            <a class="entry rise" href="case-studies/beau.html">
+              <span class="entry__kind">Case study · August 2026</span>
+              <span class="entry__title">Beau: I built a matching app that watches how you react, then I turned it off</span>
+              <span class="entry__meta">4 min read</span>
+            </a>
+          </li>
+          <li>
+            <a class="entry rise" href="case-studies/gonzo.html">
+              <span class="entry__kind">Case study · August 2026</span>
+              <span class="entry__title">Gonzo: six personas, one argument, and a phone call to Google Maps</span>
+              <span class="entry__meta">3 min read</span>
+            </a>
+          </li>
+          <li>
+            <a class="entry rise" href="https://natter-landing.vercel.app" target="_blank" rel="noopener">
+              <span class="entry__kind">App · Android</span>
+              <span class="entry__title">Natter: a voice journal that writes the entry for you, on the phone, with nothing sent anywhere</span>
+              <span class="entry__meta">natter-landing.vercel.app ↗</span>
+            </a>
+          </li>
+          </ul>
+        </div>
         <!-- /case-studies:list -->
-      </ol>
-    </section>
-
-    <!-- ===== EXPERIENCE ===== -->
-    <section class="xp" id="experience">
-      <div class="section-head">
-        <p class="mono label reveal-up">04 <span class="dot"></span> Experience</p>
-        <h2 class="h2 reveal-up" style="--d:.1s">From a regulated firm's AI rebuild to hackathon sprints.</h2>
-      </div>
-
-      <div class="xp__grid">
-        <div class="xp__list">
-          <article class="xp__row reveal-up">
-            <span class="mono xp__date">Aug 2025 <br/>to now</span>
-            <div class="xp__body">
-              <h3 class="xp__title">Automation Project Manager</h3>
-              <p class="mono xp__org">Innovi Advisors <span class="dot"></span> London</p>
-              <p class="xp__text">Sole owner of the firm's AI programme: took the agent suite from a stalled discovery exercise to a tested multi-agent system spanning two platforms, then migrated it across platforms as 40+ modular skills. Now rebuilding it as the firm's own product on a custom harness built on pi, with custom MCP servers connecting the firm's systems and the working rules enforced in code.</p>
-              <details class="more">
-                <summary data-cursor="link"><span>Read the full story</span><i></i></summary>
-                <div class="more__body">
-                  <h4>Discovery and approval</h4>
-                  <ul>
-                    <li>Interviewed the firm's partners and audited 15 draft AI agents already built in Gemini Enterprise, alongside the existing stack (Microsoft 365, FYI Docs, Xero).</li>
-                    <li>Diagnosed the recurring faults: wrong-ecosystem connectors, inconsistent prompt structure, overlapping scope. The intent underneath was clear: single-source grounding, mandatory clarifying questions, citation discipline, plain-English output.</li>
-                    <li>Presented a phased blueprint to the partners. They approved it, and it became the basis for consolidating 15 drafts into six tested, production-shaped agents.</li>
-                  </ul>
-                  <h4>Architecture</h4>
-                  <ul>
-                    <li>Designed a knowledge-store grounding architecture that turns authoritative sources (HMRC, FRC, ACCA, ICAEW, Companies House, Charity Commission) into curated markdown knowledge bases, so every answer is citeable.</li>
-                    <li>Found and fixed a live reliability failure: an overloaded combined agent hanging under real data load. Root-caused to turn-size overload and split into two purpose-bound agents joined by a shared handover artefact. The standing rule since: separate by function, bound each turn.</li>
-                    <li>Designed Oracle, a single router in front of 18+ flattened specialist subagents, so staff no longer need to know which agent to pick.</li>
-                    <li>Human-in-the-loop guardrails throughout: agents draft for staff review and never auto-send or auto-file.</li>
-                  </ul>
-                  <h4>Platforms and migration</h4>
-                  <ul>
-                    <li>Built and tested the suite in Gemini Enterprise's no-code Agent Designer, then migrated it entirely to Claude (Projects, Skills, Cowork), rebuilding 18+ subagents as 40+ modular skills. That unlocked reliable file generation the Gemini platform couldn't produce.</li>
-                    <li>Integrated a pre-built Xero MCP server for live ledger access, with the FYI document API integration underway.</li>
-                  </ul>
-                  <h4>Vedas, the firm's own product (Jul 2026 to now)</h4>
-                  <ul>
-                    <li>Rebuilding the proven system on a custom harness built on pi, an open-source agent runtime, because the commercial platforms could only request the working rules in prompts. Here they're enforced in code: the manager model can't do the juniors' legwork, memory saves need the user's word-for-word approval, and anything leaving the system needs human sign-off.</li>
-                    <li>Built custom MCP servers on the firm's own infrastructure: the practice management and document systems, Microsoft 365, and a deterministic calculation service, so every figure is computed exactly rather than by a language model.</li>
-                    <li>First full accounts-preparation job ran end to end on the new build in August 2026: working papers with every figure traced to source, and an adversarial AI review pass before any human review.</li>
-                  </ul>
-                  <p class="more__links"><a href="case-studies/fifteen-agents-one-front-desk.html">Fifteen agents, one front desk</a> <span class="dot"></span> <a href="case-studies/a-practice-team-in-software.html">A practice team in software</a> <span class="dot"></span> <a href="case-studies/the-engine-and-the-car.html">The engine and the car</a></p>
-                </div>
-              </details>
-            </div>
-          </article>
-          <article class="xp__row reveal-up">
-            <span class="mono xp__date">2025 <br/>to Jul 2026</span>
-            <div class="xp__body">
-              <h3 class="xp__title">Head of Events &amp; Outreach</h3>
-              <p class="mono xp__org">AI Safety Cardiff University</p>
-              <p class="xp__text">Led events programming and outreach for Cardiff's AI safety community, ran the Fundamentals Fellowship, and gave a guest lecture on AI safety for the university's "Emerging Technologies" module.</p>
-            </div>
-          </article>
-          <article class="xp__row reveal-up">
-            <span class="mono xp__date">Dec 2024 <br/>to Mar 2025</span>
-            <div class="xp__body">
-              <h3 class="xp__title">Advanced Design Mentor</h3>
-              <p class="mono xp__org">STEAMunity <span class="dot"></span> Singapore</p>
-              <p class="xp__text">Mentored six students, aged 14 to 20, in design thinking. The team won 1st place for Best Prototype and presented to Singapore's Deputy Prime Minister, Heng Swee Keat.</p>
-              <details class="more">
-                <summary data-cursor="link"><span>Read more</span><i></i></summary>
-                <div class="more__body">
-                  <ul>
-                    <li>Mentored six students, aged 14 to 20, in design thinking and innovation, in partnership with SUTD and Science Centre Singapore.</li>
-                    <li>Project managed the group's collaboration with Metta Cafe, applying design thinking to help build task independence for youths with special needs.</li>
-                    <li>The students won 1st place for Best Prototype with "BloomBuddy", an IoT system that guides users from planting a chilli to harvesting it using sensors, and presented it to Deputy Prime Minister Heng Swee Keat.</li>
-                  </ul>
-                </div>
-              </details>
-            </div>
-          </article>
-          <article class="xp__row reveal-up">
-            <span class="mono xp__date">Nov 2024 <br/>to Sep 2025</span>
-            <div class="xp__body">
-              <h3 class="xp__title">Volunteer Researcher</h3>
-              <p class="mono xp__org">ALITA <span class="dot"></span> remote</p>
-              <p class="xp__text">Researched legaltech taxonomies for ALITA's APAC Ecosystem Map and contributed to the SOLIA Report 2025. On-site support at events in Singapore and London.</p>
-              <details class="more">
-                <summary data-cursor="link"><span>Read more</span><i></i></summary>
-                <div class="more__body">
-                  <ul>
-                    <li>Desktop research on existing legaltech taxonomies to support ALITA's APAC Ecosystem Map.</li>
-                    <li>Contributed to the flagship "State of Legal Innovation in Asia-Pacific (SOLIA) Report 2025".</li>
-                    <li>On-site support at ALITA Singapore: Lawtech Drinks and Theatre, and the Asia Pacific European Legal Innovation and Tech Dialogue in London.</li>
-                  </ul>
-                </div>
-              </details>
-            </div>
-          </article>
-          <article class="xp__row reveal-up">
-            <span class="mono xp__date">May 2024 <br/>to Aug 2024</span>
-            <div class="xp__body">
-              <h3 class="xp__title">Builder &amp; Facilitator</h3>
-              <p class="mono xp__org">Treehouse Innovation <span class="dot"></span> London and Cardiff</p>
-              <p class="xp__text">Project managed a booth with DLA Piper at LegalTechTalk for 2,500+ attendees. Built a generative AI app on Cloud Run and co-authored the published report.</p>
-              <details class="more">
-                <summary data-cursor="link"><span>Read more</span><i></i></summary>
-                <div class="more__body">
-                  <p>The Futures Lab at LegalTechTalk, with DLA Piper.</p>
-                  <ul>
-                    <li>Co-project managed an interactive booth for 2,500+ attendees, presenting ideas and gathering feedback on the future of the legal industry.</li>
-                    <li>Engineered and deployed a full-stack application on Google Cloud Run combining generative AI (GPT-4o, DALL-E 3) with A/B testing, feeding the results into an analytics pipeline. Designed for web and spatial computing.</li>
-                    <li>Built a GraphRAG tool with React and FastAPI to digitise and productise the firm's workshop facilitation cards.</li>
-                    <li>Co-authored the published report, <a href="https://treehouseinnovation.com/case-studies/the-futures-lab-at-legaltechtalk-2024/" target="_blank" rel="noopener">The Futures Lab at LegalTechTalk 2024</a>.</li>
-                  </ul>
-                </div>
-              </details>
-            </div>
-          </article>
-          <article class="xp__row reveal-up">
-            <span class="mono xp__date">Feb 2024 <br/>to Mar 2024</span>
-            <div class="xp__body">
-              <h3 class="xp__title">Digital Automation Insight</h3>
-              <p class="mono xp__org">Highfield HR <span class="dot"></span> Bridgend</p>
-              <p class="xp__text">Used design thinking to prototype an MVP for employee contract generation, then built and shipped the full-stack web app.</p>
-              <details class="more">
-                <summary data-cursor="link"><span>Read more</span><i></i></summary>
-                <div class="more__body">
-                  <ul>
-                    <li>Used design thinking to understand the pain points in employee contract generation and prototyped an MVP.</li>
-                    <li>Designed and built a web app offering a low-cost route to automating contracts, sellable to the firm's own clients.</li>
-                    <li>Upskilled employees to fold AI into their workflows.</li>
-                  </ul>
-                </div>
-              </details>
-            </div>
-          </article>
-          <article class="xp__row reveal-up">
-            <span class="mono xp__date">Jun 2023 <br/>to Sep 2023</span>
-            <div class="xp__body">
-              <h3 class="xp__title">Design Coach Intern</h3>
-              <p class="mono xp__org">Treehouse Innovation <span class="dot"></span> London</p>
-              <p class="xp__text">Designed exercises for 200+ attendee corporate events and built a prototype app on the OpenAI API for a Risk &amp; Compliance session.</p>
-              <details class="more">
-                <summary data-cursor="link"><span>Read more</span><i></i></summary>
-                <div class="more__body">
-                  <ul>
-                    <li>Designed interactive exercises for a 200-person corporate event on a manufacturing company's operating model review.</li>
-                    <li>Worked with the design and client teams to research and design games and workshop exercises.</li>
-                    <li>Background research on cognitive biases for a major gaming company project.</li>
-                    <li>Built a prototype app for a Risk &amp; Compliance breakout session in Flask on the OpenAI API.</li>
-                  </ul>
-                </div>
-              </details>
-            </div>
-          </article>
-        </div>
-
-        <aside class="xp__aside">
-          <div class="xp__sticky">
-            <figure class="xp__fig parallax" data-speed="0.12">
-              <img src="assets/img/ltt-booth.webp" alt="The Futures Lab booth at LegalTechTalk" loading="lazy" />
-              <figcaption class="mono">The Futures Lab, LegalTechTalk 2024</figcaption>
-            </figure>
-            <div class="xp__edu">
-              <p class="mono label">Education</p>
-              <p class="xp__edu-row"><b>Cardiff University</b><span>BSc Computer Science with a Year of Study Abroad, 2022 to 2026. First-Class Honours, dissertation 83%. Led the Year 2 group project, which gamified internship assessments and scored 80%.</span></p>
-              <p class="xp__edu-row"><b>SUTD, Singapore</b><span>Exchange year, 2024 to 2025, Information Systems Technology and Design. Innovation by Design (masters module, 70% in the final exhibition), AI Applications by Design, AI by Design, History of Surveillance.</span></p>
-              <p class="xp__edu-row"><b>Whitgift School</b><span>A-levels in Maths, Physics and Computer Science, 2020 to 2022. EPQ: "Should we be concerned about the possible misuse of personal data when online?"</span></p>
-            </div>
-          </div>
-        </aside>
-      </div>
-
-      <div class="xp__edu xp__edu--mobile reveal-up">
-        <p class="mono label">Education</p>
-        <p class="xp__edu-row"><b>Cardiff University</b><span>BSc Computer Science with a Year of Study Abroad, 2022 to 2026. First-Class Honours, dissertation 83%. Led the Year 2 group project, which gamified internship assessments and scored 80%.</span></p>
-        <p class="xp__edu-row"><b>SUTD, Singapore</b><span>Exchange year, 2024 to 2025, Information Systems Technology and Design. Innovation by Design (masters module, 70% in the final exhibition), AI Applications by Design, AI by Design, History of Surveillance.</span></p>
-        <p class="xp__edu-row"><b>Whitgift School</b><span>A-levels in Maths, Physics and Computer Science, 2020 to 2022. EPQ: "Should we be concerned about the possible misuse of personal data when online?"</span></p>
+        <a class="more-link" href="case-studies/">All case studies <span aria-hidden="true">&rarr;</span></a>
       </div>
     </section>
-
-    <!-- ===== HACKATHONS ===== -->
-    <section class="hacks" id="hackathons">
-      <div class="section-head section-head--split">
-        <div>
-          <p class="mono label reveal-up">04.5 <span class="dot"></span> Hackathons</p>
-          <h2 class="h2 reveal-up" style="--d:.1s">Cambridge, NUS, and the tournaments in between.</h2>
-        </div>
-      </div>
-      <div class="hacks__grid">
-        <figure class="hack hack--tall reveal-up">
-          <div class="hack__img"><img src="assets/img/cambridge-stage.webp" alt="Sanay pitching on stage at Hack the Law in Cambridge" loading="lazy" /></div>
-          <figcaption>
-            <span class="mono hack__badge">Grand finalist and tooling winner</span>
-            <span class="hack__title">Hack the Law, University of Cambridge</span>
-            <span class="hack__text">Compliance professionals face dense, unstructured financial regulations that are hard to search quickly. We built a platform that structures them into a searchable interface and flags the entities and activities inside. Team "Just 3", with Xavier Doni and Siyuan Sui, on the RegGenome API and Groq. The efficient use of Groq won the Tooling Category.</span>
-          </figcaption>
-        </figure>
-        <figure class="hack reveal-up">
-          <div class="hack__img"><img src="assets/img/glasses-stage.webp" alt="Presenting Waddles at the NUS smart glasses bootcamp" loading="lazy" /></div>
-          <figcaption>
-            <span class="mono hack__badge">Golden Glasses award</span>
-            <span class="hack__title">Smart Glasses Bootcamp, NUS</span>
-            <span class="hack__text">"Waddles", an XREAL app that warns travellers about danger in unfamiliar places, built over a six-day AR bootcamp. Unity, C#, TOM, Gemini API, Python. With Wen Ting Chua and Jie Han Lim.</span>
-          </figcaption>
-        </figure>
-        <figure class="hack hack--type reveal-up">
-          <figcaption>
-            <span class="mono hack__badge">Hackathon</span>
-            <span class="hack__title">Cerebral Valley "Zero to Agent"</span>
-            <span class="hack__text">Google DeepMind and Vercel, London. Built the first version of Gonzo in a day, then kept going.</span>
-          </figcaption>
-        </figure>
-        <figure class="hack reveal-up">
-          <div class="hack__img"><img src="assets/img/web3.webp" alt="Sanay at the EasyA and VeChain Web3 hackathon" loading="lazy" /></div>
-          <figcaption>
-            <span class="mono hack__badge">Finalist, solo</span>
-            <span class="hack__title">Web3 Hackathon, EasyA, VeChain, BCG</span>
-            <span class="hack__text">Reached the finals alone, recognised for efficient prompt engineering.</span>
-          </figcaption>
-        </figure>
-        <figure class="hack reveal-up">
-          <div class="hack__img"><img src="assets/img/mifutures.webp" alt="Sticky notes from the Design Innovation Day at MiFutures" loading="lazy" /></div>
-          <figcaption>
-            <span class="mono hack__badge">1st prize</span>
-            <span class="hack__title">Design Innovation Day, MiFutures</span>
-            <span class="hack__text">Led a team to the win in a one-day design challenge hosted by a Welsh fintech: rapid ideation, prototype, pitch.</span>
-          </figcaption>
-        </figure>
-        <figure class="hack hack--type reveal-up">
-          <figcaption>
-            <span class="mono hack__badge">Consulting hackathon</span>
-            <span class="hack__title">TFW &amp; Amey</span>
-            <span class="hack__text">Sole student in a team of industry professionals, building an MVP for "TFW 2.0" with Transport for Wales and Amey.</span>
-          </figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ===== SKILLS ===== -->
-    <section class="skills" id="skills">
-      <div class="section-head section-head--split">
-        <div>
-          <p class="mono label reveal-up">05 <span class="dot"></span> Skills</p>
-          <h2 class="h2 reveal-up" style="--d:.1s">System design first, with the guardrails that make it trustworthy.</h2>
-        </div>
-        <p class="section-head__aside reveal-up" style="--d:.2s">Product and architecture decisions come first. The engineering underneath, including the human-in-the-loop safeguards, is there when I need to build it myself.</p>
-      </div>
-      <div class="skills__grid">
-        <div class="skill reveal-up">
-          <h3 class="skill__title">System and product design</h3>
-          <p class="mono skill__teaser">Design thinking, system architecture, stakeholder management</p>
-          <ul class="chips mono">
-            <li>Design thinking</li><li>System architecture</li><li>Project management</li><li>Stakeholder management</li><li>Workshop facilitation</li><li>Consulting</li>
-          </ul>
-        </div>
-        <div class="skill reveal-up" style="--d:.08s">
-          <h3 class="skill__title">AI and agent engineering</h3>
-          <p class="mono skill__teaser">Gemini Enterprise, Claude, multi-agent orchestration, knowledge grounding</p>
-          <ul class="chips mono">
-            <li>Gemini Enterprise</li><li>Claude Projects and Skills</li><li>MCP</li><li>pi (custom harness)</li><li>OpenRouter</li><li>Multi-agent orchestration</li><li>Knowledge grounding</li><li>Human-in-the-loop design</li><li>LangChain / LangGraph</li><li>Prompt engineering</li><li>Structured output</li>
-          </ul>
-        </div>
-        <div class="skill reveal-up" style="--d:.16s">
-          <h3 class="skill__title">Full-stack build</h3>
-          <p class="mono skill__teaser">Python, TypeScript, React, FastAPI, PostgreSQL, Neo4j</p>
-          <ul class="chips mono">
-            <li>Python</li><li>TypeScript</li><li>React</li><li>FastAPI</li><li>Next.js</li><li>Drizzle</li><li>Better Auth</li><li>Supabase</li><li>Stripe</li><li>PostgreSQL</li><li>Neo4j</li><li>Docker</li><li>Vercel / Railway / GCP</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== OFF THE CLOCK ===== -->
-    <section class="off" id="off-the-clock">
-      <div class="off__video" aria-hidden="true">
-        <video id="ocean" muted loop playsinline preload="none" poster="assets/img/ocean-poster.webp"></video>
-        <div class="off__veil"></div>
-      </div>
-
-      <div class="off__head">
-        <p class="mono label reveal-up">06 <span class="dot"></span> Off the clock</p>
-        <h2 class="off__title" data-split="words">43 flights in 45 weeks, a Fujifilm, and the sidequests in between.</h2>
-      </div>
-
-      <div class="lore reveal-up">
-        <div class="lore__frame">
-          <p class="mono lore__label">the 25th hour <span class="dot"></span> a window into the sidequests</p>
-          <p class="lore__drop" id="lore-drop" aria-live="polite">43 flights in 45 weeks, mostly on a student budget and a lounge pass.</p>
-          <div class="lore__ctrl">
-            <button class="btn" id="lore-shuffle" type="button" data-cursor="link"><span>shuffle</span></button>
-            <span class="mono lore__count" id="lore-count">01 / 10</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="off__grid">
-        <figure class="off__photo off__photo--tall reveal-up">
-          <img class="parallax" data-speed="0.08" src="assets/img/tokyo-tower.webp" alt="Tokyo Tower at dusk, shot on film" loading="lazy" />
-          <figcaption class="mono"><span>Frame 01</span><span>Tokyo Tower, dusk</span></figcaption>
-        </figure>
-
-        <div class="off__block reveal-up">
-          <p class="mono label">Photography</p>
-          <p class="off__text">My favourite way into a city is to talk to strangers until one of them shows me around. The Fujifilm starts the conversation, and it rarely comes out of the bag for a landmark.</p>
-          <p class="off__text off__text--sm">Film simulations over Lightroom. Grain left in. The public account is below; the personal one stays private.</p>
-          <a class="arrow-link" href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener" data-cursor="link">@sanay.photography <i>&rarr;</i></a>
-        </div>
-
-        <figure class="off__photo reveal-up">
-          <img class="parallax" data-speed="0.06" src="assets/img/hut.webp" alt="A small shrine in a forest, stone lanterns either side of the steps" loading="lazy" />
-          <figcaption class="mono"><span>Frame 02</span><span>A shrine off the trail</span></figcaption>
-        </figure>
-
-
-        <div class="off__block off__block--shiny reveal-up">
-          <p class="mono label">Shiny hunting</p>
-          <p class="off__text">The other hobby is shiny hunting: hundreds of resets for a Pokemon that comes out a slightly different colour. Gengar is the favourite, which is funny, because the shiny one is famously almost the same purple. Worth it anyway.</p>
-          <p class="mono off__odds">base odds 1 in 4,096 <span class="dot"></span> patience, mostly</p>
-        </div>
-
-        <figure class="off__photo reveal-up">
-          <img class="parallax" data-speed="0.06" src="assets/img/rowing.webp" alt="A rowing four at the national finals" loading="lazy" />
-          <figcaption class="mono"><span>Rowing</span><span>National B final, U15 cox</span></figcaption>
-        </figure>
-
-        <figure class="off__photo reveal-up">
-          <img class="parallax" data-speed="0.06" src="assets/img/play.webp" alt="On stage in Another Country" loading="lazy" />
-          <figcaption class="mono"><span>Stage</span><span>Another Country</span></figcaption>
-        </figure>
-
-        <div class="off__block reveal-up">
-          <p class="mono label">Beyond the code</p>
-          <p class="off__text">Coxed a rowing four to a national B final. Lead performer in the school's first student-led play, "Another Country", after a Lady Macbeth that got me scouted by an acting agency. Neither is on the CV.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== CONTACT ===== -->
-    <section class="contact" id="contact">
-      <p class="mono label reveal-up">07 <span class="dot"></span> Contact</p>
-      <h2 class="contact__title" data-split="words">Let's build something.</h2>
-      <p class="contact__lead reveal-up">I'm always up for ambitious projects and hard problems. Available from November 2026, London or APAC.</p>
-      <a class="contact__mail magnetic reveal-up" href="mailto:sanays.mail@gmail.com" data-cursor="link"><span>sanays.mail@gmail.com</span></a>
-      <div class="contact__links reveal-up">
-        <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener" data-cursor="link">LinkedIn</a>
-        <a href="case-studies/index.html" data-cursor="link">Case studies</a>
-        <a href="https://natter-landing.vercel.app" target="_blank" rel="noopener" data-cursor="link">natter</a>
-        <a href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener" data-cursor="link">Photography</a>
-      </div>
-    </section>
-
-    <footer class="foot">
-      <span class="mono">sanay<i>.</i>space</span>
-      <span class="mono">London <span class="dot"></span> <span id="clock-foot">00:00</span></span>
-      <span class="mono">2026</span>
-    </footer>
   </main>
+
+  <footer class="section torn foot" id="contact">
+    <div class="wrap">
+      <div class="foot__grid">
+        <div>
+          <p class="label">Contact</p>
+          <h2 class="foot__title">Say hello</h2>
+          <p class="foot__where">Based in London.</p>
+        </div>
+        <ul class="passes" aria-label="Find me elsewhere">
+          <li><a class="pass pass--li" href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener"><span class="pass__paper"><span class="pass__body"><span class="pass__label">LinkedIn</span><span class="pass__dest">sanay-shah</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#go" /></svg></span></span></a></li>
+          <li><a class="pass pass--ig" href="https://www.instagram.com/_s4nay/" target="_blank" rel="noopener"><span class="pass__paper"><span class="pass__body"><span class="pass__label">Instagram</span><span class="pass__dest">@_s4nay</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#go" /></svg></span></span></a></li>
+          <li><a class="pass pass--ph" href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener"><span class="pass__paper"><span class="pass__body"><span class="pass__label">Photography</span><span class="pass__dest">@sanay<wbr>.photography</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#go" /></svg></span></span></a></li>
+          <li><a class="pass pass--mail" href="mailto:sanays.mail@gmail.com"><span class="pass__paper"><span class="pass__body"><span class="pass__label">Email</span><span class="pass__dest">sanays.mail<wbr>@gmail.com</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#mail" /></svg></span></span></a></li>
+        </ul>
+      </div>
+      <div class="foot__small">
+        <p>Most of this site is drafted with AI assistance, which I use as a dyslexia adjustment first provided through my Disabled Students' Allowance. Every fact on it comes from my own maintained record and has been checked by me.</p>
+        <p class="mono">Sanay Shah · 2026 · <a href="hi/">sanay.space/hi</a></p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

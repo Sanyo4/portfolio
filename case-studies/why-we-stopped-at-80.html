@@ -1,107 +1,153 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en-GB" class="no-js">
 <head>
-  <script>document.documentElement.classList.replace('no-js','js');</script>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Why we stopped at 80% | Sanay Shah</title>
+  <script>document.documentElement.classList.replace("no-js", "js");</script>
+  <title>Why we stopped at 80% · Sanay Shah</title>
   <meta name="description" content="The AI did about 80% of the work in about a quarter of the time. Why we chose not to push it to 100, and the handful of things I now believe about putting AI into real work." />
-  <meta name="theme-color" content="#0d1110" />
-  <meta name="color-scheme" content="dark light" />
-  <script>try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");}catch(e){}</script>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230d1110%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%275%27 fill=%27%239db08c%27/%3E%3C/svg%3E" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
-  <link rel="stylesheet" href="/assets/css/case-study.css" />
-  <script src="/assets/js/case-study.js" defer></script>
+  <link rel="canonical" href="https://sanay.space/case-studies/why-we-stopped-at-80.html" />
+  <meta name="theme-color" content="#d7e3e3" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="sanay.space" />
+  <meta property="og:url" content="https://sanay.space/case-studies/why-we-stopped-at-80.html" />
+  <meta property="og:title" content="Why we stopped at 80% · Sanay Shah" />
+  <meta property="og:description" content="The AI did about 80% of the work in about a quarter of the time. Why we chose not to push it to 100, and the handful of things I now believe about putting AI into real work." />
+  <meta property="og:image" content="https://sanay.space/assets/img/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Why we stopped at 80% · Sanay Shah" />
+  <meta name="twitter:description" content="The AI did about 80% of the work in about a quarter of the time. Why we chose not to push it to 100, and the handful of things I now believe about putting AI into real work." />
+  <meta name="twitter:image" content="https://sanay.space/assets/img/og.jpg" />
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="../assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/css/site.css" />
+  <link rel="stylesheet" href="../assets/css/case-study.css" />
+  <script src="../assets/js/site.js" defer></script>
 </head>
 <body class="cs-page">
-  <div class="grain" aria-hidden="true"></div>
-  <header class="nav is-in cs-nav" id="nav">
-    <a class="nav__mark" href="/">sanay<i>.</i>space</a>
-    <nav class="cs-nav__links">
-      <a class="cs-nav__link" href="/case-studies/">Case studies</a>
-      <a class="cs-nav__link" href="/#building">Building</a>
-      <a class="cs-nav__link" href="/#contact">Contact</a>
-    </nav>
-    <button class="nav__theme" id="theme-btn" type="button" aria-pressed="false"><span class="nav__theme-label" data-dark="Light" data-light="Dark"></span><i class="nav__theme-dot"></i></button>
+  <a class="skip" href="#main">Skip to content</a>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="ink" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="1.8" xChannelSelector="R" yChannelSelector="G" result="d" />
+        <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.2 0 0 0 2" result="m" />
+        <feComposite in="d" in2="m" operator="in" />
+      </filter>
+      <symbol id="plane" viewBox="0 0 32 32">
+        <path d="M2 15 L30 3 L21 29 L15 19 Z" fill="#fbfbf8" stroke="#1b2528" stroke-width="1.5" stroke-linejoin="round" />
+        <path d="M30 3 L15 19 L13.5 26.5 L17.8 22" fill="#d9e2e0" stroke="#1b2528" stroke-width="1.5" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="go" viewBox="0 0 16 16">
+        <path d="M4 12 L12 4 M6 4 H12 V10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+      </symbol>
+      <symbol id="mail" viewBox="0 0 16 16">
+        <path d="M2 4 H14 V12 H2 Z M2 4 L8 9 L14 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+      </symbol>
+    </defs>
+  </svg>
+  <header class="cs-top">
+    <div class="wrap topbar">
+      <a class="wordmark" href="../"><span>sanay<b>.</b>space</span></a>
+      <nav class="topnav" aria-label="Site">
+        <a class="topnav__extra" href="../#story">Story</a>
+        <a href="../case-studies/">Case studies</a>
+        <a class="topnav__extra" href="../#contact">Contact</a>
+      </nav>
+    </div>
   </header>
+  <div class="cs-progress" aria-hidden="true"><span></span><svg><use href="#plane" /></svg></div>
 
-  <div class="progress" id="progress" aria-hidden="true"></div>
-
-  <main class="cs">
-    <article class="cs-article">
+  <main id="main">
+    <article class="cs">
       <header class="cs-head">
-        <div class="cs-head__top">
-          <span class="mono label">Essay <span class="dot"></span> 01 of 08</span>
-          <a class="mono cs-back" href="/case-studies/">&larr; All case studies</a>
-        </div>
-        <h1 class="cs-title" data-split="words">Why we stopped at 80%</h1>
-        <p class="cs-standfirst reveal-up" style="--d:.5s">The AI did about 80% of the work in about a quarter of the time. Why we chose not to push it to 100, and the handful of things I now believe about putting AI into real work.</p>
-        <div class="cs-meta reveal-up" style="--d:.6s">
-          <img class="cs-meta__avatar" src="/assets/img/me-sm.webp" alt="Sanay Shah" width="32" height="32" />
-          <span class="mono">Sanay Shah <span class="dot"></span> August 2026 <span class="dot"></span> 6 min read</span>
+        <div class="wrap cs-head__inner">
+          <p class="cs-head__row">
+            <span class="stamp" style="--rot: -5deg">Essay<strong>01/08</strong>August 2026</span>
+            <a class="cs-back" href="./">&larr; All case studies</a>
+          </p>
+          <p class="label">Work · start here</p>
+          <h1 class="cs-title">Why we stopped at 80%</h1>
+          <p class="cs-standfirst">The AI did about 80% of the work in about a quarter of the time. Why we chose not to push it to 100, and the handful of things I now believe about putting AI into real work.</p>
+          <p class="cs-meta">
+            <img src="../assets/img/portrait-240.webp" alt="" width="40" height="40" />
+            <span class="mono">Sanay Shah · August 2026 · 6 min read</span>
+          </p>
         </div>
       </header>
 
-      <div class="cs-body">
-<p>Earlier this year the AI system I'd built for an accountancy firm went head-to-head with the firm's best accounts preparation people on live jobs. It did about 80% of the work in about a quarter of the time. The figures were right.</p>
-<p>The number people ask about is the 80. Why not 100? We could probably have pushed it higher, and we chose not to. This post is about that choice, and about the handful of things I now believe about putting AI into real work, most of which I learned by getting them wrong first.</p>
-<h2><span class="cs-h2__n">01</span>Review at the end doesn't scale</h2>
-<p>Picture a reviewer checking AI output. The first output is wrong in a small way and they catch it. The next twenty are right. What happens on the twenty-second?</p>
-<p>They wave it through. Not because they're lazy. Because twenty correct outputs in a row have turned review into a reflex, and a reflex doesn't read. Oversight degrades precisely when the automation gets good. That's the trap, and "we have a human in the loop" doesn't get you out of it if the human is a rubber stamp at the end of a finished file.</p>
-<p>So we capped the automation. The system does the reading, the extraction, the sums, the drafting. It leaves the person a real piece of work to do: the judgement calls and the client knowledge. Is that four grand a month rent, or the director repaying a loan? If the reviewer is doing something that needs their brain, they're awake for the rest of it.</p>
-<p>The 20% held back isn't a shortfall. It's the safety mechanism.</p>
-<h2><span class="cs-h2__n">02</span>The human belongs in the middle, not at the end</h2>
-<p>The cheaper version of the same idea: the moment to ask a person is when the ambiguity first appears, before a wrong assumption propagates through everything downstream.</p>
-<p>The way I say it out loud now is that the system should ask questions the way a good junior would. A junior who hits something they don't understand on day two doesn't build a whole set of accounts on a guess and hand it over on day ten. They come and ask. The human stays in the loop on nuance and judgement, answering what a junior would come and ask, rather than signing off a finished file they haven't really read.</p>
-<h2><span class="cs-h2__n">03</span>Accountability can't be delegated to software</h2>
-<p>In regulated professions the rules say so. A machine can't carry the responsibility for an engagement. A person signs and a person answers for it. Everywhere else, it's what makes the output worth trusting.</p>
-<p>This has a sharp edge I only saw properly this month, working with a pharmacy group. Whoever builds and runs an agent carries the blame when its output is wrong and someone acts on it. Fine. But then that person needs the authority to match: a say on scope, the right to send an unready request back, a reporting line to the sponsor. A role that has the accountability without the authority is a person absorbing risk they can't control. If you're specifying that role, write the authority in before you hire.</p>
-<h2><span class="cs-h2__n">04</span>An agent won't tell you it can't</h2>
-<p>Ask one of these tools for something beyond it and it builds something that looks similar. It never says no. So the buyer becomes a co-author whether they like it or not.</p>
-<p>The only reliable defence is a written description of what a correct output looks like, and a named reviewer who owns that description. I watched an agent get rebuilt four times because it was being judged against a picture in someone's head that had never been written down. That isn't a criticism of the person. It's how the tools behave. Governance isn't the brake on this work. It's what makes the output people actually want possible.</p>
-<h2><span class="cs-h2__n">05</span>Task shape decides the agent</h2>
-<p>Some work has a written rule behind it. Expense compliance against a policy. VAT boxes against HMRC guidance. "Correct" exists on paper, so the agent can be tested against it and trusted quickly. Automate that hard.</p>
-<p>Some work has no single right answer. A cash flow forecast. A judgement on whether a client relationship is a going concern. The agent drafts, a person decides, and pretending otherwise is how trust gets lost.</p>
-<p>Sort the backlog by shape before you sort it by value. Most of the arguments I've seen about "does AI work for this" were really arguments between people who had different task shapes in mind.</p>
-<h2><span class="cs-h2__n">06</span>Rules that matter go in code</h2>
-<p>A rule the software can break under load is a suggestion, and the telemetry shows it eventually breaks. "Please delegate the cheap work to the cheap model" held until it didn't. "Don't send without review" holds until the day someone's in a hurry.</p>
-<p>So the rules that matter get enforced by the system. The expensive model doesn't have the tool to read source documents, so it has to delegate. Arithmetic runs in code, because a wrong sum from a model looks identical to a right one. The email is drafted, never sent. If a rule is important, don't ask the model to follow it. Make it structurally impossible not to.</p>
-<h2><span class="cs-h2__n">07</span>The system should learn you, and you should own that</h2>
-<p>When the system asks about the four grand from J. Smith and you say "that's the director's loan", it offers to write that down. You approve the wording. It's saved with the date and where it came from. Next quarter, it doesn't ask.</p>
-<p>Six months in, the system is good because of the corrections you fed it. That training is yours and your firm's. It doesn't belong to the software company and it can't be downloaded by a competitor. This is the opposite of being made interchangeable. You become the one person your system works best for.</p>
-<h2><span class="cs-h2__n">08</span>Models are commodities</h2>
-<p>The models improve underneath the product and swap by configuration. On the latest build, the manager and worker slots ran different models from the ones in the setup docs, and the change was a config file. The durable value is the enforced working method, the encoded methodology, and the accumulated approved memory. Anyone who tells you their moat is the model is renting their moat.</p>
-<h2><span class="cs-h2__n">09</span>You're not being replaced, you're being promoted</h2>
-<p>I gave a talk to the staff with that title, because the 80% number sounds like a threat until you look at what's in the 80.</p>
-<p>The 80% is the reading. Opening twelve bank statements. Typing out hundreds of transactions. Adding them up. Nobody gets their professional letters for being fast at that. The 20% is knowing the client, spotting what's odd, and the signature. That was always the actual job. It just spent years buried under data entry.</p>
-<p>Every generation of this profession has had a version of this moment. Calculators were going to replace accountants, and then spreadsheets were. Each time the mechanical part shrank and the advisory part grew. This is the same moment, just bigger. The new junior starts whenever you're ready to start training it. And never, ever rubber-stamp it.</p>
-      </div>
+      <div class="wrap">
+        <div class="sheet tape">
+          <div class="prose">
+        <p>Earlier this year the AI system I'd built for an accountancy firm went head-to-head with the firm's best accounts preparation people on live jobs. It did about 80% of the work in about a quarter of the time. The figures were right.</p>
+        <p>The number people ask about is the 80. Why not 100? We could probably have pushed it higher, and we chose not to. This post is about that choice, and about the handful of things I now believe about putting AI into real work, most of which I learned by getting them wrong first.</p>
+        <h2><span class="prose__n" aria-hidden="true">01</span>Review at the end doesn't scale</h2>
+        <p>Picture a reviewer checking AI output. The first output is wrong in a small way and they catch it. The next twenty are right. What happens on the twenty-second?</p>
+        <p>They wave it through. Not because they're lazy. Because twenty correct outputs in a row have turned review into a reflex, and a reflex doesn't read. Oversight degrades precisely when the automation gets good. That's the trap, and "we have a human in the loop" doesn't get you out of it if the human is a rubber stamp at the end of a finished file.</p>
+        <p>So we capped the automation. The system does the reading, the extraction, the sums, the drafting. It leaves the person a real piece of work to do: the judgement calls and the client knowledge. Is that four grand a month rent, or the director repaying a loan? If the reviewer is doing something that needs their brain, they're awake for the rest of it.</p>
+        <p>The 20% held back isn't a shortfall. It's the safety mechanism.</p>
+        <h2><span class="prose__n" aria-hidden="true">02</span>The human belongs in the middle, not at the end</h2>
+        <p>The cheaper version of the same idea: the moment to ask a person is when the ambiguity first appears, before a wrong assumption propagates through everything downstream.</p>
+        <p>The way I say it out loud now is that the system should ask questions the way a good junior would. A junior who hits something they don't understand on day two doesn't build a whole set of accounts on a guess and hand it over on day ten. They come and ask. The human stays in the loop on nuance and judgement, answering what a junior would come and ask, rather than signing off a finished file they haven't really read.</p>
+        <h2><span class="prose__n" aria-hidden="true">03</span>Accountability can't be delegated to software</h2>
+        <p>In regulated professions the rules say so. A machine can't carry the responsibility for an engagement. A person signs and a person answers for it. Everywhere else, it's what makes the output worth trusting.</p>
+        <p>This has a sharp edge I only saw properly this month, working with a pharmacy group. Whoever builds and runs an agent carries the blame when its output is wrong and someone acts on it. Fine. But then that person needs the authority to match: a say on scope, the right to send an unready request back, a reporting line to the sponsor. A role that has the accountability without the authority is a person absorbing risk they can't control. If you're specifying that role, write the authority in before you hire.</p>
+        <h2><span class="prose__n" aria-hidden="true">04</span>An agent won't tell you it can't</h2>
+        <p>Ask one of these tools for something beyond it and it builds something that looks similar. It never says no. So the buyer becomes a co-author whether they like it or not.</p>
+        <p>The only reliable defence is a written description of what a correct output looks like, and a named reviewer who owns that description. I watched an agent get rebuilt four times because it was being judged against a picture in someone's head that had never been written down. That isn't a criticism of the person. It's how the tools behave. Governance isn't the brake on this work. It's what makes the output people actually want possible.</p>
+        <h2><span class="prose__n" aria-hidden="true">05</span>Task shape decides the agent</h2>
+        <p>Some work has a written rule behind it. Expense compliance against a policy. VAT boxes against HMRC guidance. "Correct" exists on paper, so the agent can be tested against it and trusted quickly. Automate that hard.</p>
+        <p>Some work has no single right answer. A cash flow forecast. A judgement on whether a client relationship is a going concern. The agent drafts, a person decides, and pretending otherwise is how trust gets lost.</p>
+        <p>Sort the backlog by shape before you sort it by value. Most of the arguments I've seen about "does AI work for this" were really arguments between people who had different task shapes in mind.</p>
+        <h2><span class="prose__n" aria-hidden="true">06</span>Rules that matter go in code</h2>
+        <p>A rule the software can break under load is a suggestion, and the telemetry shows it eventually breaks. "Please delegate the cheap work to the cheap model" held until it didn't. "Don't send without review" holds until the day someone's in a hurry.</p>
+        <p>So the rules that matter get enforced by the system. The expensive model doesn't have the tool to read source documents, so it has to delegate. Arithmetic runs in code, because a wrong sum from a model looks identical to a right one. The email is drafted, never sent. If a rule is important, don't ask the model to follow it. Make it structurally impossible not to.</p>
+        <h2><span class="prose__n" aria-hidden="true">07</span>The system should learn you, and you should own that</h2>
+        <p>When the system asks about the four grand from J. Smith and you say "that's the director's loan", it offers to write that down. You approve the wording. It's saved with the date and where it came from. Next quarter, it doesn't ask.</p>
+        <p>Six months in, the system is good because of the corrections you fed it. That training is yours and your firm's. It doesn't belong to the software company and it can't be downloaded by a competitor. This is the opposite of being made interchangeable. You become the one person your system works best for.</p>
+        <h2><span class="prose__n" aria-hidden="true">08</span>Models are commodities</h2>
+        <p>The models improve underneath the product and swap by configuration. On the latest build, the manager and worker slots ran different models from the ones in the setup docs, and the change was a config file. The durable value is the enforced working method, the encoded methodology, and the accumulated approved memory. Anyone who tells you their moat is the model is renting their moat.</p>
+        <h2><span class="prose__n" aria-hidden="true">09</span>You're not being replaced, you're being promoted</h2>
+        <p>I gave a talk to the staff with that title, because the 80% number sounds like a threat until you look at what's in the 80.</p>
+        <p>The 80% is the reading. Opening twelve bank statements. Typing out hundreds of transactions. Adding them up. Nobody gets their professional letters for being fast at that. The 20% is knowing the client, spotting what's odd, and the signature. That was always the actual job. It just spent years buried under data entry.</p>
+        <p>Every generation of this profession has had a version of this moment. Calculators were going to replace accountants, and then spreadsheets were. Each time the mechanical part shrank and the advisory part grew. This is the same moment, just bigger. The new junior starts whenever you're ready to start training it. And never, ever rubber-stamp it.</p>
+          </div>
+          <p class="cs-disclosure">This piece was written with AI assistance, which I use as a dyslexia adjustment first provided through my Disabled Students&#x27; Allowance. Every fact in it comes from my own maintained record and has been checked by me.</p>
+        </div>
 
-      <footer class="cs-foot">
-        <p class="cs-disclosure">This piece was written with AI assistance, which I use as a dyslexia adjustment first provided through my Disabled Students&#x27; Allowance. Every fact in it comes from my own maintained record and has been checked by me.</p>
-      </footer>
-    </article>
-
-    <nav class="cs-pager" aria-label="More case studies">
-      <span class="cs-pager__card is-empty is-prev"></span>
-      <a class="cs-pager__card is-next" href="/case-studies/fifteen-agents-one-front-desk.html">
-        <span class="mono label">Next</span>
+        <nav class="cs-pager" aria-label="More case studies">
+      <span class="cs-pager__card is-empty" aria-hidden="true"></span>
+      <a class="cs-pager__card is-next" href="fifteen-agents-one-front-desk.html">
+        <span class="label">Next <span aria-hidden="true">&rarr;</span></span>
         <span class="cs-pager__title">Fifteen agents, one front desk</span>
       </a>
-    </nav>
-    <div class="cs-pager__all">
-      <a class="arrow-link" href="/case-studies/">All seven case studies <i>&rarr;</i></a>
-    </div>
+        </nav>
+        <p class="cs-all"><a class="more-link" href="./">All case studies <span aria-hidden="true">&rarr;</span></a></p>
+      </div>
+    </article>
   </main>
-    <footer class="foot cs-foot-bar">
-      <span class="mono">sanay<i>.</i>space</span>
-      <span class="mono"><a href="mailto:sanays.mail@gmail.com">sanays.mail@gmail.com</a> <span class="dot"></span> <a href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener">LinkedIn</a></span>
-      <span class="mono">2026</span>
-    </footer>
 
+  <footer class="section torn foot foot--small" id="contact">
+    <div class="wrap">
+      <div class="foot__grid">
+        <div>
+          <p class="label">Contact</p>
+          <h2 class="foot__title">Say hello</h2>
+          <p class="foot__where">Based in London.</p>
+        </div>
+        <ul class="passes" aria-label="Find me elsewhere">
+          <li><a class="pass pass--li" href="https://www.linkedin.com/in/sanay-shah/" target="_blank" rel="noopener"><span class="pass__paper"><span class="pass__body"><span class="pass__label">LinkedIn</span><span class="pass__dest">sanay-shah</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#go" /></svg></span></span></a></li>
+          <li><a class="pass pass--ig" href="https://www.instagram.com/_s4nay/" target="_blank" rel="noopener"><span class="pass__paper"><span class="pass__body"><span class="pass__label">Instagram</span><span class="pass__dest">@_s4nay</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#go" /></svg></span></span></a></li>
+          <li><a class="pass pass--ph" href="https://www.instagram.com/sanay.photography/" target="_blank" rel="noopener"><span class="pass__paper"><span class="pass__body"><span class="pass__label">Photography</span><span class="pass__dest">@sanay<wbr>.photography</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#go" /></svg></span></span></a></li>
+          <li><a class="pass pass--mail" href="mailto:sanays.mail@gmail.com"><span class="pass__paper"><span class="pass__body"><span class="pass__label">Email</span><span class="pass__dest">sanays.mail<wbr>@gmail.com</span></span><span class="pass__stub" aria-hidden="true"><span class="pass__bar"></span><svg><use href="#mail" /></svg></span></span></a></li>
+        </ul>
+      </div>
+      <div class="foot__small">
+        <p class="mono">Sanay Shah · 2026 · <a href="../">sanay.space</a></p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
