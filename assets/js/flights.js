@@ -89,18 +89,18 @@
   }
 
   // ---------- route, plane, end markers ----------
-  var u = 1, idx = -1, drawP = 1, drawRaf = 0, drawTimer = 0, len = 0, intro = true;
+  var u = 1, idx = -1, shown = -1, drawP = 1, drawRaf = 0, len = 0, intro = true;
 
   function placeMarks() {
-    if (idx < 0) return;
-    var f = F[idx], o = 6 * u;
+    if (shown < 0) return;
+    var f = F[shown], o = 6 * u;
     codeA.setAttribute("x", f.a[0] + o); codeA.setAttribute("y", f.a[1] - o);
     codeB.setAttribute("x", f.b[0] + o); codeB.setAttribute("y", f.b[1] - o);
     placePlane();
   }
 
   function placePlane() {
-    var r = routes[idx];
+    var r = routes[shown];
     if (!r || !len) return;
     var at = Math.max(0.5, len * drawP);
     var p = r.getPointAtLength(at), q = r.getPointAtLength(Math.max(0, at - 1.5));
@@ -111,7 +111,7 @@
   function setDraw(p) {
     drawP = p;
     var off = (len * (1 - p)).toFixed(1);
-    routes[idx].style.strokeDashoffset = off;
+    routes[shown].style.strokeDashoffset = off;
     glow.style.strokeDashoffset = off;
     placePlane();
   }
@@ -119,7 +119,7 @@
   function draw() {
     cancelAnimationFrame(drawRaf);
     if (reduce) { setDraw(1); return; }
-    var t0 = performance.now() + 250;
+    var t0 = performance.now() + 120;
     drawRaf = requestAnimationFrame(function step(now) {
       var t = Math.max(0, Math.min(1, (now - t0) / 900));
       setDraw(ease(t));
@@ -176,21 +176,17 @@
   }
 
   // ---------- selecting a flight ----------
-  function select(i) {
+  // Two speeds. pick() is cheap and runs for every stub that passes the
+  // centre: the stub, the readout and a haptic tick. commit() moves the map,
+  // draws the route and updates the passport, once the reel rests on a stub.
+  var commitTimer = 0, target = -1;
+
+  function pick(i) {
     if (i === idx) return;
     var prev = idx;
     idx = i;
-    var f = F[i];
-
-    if (intro) { svg.classList.remove("is-intro"); intro = false; }
-    for (var j = 0; j < N; j++) {
-      routes[j].classList.toggle("is-past", j < i);
-      routes[j].classList.toggle("is-cur", j === i);
-    }
     if (prev < 0) legs[0].tabIndex = -1;
     if (prev >= 0) {
-      routes[prev].style.strokeDasharray = "";
-      routes[prev].style.strokeDashoffset = "";
       legs[prev].classList.remove("is-active");
       legs[prev].setAttribute("aria-selected", "false");
       legs[prev].tabIndex = -1;
@@ -199,7 +195,31 @@
     legs[i].setAttribute("aria-selected", "true");
     legs[i].tabIndex = 0;
     if (armed) haptic();
+    fill(F[i], i);
+    // a slow drag that lingers on a stub shows its map too
+    if (target < 0) {
+      clearTimeout(commitTimer);
+      commitTimer = setTimeout(commit, 160);
+    }
+  }
 
+  function commit() {
+    clearTimeout(commitTimer);
+    var i = idx;
+    if (i < 0 || i === shown) return;
+    var prev = shown;
+    shown = i;
+    var f = F[i];
+
+    if (intro) { svg.classList.remove("is-intro"); intro = false; }
+    for (var j = 0; j < N; j++) {
+      routes[j].classList.toggle("is-past", j < i);
+      routes[j].classList.toggle("is-cur", j === i);
+    }
+    if (prev >= 0) {
+      routes[prev].style.strokeDasharray = "";
+      routes[prev].style.strokeDashoffset = "";
+    }
     var r = routes[i];
     len = r.getTotalLength();
     r.style.strokeDasharray = len;
@@ -210,23 +230,27 @@
     endB.setAttribute("cx", f.b[0]); endB.setAttribute("cy", f.b[1]);
     codeA.textContent = f.from;
     codeB.textContent = f.to;
-    fill(f, i);
     stampTo(i, prev);
 
     camera(frameBox(f.box, 180));
-    // Undrawn until the reel has been still for a moment, so a fast scrub
-    // does not start and abandon a dozen draws.
     cancelAnimationFrame(drawRaf);
     setDraw(reduce ? 1 : 0);
-    clearTimeout(drawTimer);
-    drawTimer = setTimeout(draw, reduce ? 0 : 120);
+    draw();
   }
 
-  // ---------- the reel as input ----------
-  var centres = [], lock = -1, lockTimer = 0, scrollRaf = 0, armed = false;
+  // ---------- the reel as input: a flywheel ----------
+  // Touch and mouse drags move the reel one to one. Letting go keeps it
+  // rolling at the speed of the flick, slowing like a free-spinning wheel, and
+  // it comes to rest centred on a stub. Vertical page scrolling stays native
+  // (touch-action: pan-y), and trackpads and keys still work.
+  var centres = [], armed = false, scrollRaf = 0, settleTimer = 0;
+  var drag = null, flyRaf = 0, toRaf = 0, dragged = false;
+  var FRICTION = 0.955; // speed kept per 60th of a second
+  var BOOST = 1.6; // a flick carries further than the finger moved
+  var MAXV = 9; // px per ms
+  var GLIDE = 16.7 / (1 - FRICTION); // ms of travel per px/ms of launch speed
 
-  // Scroll-snap can nudge the reel on load; only a person's touch, wheel or
-  // key should leave the opening view.
+  // Before any of this, only a person's touch, wheel or key leaves the opening view.
   ["pointerdown", "touchstart", "wheel", "keydown"].forEach(function (t) {
     reel.addEventListener(t, function () { armed = true; reel.classList.remove("is-nudge"); }, { passive: true });
   });
@@ -259,12 +283,13 @@
     }
   }
 
-  // The belt runs with the reel, then goes back to bobbing once it is still.
+  // The belt runs with the reel (a transform, so it stays on the compositor),
+  // then goes back to bobbing once the reel is still.
   var belt = document.getElementById("belt"), beltTimer = 0;
   function runBelt() {
     if (!belt) return;
     belt.classList.add("is-live");
-    belt.style.setProperty("--x", (-reel.scrollLeft).toFixed(0) + "px");
+    belt.style.setProperty("--bx", (-(reel.scrollLeft % 60)).toFixed(1) + "px");
     clearTimeout(beltTimer);
     beltTimer = setTimeout(function () { belt.classList.remove("is-live"); }, 1600);
   }
@@ -285,14 +310,115 @@
     centres = legs.map(function (l) { return l.offsetLeft + l.offsetWidth / 2; });
   }
 
-  function nearest() {
-    var c = reel.scrollLeft + reel.clientWidth / 2, best = 0, bd = Infinity;
+  function nearestTo(left) {
+    var c = left + reel.clientWidth / 2, best = 0, bd = Infinity;
     for (var i = 0; i < centres.length; i++) {
       var d = Math.abs(centres[i] - c);
       if (d < bd) { bd = d; best = i; }
     }
     return best;
   }
+  function nearest() { return nearestTo(reel.scrollLeft); }
+  function maxLeft() { return reel.scrollWidth - reel.clientWidth; }
+  function leftFor(i) { return Math.max(0, Math.min(maxLeft(), centres[i] - reel.clientWidth / 2)); }
+
+  function stop() {
+    cancelAnimationFrame(flyRaf);
+    cancelAnimationFrame(toRaf);
+    flyRaf = toRaf = 0;
+    clearTimeout(settleTimer);
+  }
+
+  // Ease the reel to a scroll position; the stubs it passes still tick.
+  function slideTo(left, ms, done) {
+    stop();
+    var from = reel.scrollLeft, t0 = performance.now();
+    if (reduce || Math.abs(left - from) < 1) {
+      reel.scrollLeft = left;
+      if (done) done();
+      return;
+    }
+    toRaf = requestAnimationFrame(function step(now) {
+      var t = Math.min(1, (now - t0) / ms);
+      reel.scrollLeft = from + (left - from) * ease(t);
+      if (t < 1) toRaf = requestAnimationFrame(step);
+      else { toRaf = 0; if (done) done(); }
+    });
+  }
+
+  function rest(i) {
+    target = -1;
+    pick(i);
+    commit();
+  }
+
+  function settle() {
+    var i = nearest();
+    slideTo(leftFor(i), 240, function () { rest(i); });
+  }
+
+  // Roll on from a flick, aimed so the wheel coasts to a stop on a stub.
+  function fling(v) {
+    stop();
+    if (reduce || Math.abs(v) < 0.1) { settle(); return; }
+    var from = reel.scrollLeft;
+    var land = leftFor(nearestTo(Math.max(0, Math.min(maxLeft(), from + v * GLIDE))));
+    v = (land - from) / GLIDE;
+    var last = performance.now();
+    flyRaf = requestAnimationFrame(function step(now) {
+      var dt = Math.min(34, now - last);
+      last = now;
+      var before = reel.scrollLeft;
+      reel.scrollLeft = before + v * dt;
+      v *= Math.pow(FRICTION, dt / 16.7);
+      var stuck = Math.abs(reel.scrollLeft - before) < 0.3 && Math.abs(v * dt) > 0.5;
+      if (Math.abs(v) > 0.05 && !stuck) flyRaf = requestAnimationFrame(step);
+      else { flyRaf = 0; settle(); }
+    });
+  }
+
+  reel.addEventListener("pointerdown", function (e) {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    stop();
+    target = -1;
+    drag = { id: e.pointerId, x: e.clientX, y: e.clientY, left: reel.scrollLeft, moved: false, pts: [[e.timeStamp, e.clientX]] };
+  });
+
+  reel.addEventListener("pointermove", function (e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var dx = e.clientX - drag.x;
+    if (!drag.moved) {
+      if (Math.abs(dx) < 6) return;
+      if (Math.abs(e.clientY - drag.y) > Math.abs(dx)) { drag = null; return; } // the page is scrolling
+      drag.moved = true;
+      try { reel.setPointerCapture(drag.id); } catch (err) { /* pointer already gone */ }
+      reel.classList.add("is-dragging");
+    }
+    reel.scrollLeft = drag.left - dx;
+    drag.pts.push([e.timeStamp, e.clientX]);
+    if (drag.pts.length > 8) drag.pts.shift();
+  });
+
+  function release(e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var d = drag;
+    drag = null;
+    reel.classList.remove("is-dragging");
+    if (!d.moved) return; // a tap: the stub's own click handles it
+    dragged = true;
+    setTimeout(function () { dragged = false; }, 0);
+    // speed over the last 100ms of the drag; none if the finger stopped first
+    var pts = d.pts, last = pts[pts.length - 1], first = last;
+    for (var k = pts.length - 1; k >= 0 && last[0] - pts[k][0] <= 100; k--) first = pts[k];
+    var dt = last[0] - first[0];
+    var v = dt > 0 && e.timeStamp - last[0] < 80 ? -(last[1] - first[1]) / dt : 0;
+    fling(Math.max(-MAXV, Math.min(MAXV, v * BOOST)));
+  }
+  reel.addEventListener("pointerup", release);
+  reel.addEventListener("pointercancel", function (e) {
+    if (drag && drag.moved) release(e);
+    else drag = null;
+  });
 
   reel.addEventListener("scroll", function () {
     if (scrollRaf) return;
@@ -300,27 +426,25 @@
       scrollRaf = 0;
       runBelt();
       if (!armed) return;
-      var i = nearest();
-      if (lock >= 0) {
-        if (i === lock) lock = -1;
-        return;
-      }
-      select(i);
+      if (target < 0) pick(nearest());
+      // native scrolling (a trackpad, say) comes to rest on a stub as well
+      clearTimeout(settleTimer);
+      if (!drag && !flyRaf && !toRaf) settleTimer = setTimeout(settle, 140);
     });
   }, { passive: true });
 
   function go(i, focus) {
     i = Math.max(0, Math.min(N - 1, i));
-    lock = i;
-    clearTimeout(lockTimer);
-    lockTimer = setTimeout(function () { lock = -1; }, 900);
-    select(i);
-    reel.scrollTo({ left: centres[i] - reel.clientWidth / 2, behavior: reduce ? "auto" : "smooth" });
+    var from = idx < 0 ? 0 : idx;
+    target = i;
+    pick(i);
+    commit();
+    slideTo(leftFor(i), Math.min(700, 260 + 18 * Math.abs(i - from)), function () { target = -1; });
     if (focus) legs[i].focus({ preventScroll: true });
   }
 
   legs.forEach(function (l, i) {
-    l.addEventListener("click", function () { go(i, true); });
+    l.addEventListener("click", function () { if (!dragged) go(i, true); });
   });
 
   function tripStart(from, dir) {
@@ -347,8 +471,8 @@
     go(idx < 0 && e.key !== "End" ? 0 : to, true);
   });
 
-  // A vertical wheel over the reel steps through the stubs, one per 60px of
-  // wheel, and hands the page back its scroll at either end.
+  // A vertical mouse wheel over the reel steps through the stubs, one per
+  // 60px of wheel, and hands the page back its scroll at either end.
   if (window.matchMedia("(pointer: fine)").matches) {
     var wheel = 0;
     reel.addEventListener("wheel", function (e) {
@@ -369,7 +493,8 @@
     resizeTimer = setTimeout(function () {
       measure();
       if (intro) setView(worldFrame());
-      else camera(frameBox(F[idx].box, 180), true);
+      else if (shown >= 0) camera(frameBox(F[shown].box, 180), true);
+      if (idx >= 0 && !drag && !flyRaf) reel.scrollLeft = leftFor(idx);
     }, 120);
   });
 
