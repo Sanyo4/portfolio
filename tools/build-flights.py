@@ -24,6 +24,14 @@ SUFFIX = (" Heathrow", " Gatwick", " Stansted", " Narita", " Haneda", " Incheon"
 
 e = html.escape
 
+ISO = {"United Kingdom": "GB", "United States": "US", "Turkey": "TR", "Netherlands": "NL", "Singapore": "SG",
+       "Indonesia": "ID", "France": "FR", "India": "IN", "Japan": "JP", "Portugal": "PT", "Malaysia": "MY",
+       "Thailand": "TH", "Vietnam": "VN", "South Korea": "KR", "Australia": "AU", "China": "CN", "Taiwan": "TW",
+       "Hong Kong": "HK", "Greece": "GR", "Luxembourg": "LU"}
+WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
+         "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty", "Twenty-one",
+         "Twenty-two", "Twenty-three", "Twenty-four", "Twenty-five"]
+
 
 def city(iata):
     name = data.AIRPORTS[iata][0]
@@ -152,14 +160,45 @@ def build():
                   f"The busy stretch is the year in Singapore: {season_n} flights between August 2024 and July 2025, "
                   "most of them short hops around East and Southeast Asia. Two legs are in gold: ANA business class to Tokyo and back, in spring 2024.")
 
+    visas, n_countries = stamps(flights)
     page = TEMPLATE.format(
         standfirst=e(standfirst), svg=svg, reel="\n".join(reel), total=total,
         payload=json.dumps(payload, separators=(",", ":")).replace("</", "<\\/"),
         passes=passes(),
+        visas=visas, countries=WORDS[n_countries] if n_countries < len(WORDS) else n_countries,
     )
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(page, encoding="utf-8", newline="\n")
     print(f"{OUT.relative_to(ROOT)}: {total} flights, {len(page) / 1024:.0f} KB")
+
+
+def flag(country):
+    """Regional-indicator flag emoji; a country missing from ISO just goes without."""
+    return "".join(chr(0x1F1E6 + ord(c) - 65) for c in ISO.get(country, ""))
+
+
+def stamps(flights):
+    """The passport: one stamp per country, in order of first landing."""
+    first, count = {}, {}
+    for f in flights:
+        c = data.AIRPORTS[f["to"]][1]
+        count[c] = count.get(c, 0) + 1
+        first.setdefault(c, f)
+    shapes = ("round", "oval", "box")
+    tilt = (-8, 5, -3, 9, -6, 3, -10, 7, -2, 6)
+    out = []
+    for n, (c, f) in enumerate(first.items()):
+        ink = "ver" if f["season"] else ("slate" if n % 2 else "sage")
+        k = count[c]
+        out.append(f'''          <li class="visa visa--{shapes[n % 3]} visa--{ink}" style="--tilt:{tilt[n % len(tilt)]}deg" data-country="{e(c)}" data-first="{f["i"]}">
+            <span class="visa__ink">
+              <span class="visa__country">{e(c)}</span>
+              <span class="visa__code">{f["to"]}</span>
+              <span class="visa__date">{day(f["date"])}</span>
+            </span>
+            <span class="visa__tally"><span class="visa__flag" aria-hidden="true">{flag(c)}</span> <span class="visa__n">{k}</span> {"landing" if k == 1 else "landings"}</span>
+          </li>''')
+    return "\n".join(out), len(first)
 
 
 def passes():
@@ -258,6 +297,17 @@ TEMPLATE = '''<!DOCTYPE html>
 {reel}
         </div>
         <p class="fl__hint mono js-only">Scroll the stubs, or use the arrow keys.</p>
+
+        <section class="passport" id="stamps" aria-labelledby="stamps-title">
+          <div class="passport__head">
+            <p class="label">Passport</p>
+            <h2 class="passport__title" id="stamps-title">{countries} countries</h2>
+            <p class="passport__lead">Every country I have landed in, stamped with the airport and date of the first landing. Red ink is the Singapore year.<span class="js-only"> Scroll the stubs and the passport fills in as you go.</span></p>
+          </div>
+          <ol class="passport__page">
+{visas}
+          </ol>
+        </section>
       </div>
     </div>
   </main>
