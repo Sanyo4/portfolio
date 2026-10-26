@@ -147,6 +147,31 @@
     caption.textContent = t.getAttribute("data-trip") + " · " + t.getAttribute("data-when");
   }
 
+  // ---------- the passport follows the reel ----------
+  var visas = Array.prototype.slice.call(document.querySelectorAll(".visa")).map(function (el) {
+    el.addEventListener("animationend", function () { el.classList.remove("is-new"); });
+    return { el: el, country: el.getAttribute("data-country"), first: +el.getAttribute("data-first"), n: el.querySelector(".visa__n") };
+  });
+
+  function stampTo(i, prev) {
+    var count = {};
+    for (var j = 0; j <= i; j++) count[F[j].country] = (count[F[j].country] || 0) + 1;
+    visas.forEach(function (v) {
+      var seen = v.first <= i;
+      v.el.classList.toggle("is-blank", !seen);
+      v.el.classList.toggle("is-here", F[i].country === v.country);
+      if (seen && prev < v.first && !reduce) {
+        v.el.classList.remove("is-new");
+        void v.el.offsetWidth; // restart the stamp animation
+        v.el.classList.add("is-new");
+      } else if (!seen) {
+        v.el.classList.remove("is-new");
+      }
+      if (seen) v.n.textContent = count[v.country];
+      v.el.lastElementChild.lastChild.textContent = count[v.country] === 1 ? " landing" : " landings";
+    });
+  }
+
   // ---------- selecting a flight ----------
   function select(i) {
     if (i === idx) return;
@@ -182,6 +207,7 @@
     codeA.textContent = f.from;
     codeB.textContent = f.to;
     fill(f, i);
+    stampTo(i, prev);
 
     camera(frameBox(f.box, 180));
     // Undrawn until the reel has been still for a moment, so a fast scrub
