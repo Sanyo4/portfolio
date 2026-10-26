@@ -38,7 +38,7 @@
 
   // ---------- camera ----------
   var world = D.world;
-  var vb = world.slice(), camFrom = null, camTo = null, camT0 = 0, camRaf = 0;
+  var vb = world.slice();
 
   function ease(t) { return 1 - Math.pow(1 - t, 3); }
 
@@ -70,26 +70,13 @@
     if (!v.every(isFinite)) return;
     vb = v;
     svg.setAttribute("viewBox", v.map(function (n) { return n.toFixed(1); }).join(" "));
-    u = v[2] / (glass.clientWidth || 1);
+    u = v[2] / (glassW || 1);
     svg.style.setProperty("--u", u.toFixed(4));
     placeMarks();
   }
 
-  function camera(target, instant) {
-    cancelAnimationFrame(camRaf);
-    if (instant || reduce) { setView(target); return; }
-    camFrom = vb.slice();
-    camTo = target;
-    camT0 = performance.now();
-    camRaf = requestAnimationFrame(function step(now) {
-      var t = Math.min(1, (now - camT0) / 700), k = ease(t);
-      setView(camFrom.map(function (a, j) { return a + (camTo[j] - a) * k; }));
-      if (t < 1) camRaf = requestAnimationFrame(step);
-    });
-  }
-
   // ---------- route, plane, end markers ----------
-  var u = 1, idx = -1, shown = -1, drawP = 1, drawRaf = 0, len = 0, intro = true;
+  var u = 1, idx = -1, shown = -1, drawP = 1, len = 0, intro = true, glassW = 0, reelW = 0;
 
   function placeMarks() {
     if (shown < 0) return;
@@ -113,18 +100,6 @@
     var off = (len * (1 - p)).toFixed(1);
     routes[shown].style.strokeDashoffset = off;
     glow.style.strokeDashoffset = off;
-    placePlane();
-  }
-
-  function draw() {
-    cancelAnimationFrame(drawRaf);
-    if (reduce) { setDraw(1); return; }
-    var t0 = performance.now() + 120;
-    drawRaf = requestAnimationFrame(function step(now) {
-      var t = Math.max(0, Math.min(1, (now - t0) / 900));
-      setDraw(ease(t));
-      if (t < 1) drawRaf = requestAnimationFrame(step);
-    });
   }
 
   // ---------- readout ----------
@@ -176,10 +151,10 @@
   }
 
   // ---------- selecting a flight ----------
-  // Two speeds. pick() is cheap and runs for every stub that passes the
-  // centre: the stub, the readout and a haptic tick. commit() moves the map,
-  // draws the route and updates the passport, once the reel rests on a stub.
-  var commitTimer = 0, target = -1;
+  // The map follows the reel one to one (render(), below). pick() runs for
+  // every stub that reaches the centre: the stub, the readout and a haptic
+  // tick. commit() updates the passport once the reel rests on a stub.
+  var commitTimer = 0, target = -1, stamped = -1;
 
   function pick(i) {
     if (i === idx) return;
@@ -196,7 +171,6 @@
     legs[i].tabIndex = 0;
     if (armed) haptic();
     fill(F[i], i);
-    // a slow drag that lingers on a stub shows its map too
     if (target < 0) {
       clearTimeout(commitTimer);
       commitTimer = setTimeout(commit, 160);
@@ -205,13 +179,55 @@
 
   function commit() {
     clearTimeout(commitTimer);
-    var i = idx;
-    if (i < 0 || i === shown) return;
+    if (idx < 0 || idx === stamped) return;
+    var prev = stamped;
+    stamped = idx;
+    stampTo(idx, prev);
+  }
+
+  // ---------- the map follows the reel ----------
+  // The reel's position is time. With stub i centred, flight i is complete
+  // and framed. Moving towards stub i + 1 flies flight i + 1: its route draws,
+  // the plane moves along it and the camera travels between the two frames,
+  // all in step with the reel, so a fast swipe races through every flight.
+  var frames = [], lens = [], leave = null, leaveRaf = 0;
+
+  function frameAll() {
+    frames = F.map(function (f) { return frameBox(f.box, 180); });
+  }
+
+  function lengthOf(i) {
+    return lens[i] || (lens[i] = routes[i].getTotalLength());
+  }
+
+  // [i, t]: the reel sits t of the way from stub i to stub i + 1
+  function position() {
+    var c = reel.scrollLeft + reelW / 2;
+    if (c <= centres[0]) return [0, 0];
+    if (c >= centres[N - 1]) return [N - 1, 0];
+    var lo = 0, hi = N - 1;
+    while (hi - lo > 1) {
+      var mid = (lo + hi) >> 1;
+      if (centres[mid] <= c) lo = mid;
+      else hi = mid;
+    }
+    var d = c - centres[lo], gap = centres[hi] - centres[lo];
+    if (d < 2) return [lo, 0]; // a resting reel sits within a pixel or so of a stub
+    if (gap - d < 2) return [hi, 0];
+    return [lo, d / gap];
+  }
+
+  // Swap which route is current. Runs once per stub crossed, not per frame.
+  function showRoute(i) {
+    if (i === shown) return;
     var prev = shown;
     shown = i;
     var f = F[i];
-
-    if (intro) { svg.classList.remove("is-intro"); intro = false; }
+    if (intro) {
+      svg.classList.remove("is-intro");
+      intro = false;
+      if (!reduce) leave = { from: vb.slice(), t0: performance.now() }; // ease out of the opening view
+    }
     for (var j = 0; j < N; j++) {
       routes[j].classList.toggle("is-past", j < i);
       routes[j].classList.toggle("is-cur", j === i);
@@ -220,22 +236,43 @@
       routes[prev].style.strokeDasharray = "";
       routes[prev].style.strokeDashoffset = "";
     }
-    var r = routes[i];
-    len = r.getTotalLength();
-    r.style.strokeDasharray = len;
-    glow.setAttribute("d", r.getAttribute("d"));
+    len = lengthOf(i);
+    routes[i].style.strokeDasharray = len;
+    glow.setAttribute("d", routes[i].getAttribute("d"));
     glow.style.strokeDasharray = len;
     svg.classList.toggle("is-gold", f.gold);
     endA.setAttribute("cx", f.a[0]); endA.setAttribute("cy", f.a[1]);
     endB.setAttribute("cx", f.b[0]); endB.setAttribute("cy", f.b[1]);
     codeA.textContent = f.from;
     codeB.textContent = f.to;
-    stampTo(i, prev);
+  }
 
-    camera(frameBox(f.box, 180));
-    cancelAnimationFrame(drawRaf);
-    setDraw(reduce ? 1 : 0);
-    draw();
+  // Between two frames: the centre moves in a straight line and the zoom
+  // changes at an even rate, so a long-haul hop pulls out and back smoothly.
+  function between(a, b, t) {
+    var w = a[2] * Math.pow(b[2] / a[2], t);
+    var h = w * a[3] / a[2];
+    var cx = a[0] + a[2] / 2 + (b[0] + b[2] / 2 - a[0] - a[2] / 2) * t;
+    var cy = a[1] + a[3] / 2 + (b[1] + b[3] / 2 - a[1] - a[3] / 2) * t;
+    return [cx - w / 2, cy - h / 2, w, h];
+  }
+
+  function smooth(t) { return t * t * (3 - 2 * t); }
+
+  function render() {
+    if (!frames.length) return;
+    var p = position(), i = p[0], t = p[1], moving = t > 0;
+    showRoute(moving ? i + 1 : i);
+    setDraw(moving ? t : 1);
+    var v = moving ? between(frames[i], frames[i + 1], smooth(t)) : frames[i];
+    if (leave) {
+      var k = Math.min(1, (performance.now() - leave.t0) / 600);
+      v = between(leave.from, v, ease(k));
+      cancelAnimationFrame(leaveRaf);
+      if (k < 1) leaveRaf = requestAnimationFrame(render);
+      else leave = null;
+    }
+    setView(v);
   }
 
   // ---------- the reel as input: a flywheel ----------
@@ -308,10 +345,12 @@
 
   function measure() {
     centres = legs.map(function (l) { return l.offsetLeft + l.offsetWidth / 2; });
+    reelW = reel.clientWidth;
+    glassW = glass.clientWidth;
   }
 
   function nearestTo(left) {
-    var c = left + reel.clientWidth / 2, best = 0, bd = Infinity;
+    var c = left + reelW / 2, best = 0, bd = Infinity;
     for (var i = 0; i < centres.length; i++) {
       var d = Math.abs(centres[i] - c);
       if (d < bd) { bd = d; best = i; }
@@ -319,8 +358,8 @@
     return best;
   }
   function nearest() { return nearestTo(reel.scrollLeft); }
-  function maxLeft() { return reel.scrollWidth - reel.clientWidth; }
-  function leftFor(i) { return Math.max(0, Math.min(maxLeft(), centres[i] - reel.clientWidth / 2)); }
+  function maxLeft() { return reel.scrollWidth - reelW; }
+  function leftFor(i) { return Math.max(0, Math.min(maxLeft(), centres[i] - reelW / 2)); }
 
   function stop() {
     cancelAnimationFrame(flyRaf);
@@ -350,6 +389,7 @@
     target = -1;
     pick(i);
     commit();
+    render(); // also when the reel never moved, e.g. a tap on the centred stub
   }
 
   function settle() {
@@ -436,6 +476,7 @@
       runBelt();
       if (!armed) return;
       pick(nearest());
+      render();
       // native scrolling (a trackpad, say) comes to rest on a stub as well
       clearTimeout(settleTimer);
       if (!drag && !flyRaf && !toRaf) settleTimer = setTimeout(settle, 140);
@@ -448,7 +489,7 @@
     target = i;
     pick(i);
     commit();
-    slideTo(leftFor(i), Math.min(700, 260 + 18 * Math.abs(i - from)), function () { rest(i); });
+    slideTo(leftFor(i), Math.min(1100, 520 + 16 * Math.abs(i - from)), function () { rest(i); });
     if (focus) legs[i].focus({ preventScroll: true });
   }
 
@@ -503,20 +544,31 @@
     }
   }, { passive: false });
 
+  // Re-measure whenever the screen or the reel changes size: rotation, a
+  // resized window, or layout that settles after the script has run.
   var resizeTimer = 0;
-  window.addEventListener("resize", function () {
+  function remeasure() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
       measure();
-      if (intro) setView(worldFrame());
-      else if (shown >= 0) camera(frameBox(F[shown].box, 180), true);
+      frameAll();
       if (toRaf) settle();
       else if (idx >= 0 && !drag && !flyRaf) reel.scrollLeft = leftFor(idx);
+      if (intro) setView(worldFrame());
+      else render();
     }, 120);
-  });
+  }
+  if ("ResizeObserver" in window) {
+    var sizer = new ResizeObserver(remeasure);
+    sizer.observe(glass);
+    sizer.observe(reel);
+  } else {
+    window.addEventListener("resize", remeasure);
+  }
 
   // ---------- start: the whole map, every route faint, flight 1 on the reel ----------
   measure();
+  frameAll();
   svg.classList.add("is-intro");
   setView(worldFrame());
   idx = 0;
