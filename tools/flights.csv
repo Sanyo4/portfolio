@@ -1,0 +1,77 @@
+id,trip,date,dep,arr,next_day,flight,airline,from,to,km,min,cabin,aircraft
+F002,Glasgow,2022-03-29,19:20,20:50,,EZY6485,easyJet,LGW,GLA,595,90,Economy,
+F003,Glasgow,2022-03-31,15:55,17:30,,EZY880,easyJet,GLA,LGW,595,95,Economy,
+F004,"Atlanta, Miami, New York",2022-07-02,12:25,17:00,,VS4045,Virgin Atlantic,LHR,ATL,6761,575,Economy,Boeing 767-400
+F005,"Atlanta, Miami, New York",2022-07-02,18:39,20:34,,VS5193,Virgin Atlantic,ATL,MIA,959,115,Economy,Boeing 757
+F006,"Atlanta, Miami, New York",2022-07-12,11:15,14:20,,DL2219,Delta Air Lines,MIA,JFK,1757,185,Premium Economy,Boeing 737-800
+F007,"Atlanta, Miami, New York",2022-07-22,18:00,06:20,1,VS4,Virgin Atlantic,JFK,LHR,5540,440,Premium Economy,Airbus A350-1000
+F008,Antalya,2022-07-27,14:05,20:25,,BA2864,British Airways,LGW,AYT,2908,260,Economy,
+F009,Antalya,2022-08-04,22:15,00:55,1,BA2865,British Airways,AYT,LGW,2908,280,Economy,
+F010,Bali,2023-04-05,14:45,17:00,,KL1018,KLM,LHR,AMS,370,75,Economy,
+F011,Bali,2023-04-05,20:50,15:30,1,KL835,KLM,AMS,SIN,10512,760,Economy,
+F012,Bali,2023-04-06,16:50,19:25,,KL835,KLM,SIN,DPS,1673,155,Economy,
+F013,Bali,2023-04-15,20:35,23:15,,AF8218,Air France,DPS,SIN,1673,160,Economy,
+F014,Bali,2023-04-16,10:00,17:30,,AF255,Air France,SIN,CDG,10723,810,Economy,
+F015,Bali,2023-04-16,20:55,21:20,,AF1380,Air France,CDG,LHR,347,85,Economy,
+F016,New York,2023-11-12,14:55,18:15,,BA2273,British Airways,LGW,JFK,5569,500,Economy,
+F017,New York,2023-11-19,20:30,08:05,1,AA100,American Airlines,JFK,LHR,5540,395,Economy,
+F018,Mumbai and Chennai,2023-12-22,17:15,,,,Virgin Atlantic,LHR,BOM,7213,,Economy,
+F019,Mumbai and Chennai,2023-12-22,,17:35,1,,IndiGo,BOM,MAA,1033,,Economy,
+F020,Mumbai and Chennai,2024-01-03,05:35,,,,Air France,BOM,CDG,6994,,Economy,
+F021,Mumbai and Chennai,2024-01-03,,18:20,,,Air France,CDG,LHR,347,,Economy,
+F022,Tokyo,2024-03-26,19:00,17:55,1,NH212,All Nippon Airways,LHR,HND,9592,835,Business,
+F023,Tokyo,2024-04-10,09:55,16:20,,NH211,All Nippon Airways,HND,LHR,9592,865,Business,
+F024,Madeira,2024-08-20,,,,,easyJet,LGW,FNC,2456,235,Economy,Airbus A320
+F025,Madeira,2024-08-27,16:15,17:55,,TP1690,TAP Air Portugal,FNC,LIS,965,100,Economy,Airbus A330-200
+F026,Madeira,2024-08-27,20:15,22:55,,TP1366,TAP Air Portugal,LIS,LHR,1565,160,Economy,
+F027,Singapore,2024-09-07,19:35,16:05,1,BA11,British Airways,LHR,SIN,10881,810,Economy,
+F030,Kuala Lumpur,2024-09-27,12:30,13:35,,OD804,Batik Air Malaysia,SIN,KUL,296,65,Economy,Boeing 737-800
+F031,Phuket,2024-10-10,19:40,20:40,,3K537,Jetstar Asia,SIN,HKT,979,120,Economy,Airbus A320
+F032,Phuket,2024-10-14,09:20,12:25,,TR659,Scoot,HKT,SIN,979,125,Economy,Airbus A321
+F033,"Da Nang, Busan, Seoul",2024-10-25,11:15,13:10,,,VietJet Air,SIN,DAD,1696,175,Economy,Airbus A321
+F034,"Da Nang, Busan, Seoul",2024-10-26,02:55,09:00,,,VietJet Air,DAD,PUS,2962,245,Economy,Airbus A321
+F035,"Da Nang, Busan, Seoul",2024-10-29,07:45,08:45,,LJ604,Jin Air,PUS,GMP,327,60,Economy,Boeing 737-800
+F036,"Da Nang, Busan, Seoul",2024-11-02,18:50,01:00,1,TW171,T'way Air,ICN,SIN,4625,430,Economy,Boeing 737
+F039,Bali,2024-11-22,07:20,10:05,,3K243,Jetstar Asia,SIN,DPS,1673,165,Economy,Airbus A320
+F040,Bali,2024-11-24,09:05,11:45,,QZ504,Indonesia AirAsia,DPS,SIN,1673,160,Economy,Airbus A320
+F041,Ho Chi Minh City,2024-11-28,17:00,18:05,,VJ814,VietJet Air,SIN,SGN,1092,125,Economy,Airbus A321
+F043,Ho Chi Minh City,2024-12-01,08:50,12:05,,VJ811,VietJet Air,SGN,SIN,1092,135,Economy,Airbus A320
+F044,Perth,2024-12-22,17:00,22:05,,TR16,Scoot,SIN,PER,3912,305,Economy,Boeing 787
+F045,Perth,2025-01-05,23:35,04:55,1,JQ99,Jetstar Airways,PER,SIN,3912,320,Economy,
+F046,"Tokyo, Nagoya, Sapporo",2025-01-14,00:50,08:40,,NQ4,Air Japan,SIN,NRT,5358,410,Economy,Boeing 787-8
+F047,"Tokyo, Nagoya, Sapporo",2025-01-19,16:55,18:35,,JL3117,Japan Airlines,NGO,CTS,976,100,Economy,Boeing 737-800
+F048,"Tokyo, Nagoya, Sapporo",2025-01-22,19:00,20:50,,IJ838,Spring Airlines Japan,CTS,NRT,787,110,Economy,Boeing 737-800
+F049,"Tokyo, Nagoya, Sapporo",2025-01-24,17:05,23:40,,NQ3,Air Japan,NRT,SIN,5358,455,Economy,Boeing 787-8
+F050,Bangkok,2025-02-27,21:30,23:00,,SL105,Thai Lion Air,SIN,DMK,1444,150,Economy,Boeing 737-800
+F051,Bangkok,2025-03-02,07:00,10:30,,FD359,Thai AirAsia,DMK,SIN,1444,150,Economy,Airbus A320
+F052,Tokyo,2025-03-20,22:30,06:15,1,TR808,Scoot,SIN,NRT,5358,405,Economy,Boeing 787-9
+F053,Tokyo,2025-03-24,09:00,15:30,,TR809,Scoot,NRT,SIN,5358,450,Economy,Boeing 787-9
+F054,Krabi,2025-03-28,14:05,14:45,,TR684,Scoot,SIN,KBV,932,100,Economy,
+F055,Krabi,2025-03-30,23:05,02:00,1,TR691,Scoot,KBV,SIN,932,115,Economy,
+F056,"Bali, Borneo, Java",2025-04-04,07:15,10:00,,3K243,Jetstar Asia,SIN,DPS,1673,165,Economy,Airbus A320
+F057,"Bali, Borneo, Java",2025-04-04,12:05,13:30,,QZ618,Indonesia AirAsia,DPS,BDJ,592,85,Economy,Airbus A320
+F058,"Bali, Borneo, Java",2025-04-04,15:20,15:30,,IU637,Super Air Jet,BDJ,SUB,489,70,Economy,
+F059,"Bali, Borneo, Java",2025-04-06,19:35,22:55,,TR267,Scoot,SUB,SIN,1377,140,Economy,Boeing 787-8
+F060,Kota Kinabalu,2025-04-15,13:10,15:40,,AK1794,AirAsia,SIN,BKI,1431,150,Economy,Airbus A320
+F061,Kota Kinabalu,2025-04-20,09:05,,,AK1793,AirAsia,BKI,SIN,1431,,Economy,Airbus A320
+F062,"Japan, Korea, Shanghai, Taipei, Hong Kong, Chongqing",2025-05-09,00:55,08:40,,NQ4,Air Japan,SIN,NRT,5358,405,Economy,Boeing 787-8
+F063,"Japan, Korea, Shanghai, Taipei, Hong Kong, Chongqing",2025-05-24,12:30,14:00,,TW202,T'way Air,FUK,ICN,563,90,Economy,Airbus A330-300
+F064,"Japan, Korea, Shanghai, Taipei, Hong Kong, Chongqing",2025-05-27,12:00,13:00,,MU512,China Eastern,GMP,SHA,866,120,Economy,Airbus A330-300
+F065,"Japan, Korea, Shanghai, Taipei, Hong Kong, Chongqing",2025-05-31,12:30,14:25,,CA195,Air China,PVG,TPE,677,115,Economy,Airbus A330-300
+F066,"Japan, Korea, Shanghai, Taipei, Hong Kong, Chongqing",2025-06-05,13:40,15:35,,UO111,HK Express,TPE,HKG,806,115,Economy,Airbus A320
+F067,"Japan, Korea, Shanghai, Taipei, Hong Kong, Chongqing",2025-06-09,20:55,23:30,,HX496,Hong Kong Airlines,HKG,CKG,1098,155,Economy,Airbus A320
+F068,"Japan, Korea, Shanghai, Taipei, Hong Kong, Chongqing",2025-06-13,08:20,13:25,,CZ2095,China Southern,CKG,SIN,3165,305,Economy,
+F069,Home,2025-06-14,23:20,06:30,1,BA12,British Airways,SIN,LHR,10881,850,Economy,Boeing 787-9
+F070,Kalamata,2025-06-27,,,,,British Airways,LHR,KLX,2384,230,Economy,
+F071,Kalamata,2025-07-04,,,,,British Airways,KLX,LHR,2384,240,Economy,
+F072,Edinburgh,2025-09-20,13:00,14:15,,U2213,easyJet,BRS,EDI,510,75,Economy,Airbus A320
+F073,Edinburgh,2025-09-21,07:20,08:35,,U2319,easyJet,EDI,BRS,510,75,Economy,Airbus A320
+F074,Vietnam,2026-03-25,17:05,00:05,1,TK1998,Turkish Airlines,LGW,IST,2461,240,Economy,
+F075,Vietnam,2026-03-26,02:25,15:25,,TK164,Turkish Airlines,IST,HAN,7415,540,Economy,
+F076,Vietnam,2026-04-11,09:20,12:15,,TR503,Scoot,SGN,SIN,1092,115,Economy,Airbus A320neo
+F077,Vietnam,2026-04-11,23:10,05:15,1,TK55,Turkish Airlines,SIN,IST,8678,665,Economy,
+F078,Vietnam,2026-04-12,07:50,09:55,,TK1981,Turkish Airlines,IST,LGW,2461,245,Economy,
+F079,Luxembourg,2026-05-28,06:55,09:10,,FR1459,Ryanair,STN,LUX,489,75,Economy,
+F080,Luxembourg,2026-05-28,22:10,22:25,,FR2861,Ryanair,LUX,STN,489,75,Economy,
+F081,Ahmedabad,2026-09-22,21:00,10:50,1,AI160,Air India,LGW,AMD,6849,560,Economy,Boeing 777-300ER
+F082,Ahmedabad,2026-10-10,13:35,19:25,,AI159,Air India,AMD,LGW,6849,620,Economy,Boeing 777-300ER
