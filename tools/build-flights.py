@@ -205,12 +205,15 @@ def stats(flights):
     """Stats for nerds: totals, the 43 in 45 on its own, records, flights by year."""
     from collections import Counter
 
+    flights = sorted(flights, key=lambda f: (f["date"], f["dep"] or "99:99"))
+
     def totals(fs):
         mins = sum(int(f["min"] or 0) for f in fs)
         return {
             "flights": len(fs),
             "km": sum(int(f["km"]) for f in fs),
             "hours": round(mins / 60),
+            "untimed": sum(1 for f in fs if not f["min"]),
             "airports": len({f["from"] for f in fs} | {f["to"] for f in fs}),
             "countries": len({data.AIRPORTS[f["to"]][1] for f in fs}),
             "airlines": len({f["airline"] for f in fs}),
@@ -220,7 +223,8 @@ def stats(flights):
         rows = [
             ("Flights", f'{t["flights"]}', extra.get("flights", "")),
             ("Distance", f'{t["km"]:,} km', f'{t["km"] / 40075:.1f} times round the Earth'),
-            ("In the air", f'{t["hours"]} hours', f'{t["hours"] / 24:.1f} days, gate to gate'),
+            ("In the air", f'{t["hours"]} hours', f'{t["hours"] / 24:.1f} days, gate to gate'
+             + (f'; {t["untimed"]} flight{"s" if t["untimed"] > 1 else ""} with no times left out' if t["untimed"] else "")),
             ("Airports", f'{t["airports"]}', ""),
             ("Countries", f'{t["countries"]}', ""),
             ("Airlines", f'{t["airlines"]}', ""),
@@ -230,11 +234,22 @@ def stats(flights):
             for k, v, s in rows)
 
     season = [f for f in flights if f["season"]]
-    first, last = date.fromisoformat(season[0]["date"]), date.fromisoformat(season[-1]["date"])
-    weeks = round((last - first).days / 7)
+    season_block = ""
+    if season:
+        first, last = date.fromisoformat(season[0]["date"]), date.fromisoformat(season[-1]["date"])
+        weeks = round((last - first).days / 7)
+        span = f"{first.strftime('%d %b %Y').lstrip('0')} to {last.strftime('%d %b %Y').lstrip('0')}"
+        season_block = (f'\n            <h3 class="nerd__head">The {len(season)} flights in {weeks} weeks</h3>'
+                        f'\n            <dl class="nerd__grid nerd__grid--season">{cards(totals(season), {"flights": span})}</dl>')
 
-    longest = max(flights, key=lambda f: int(f["km"]))
-    shortest = min(flights, key=lambda f: int(f["km"]))
+    def named(f, *rest):
+        """'BA11 London to Singapore, 10,881 km' without gaps when a field is missing."""
+        head = " ".join(x for x in (f["flight"], f"{city(f['from'])} to {city(f['to'])}") if x)
+        return ", ".join(x for x in (head, *rest) if x)
+
+    # ties go to the longer flight in time
+    longest = max(flights, key=lambda f: (int(f["km"]), int(f["min"] or 0)))
+    shortest = min(flights, key=lambda f: (int(f["km"]), int(f["min"] or 0)))
     ends = Counter()
     for f in flights:
         ends[f["from"]] += 1
@@ -250,21 +265,23 @@ def stats(flights):
     red = sum(1 for f in flights if f["dep"] and (f["dep"] >= "22:00" or f["dep"] < "05:00"))
     airline, airline_n = Counter(f["airline"] for f in flights).most_common(1)[0]
     typed = [f for f in flights if f["aircraft"]]
-    plane, plane_n = Counter(f["aircraft"] for f in typed).most_common(1)[0]
     cabins = Counter(f["cabin"] for f in flights)
     cabin_line = ", ".join(f"{cabins[c]} {c.lower()}" for c in ("Economy", "Premium Economy", "Business") if cabins[c])
 
     records = [
-        ("Longest", f'{longest["flight"]} {city(longest["from"])} to {city(longest["to"])}, {int(longest["km"]):,} km, {hours(longest["min"])}'),
-        ("Shortest", f'{shortest["flight"]} {city(shortest["from"])} to {city(shortest["to"])}, {int(shortest["km"]):,} km'),
+        ("Longest", named(longest, f'{int(longest["km"]):,} km', hours(longest["min"]))),
+        ("Shortest", named(shortest, f'{int(shortest["km"]):,} km')),
         ("Busiest airport", f"{ {'SIN': 'Singapore Changi'}.get(hub, data.AIRPORTS[hub][0])}, {hub_n} takeoffs and landings"),
-        ("Most flown route", top_routes),
+        ("Most flown route", top_routes if top_n > 1 else ""),
         ("Red-eyes", f"{red} flights leaving between 10pm and 5am"),
         ("Busiest month", f"{busy}, {m_n} flights" + (" each" if " and " in busy else "")),
         ("Most flown airline", f"{airline}, {airline_n} flights"),
-        ("Most flown aircraft", f"{plane}, {plane_n} of the {len(typed)} flights with a known type"),
         ("Cabins", cabin_line),
     ]
+    if typed:
+        plane, plane_n = Counter(f["aircraft"] for f in typed).most_common(1)[0]
+        records.insert(-1, ("Most flown aircraft", f"{plane}, {plane_n} of the {len(typed)} flights with a known type"))
+    records = [(k, v) for k, v in records if v]
     years = Counter(f["date"][:4] for f in flights)
     top_year = max(years.values())
     bars = "".join(
@@ -272,12 +289,11 @@ def stats(flights):
         for y, k in sorted(years.items()))
 
     return f'''        <details class="nerd" id="stats">
-          <summary class="nerd__tab"><span class="mono">Stats for nerds</span></summary>
+          <summary class="nerd__tab"><span class="mono">Stats for nerds<span class="nerd__sign" aria-hidden="true"></span></span></summary>
           <div class="nerd__body">
-            <h3 class="nerd__head">Since 2022</h3>
-            <dl class="nerd__grid">{cards(totals(flights), {})}</dl>
-            <h3 class="nerd__head">The {len(season)} in {weeks}</h3>
-            <dl class="nerd__grid nerd__grid--season">{cards(totals(season), {"flights": f"{first.strftime('%d %b %Y').lstrip('0')} to {last.strftime('%d %b %Y').lstrip('0')}"})}</dl>
+            <h2 class="sr-only">Stats for nerds</h2>
+            <h3 class="nerd__head">Since {flights[0]["date"][:4]}</h3>
+            <dl class="nerd__grid">{cards(totals(flights), {})}</dl>{season_block}
             <h3 class="nerd__head">Records</h3>
             <dl class="nerd__records">{"".join(f"<div><dt>{k}</dt><dd>{e(v)}</dd></div>" for k, v in records)}</dl>
             <h3 class="nerd__head">Flights by year</h3>

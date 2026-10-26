@@ -450,8 +450,9 @@
   box-shadow: var(--shadow-1);
   transition: background .25s var(--ease);
 }
-.nerd__tab .mono::after { content: "+"; font-size: .9rem; line-height: 1; color: var(--scr-route); }
-.nerd[open] .nerd__tab .mono::after { content: "\2013"; }
+/* the +/– sits in an aria-hidden span, so screen readers hear only the name and its state */
+.nerd__sign::after { content: "+"; font-size: .9rem; line-height: 1; color: var(--scr-route); }
+.nerd[open] .nerd__sign::after { content: "\2013"; }
 .nerd__tab:hover .mono { background: var(--slate-3); }
 .nerd__tab:focus-visible { outline: none; }
 .nerd__tab:focus-visible .mono { outline: 3px solid var(--ver); outline-offset: 3px; }
