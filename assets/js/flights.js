@@ -70,13 +70,13 @@
     if (!v.every(isFinite)) return;
     vb = v;
     svg.setAttribute("viewBox", v.map(function (n) { return n.toFixed(1); }).join(" "));
-    u = v[2] / (glass.clientWidth || 1);
+    u = v[2] / (glassW || 1);
     svg.style.setProperty("--u", u.toFixed(4));
     placeMarks();
   }
 
   // ---------- route, plane, end markers ----------
-  var u = 1, idx = -1, shown = -1, drawP = 1, len = 0, intro = true;
+  var u = 1, idx = -1, shown = -1, drawP = 1, len = 0, intro = true, glassW = 0, reelW = 0;
 
   function placeMarks() {
     if (shown < 0) return;
@@ -202,7 +202,7 @@
 
   // [i, t]: the reel sits t of the way from stub i to stub i + 1
   function position() {
-    var c = reel.scrollLeft + reel.clientWidth / 2;
+    var c = reel.scrollLeft + reelW / 2;
     if (c <= centres[0]) return [0, 0];
     if (c >= centres[N - 1]) return [N - 1, 0];
     var lo = 0, hi = N - 1;
@@ -226,7 +226,7 @@
     if (intro) {
       svg.classList.remove("is-intro");
       intro = false;
-      leave = { from: vb.slice(), t0: performance.now() }; // ease out of the opening view
+      if (!reduce) leave = { from: vb.slice(), t0: performance.now() }; // ease out of the opening view
     }
     for (var j = 0; j < N; j++) {
       routes[j].classList.toggle("is-past", j < i);
@@ -345,10 +345,12 @@
 
   function measure() {
     centres = legs.map(function (l) { return l.offsetLeft + l.offsetWidth / 2; });
+    reelW = reel.clientWidth;
+    glassW = glass.clientWidth;
   }
 
   function nearestTo(left) {
-    var c = left + reel.clientWidth / 2, best = 0, bd = Infinity;
+    var c = left + reelW / 2, best = 0, bd = Infinity;
     for (var i = 0; i < centres.length; i++) {
       var d = Math.abs(centres[i] - c);
       if (d < bd) { bd = d; best = i; }
@@ -356,8 +358,8 @@
     return best;
   }
   function nearest() { return nearestTo(reel.scrollLeft); }
-  function maxLeft() { return reel.scrollWidth - reel.clientWidth; }
-  function leftFor(i) { return Math.max(0, Math.min(maxLeft(), centres[i] - reel.clientWidth / 2)); }
+  function maxLeft() { return reel.scrollWidth - reelW; }
+  function leftFor(i) { return Math.max(0, Math.min(maxLeft(), centres[i] - reelW / 2)); }
 
   function stop() {
     cancelAnimationFrame(flyRaf);
@@ -542,8 +544,10 @@
     }
   }, { passive: false });
 
+  // Re-measure whenever the screen or the reel changes size: rotation, a
+  // resized window, or layout that settles after the script has run.
   var resizeTimer = 0;
-  window.addEventListener("resize", function () {
+  function remeasure() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function () {
       measure();
@@ -553,7 +557,14 @@
       if (intro) setView(worldFrame());
       else render();
     }, 120);
-  });
+  }
+  if ("ResizeObserver" in window) {
+    var sizer = new ResizeObserver(remeasure);
+    sizer.observe(glass);
+    sizer.observe(reel);
+  } else {
+    window.addEventListener("resize", remeasure);
+  }
 
   // ---------- start: the whole map, every route faint, flight 1 on the reel ----------
   measure();
