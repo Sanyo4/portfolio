@@ -165,7 +165,7 @@ def build():
         standfirst=e(standfirst), svg=svg, reel="\n".join(reel), total=total,
         payload=json.dumps(payload, separators=(",", ":")).replace("</", "<\\/"),
         passes=passes(),
-        visas=visas, countries=WORDS[n_countries],
+        visas=visas, countries=WORDS[n_countries] if n_countries < len(WORDS) else n_countries,
     )
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(page, encoding="utf-8", newline="\n")
@@ -173,7 +173,8 @@ def build():
 
 
 def flag(country):
-    return "".join(chr(0x1F1E6 + ord(c) - 65) for c in ISO[country])
+    """Regional-indicator flag emoji; a country missing from ISO just goes without."""
+    return "".join(chr(0x1F1E6 + ord(c) - 65) for c in ISO.get(country, ""))
 
 
 def stamps(flights):
@@ -301,7 +302,7 @@ TEMPLATE = '''<!DOCTYPE html>
           <div class="passport__head">
             <p class="label">Passport</p>
             <h2 class="passport__title" id="stamps-title">{countries} countries</h2>
-            <p class="passport__lead">Every country I have landed in, stamped with the airport and date of the first landing. Red ink is the Singapore year. Scroll the stubs and the passport fills in as you go.</p>
+            <p class="passport__lead">Every country I have landed in, stamped with the airport and date of the first landing. Red ink is the Singapore year.<span class="js-only"> Scroll the stubs and the passport fills in as you go.</span></p>
           </div>
           <ol class="passport__page">
 {visas}

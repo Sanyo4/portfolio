@@ -369,9 +369,8 @@
   gap: 1px;
   width: 96px;
   max-width: 100%;
+  position: relative;
   border: 2.5px solid var(--c);
-  outline: 1px solid var(--c);
-  outline-offset: -6px;
   color: var(--c);
   font-family: var(--mono);
   font-weight: 500;
@@ -381,6 +380,15 @@
   mix-blend-mode: multiply;
   opacity: .88;
   transition: opacity .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+}
+/* the inner ring, drawn as its own box so older Safari keeps it round */
+.visa__ink::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid var(--c);
+  border-radius: inherit;
+  pointer-events: none;
 }
 .visa--round .visa__ink { aspect-ratio: 1; border-radius: 50%; }
 .visa--oval .visa__ink { width: 104px; aspect-ratio: 1.45; border-radius: 50%; }
@@ -402,7 +410,8 @@
 .visa__n { color: var(--ink); }
 
 /* with JS the passport follows the reel */
-.js .visa.is-blank .visa__ink { opacity: .16; color: var(--slate-1); border-color: var(--slate-1); outline-color: transparent; }
+.js .visa.is-blank .visa__ink { opacity: .16; color: var(--slate-1); border-color: var(--slate-1); }
+.js .visa.is-blank .visa__ink::before { border-color: transparent; }
 .js .visa.is-blank .visa__ink > * { visibility: hidden; }
 .js .visa.is-blank .visa__tally { visibility: hidden; }
 .js .visa.is-here .visa__ink { opacity: 1; }

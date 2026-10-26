@@ -159,8 +159,11 @@
     visas.forEach(function (v) {
       var seen = v.first <= i;
       v.el.classList.toggle("is-blank", !seen);
+      if (seen) v.el.removeAttribute("aria-hidden");
+      else v.el.setAttribute("aria-hidden", "true");
       v.el.classList.toggle("is-here", F[i].country === v.country);
-      if (seen && prev < v.first && !reduce) {
+      // stamp only when stepping forward from a flight, not when leaving the full opening view
+      if (seen && prev >= 0 && prev < v.first && !reduce) {
         v.el.classList.remove("is-new");
         void v.el.offsetWidth; // restart the stamp animation
         v.el.classList.add("is-new");
