@@ -111,7 +111,9 @@
   .card__photo { width: 76px; height: 76px; }
   .card__hook { margin: 10px 0; font-size: .98rem; }
   .card__links { gap: 6px; }
-  .card__links .pass { min-height: 52px; }
+  .card__links .pass { min-height: 48px; }
+  .card__links .pass__body { padding-block: 6px; }
+  .card__site { margin-top: 2px; }
 }
 
 @media (max-width: 379px) {

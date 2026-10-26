@@ -7,13 +7,23 @@ except Microsoft 365 Copilot. Edit here, then run tools/build-case-studies.py.
 
 WORK = [
     {
-        "when": "Aug 2025 to now",
+        "when": "Oct 2026 to now",
+        "role": "Founder",
+        "org": "Vedas, maker of Workings by Vedas",
+        "text": [
+            "In October I set up Vedas, my own company. Our first product is Workings by Vedas, for UK accounting firms.",
+            "A firm uploads a client's files and gets back a draft pack for VAT, Making Tax Digital, Self Assessment or year-end accounts. Anything unclear comes to the accountant as a question. The accountant checks the pack and signs, and nothing is filed for them.",
+        ],
+        "link": ("https://vedas.cloud", "vedas.cloud"),
+    },
+    {
+        "when": "Aug 2025 to Oct 2026",
         "role": "Automation Project Manager, part-time",
         "org": "Innovi Advisors, a UK accountancy practice",
         "text": [
-            "I own the firm's AI programme, from partner discovery through to staff using it.",
+            "I owned the firm's AI programme, from partner discovery through to staff using it.",
             "I interviewed the partners to find where staff time went and worked out why 15 draft agents had stalled. They approved the phased plan I presented. Then I built Oracle, one agent staff brief like a junior: it asks clarifying questions and routes the work, so nobody has to pick a tool. The automation is capped on purpose so a person makes the judgement calls.",
-            "I run the staff training, built Alfred, a support agent that points colleagues to the right tool, wrote the firm's whitepaper on AI-assisted accounts preparation and started its AI policy, based on ISO/IEC 42001. Now I'm leading the rebuild of Oracle as a product the firm owns.",
+            "I ran the staff training, built Alfred, a support agent that points colleagues to the right tool, wrote the firm's whitepaper on AI-assisted accounts preparation and started its AI policy, based on ISO/IEC 42001.",
         ],
         "link": ("../case-studies/fifteen-agents-one-front-desk.html", "Case study: Fifteen agents, one front desk"),
     },
