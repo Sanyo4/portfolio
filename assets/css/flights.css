@@ -433,3 +433,74 @@
   .visa__code { font-size: 1.4rem; }
   .visa__date { font-size: .58rem; }
 }
+
+/* ---------- stats for nerds: a native details drawer, dark like the screen ---------- */
+
+.nerd { max-width: 980px; margin: 22px auto 0; }
+.nerd__tab { display: flex; justify-content: center; list-style: none; cursor: pointer; }
+.nerd__tab::-webkit-details-marker { display: none; }
+.nerd__tab .mono {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  background: var(--slate-4);
+  color: #edf2ec;
+  border-radius: 999px;
+  box-shadow: var(--shadow-1);
+  transition: background .25s var(--ease);
+}
+.nerd__tab .mono::after { content: "+"; font-size: .9rem; line-height: 1; color: var(--scr-route); }
+.nerd[open] .nerd__tab .mono::after { content: "\2013"; }
+.nerd__tab:hover .mono { background: var(--slate-3); }
+.nerd__tab:focus-visible { outline: none; }
+.nerd__tab:focus-visible .mono { outline: 3px solid var(--ver); outline-offset: 3px; }
+
+.nerd__body {
+  margin-top: 16px;
+  padding: clamp(18px, 4vw, 32px);
+  background: var(--slate-4);
+  color: var(--scr-text);
+  border-radius: 12px;
+  box-shadow: var(--shadow-3);
+}
+.nerd__head {
+  margin: 26px 0 10px;
+  font-family: var(--mono);
+  font-size: .66rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--slate-1);
+}
+.nerd__head:first-child { margin-top: 0; }
+
+.nerd__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 1px;
+  margin: 0;
+  background: rgba(215, 227, 227, .12);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.nerd__stat { padding: 12px 14px; background: #1f2c33; }
+.nerd dt { font-family: var(--mono); font-size: .6rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--slate-1); }
+.nerd__stat dd { margin: 4px 0 0; }
+.nerd__stat strong { display: block; font-size: clamp(1.15rem, .95rem + 1vw, 1.45rem); font-weight: 500; line-height: 1.15; white-space: nowrap; color: #f4f5f1; }
+.nerd__stat span { display: block; margin-top: 3px; font-family: var(--mono); font-size: .58rem; letter-spacing: .06em; color: var(--slate-1); }
+.nerd__grid--season strong { color: var(--scr-route); }
+
+.nerd__records { margin: 0; }
+.nerd__records > div { display: grid; gap: 2px; padding: 9px 0; border-top: 1px dashed rgba(215, 227, 227, .16); }
+.nerd__records dd { margin: 0; font-size: .92rem; color: #f4f5f1; }
+
+.nerd__years { margin: 0; padding: 0; list-style: none; }
+.nerd__years li { display: grid; grid-template-columns: 3rem 1fr 2rem; align-items: center; gap: 10px; padding: 4px 0; }
+.nerd__year, .nerd__count { font-family: var(--mono); font-size: .7rem; color: var(--slate-1); }
+.nerd__count { text-align: right; color: #f4f5f1; }
+.nerd__bar { height: 10px; width: calc(var(--w) * 100%); background: var(--scr-route); border-radius: 2px; }
+
+@media (min-width: 760px) {
+  .nerd__records > div { grid-template-columns: 12rem 1fr; gap: 16px; align-items: baseline; }
+}

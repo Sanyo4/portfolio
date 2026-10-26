@@ -165,7 +165,7 @@ def build():
         standfirst=e(standfirst), svg=svg, reel="\n".join(reel), total=total,
         payload=json.dumps(payload, separators=(",", ":")).replace("</", "<\\/"),
         passes=passes(),
-        visas=visas, countries=WORDS[n_countries] if n_countries < len(WORDS) else n_countries,
+        stats=stats(flights), visas=visas, countries=WORDS[n_countries] if n_countries < len(WORDS) else n_countries,
     )
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(page, encoding="utf-8", newline="\n")
@@ -199,6 +199,91 @@ def stamps(flights):
             <span class="visa__tally"><span class="visa__flag" aria-hidden="true">{flag(c)}</span> <span class="visa__n">{k}</span> {"landing" if k == 1 else "landings"}</span>
           </li>''')
     return "\n".join(out), len(first)
+
+
+def stats(flights):
+    """Stats for nerds: totals, the 43 in 45 on its own, records, flights by year."""
+    from collections import Counter
+
+    def totals(fs):
+        mins = sum(int(f["min"] or 0) for f in fs)
+        return {
+            "flights": len(fs),
+            "km": sum(int(f["km"]) for f in fs),
+            "hours": round(mins / 60),
+            "airports": len({f["from"] for f in fs} | {f["to"] for f in fs}),
+            "countries": len({data.AIRPORTS[f["to"]][1] for f in fs}),
+            "airlines": len({f["airline"] for f in fs}),
+        }
+
+    def cards(t, extra):
+        rows = [
+            ("Flights", f'{t["flights"]}', extra.get("flights", "")),
+            ("Distance", f'{t["km"]:,} km', f'{t["km"] / 40075:.1f} times round the Earth'),
+            ("In the air", f'{t["hours"]} hours', f'{t["hours"] / 24:.1f} days, gate to gate'),
+            ("Airports", f'{t["airports"]}', ""),
+            ("Countries", f'{t["countries"]}', ""),
+            ("Airlines", f'{t["airlines"]}', ""),
+        ]
+        return "".join(
+            f'<div class="nerd__stat"><dt>{k}</dt><dd><strong>{v}</strong>{f"<span>{e(s)}</span>" if s else ""}</dd></div>'
+            for k, v, s in rows)
+
+    season = [f for f in flights if f["season"]]
+    first, last = date.fromisoformat(season[0]["date"]), date.fromisoformat(season[-1]["date"])
+    weeks = round((last - first).days / 7)
+
+    longest = max(flights, key=lambda f: int(f["km"]))
+    shortest = min(flights, key=lambda f: int(f["km"]))
+    ends = Counter()
+    for f in flights:
+        ends[f["from"]] += 1
+        ends[f["to"]] += 1
+    hub, hub_n = ends.most_common(1)[0]
+    routes = Counter(tuple(sorted((f["from"], f["to"]))) for f in flights)
+    top_n = routes.most_common(1)[0][1]
+    tops = [f"{city(a)} and {city(b)}" for (a, b), k in routes.items() if k == top_n]
+    top_routes = "; ".join(tops) + (f", {top_n} flights each" if len(tops) > 1 else f", {top_n} flights")
+    months = Counter(f["date"][:7] for f in flights)
+    m_n = months.most_common(1)[0][1]
+    busy = " and ".join(date.fromisoformat(m + "-01").strftime("%B %Y") for m, k in sorted(months.items()) if k == m_n)
+    red = sum(1 for f in flights if f["dep"] and (f["dep"] >= "22:00" or f["dep"] < "05:00"))
+    airline, airline_n = Counter(f["airline"] for f in flights).most_common(1)[0]
+    typed = [f for f in flights if f["aircraft"]]
+    plane, plane_n = Counter(f["aircraft"] for f in typed).most_common(1)[0]
+    cabins = Counter(f["cabin"] for f in flights)
+    cabin_line = ", ".join(f"{cabins[c]} {c.lower()}" for c in ("Economy", "Premium Economy", "Business") if cabins[c])
+
+    records = [
+        ("Longest", f'{longest["flight"]} {city(longest["from"])} to {city(longest["to"])}, {int(longest["km"]):,} km, {hours(longest["min"])}'),
+        ("Shortest", f'{shortest["flight"]} {city(shortest["from"])} to {city(shortest["to"])}, {int(shortest["km"]):,} km'),
+        ("Busiest airport", f"{ {'SIN': 'Singapore Changi'}.get(hub, data.AIRPORTS[hub][0])}, {hub_n} takeoffs and landings"),
+        ("Most flown route", top_routes),
+        ("Red-eyes", f"{red} flights leaving between 10pm and 5am"),
+        ("Busiest month", f"{busy}, {m_n} flights" + (" each" if " and " in busy else "")),
+        ("Most flown airline", f"{airline}, {airline_n} flights"),
+        ("Most flown aircraft", f"{plane}, {plane_n} of the {len(typed)} flights with a known type"),
+        ("Cabins", cabin_line),
+    ]
+    years = Counter(f["date"][:4] for f in flights)
+    top_year = max(years.values())
+    bars = "".join(
+        f'<li><span class="nerd__year">{y}</span><span class="nerd__bar" style="--w:{k / top_year:.3f}"></span><span class="nerd__count">{k}</span></li>'
+        for y, k in sorted(years.items()))
+
+    return f'''        <details class="nerd" id="stats">
+          <summary class="nerd__tab"><span class="mono">Stats for nerds</span></summary>
+          <div class="nerd__body">
+            <h3 class="nerd__head">Since 2022</h3>
+            <dl class="nerd__grid">{cards(totals(flights), {})}</dl>
+            <h3 class="nerd__head">The {len(season)} in {weeks}</h3>
+            <dl class="nerd__grid nerd__grid--season">{cards(totals(season), {"flights": f"{first.strftime('%d %b %Y').lstrip('0')} to {last.strftime('%d %b %Y').lstrip('0')}"})}</dl>
+            <h3 class="nerd__head">Records</h3>
+            <dl class="nerd__records">{"".join(f"<div><dt>{k}</dt><dd>{e(v)}</dd></div>" for k, v in records)}</dl>
+            <h3 class="nerd__head">Flights by year</h3>
+            <ol class="nerd__years">{bars}</ol>
+          </div>
+        </details>'''
 
 
 def passes():
@@ -297,6 +382,8 @@ TEMPLATE = '''<!DOCTYPE html>
 {reel}
         </div>
         <p class="fl__hint mono js-only">Scroll the stubs, or use the arrow keys.</p>
+
+{stats}
 
         <section class="passport" id="stamps" aria-labelledby="stamps-title">
           <div class="passport__head">
