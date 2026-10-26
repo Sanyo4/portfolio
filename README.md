@@ -26,7 +26,7 @@ or `python3 -m http.server 5173`. To view it on a phone on the same wifi, use th
 
 ## Flights
 
-`python3 tools/build-flights.py` builds `flights/index.html` from `tools/flights.csv`. The map is drawn at build time (plate carree, land from `tools/land-110m.json`, Natural Earth 110m via world-atlas 2.0.2), so the page ships ready-made SVG paths and `assets/js/flights.js` only moves the camera, draws the current route and flies the plane.
+`python3 tools/build-flights.py` builds `flights/index.html` from `tools/flights.csv`. The map is drawn at build time (plate carree, land from `tools/land-110m.json`, Natural Earth 110m via world-atlas 2.0.2), so the page ships ready-made SVG paths and `assets/js/flights.js` only moves the camera, draws the current route and flies the plane. The same build writes the passport (one stamp per country, in order of first landing, filled in by the script as the reel moves) and the "Stats for nerds" drawer, a plain `<details>` whose numbers are all worked out at build time.
 
 `tools/flights.csv` is the public copy of the vault's `Resources/Flight Log.csv`. Refresh it with `python3 tools/flights_data.py` (it reads the vault by default, or pass the CSV path). It keeps public fields only: no booking references, email links, seats, notes or other passengers, and no cancelled, undated or future flights. Trip titles on the site come from the `TRIPS` table in that script, keyed by the vault ID of each trip's first flight, so the vault's own trip names never reach the repo; a new trip needs a line there. A new airport needs a line in `AIRPORTS`.
 
