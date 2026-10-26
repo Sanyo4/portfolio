@@ -214,7 +214,7 @@ def footer(prefix):
         </ul>
       </div>
       <div class="foot__small">
-        <p class="mono">Sanay Shah · 2026 · <a href="{prefix}">sanay.space</a></p>
+        <p class="mono">Sanay · 2026 · <a href="{prefix}">sanay.space</a></p>
       </div>
     </div>
   </footer>
@@ -284,7 +284,7 @@ def article_page(p, i, posts):
         <span class="cs-pager__title">{html.escape(q['short_title'])}</span>
       </a>"""
 
-    return head(f"{p['short_title']} · Sanay Shah", p["standfirst"], url, "../") + f"""<body class="cs-page">
+    return head(f"{p['short_title']} · Sanay", p["standfirst"], url, "../") + f"""<body class="cs-page">
 {topbar("../", "article")}  <div class="cs-progress" aria-hidden="true"><span></span><svg><use href="#plane" /></svg></div>
 
   <main id="main">
@@ -300,7 +300,7 @@ def article_page(p, i, posts):
           <p class="cs-standfirst">{html.escape(p['standfirst'])}</p>
           <p class="cs-meta">
             <img src="../assets/img/portrait-240.webp" alt="" width="40" height="40" />
-            <span class="mono">Sanay Shah · {html.escape(p['date'])} · {p['minutes']} min read</span>
+            <span class="mono">Sanay · {html.escape(p['date'])} · {p['minutes']} min read</span>
           </p>
         </div>
       </header>
@@ -328,9 +328,9 @@ def article_page(p, i, posts):
 
 
 def hub_page(posts):
-    desc = ("Case studies by Sanay Shah on putting AI into real work at an accountancy "
+    desc = ("Case studies by Sanay on putting AI into real work at an accountancy "
             "practice and a national pharmacy group, plus the things he's built.")
-    return head("Case studies · Sanay Shah", desc, f"{SITE}/case-studies/", "../") + f"""<body class="cs-page">
+    return head("Case studies · Sanay", desc, f"{SITE}/case-studies/", "../") + f"""<body class="cs-page">
 {topbar("../", "hub")}
   <main id="main">
     <header class="cs-head cs-head--hub">
@@ -399,9 +399,9 @@ def map_page():
             </li>""" for href, ext, kind, title, sf, meta in m.MADE)
     legend = [("work", "Work"), ("leadership", "Leadership and volunteering"), ("education", "Education"), ("wins", "Wins"), ("made", "Things I made")]
     chips = "\n".join(f'          <li><a href="#{k}">{t}</a></li>' for k, t in legend)
-    desc = ("Everything Sanay Shah has done so far in one place: work, leadership and volunteering, "
+    desc = ("Everything Sanay has done so far in one place: work, leadership and volunteering, "
             "education, hackathon wins, rowing, theatre and the things he's built.")
-    return head("The full map · Sanay Shah", desc, f"{SITE}/map/", "../") + f"""<body class="cs-page map-page">
+    return head("The full map · Sanay", desc, f"{SITE}/map/", "../") + f"""<body class="cs-page map-page">
 {topbar("../", "map")}
   <main id="main">
     <header class="cs-head cs-head--hub">
