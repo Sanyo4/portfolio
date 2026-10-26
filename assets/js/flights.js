@@ -228,7 +228,7 @@
   // Scroll-snap can nudge the reel on load; only a person's touch, wheel or
   // key should leave the opening view.
   ["pointerdown", "touchstart", "wheel", "keydown"].forEach(function (t) {
-    reel.addEventListener(t, function () { armed = true; }, { passive: true });
+    reel.addEventListener(t, function () { armed = true; reel.classList.remove("is-nudge"); }, { passive: true });
   });
 
   // A detent under the thumb as each stub passes the centre. Android has the
@@ -254,7 +254,9 @@
       var had = document.activeElement;
       switchLabel.click();
       if (had && had !== document.activeElement) had.focus({ preventScroll: true }); // keep keyboard focus on the stub
-    } else try { navigator.vibrate(8); } catch (err) { /* blocked until the first tap */ }
+    } else if (!navigator.userActivation || navigator.userActivation.hasBeenActive) {
+      navigator.vibrate(8); // Chrome blocks it until the first tap, and would log each try
+    }
   }
 
   // The belt runs with the reel, then goes back to bobbing once it is still.

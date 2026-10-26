@@ -320,11 +320,11 @@
   top: 3px; bottom: 3px; left: -60px; right: -60px;
   background:
     repeating-linear-gradient(90deg, var(--slate-2) 0 2px, transparent 2px 60px),
-    repeating-linear-gradient(90deg, var(--slate-2) 0 1.5px, transparent 1.5px 12px) 0 50% / 100% 50% no-repeat;
+    repeating-linear-gradient(90deg, var(--slate-2) 0 1.5px, transparent 1.5px 12px) 0 50% / 100% 50% repeat-x;
   background-position-x: var(--x, 0px), var(--x, 0px);
   animation: belt-bob 2.8s ease-in-out infinite;
 }
-.belt.is-live::before { animation: none; }
+.belt.is-live::before { animation-play-state: paused; }
 .belt__notch {
   position: absolute;
   top: 0; bottom: 0; left: 50%;
