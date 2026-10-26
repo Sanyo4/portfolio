@@ -613,6 +613,7 @@ a.hl:focus-visible { outline: 3px solid var(--ver); outline-offset: 4px; border-
 .pass--ig { --c: var(--ver); }
 .pass--ph { --c: var(--sage-3); }
 .pass--mail { --c: var(--slate-4); }
+.pass--beli { --c: #a8743a; }
 .pass--vd { --c: #1c2b4a; }
 .passes .passes__wide { grid-column: 1 / -1; }
 
