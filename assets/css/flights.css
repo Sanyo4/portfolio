@@ -245,7 +245,8 @@
   scrollbar-width: none; /* the belt underneath shows it scrolls */
   outline: none;
   /* flights.js drives sideways drags and flings; the page keeps vertical scrolling */
-  touch-action: pan-y;
+  touch-action: pan-y pinch-zoom;
+  overflow-x: hidden; /* no native momentum to fight the flywheel; scrollLeft still moves it */
   cursor: grab;
   -webkit-user-select: none;
   user-select: none;

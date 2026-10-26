@@ -354,15 +354,19 @@
 
   function settle() {
     var i = nearest();
+    target = i;
     slideTo(leftFor(i), 240, function () { rest(i); });
   }
+
+  function onStub() { return Math.abs(reel.scrollLeft - leftFor(nearest())) < 1; }
 
   // Roll on from a flick, aimed so the wheel coasts to a stop on a stub.
   function fling(v) {
     stop();
     if (reduce || Math.abs(v) < 0.1) { settle(); return; }
     var from = reel.scrollLeft;
-    var land = leftFor(nearestTo(Math.max(0, Math.min(maxLeft(), from + v * GLIDE))));
+    target = nearestTo(Math.max(0, Math.min(maxLeft(), from + v * GLIDE)));
+    var land = leftFor(target);
     v = (land - from) / GLIDE;
     var last = performance.now();
     flyRaf = requestAnimationFrame(function step(now) {
@@ -378,7 +382,7 @@
   }
 
   reel.addEventListener("pointerdown", function (e) {
-    if (e.pointerType === "mouse" && e.button !== 0) return;
+    if (drag || (e.pointerType === "mouse" && e.button !== 0)) return;
     stop();
     target = -1;
     drag = { id: e.pointerId, x: e.clientX, y: e.clientY, left: reel.scrollLeft, moved: false, pts: [[e.timeStamp, e.clientX]] };
@@ -404,20 +408,25 @@
     var d = drag;
     drag = null;
     reel.classList.remove("is-dragging");
-    if (!d.moved) return; // a tap: the stub's own click handles it
+    if (!d.moved) { // a tap: a stub's own click selects it, anywhere else re-centres
+      if (!onStub()) settle();
+      return;
+    }
     dragged = true;
     setTimeout(function () { dragged = false; }, 0);
     // speed over the last 100ms of the drag; none if the finger stopped first
     var pts = d.pts, last = pts[pts.length - 1], first = last;
     for (var k = pts.length - 1; k >= 0 && last[0] - pts[k][0] <= 100; k--) first = pts[k];
-    var dt = last[0] - first[0];
+    var dt = Math.max(16, last[0] - first[0]); // two events a hair apart must not read as a huge flick
     var v = dt > 0 && e.timeStamp - last[0] < 80 ? -(last[1] - first[1]) / dt : 0;
     fling(Math.max(-MAXV, Math.min(MAXV, v * BOOST)));
   }
   reel.addEventListener("pointerup", release);
   reel.addEventListener("pointercancel", function (e) {
-    if (drag && drag.moved) release(e);
-    else drag = null;
+    if (!drag || e.pointerId !== drag.id) return;
+    drag = null;
+    reel.classList.remove("is-dragging");
+    settle();
   });
 
   reel.addEventListener("scroll", function () {
@@ -426,7 +435,7 @@
       scrollRaf = 0;
       runBelt();
       if (!armed) return;
-      if (target < 0) pick(nearest());
+      pick(nearest());
       // native scrolling (a trackpad, say) comes to rest on a stub as well
       clearTimeout(settleTimer);
       if (!drag && !flyRaf && !toRaf) settleTimer = setTimeout(settle, 140);
@@ -439,7 +448,7 @@
     target = i;
     pick(i);
     commit();
-    slideTo(leftFor(i), Math.min(700, 260 + 18 * Math.abs(i - from)), function () { target = -1; });
+    slideTo(leftFor(i), Math.min(700, 260 + 18 * Math.abs(i - from)), function () { rest(i); });
     if (focus) legs[i].focus({ preventScroll: true });
   }
 
@@ -471,12 +480,19 @@
     go(idx < 0 && e.key !== "End" ? 0 : to, true);
   });
 
-  // A vertical mouse wheel over the reel steps through the stubs, one per
-  // 60px of wheel, and hands the page back its scroll at either end.
-  if (window.matchMedia("(pointer: fine)").matches) {
-    var wheel = 0;
-    reel.addEventListener("wheel", function (e) {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+  // A sideways trackpad swipe moves the reel directly and settles when it stops.
+  // A vertical mouse wheel steps through the stubs, one per 60px of wheel,
+  // and hands the page back its scroll at either end.
+  var wheel = 0;
+  reel.addEventListener("wheel", function (e) {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+      e.preventDefault();
+      stop();
+      target = -1;
+      reel.scrollLeft += e.deltaX;
+      return;
+    }
+    if (window.matchMedia("(pointer: fine)").matches) {
       var at = idx < 0 ? -1 : idx;
       if ((e.deltaY < 0 && at <= 0) || (e.deltaY > 0 && at >= N - 1)) return;
       e.preventDefault();
@@ -484,8 +500,8 @@
       if (Math.abs(wheel) < 60) return;
       go(at < 0 ? 0 : at + (wheel > 0 ? 1 : -1), false);
       wheel = 0;
-    }, { passive: false });
-  }
+    }
+  }, { passive: false });
 
   var resizeTimer = 0;
   window.addEventListener("resize", function () {
@@ -494,7 +510,8 @@
       measure();
       if (intro) setView(worldFrame());
       else if (shown >= 0) camera(frameBox(F[shown].box, 180), true);
-      if (idx >= 0 && !drag && !flyRaf) reel.scrollLeft = leftFor(idx);
+      if (toRaf) settle();
+      else if (idx >= 0 && !drag && !flyRaf) reel.scrollLeft = leftFor(idx);
     }, 120);
   });
 
