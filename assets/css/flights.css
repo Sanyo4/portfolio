@@ -243,8 +243,7 @@
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  scrollbar-color: var(--slate-1) transparent;
+  scrollbar-width: none; /* the belt underneath shows it scrolls */
   outline: none;
 }
 .js .trip, .js .trip__legs { display: contents; }
@@ -303,7 +302,51 @@
 }
 .leg:focus-visible { outline: 3px solid var(--ver); outline-offset: 3px; }
 
-.fl__hint { margin: 4px 0 0; text-align: center; color: var(--ink-2); }
+/* The belt under the reel says "this moves sideways" without words: its ticks
+   bob left and right while idle and run with the reel like a conveyor once it
+   moves. The notch marks the centre, where the selected stub sits. */
+.belt {
+  position: relative;
+  width: min(100%, 560px);
+  height: 16px;
+  margin: 0 auto;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+}
+.belt::before {
+  content: "";
+  position: absolute;
+  top: 3px; bottom: 3px; left: -60px; right: -60px;
+  background:
+    repeating-linear-gradient(90deg, var(--slate-2) 0 2px, transparent 2px 60px),
+    repeating-linear-gradient(90deg, var(--slate-2) 0 1.5px, transparent 1.5px 12px) 0 50% / 100% 50% no-repeat;
+  background-position-x: var(--x, 0px), var(--x, 0px);
+  animation: belt-bob 2.8s ease-in-out infinite;
+}
+.belt.is-live::before { animation: none; }
+.belt__notch {
+  position: absolute;
+  top: 0; bottom: 0; left: 50%;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--ver);
+  border-radius: 1px;
+}
+@keyframes belt-bob {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-14px); }
+  75% { transform: translateX(14px); }
+}
+
+/* the reel shows it scrolls by giving a little shove the first time it comes into view */
+.js .reel.is-nudge { animation: reel-nudge 1.5s var(--ease) .3s both; }
+@keyframes reel-nudge {
+  0%, 100% { transform: translateX(0); }
+  28% { transform: translateX(-34px); }
+  52% { transform: translateX(0); }
+  72% { transform: translateX(-12px); }
+}
 
 @media (min-width: 760px) {
   .leg { width: 188px; height: 100px; padding: 10px 44px 10px 14px; }
@@ -505,3 +548,4 @@
 @media (min-width: 760px) {
   .nerd__records > div { grid-template-columns: 12rem 1fr; gap: 16px; align-items: baseline; }
 }
+.js .reel::-webkit-scrollbar { display: none; }

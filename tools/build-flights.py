@@ -397,7 +397,7 @@ TEMPLATE = '''<!DOCTYPE html>
         <div class="reel" id="reel" aria-label="Flights, in order">
 {reel}
         </div>
-        <p class="fl__hint mono js-only">Scroll the stubs, or use the arrow keys.</p>
+        <div class="belt js-only" id="belt" aria-hidden="true"><span class="belt__notch"></span></div>
 
 {stats}
 
@@ -405,7 +405,7 @@ TEMPLATE = '''<!DOCTYPE html>
           <div class="passport__head">
             <p class="label">Passport</p>
             <h2 class="passport__title" id="stamps-title">{countries} countries</h2>
-            <p class="passport__lead">Every country I have landed in, stamped with the airport and date of the first landing. Red ink is the Singapore year.<span class="js-only"> Scroll the stubs and the passport fills in as you go.</span></p>
+            <p class="passport__lead">Every country I have landed in, stamped with the airport and date of the first landing. Red ink is the Singapore year.</p>
           </div>
           <ol class="passport__page">
 {visas}

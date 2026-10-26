@@ -198,6 +198,7 @@
     legs[i].classList.add("is-active");
     legs[i].setAttribute("aria-selected", "true");
     legs[i].tabIndex = 0;
+    if (armed) haptic();
 
     var r = routes[i];
     len = r.getTotalLength();
@@ -230,6 +231,54 @@
     reel.addEventListener(t, function () { armed = true; }, { passive: true });
   });
 
+  // A detent under the thumb as each stub passes the centre. Android has the
+  // Vibration API. iOS Safari does not, but from iOS 18 toggling a switch
+  // checkbox through its label gives a system haptic, so a hidden one stands in.
+  var lastTick = 0, switchLabel = null;
+  if (!("vibrate" in navigator)) {
+    var sw = document.createElement("input");
+    sw.type = "checkbox";
+    sw.setAttribute("switch", "");
+    sw.tabIndex = -1;
+    switchLabel = document.createElement("label");
+    switchLabel.setAttribute("aria-hidden", "true");
+    switchLabel.style.cssText = "position:fixed;left:-200px;top:0;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none";
+    switchLabel.appendChild(sw);
+    document.body.appendChild(switchLabel);
+  }
+  function haptic() {
+    var now = performance.now();
+    if (now - lastTick < 45) return;
+    lastTick = now;
+    if (switchLabel) {
+      var had = document.activeElement;
+      switchLabel.click();
+      if (had && had !== document.activeElement) had.focus({ preventScroll: true }); // keep keyboard focus on the stub
+    } else try { navigator.vibrate(8); } catch (err) { /* blocked until the first tap */ }
+  }
+
+  // The belt runs with the reel, then goes back to bobbing once it is still.
+  var belt = document.getElementById("belt"), beltTimer = 0;
+  function runBelt() {
+    if (!belt) return;
+    belt.classList.add("is-live");
+    belt.style.setProperty("--x", (-reel.scrollLeft).toFixed(0) + "px");
+    clearTimeout(beltTimer);
+    beltTimer = setTimeout(function () { belt.classList.remove("is-live"); }, 1600);
+  }
+
+  // One shove the first time the reel comes into view, so it reads as something that moves.
+  if (!reduce && "IntersectionObserver" in window) {
+    var nudger = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      nudger.disconnect();
+      if (armed) return;
+      reel.classList.add("is-nudge");
+      reel.addEventListener("animationend", function () { reel.classList.remove("is-nudge"); }, { once: true });
+    }, { threshold: 0.6 });
+    nudger.observe(reel);
+  }
+
   function measure() {
     centres = legs.map(function (l) { return l.offsetLeft + l.offsetWidth / 2; });
   }
@@ -247,6 +296,7 @@
     if (scrollRaf) return;
     scrollRaf = requestAnimationFrame(function () {
       scrollRaf = 0;
+      runBelt();
       if (!armed) return;
       var i = nearest();
       if (lock >= 0) {
@@ -335,7 +385,9 @@
   ro.meta.textContent = D.totals.km.toLocaleString("en-GB") + " km · " + D.totals.airports + " airports · " + D.totals.countries.length + " countries";
   ro.date.textContent = "";
   ro.season.textContent = "";
-  caption.textContent = "Scroll the stubs to fly them in order.";
+  var LONG = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var my = function (iso) { return LONG[+iso.slice(5, 7) - 1] + " " + iso.slice(0, 4); };
+  caption.textContent = my(f0.date) + " to " + my(F[N - 1].date);
   idx = -1;
   legs[0].classList.remove("is-active");
   legs[0].setAttribute("aria-selected", "false");
