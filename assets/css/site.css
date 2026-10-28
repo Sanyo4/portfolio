@@ -340,12 +340,30 @@ a.hl::after {
   left: .02em; right: 0;
   bottom: -.04em;
   border-bottom: 2px dashed var(--ver);
-  opacity: .7;
+  opacity: .9;
   transition: opacity .25s var(--ease);
 }
 a.hl::before { transition: transform .35s var(--ease), box-shadow .35s var(--ease); }
 a.hl:hover::before { transform: rotate(-1.6deg) translateY(-2px); box-shadow: var(--shadow-2); }
 a.hl:hover::after { opacity: 1; }
+.hl__go {
+  width: .42em;
+  height: .42em;
+  margin-left: .12em;
+  vertical-align: .62em;
+  color: var(--ver);
+  transition: translate .3s var(--ease);
+}
+a.hl:hover .hl__go { translate: .06em -.06em; }
+/* Once, after the page settles, the strip lifts like a ticket being offered. */
+.js a.hl::before { animation: offer 1.1s 1.4s var(--ease); }
+.js .hl__go { animation: offer-go 1.1s 1.4s var(--ease); }
+@keyframes offer {
+  40% { transform: rotate(-2deg) translateY(-3px); box-shadow: var(--shadow-2); }
+}
+@keyframes offer-go {
+  40% { translate: .08em -.08em; }
+}
 a.hl:focus-visible { outline: 3px solid var(--ver); outline-offset: 4px; border-radius: 2px; }
 
 .hero__sub {
